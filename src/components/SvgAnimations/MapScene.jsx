@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import shipSvg from "../assets/svgs/ship-cruiser-passenger-svgrepo-com.svg";
+import shipSvg from "../../assets/svgs/ship-cruiser-passenger-svgrepo-com.svg";
 
 /* ----------------------------- SVG artwork ----------------------------- */
 

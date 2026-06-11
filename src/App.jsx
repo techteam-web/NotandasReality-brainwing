@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router"
 import HomePage from "./components/HomePage"
-import PageTransition from "./components/PageTransition"
+import PageTransition from "./components/Transitions/PageTransition"
 
 const App = () => {
   return (

@@ -1,7 +1,7 @@
 import notanMap from "../assets/notan_map.png"
-import NuthandasLogoAnimated from "./NuthandasLogoAnimated"
-import AnimatedPlane from "./AnimatedPlane"
-import MapScene from "./MapScene"
+import NuthandasLogoAnimated from "./SvgAnimations/NuthandasLogoAnimated"
+import AnimatedPlane from "./SvgAnimations/AnimatedPlane"
+import MapScene from "./SvgAnimations/MapScene"
 import { useRef } from "react";
 import gsap from "gsap"
 import { useGSAP } from '@gsap/react';
