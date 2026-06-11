@@ -30,9 +30,9 @@ const HomePage = () => {
       <MapScene />
       <BuildingsLayer />
 
-      <div className="p-3 ml-28">
+      <div className="relative">
         <NuthandasLogoAnimated 
-          className="w-48 md:w-74 h-70 transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(218,165,32,0.7)] cursor-pointer"
+          className="w-48 md:w-74 h-50 transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(218,165,32,0.7)] cursor-pointer"
         />
       </div>
    
@@ -42,7 +42,7 @@ const HomePage = () => {
       <AnimatedPlane />
     </div>
 
-     <h1 className="text-2xl capitalize font-semibold text-[#4E5157] font-serif italic ">
+     <h1 className="text-2xl capitalize font-semibold text-[#4E5157] font-Times-Roman italic ">
       CSM-International Airport
      </h1>
 
@@ -50,7 +50,7 @@ const HomePage = () => {
 
 
     <div className="absolute top-[50%] left-[9%] -rotate-90">
-      <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-serif italic " ref={seaWordRef}>
+      <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-Times-Roman  " ref={seaWordRef}>
         Arabian Sea
       </h1>
     </div>

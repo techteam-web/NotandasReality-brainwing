@@ -254,7 +254,7 @@ const MapScene = () => {
     >
       {/* ---------------- Sea side (Arabian Sea, left of the coastline) ---------------- */}
 
-      <div className="ms-boat absolute top-[10%] left-[6%] w-20 md:w-28 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)]">
+      <div className="ms-boat absolute top-[10%] left-[20%] w-20 md:w-28 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)]">
         <SailBoat className="w-full h-auto" />
       </div>
 
