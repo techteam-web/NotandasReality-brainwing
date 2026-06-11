@@ -1,5 +1,4 @@
 import notanMap from "../assets/notan_map.png"
-import nuthandasLogo from "../assets/nuthandasReality.svg"
 import NuthandasLogoAnimated from "./NuthandasLogoAnimated"
 import AnimatedPlane from "./AnimatedPlane"
 import MapScene from "./MapScene"
@@ -48,7 +47,7 @@ const HomePage = () => {
    </div>
 
 
-    <div className="absolute top-[50%] left-[10%] -rotate-90">
+    <div className="absolute top-[50%] left-[9%] -rotate-90">
       <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-serif italic " ref={seaWordRef}>
         Arabian Sea
       </h1>
