@@ -2,6 +2,7 @@ import notanMap from "../assets/notan_map.png"
 import nuthandasLogo from "../assets/nuthandasReality.svg"
 import NuthandasLogoAnimated from "./NuthandasLogoAnimated"
 import AnimatedPlane from "./AnimatedPlane"
+import MapScene from "./MapScene"
 import { useRef } from "react";
 import gsap from "gsap"
 import { useGSAP } from '@gsap/react';
@@ -20,13 +21,15 @@ const HomePage = () => {
 
   return (
     <div
-      className="w-full h-screen bg-black text-white bg-cover bg-no-repeat"
-      style={{ 
+      className="relative w-full h-screen bg-black text-white bg-cover bg-no-repeat overflow-hidden"
+      style={{
         backgroundImage: `url(${notanMap})`,
         backgroundPosition: `center calc(100% + 40px)` // Adjust the 50px or 0% (top) / 100% (bottom) to your exact needs
       }}
     >
-      <div className="p-3 ml-15">
+      <MapScene />
+
+      <div className="p-3 ml-28">
         <NuthandasLogoAnimated 
           className="w-48 md:w-74 h-70 transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(218,165,32,0.7)] cursor-pointer"
         />
@@ -45,7 +48,7 @@ const HomePage = () => {
    </div>
 
 
-    <div className="absolute top-[50%] left-[15%] -rotate-90">
+    <div className="absolute top-[50%] left-[10%] -rotate-90">
       <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-serif italic " ref={seaWordRef}>
         Arabian Sea
       </h1>
