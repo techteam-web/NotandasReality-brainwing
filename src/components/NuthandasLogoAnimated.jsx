@@ -18,7 +18,7 @@ const NuthandasLogoAnimated = ({ className }) => {
             fillOpacity: 0,
             stroke: "#DAA520", 
             strokeWidth: 20, 
-            fill: "#292929", // Fill in gold since background is black!
+            fill: "#292929",  
           });
 
           gsap.to(path, {
