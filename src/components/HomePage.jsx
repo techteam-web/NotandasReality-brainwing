@@ -2,8 +2,21 @@ import notanMap from "../assets/notan_map.png"
 import nuthandasLogo from "../assets/nuthandasReality.svg"
 import NuthandasLogoAnimated from "./NuthandasLogoAnimated"
 import AnimatedPlane from "./AnimatedPlane"
+import { useRef } from "react";
+import gsap from "gsap"
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP); 
 
 const HomePage = () => {
+  const seaWordRef = useRef();
+
+  useGSAP(() => {
+    gsap.fromTo(seaWordRef.current, 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 2, ease: "power2.out", delay: 3}
+    );
+  });
 
   return (
     <div
@@ -20,13 +33,24 @@ const HomePage = () => {
       </div>
    
    <div className="absolute bottom-[50%] right-27 ">
+
     <div className="w-36 h-16 ml-15 mb-15">
       <AnimatedPlane />
     </div>
-     <h1 className="text-2xl capitalize font-semibold text-[#4E5157] font-serif ">
+
+     <h1 className="text-2xl capitalize font-semibold text-[#4E5157] font-serif italic ">
       CSM-International Airport
      </h1>
+
    </div>
+
+
+    <div className="absolute top-[50%] left-[15%] -rotate-90">
+      <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-serif italic " ref={seaWordRef}>
+        Arabian Sea
+      </h1>
+    </div>
+
 
       
     </div>
