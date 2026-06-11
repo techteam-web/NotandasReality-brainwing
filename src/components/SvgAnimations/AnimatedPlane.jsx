@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
 const AnimatedPlane = ({ className }) => {
+  const containerRef = useRef(null);
   const planeRef = useRef(null);
   const pathRef = useRef(null);
 
@@ -41,7 +42,21 @@ const AnimatedPlane = ({ className }) => {
         delay: 3, // start after the intro flight
       });
 
-      // 3. Draw a swooping trail behind the plane
+      // 3. "Pencil in" the plane, stroke by stroke, while it flies in
+      const sketchPaths = gsap.utils.toArray(".ap-sketch");
+      sketchPaths.forEach((p) => {
+        const len = p.getTotalLength();
+        gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
+      });
+      gsap.to(".ap-sketch", {
+        strokeDashoffset: 0,
+        duration: 1.4,
+        ease: "power1.inOut",
+        stagger: 0.15,
+        delay: 1,
+      });
+
+      // 4. Draw a swooping trail behind the plane
       const strokeLength = pathRef.current.getTotalLength();
       gsap.set(pathRef.current, {
         strokeDasharray: strokeLength,
@@ -63,13 +78,13 @@ const AnimatedPlane = ({ className }) => {
         duration: 2,
         delay: 3,
       });
-    });
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className={`relative ${className}`}>
+    <div ref={containerRef} className={`relative ${className}`}>
       {/* Decorative Flight Trail */}
       <svg
         className="absolute top-1/2 left-0 -translate-y-1/2 translate-x-[-110%] w-75 h-50 -z-10 pointer-events-none"
@@ -87,17 +102,81 @@ const AnimatedPlane = ({ className }) => {
         />
       </svg>
 
-      {/* Plane SVG */}
+      {/* Pencil-sketched plane, climbing toward the upper right */}
       <svg
         ref={planeRef}
-        fill="#292929" /* Gold to match the logo style */
         width="100%"
         height="100%"
-        viewBox="-4.16 -4.16 40.32 40.32"
+        viewBox="0 0 120 80"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="drop-shadow-[0_0_8px_rgba(218,165,32,0.5)]"
       >
-        <path d="M29.028,3l-.017-.015L29,2.972a2.118,2.118,0,0,0-2.993,0l-7.187,7.186L14.67,9.291l2.122-2.123a.354.354,0,0,0-.5-.5l-2.45,2.45-4.12-.861L11.777,6.2a.354.354,0,0,0-.5-.5L8.893,8.082,5.613,7.4a2.909,2.909,0,0,0-2.67.8L1.635,9.5a.354.354,0,0,0,.108.575L13.671,15.3,9.217,19.757,4.475,20.3a1.342,1.342,0,0,0-1.046.747l-.777,1.88a.359.359,0,0,0,.024.319.354.354,0,0,0,.271.169l3.805.36a1.956,1.956,0,0,0,.5.913.223.223,0,0,0,.027.026l.016.018a1.984,1.984,0,0,0,.925.514l.36,3.805a.354.354,0,0,0,.169.271.359.359,0,0,0,.319.024l1.907-.789a1.334,1.334,0,0,0,.72-1.034l.545-4.742L16.7,18.329l5.229,11.928a.356.356,0,0,0,.259.206.368.368,0,0,0,.066.006.354.354,0,0,0,.25-.1l1.308-1.308a2.918,2.918,0,0,0,.8-2.67l-.686-3.28L26.3,20.724a.354.354,0,0,0-.5-.5l-2.055,2.056-.861-4.12,2.45-2.45a.354.354,0,0,0-.5-.5L22.709,17.33l-.867-4.146L29.028,6A2.117,2.117,0,0,0,29.028,3Zm-.5,2.492-7.321,7.322a.354.354,0,0,0-.1.323l2.8,13.391a2.212,2.212,0,0,1-.6,2.024l-.941.942L17.137,17.57a.351.351,0,0,0-.259-.206.3.3,0,0,0-.066-.007.358.358,0,0,0-.25.1l-4.908,4.908a.359.359,0,0,0-.1.21l-.559,4.865a.621.621,0,0,1-.313.472l-1.438.594L8.9,24.919a.353.353,0,0,0-.3-.317,1.4,1.4,0,0,1-.781-.35q-.017-.021-.033-.039a.335.335,0,0,0-.04-.033A1.389,1.389,0,0,1,7.4,23.4a.353.353,0,0,0-.317-.3l-3.591-.34.582-1.411a.627.627,0,0,1,.484-.34l4.865-.559a.359.359,0,0,0,.21-.1l4.908-4.908a.355.355,0,0,0-.109-.575L2.5,9.634l.942-.941a2.216,2.216,0,0,1,2.024-.6l13.391,2.8a.348.348,0,0,0,.323-.1L26.5,3.473a1.411,1.411,0,0,1,1.97-.021.325.325,0,0,0,.074.074A1.41,1.41,0,0,1,28.527,5.5Z"/>
+        <g
+          transform="rotate(-8 60 40)"
+          stroke="#292929"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {/* fuselage — one loose loop, left slightly open like a quick sketch */}
+          <path
+            className="ap-sketch"
+            d="M14 44 C 30 33 64 27 90 31 C 99 32.5 106 36 104.5 40.5 C 102.5 46 80 51 52 52.5 C 36 53.3 18 51 13.5 46.5"
+          />
+          {/* faint pencil overdraw along the spine */}
+          <path
+            className="ap-sketch"
+            d="M16 42 C 32 31.5 64 26 88 29.5"
+            opacity="0.3"
+            strokeWidth="1.8"
+          />
+          {/* tail fin */}
+          <path className="ap-sketch" d="M21 41 Q13 29 12 23 Q12 20.5 15 22.5 Q23 29 32 35" />
+          {/* rear stabilizer */}
+          <path className="ap-sketch" d="M16 46 Q8 45 3 41" strokeWidth="2.2" />
+          {/* near wing sweeping toward the viewer */}
+          <path
+            className="ap-sketch"
+            d="M56 50 Q44 62 31 69 Q28 70.5 29.5 67.5 Q36 57 48 49.5"
+          />
+          {/* hatch shading on the wing */}
+          <path
+            className="ap-sketch"
+            d="M38 63 l7 -6 M43 65 l7 -6 M48 66.5 l6 -5"
+            opacity="0.35"
+            strokeWidth="1.6"
+          />
+          {/* far wing hinted above */}
+          <path
+            className="ap-sketch"
+            d="M60 30.5 Q68 22 76 18.5 Q78 17.7 76.8 20.5 Q72 27 65 31"
+            opacity="0.55"
+            strokeWidth="2"
+          />
+          {/* little doodle windows */}
+          <path
+            className="ap-sketch"
+            d="M40 42.5 l4 -0.6 M49 41.5 l4 -0.6 M58 40.3 l4 -0.5 M67 39 l4 -0.5"
+            opacity="0.5"
+            strokeWidth="2"
+          />
+          {/* cockpit glint in the logo gold */}
+          <path
+            className="ap-sketch"
+            d="M89 33.5 Q96 34.5 100 38"
+            stroke="#DAA520"
+            strokeWidth="2.2"
+          />
+          {/* speed swishes off the tail, in gold */}
+          <path
+            className="ap-sketch"
+            d="M2 26 q6 -1 10 0 M0 36 q5 0 9 1 M3 54 q5 1 8 0"
+            stroke="#DAA520"
+            opacity="0.55"
+            strokeWidth="2"
+          />
+        </g>
       </svg>
     </div>
   );

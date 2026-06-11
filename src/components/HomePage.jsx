@@ -2,6 +2,7 @@ import notanMap from "../assets/notan_map.png"
 import NuthandasLogoAnimated from "./SvgAnimations/NuthandasLogoAnimated"
 import AnimatedPlane from "./SvgAnimations/AnimatedPlane"
 import MapScene from "./SvgAnimations/MapScene"
+import BuildingsLayer from "./Buildings/BuildingsLayer"
 import { useRef } from "react";
 import gsap from "gsap"
 import { useGSAP } from '@gsap/react';
@@ -27,6 +28,7 @@ const HomePage = () => {
       }}
     >
       <MapScene />
+      <BuildingsLayer />
 
       <div className="p-3 ml-28">
         <NuthandasLogoAnimated 
