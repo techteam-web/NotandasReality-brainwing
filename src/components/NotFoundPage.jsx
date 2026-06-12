@@ -24,14 +24,14 @@ const NotFoundPage = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#0d0f12] text-white p-4 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none flex items-center justify-center">
-        <div className="w-[800px] h-[800px] rounded-full border border-gray-600 border-dashed animate-[spin_60s_linear_infinite]"></div>
-        <div className="absolute w-[600px] h-[600px] rounded-full border border-gray-700 animate-[spin_40s_linear_infinite_reverse]"></div>
-        <div className="absolute w-[400px] h-[400px] rounded-full border border-gray-800 border-dashed animate-[spin_20s_linear_infinite]"></div>
+        <div className="w-200 h-200 rounded-full border border-gray-600 border-dashed animate-[spin_60s_linear_infinite]"></div>
+        <div className="absolute w-150600px] rounded-full border border-gray-700 animate-[spin_40s_linear_infinite_reverse]"></div>
+        <div className="absolute w-100 h-100 rounded-full border border-gray-800 border-dashed animate-[spin_20s_linear_infinite]"></div>
       </div>
 
       <div className="z-10 text-center space-y-8 max-w-2xl">
         <div className="relative inline-block">
-          <h1 className="text-9xl md:text-[150px] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-gray-200 via-gray-400 to-gray-700 select-none">
+          <h1 className="text-9xl md:text-[150px] font-bold tracking-tighter text-transparent bg-clip-text bg-linear-to-br from-gray-200 via-gray-400 to-gray-700 select-none">
             404
           </h1>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-1 bg-gray-500/30 blur-sm"></div>

@@ -108,7 +108,7 @@ const AnimatedPlane = ({ className }) => {
         ref={planeRef}
         src={planeSvg}
         alt="Plane"
-        className="w-full h-auto max-w-[120px] drop-shadow-[0_0_8px_rgba(218,165,32,0.5)]"
+        className="w-full h-auto max-w-30 drop-shadow-[0_0_8px_rgba(218,165,32,0.5)]"
         style={{ transform: "rotate(-9deg)" }}
       />
     </div>

@@ -24,7 +24,7 @@ const BuildingMarker = ({ building }) => {
       <div className="bldg-pop relative">
         {/* warm golden glow blooming behind the building */}
         <div
-          className="absolute -inset-[20%] rounded-full pointer-events-none
+          className="absolute inset-[-20%] rounded-full pointer-events-none
                      bg-[radial-gradient(circle,rgba(218,165,32,0.4)_0%,rgba(218,165,32,0)_70%)]
                      opacity-0 scale-75 transition-all duration-500 ease-out
                      group-hover:opacity-100 group-hover:scale-110"
@@ -32,7 +32,7 @@ const BuildingMarker = ({ building }) => {
 
         {/* pulsing hand-dashed ink ring at the building's feet */}
         <div className="absolute bottom-0 left-1/2 w-3/4 -translate-x-1/2 translate-y-1/3 pointer-events-none opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <div className="bldg-ring w-full aspect-[3/1] rounded-[50%] border border-dashed border-[#3b5382]/70" />
+          <div className="bldg-ring w-full aspect-3/1 rounded-[50%] border border-dashed border-[#3b5382]/70" />
         </div>
 
         {/* soft ground shadow so the building feels planted on the map */}
