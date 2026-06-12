@@ -16,8 +16,8 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
                   group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
                   ${
                     onTop
-                      ? "bottom-full mb-4 translate-y-2 group-hover:translate-y-0"
-                      : "top-full mt-4 -translate-y-2 group-hover:translate-y-0"
+                      ? "bottom-full pb-4 translate-y-2 group-hover:translate-y-0"
+                      : "top-full pt-4 -translate-y-2 group-hover:translate-y-0"
                   }`}
     >
       {/* arrow pointing at the building (rendered first when card sits below) */}
