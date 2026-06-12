@@ -42,8 +42,8 @@ const HomePage = () => {
       <AnimatedPlane />
     </div>
 
-     <h1 className="text-2xl capitalize font-semibold text-[#4E5157] font-Times-Roman italic ">
-      CSM-International Airport
+     <h1 className="text-sm uppercase font-semibold text-[#7a7c80] font-Times-Roman  ">
+      chhatrapati <br/>shivaji maharaj <br/>international airport
      </h1>
 
    </div>

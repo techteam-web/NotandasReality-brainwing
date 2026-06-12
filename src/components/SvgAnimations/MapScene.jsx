@@ -233,15 +233,14 @@ const MapScene = () => {
       });
 
       // 8. Open-sea waves drift sideways forever
-      gsap.to(".ms-wave", {
-        x: 12,
-        duration: 4,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-        stagger: 0.6,
-        delay: 3,
-      });
+      // gsap.to(".ms-wave", {
+      //   x: 12,
+      //   duration: 4,
+      //   repeat: -1,
+      //   ease: "sine.inOut",
+      //   stagger: 0.6,
+      //   delay: 3,
+      // });
     },
     { scope: rootRef }
   );
@@ -267,6 +266,9 @@ const MapScene = () => {
 
       {/* drifting hand-drawn swells scattered over the open water */}
       <div className="ms-wave absolute top-[26%] left-[24%] w-20 text-[#5b77a8] opacity-60">
+        <Wave className="w-full h-auto" />
+      </div>
+      <div className="ms-wave absolute top-[16%] left-[4%] w-20 text-[#5b77a8] opacity-60">
         <Wave className="w-full h-auto" />
       </div>
       <div className="ms-wave absolute top-[42%] left-[4%] w-16 text-[#5b77a8] opacity-50">
@@ -298,6 +300,12 @@ const MapScene = () => {
       </div>
 
       <div className="ms-gulls absolute top-[30%] left-[28%] w-10 md:w-14 text-[#41526e] opacity-0">
+        <Gulls className="w-full h-auto" />
+      </div>
+      <div className="ms-gulls absolute top-[50%] left-[28%] w-10 md:w-14 text-[#41526e] opacity-0">
+        <Gulls className="w-full h-auto" />
+      </div>
+      <div className="ms-gulls absolute top-[10%] left-[15%] w-10 md:w-14 text-[#41526e] opacity-0">
         <Gulls className="w-full h-auto" />
       </div>
 

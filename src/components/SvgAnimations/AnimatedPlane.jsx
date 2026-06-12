@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import planeSvg from "../../assets/svgs/plane.svg";
 
 const AnimatedPlane = ({ className }) => {
   const containerRef = useRef(null);
@@ -42,19 +43,19 @@ const AnimatedPlane = ({ className }) => {
         delay: 3, // start after the intro flight
       });
 
-      // 3. "Pencil in" the plane, stroke by stroke, while it flies in
-      const sketchPaths = gsap.utils.toArray(".ap-sketch");
-      sketchPaths.forEach((p) => {
-        const len = p.getTotalLength();
-        gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
-      });
-      gsap.to(".ap-sketch", {
-        strokeDashoffset: 0,
-        duration: 1.4,
-        ease: "power1.inOut",
-        stagger: 0.15,
-        delay: 1,
-      });
+      // 3. "Pencil in" removed because we use an external svg image
+      // const sketchPaths = gsap.utils.toArray(".ap-sketch");
+      // sketchPaths.forEach((p) => {
+      //   const len = p.getTotalLength();
+      //   gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
+      // });
+      // gsap.to(".ap-sketch", {
+      //   strokeDashoffset: 0,
+      //   duration: 1.4,
+      //   ease: "power1.inOut",
+      //   stagger: 0.15,
+      //   delay: 1,
+      // });
 
       // 4. Draw a swooping trail behind the plane
       const strokeLength = pathRef.current.getTotalLength();
@@ -96,88 +97,20 @@ const AnimatedPlane = ({ className }) => {
           ref={pathRef}
           d="M -50 180 Q 150 150 280 100"
           stroke="#DAA520"
-          strokeWidth="2"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="4 4"
         />
       </svg>
 
-      {/* Pencil-sketched plane, climbing toward the upper right */}
-      <svg
+      {/* External Plane SVG, climbing toward the upper right */}
+      <img
         ref={planeRef}
-        width="100%"
-        height="100%"
-        viewBox="0 0 120 80"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="drop-shadow-[0_0_8px_rgba(218,165,32,0.5)]"
-      >
-        <g
-          transform="rotate(-8 60 40)"
-          stroke="#292929"
-          strokeWidth="2.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          {/* fuselage — one loose loop, left slightly open like a quick sketch */}
-          <path
-            className="ap-sketch"
-            d="M14 44 C 30 33 64 27 90 31 C 99 32.5 106 36 104.5 40.5 C 102.5 46 80 51 52 52.5 C 36 53.3 18 51 13.5 46.5"
-          />
-          {/* faint pencil overdraw along the spine */}
-          <path
-            className="ap-sketch"
-            d="M16 42 C 32 31.5 64 26 88 29.5"
-            opacity="0.3"
-            strokeWidth="1.8"
-          />
-          {/* tail fin */}
-          <path className="ap-sketch" d="M21 41 Q13 29 12 23 Q12 20.5 15 22.5 Q23 29 32 35" />
-          {/* rear stabilizer */}
-          <path className="ap-sketch" d="M16 46 Q8 45 3 41" strokeWidth="2.2" />
-          {/* near wing sweeping toward the viewer */}
-          <path
-            className="ap-sketch"
-            d="M56 50 Q44 62 31 69 Q28 70.5 29.5 67.5 Q36 57 48 49.5"
-          />
-          {/* hatch shading on the wing */}
-          <path
-            className="ap-sketch"
-            d="M38 63 l7 -6 M43 65 l7 -6 M48 66.5 l6 -5"
-            opacity="0.35"
-            strokeWidth="1.6"
-          />
-          {/* far wing hinted above */}
-          <path
-            className="ap-sketch"
-            d="M60 30.5 Q68 22 76 18.5 Q78 17.7 76.8 20.5 Q72 27 65 31"
-            opacity="0.55"
-            strokeWidth="2"
-          />
-          {/* little doodle windows */}
-          <path
-            className="ap-sketch"
-            d="M40 42.5 l4 -0.6 M49 41.5 l4 -0.6 M58 40.3 l4 -0.5 M67 39 l4 -0.5"
-            opacity="0.5"
-            strokeWidth="2"
-          />
-          {/* cockpit glint in the logo gold */}
-          <path
-            className="ap-sketch"
-            d="M89 33.5 Q96 34.5 100 38"
-            stroke="#DAA520"
-            strokeWidth="2.2"
-          />
-          {/* speed swishes off the tail, in gold */}
-          <path
-            className="ap-sketch"
-            d="M2 26 q6 -1 10 0 M0 36 q5 0 9 1 M3 54 q5 1 8 0"
-            stroke="#DAA520"
-            opacity="0.55"
-            strokeWidth="2"
-          />
-        </g>
-      </svg>
+        src={planeSvg}
+        alt="Plane"
+        className="w-full h-auto max-w-[120px] drop-shadow-[0_0_8px_rgba(218,165,32,0.5)]"
+        style={{ transform: "rotate(-9deg)" }}
+      />
     </div>
   );
 };
