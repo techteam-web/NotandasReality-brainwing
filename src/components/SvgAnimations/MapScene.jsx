@@ -257,6 +257,9 @@ const MapScene = () => {
       <div className="ms-boat absolute top-[10%] left-[20%] w-20 md:w-28 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)]">
         <SailBoat className="w-full h-auto" />
       </div>
+      <div className="ms-boat absolute top-[70%] left-[7%] w-20 md:w-28 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)]">
+        <SailBoat className="w-full h-auto" />
+      </div>
 
       <div className="ms-ship absolute top-[58%] left-[22%] w-20 md:w-28 opacity-0">
         <img src={shipSvg} alt="" className="w-full h-auto opacity-80" />
@@ -275,10 +278,22 @@ const MapScene = () => {
       <div className="ms-wave absolute top-[88%] left-[10%] w-20 text-[#5b77a8] opacity-50">
         <Wave className="w-full h-auto" />
       </div>
+      <div className="ms-wave absolute top-[88%] left-[10%] w-20 text-[#5b77a8] opacity-50">
+        <Wave className="w-full h-auto" />
+      </div>
+      <div className="ms-wave absolute top-[38%] left-[10%] w-20 text-[#5b77a8] opacity-50">
+        <Wave className="w-full h-auto" />
+      </div>
+      <div className="ms-wave absolute top-[48%] left-[10%] w-20 text-[#5b77a8] opacity-50">
+        <Wave className="w-full h-auto" />
+      </div>
 
       {/* ---------------- Sky ---------------- */}
 
       <div className="ms-flock absolute top-[6%] left-[52%] w-14 md:w-20 text-[#4E5157] opacity-0">
+        <Flock className="w-full h-auto" />
+      </div>
+      <div className="ms-flock absolute top-[88%] left-[22%] w-14 md:w-20 text-[#4E5157] opacity-0">
         <Flock className="w-full h-auto" />
       </div>
 
@@ -290,6 +305,9 @@ const MapScene = () => {
 
       {/* Juhu beach palms, right on the shoreline */}
       <div className="ms-grow ms-sway absolute top-[24%] left-[42%] w-12 md:w-16 text-[#5c6657]">
+        <PalmIsland className="w-full h-auto" />
+      </div>
+      <div className="ms-grow ms-sway absolute top-[84%] left-[36%] w-12 md:w-16 text-[#5c6657]">
         <PalmIsland className="w-full h-auto" />
       </div>
 

@@ -23,14 +23,14 @@ const NuthandasLogoAnimated = ({ className }) => {
 
           gsap.to(path, {
             strokeDashoffset: 0,
-            duration: 2.5,
+            duration: 3,
             ease: "power2.inOut",
           });
 
           gsap.to(path, {
             fillOpacity: 1,
-            duration: 1.5,
-            delay: 2.2,
+            duration: 2,
+            delay: 3.2,
             ease: "power2.out",
           });
         // Let's fade in text softly after the logo is drawn
