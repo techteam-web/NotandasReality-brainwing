@@ -14,3 +14,6 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+archi of the proj mainpg (selc building ) -> views page (build floor img hover) > after floor selecn on hover >  an overlay div of the Floor / unit  plan  with point view hover svg > after point svg selecn pano view of that point i.e (140deg) with minimap sync h > after back from pano view return to floor plan / unit plan hover svg slec page i.e (last navi page )

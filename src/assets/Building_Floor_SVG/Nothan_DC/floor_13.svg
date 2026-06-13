@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="floor_13" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00a4ff;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M656.96,434.26v-44.86l215.22-216.18s5.48-12.91,34.04,3.52,112.7,65.35,112.7,65.35v43.09l-112.3-61.43s-15.52-6.83-28.35,4.9-221.3,205.62-221.3,205.62"/>
+</svg>

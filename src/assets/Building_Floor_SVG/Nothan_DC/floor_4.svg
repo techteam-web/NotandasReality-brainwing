@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="floor_4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00a4ff;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <polyline class="cls-1" points="655.26 753.43 655.26 721.48 882.48 647.39 1020.48 667.74 1020.48 715.74 884.04 700.41 655.26 753.43"/>
+</svg>

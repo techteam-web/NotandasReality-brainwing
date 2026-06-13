@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="floor_5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00a4ff;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-1" points="655.26 684.17 891.74 590.26 1020.48 617.39 1020.48 667.74 882.48 647.39 655.26 721.48 655.26 684.17"/>
+</svg>
