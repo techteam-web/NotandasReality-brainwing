@@ -24,7 +24,7 @@ const HomePage = () => {
       className="relative w-full h-screen bg-black text-white bg-cover bg-no-repeat overflow-hidden"
       style={{
         backgroundImage: `url(${notanMap})`,
-        backgroundPosition: `center calc(100% + 40px)` // Adjust the 50px or 0% (top) / 100% (bottom) to your exact needs
+        backgroundPosition: `center calc(100% + 0px)` // Adjust the 50px or 0% (top) / 100% (bottom) to your exact needs
       }}
     >
       <MapScene />
