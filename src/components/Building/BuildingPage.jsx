@@ -34,12 +34,12 @@ const BuildingPage = () => {
 
   useGSAP(() => {
     gsap.from("p, h1", {
-      y: 40,
+      x: 50,
       opacity: 0,
       duration: 1.2,
       stagger: 0.15,
       ease: "power4.out",
-      delay: 1.4 // wait for the page transition "ink" wave to recede
+      delay: 1.6 // wait for the page transition "ink" wave to recede
     });
   }, { scope: headerRef });
 
