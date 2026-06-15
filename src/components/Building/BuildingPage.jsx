@@ -2,6 +2,7 @@ import { useState , useRef} from "react";
 import { Link, useParams } from "react-router";
 import { BUILDINGS } from "../Buildings/buildingsData";
 import { BUILDING_VIEWS } from "./buildingViewsData";
+import FloorPlanOverlay from "./FloorPlanOverlay";
 import brandLogo from "../../assets/nuthandasReality.svg";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -27,10 +28,12 @@ const BuildingPage = () => {
   const building = BUILDINGS.find((b) => b.id === id);
   const view = BUILDING_VIEWS[id];
   const [active, setActive] = useState(null);
+  const [selected, setSelected] = useState(null); // floor whose plan overlay is open
 
   const headerRef = useRef(null);
 
   const activeFloor = view?.floors.find((f) => f.num === active) ?? null;
+  const selectedFloor = view?.floors.find((f) => f.num === selected) ?? null;
 
   useGSAP(() => {
     gsap.from("p, h1", {
@@ -109,6 +112,7 @@ const BuildingPage = () => {
             onMouseEnter: () => setActive(f.num),
             onMouseLeave: () =>
               setActive((cur) => (cur === f.num ? null : cur)),
+            onClick: () => setSelected(f.num),
           };
 
           return (
@@ -192,10 +196,23 @@ const BuildingPage = () => {
           <div className="my-4 border-t border-dashed border-[#1f2a40]/25" />
 
           <p className="text-[11px] leading-snug text-[#1f2a40]/75">
-            {view.floors.length} floors · ground to terrace
+            {activeFloor
+              ? "Click to view floor plan"
+              : `${view.floors.length} floors · ground to terrace`}
           </p>
         </div>
       </aside>
+
+      {/* floor-plan overlay */}
+      {selectedFloor && (
+        <FloorPlanOverlay
+          key={selected}
+          buildingId={id}
+          buildingName={building ? building.name : "Building"}
+          floor={selectedFloor}
+          onClose={() => setSelected(null)}
+        />
+      )}
     </div>
   );
 };
