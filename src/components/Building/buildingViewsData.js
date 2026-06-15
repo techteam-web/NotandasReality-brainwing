@@ -1,5 +1,6 @@
 import notanDcView from "../../assets/ViewsBuildings/Notan-DC.webp";
-import { NOTAN_DC_FLOORS } from "./floorShapes";
+import notanEdgeView from "../../assets/ViewsBuildings/Notan_EDGE.webp";
+import { NOTAN_DC_FLOORS, NOTAN_EDGE_FLOORS } from "./floorShapes";
 
 /**
  * View-page configuration per building, keyed by the building `id` used in
@@ -16,5 +17,11 @@ export const BUILDING_VIEWS = {
     // every floor SVG shares this coordinate space
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
+  },
+  "notan-edge": {
+    viewImg: notanEdgeView,
+    // matches the shared viewBox baked into Building_Floor_SVG/Nothan_Edge/*.svg
+    viewBox: "-9554435 -6002850 4615 2597",
+    floors: NOTAN_EDGE_FLOORS,
   },
 };

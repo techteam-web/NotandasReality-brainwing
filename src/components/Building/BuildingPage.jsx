@@ -91,11 +91,7 @@ const BuildingPage = () => {
       />
 
       {/* floor overlay — slice matches the photo's object-cover crop */}
-      <svg
-        viewBox={view.viewBox}
-        preserveAspectRatio="xMidYMid slice"
-        className="absolute inset-0 h-full w-full"
-      >
+      <div className="absolute inset-0 h-full w-full pointer-events-none">
         {view.floors.map((f) => {
           const isActive = f.num === active;
           const common = {
@@ -115,13 +111,22 @@ const BuildingPage = () => {
               setActive((cur) => (cur === f.num ? null : cur)),
           };
 
-          return f.shape.type === "polygon" ? (
-            <polygon key={f.num} points={f.shape.points} {...common} />
-          ) : (
-            <path key={f.num} d={f.shape.d} {...common} />
+          return (
+            <svg
+              key={f.num}
+              viewBox={f.shape.viewBox || view.viewBox}
+              preserveAspectRatio="xMidYMid slice"
+              className="absolute inset-0 h-full w-full"
+            >
+              {f.shape.type === "polygon" ? (
+                <polygon points={f.shape.points} {...common} />
+              ) : (
+                <path d={f.shape.d} {...common} />
+              )}
+            </svg>
           );
         })}
-      </svg>
+      </div>
 
       {/* back to map */}
       <Link

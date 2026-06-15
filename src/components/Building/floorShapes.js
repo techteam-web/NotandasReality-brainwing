@@ -18,12 +18,19 @@ const NOTAN_DC_FILES = import.meta.glob(
   { query: "?raw", import: "default", eager: true }
 );
 
+const NOTAN_EDGE_FILES = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Nothan_Edge/*.svg",
+  { query: "?raw", import: "default", eager: true }
+);
+
 const parseShape = (raw) => {
   const points = raw.match(/points="([^"]+)"/);
-  if (points) return { type: "polygon", points: points[1].trim() };
-
   const d = raw.match(/\sd="([^"]+)"/);
-  if (d) return { type: "path", d: d[1].trim() };
+  const viewBoxMatch = raw.match(/viewBox="([^"]+)"/);
+  const viewBox = viewBoxMatch ? viewBoxMatch[1] : null;
+
+  if (points) return { type: "polygon", points: points[1].trim(), viewBox };
+  if (d) return { type: "path", d: d[1].trim(), viewBox };
 
   return null;
 };
@@ -34,8 +41,14 @@ const buildFloors = (files) =>
       const file = path.split("/").pop().replace(".svg", "");
       const isTerrace = /terrace/i.test(file);
       const isGround = /ground/i.test(file);
-      // ground floor has no digit in its name → keep it at num 0 (the base)
-      const num = isGround ? 0 : parseInt(file.match(/(\d+)/)?.[1] ?? "0", 10);
+      // ground floor → 0 (the base); terrace → a sentinel above every real
+      // floor so it always sorts last and never collides with ground when its
+      // filename carries no digit (e.g. Terrace_Floor.svg).
+      const num = isGround
+        ? 0
+        : isTerrace
+          ? 9999
+          : parseInt(file.match(/(\d+)/)?.[1] ?? "0", 10);
       const label = isTerrace
         ? "Terrace"
         : isGround
@@ -54,3 +67,4 @@ const buildFloors = (files) =>
     .sort((a, b) => a.num - b.num);
 
 export const NOTAN_DC_FLOORS = buildFloors(NOTAN_DC_FILES);
+export const NOTAN_EDGE_FLOORS = buildFloors(NOTAN_EDGE_FILES);
