@@ -66,14 +66,37 @@ const prettify = (file) =>
     .trim()
     .replace(/\b\w/g, (c) => c.toUpperCase());
 
-/** Pulls every <path>/<polygon> geometry out of a raw SVG, in document order. */
-const SHAPE_RE =
-  /<(path|polygon)\b[^>]*?(?:\sd="([^"]+)"|\spoints="([^"]+)")[^>]*>/g;
+/**
+ * Pulls every <path>/<polygon>/<rect> geometry out of a raw SVG, in document
+ * order. <rect> is converted to an equivalent 4-point polygon so the overlay
+ * renderers (which only draw <path>/<polygon>) need no special case.
+ */
+const TAG_RE = /<(path|polygon|rect)\b([^>]*)>/g;
+const attrOf = (attrs, name) => {
+  const m = attrs.match(new RegExp(`\\s${name}="([^"]+)"`));
+  return m ? m[1].trim() : null;
+};
 const parseShapes = (raw) => {
   const shapes = [];
-  for (const m of raw.matchAll(SHAPE_RE)) {
-    if (m[2]) shapes.push({ type: "path", d: m[2].trim() });
-    else if (m[3]) shapes.push({ type: "polygon", points: m[3].trim() });
+  for (const [, tag, attrs] of raw.matchAll(TAG_RE)) {
+    if (tag === "path") {
+      const d = attrOf(attrs, "d");
+      if (d) shapes.push({ type: "path", d });
+    } else if (tag === "polygon") {
+      const points = attrOf(attrs, "points");
+      if (points) shapes.push({ type: "polygon", points });
+    } else {
+      const x = parseFloat(attrOf(attrs, "x")) || 0;
+      const y = parseFloat(attrOf(attrs, "y")) || 0;
+      const w = parseFloat(attrOf(attrs, "width"));
+      const h = parseFloat(attrOf(attrs, "height"));
+      if (w > 0 && h > 0) {
+        shapes.push({
+          type: "polygon",
+          points: `${x},${y} ${x + w},${y} ${x + w},${y + h} ${x},${y + h}`,
+        });
+      }
+    }
   }
   return shapes;
 };

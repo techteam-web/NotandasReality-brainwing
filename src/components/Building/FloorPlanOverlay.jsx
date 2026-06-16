@@ -6,14 +6,21 @@ import { getFloorPlan } from "./floorPlansData";
  *
  * Shows that floor's detailed plan photo with its hover cut-outs laid over it
  * in the same coordinate space (so each room/unit lights up gold on hover).
- * A small toolbar zooms the plan in/out and resets it to normal; when zoomed
- * the plan can be dragged to pan around.
+ * Clicking a unit opens that unit's 360° pano (onOpenPano, framed per region —
+ * see REGION_PANO_MAP in panoData.js). A small toolbar zooms the plan in/out
+ * and resets it; when zoomed the plan can be dragged to pan around.
  */
 const MIN_ZOOM = 0.6;
 const MAX_ZOOM = 4;
 const STEP = 0.3;
 
-const FloorPlanOverlay = ({ buildingId, buildingName, floor, onClose }) => {
+const FloorPlanOverlay = ({
+  buildingId,
+  buildingName,
+  floor,
+  onOpenPano,
+  onClose,
+}) => {
   const { available, planImg, viewBox, regions } = getFloorPlan(buildingId, floor);
 
   const [zoom, setZoom] = useState(1);
@@ -22,6 +29,7 @@ const FloorPlanOverlay = ({ buildingId, buildingName, floor, onClose }) => {
   const [dragging, setDragging] = useState(false);
 
   const drag = useRef(null); // { startX, startY, originX, originY }
+  const moved = useRef(false); // true once a drag actually pans, to swallow the click
 
   // close on Escape
   useEffect(() => {
@@ -56,15 +64,25 @@ const FloorPlanOverlay = ({ buildingId, buildingName, floor, onClose }) => {
       originX: offset.x,
       originY: offset.y,
     };
+    moved.current = false;
     setDragging(true);
     e.currentTarget.setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e) => {
     if (!drag.current) return;
+    const dx = e.clientX - drag.current.startX;
+    const dy = e.clientY - drag.current.startY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) moved.current = true;
     setOffset({
-      x: drag.current.originX + (e.clientX - drag.current.startX),
-      y: drag.current.originY + (e.clientY - drag.current.startY),
+      x: drag.current.originX + dx,
+      y: drag.current.originY + dy,
     });
+  };
+
+  // open a room's 360° pano, unless the click was really the end of a pan-drag
+  const openPano = (regionName) => {
+    if (moved.current) return;
+    onOpenPano?.(regionName);
   };
   const endDrag = () => {
     drag.current = null;
@@ -85,7 +103,7 @@ const FloorPlanOverlay = ({ buildingId, buildingName, floor, onClose }) => {
       <div className="flex items-center justify-between px-6 py-4 md:px-10">
         <div className="text-white">
           <p className="text-[10px] uppercase tracking-[3px] text-white/55">
-            {buildingName} · Floor plan
+            {buildingName} · Floor plan · click a unit for 360°
           </p>
           <h2 className="mt-0.5 font-serif text-2xl italic text-[#e8c879] md:text-3xl">
             {floorTitle}
@@ -152,6 +170,7 @@ const FloorPlanOverlay = ({ buildingId, buildingName, floor, onClose }) => {
                     onMouseEnter: () => setHovered(i),
                     onMouseLeave: () =>
                       setHovered((cur) => (cur === i ? null : cur)),
+                    onClick: () => openPano(r.name),
                   };
                   return r.type === "polygon" ? (
                     <polygon key={i} points={r.points} {...common} />
@@ -180,6 +199,7 @@ const FloorPlanOverlay = ({ buildingId, buildingName, floor, onClose }) => {
         {available && hovered != null && regions[hovered] && (
           <div className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 rounded-full bg-black/65 px-4 py-1.5 text-sm font-medium tracking-wide text-[#e8c879]">
             {regions[hovered].name}
+            <span className="ml-2 text-white/60">· click for 360°</span>
           </div>
         )}
 
@@ -205,6 +225,15 @@ const FloorPlanOverlay = ({ buildingId, buildingName, floor, onClose }) => {
               className="flex h-9 w-9 items-center justify-center rounded-full text-lg text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
             >
               +
+            </button>
+
+            <span className="mx-1 h-5 w-px bg-white/20" />
+
+            <button
+              onClick={() => onOpenPano?.(null)}
+              className="rounded-full px-3 py-1 text-xs uppercase tracking-wider text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
+            >
+              360° View
             </button>
           </div>
         )}
