@@ -96,7 +96,7 @@ const AnimatedPlane = ({ className }) => {
         <path
           ref={pathRef}
           d="M -50 180 Q 150 150 280 100"
-          stroke="#DAA520"
+          stroke="#576880"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="4 4"
