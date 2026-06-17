@@ -42,7 +42,10 @@ const HomePage = () => {
       <AnimatedPlane />
     </div>
 
-     <h1 className="text-sm uppercase font-semibold text-[#7a7c80] font-Times-Roman  ">
+    <h1
+     className="text-sm uppercase font-semibold text-[#7a7c80]"
+     style={{ fontFamily: "'Times New Roman', Times, serif" }}
+    >
       chhatrapati <br/>shivaji maharaj <br/>international airport
      </h1>
 
