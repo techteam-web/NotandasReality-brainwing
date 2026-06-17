@@ -36,7 +36,7 @@ const ExpandIcon = ({ className }) => (
 )
 
 const Overlay = ({ onEnter }) => (
-  <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden bg-black/85 backdrop-blur-2xl">
+  <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black/85 backdrop-blur-2xl">
     {/* soft golden glow behind the content */}
     <div
       className="pointer-events-none absolute inset-0"
@@ -93,9 +93,14 @@ const Overlay = ({ onEnter }) => (
  */
 const FullscreenGate = ({ children }) => {
   const [isFullscreen, setIsFullscreen] = useState(() => !!getFsElement())
+  const [hasEntered, setHasEntered] = useState(() => !!getFsElement())
 
   useEffect(() => {
-    const onChange = () => setIsFullscreen(!!getFsElement())
+    const onChange = () => {
+      const fs = !!getFsElement()
+      setIsFullscreen(fs)
+      if (fs) setHasEntered(true)
+    }
     const events = [
       "fullscreenchange",
       "webkitfullscreenchange",
@@ -117,7 +122,7 @@ const FullscreenGate = ({ children }) => {
         aria-hidden={!isFullscreen}
         className={isFullscreen ? undefined : "pointer-events-none select-none"}
       >
-        {children}
+        {hasEntered && children}
       </div>
 
       {!isFullscreen && <Overlay onEnter={enterFullscreen} />}
