@@ -99,7 +99,7 @@ const AnimatedPlane = ({ className }) => {
           stroke="#4f5479" /* lighter stroke color */
           strokeWidth="0.5" /* thinner stroke */
           strokeLinecap="round"
-          strokeDasharray="2 " /* subtler dash */
+          strokeDasharray="1" /* subtler dash */
         />
       </svg>
 

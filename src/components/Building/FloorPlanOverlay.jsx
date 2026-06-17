@@ -125,7 +125,10 @@ const FloorPlanOverlay = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex bg-[#0e1726]/92 backdrop-blur-sm">
+    <div
+      className="fixed inset-0 z-50 flex bg-[#0e1726]/92 backdrop-blur-sm"
+      style={{ fontFamily: "'Times New Roman', Times, serif" }}
+    >
       {/* floor selector aside — switch the plan without leaving the overlay */}
       <aside className="flex w-20 shrink-0 flex-col border-r border-white/10 bg-black/30 md:w-32">
         <p className="px-4 pb-3 pt-5 text-[9px] uppercase tracking-[3px] text-white/45">
