@@ -135,46 +135,48 @@ const DC_TYPICAL_ROOMS = () => ({
 
 export const REGION_PANO_MAP = {
   1:{
-"Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
-    "Bedroom 2": { yawDeg: 25, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
+
+    "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
+    "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 }, 
+
   },
   2: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
-    "Bedroom 2": { yawDeg: 25, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
+    "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 }, 
 
   },
   3: {
-  "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
-    "Bedroom 2": { yawDeg: 25, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
+    "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
+    "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 }, 
   },
   4: {
-  "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
-    "Bedroom 2": { yawDeg: 25, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
+    "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
+    "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 }, 
   },
   5: {
-     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
-    "Bedroom 2": { yawDeg: 25, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
+    "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
+    "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 }, 
   },
   6: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
-    "Bedroom 2": { yawDeg: 25, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
+    "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 }, 
   },
   7: {
     "Living Room": { yawDeg: -88, pitchDeg: -3, fovDeg: 71, panDeg: 140 },
     "Bedroom 1": { yawDeg: -121, pitchDeg: 2, fovDeg: 71, panDeg: 140 },
-    "Bedroom 2": { yawDeg: 25, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
+    "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 }, 
   },
