@@ -224,10 +224,9 @@ export const REGION_PANO_MAP = {
 "Lounge": { yawDeg: -18, pitchDeg: 1, fovDeg: 71, panDeg: 140 },
   },
   terrace: {
-    Gym: {},
-    "Pool Deck": {yawDeg: -88, pitchDeg: -3, fovDeg: 71, panDeg: 140 },
-    "Socity Office": { yawDeg: 23, pitchDeg: 1, fovDeg: 71, panDeg: 140 },
-   "Gym": { yawDeg: 31, pitchDeg: 0, fovDeg: 71, panDeg: 140 },
+    "Pool Deck": { yawDeg: -88, pitchDeg: -3, fovDeg: 71, panDeg: 140 },
+   "Socity Office":{ yawDeg: -18, pitchDeg: 1, fovDeg: 90, panDeg: 70 },
+    "Gym": { yawDeg: 31, pitchDeg: 12, fovDeg: 71, panDeg: 140 },
   },
  
 
