@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { MARZIPANO_SRC, floorKey, toDeg } from "./panoData";
-import Compass from "../SvgAnimations/Compass";
+import MiniCompass from "../SvgAnimations/MiniCompass";
 
 /**
  * Full-screen 360° pano overlay for a single building floor.
@@ -201,12 +201,12 @@ const PanoViewer = ({
             </div>
           )}
 
-          {/* live compass — needle tracks the current look direction */}
+          {/* realtime mini compass — the dial spins with the live look direction */}
           {!loading && !failed && (
-            <Compass
+            <MiniCompass
               yaw={toDeg(angles.yaw)}
               transitionMs={0}
-              className="pointer-events-none absolute bottom-6 left-6 z-10 h-20 w-20 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-54 md:w-54"
+              className="pointer-events-none absolute bottom-6 left-6 z-10 h-16 w-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-28 md:w-28"
             />
           )}
 
