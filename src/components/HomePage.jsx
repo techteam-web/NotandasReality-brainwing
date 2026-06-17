@@ -1,6 +1,7 @@
 import notanMap from "../assets/notan_map.png"
 import NuthandasLogoAnimated from "./SvgAnimations/NuthandasLogoAnimated"
 import AnimatedPlane from "./SvgAnimations/AnimatedPlane"
+import Compass from "./SvgAnimations/Compass"
 import MapScene from "./SvgAnimations/MapScene"
 import BuildingsLayer from "./Buildings/BuildingsLayer"
 import { useRef } from "react";
@@ -58,8 +59,11 @@ const HomePage = () => {
       </h1>
     </div>
 
+    {/* static compass rose — map decoration */}
+    <Compass className="absolute bottom-4 left-3 w-20 h-20 md:w-54 md:h-54 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
 
-      
+
+
     </div>
   )
 }

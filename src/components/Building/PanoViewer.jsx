@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { MARZIPANO_SRC, floorKey, toDeg } from "./panoData";
+import Compass from "../SvgAnimations/Compass";
 
 /**
  * Full-screen 360° pano overlay for a single building floor.
@@ -198,6 +199,15 @@ const PanoViewer = ({
             <div className="absolute inset-0 flex items-center justify-center text-center text-white/80">
               <p className="text-sm">Couldn’t load the 360° view.</p>
             </div>
+          )}
+
+          {/* live compass — needle tracks the current look direction */}
+          {!loading && !failed && (
+            <Compass
+              yaw={toDeg(angles.yaw)}
+              transitionMs={0}
+              className="pointer-events-none absolute bottom-6 left-6 z-10 h-20 w-20 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-54 md:w-54"
+            />
           )}
 
           {/* bottom toolbar */}

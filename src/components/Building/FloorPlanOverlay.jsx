@@ -18,6 +18,8 @@ const FloorPlanOverlay = ({
   buildingId,
   buildingName,
   floor,
+  floors = [],
+  onSelectFloor,
   onOpenPano,
   onClose,
 }) => {
@@ -30,6 +32,7 @@ const FloorPlanOverlay = ({
 
   const drag = useRef(null); // { startX, startY, originX, originY }
   const moved = useRef(false); // true once a drag actually pans, to swallow the click
+  const activeFloorRef = useRef(null); // the open floor's button in the aside
 
   // close on Escape
   useEffect(() => {
@@ -37,6 +40,11 @@ const FloorPlanOverlay = ({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+
+  // bring the open floor into view in the aside when the overlay first opens
+  useEffect(() => {
+    activeFloorRef.current?.scrollIntoView({ block: "nearest" });
+  }, []);
 
   const clamp = (z) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z));
   const zoomIn = () => setZoom((z) => clamp(z + STEP));
@@ -97,8 +105,63 @@ const FloorPlanOverlay = ({
         : `Floor ${String(floor.num).padStart(2, "0")}`
     : "";
 
+  // floors listed high → low in the aside (terrace on top, ground at the bottom)
+  const floorRank = (f) => (f.isTerrace ? 1e9 : f.isGround ? -1 : f.num);
+  const orderedFloors = [...floors].sort((a, b) => floorRank(b) - floorRank(a));
+  const floorTag = (f) =>
+    f.isTerrace ? "TER" : f.isGround ? "GF" : `${String(f.num).padStart(2, "0")}F`;
+
+  // switch the plan to another floor, resetting the zoom/pan first
+  const changeFloor = (num) => {
+    if (floor && num === floor.num) return;
+    setZoom(1);
+    setOffset({ x: 0, y: 0 });
+    setHovered(null);
+    onSelectFloor?.(num);
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-[#0e1726]/92 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex bg-[#0e1726]/92 backdrop-blur-sm">
+      {/* floor selector aside — switch the plan without leaving the overlay */}
+      <aside className="flex w-20 shrink-0 flex-col border-r border-white/10 bg-black/30 md:w-32">
+        <p className="px-4 pb-3 pt-5 text-[9px] uppercase tracking-[3px] text-white/45">
+          The Collection
+        </p>
+        <div className="flex-1 overflow-y-auto px-2 pb-4">
+          {orderedFloors.map((f) => {
+            const isCurrent = floor && f.num === floor.num;
+            const hasPlan = getFloorPlan(buildingId, f).available;
+            return (
+              <button
+                key={f.num}
+                ref={isCurrent ? activeFloorRef : null}
+                onClick={() => changeFloor(f.num)}
+                aria-current={isCurrent ? "true" : undefined}
+                title={hasPlan ? undefined : "Plan coming soon"}
+                className={`group flex w-full items-center gap-2 rounded-sm px-2.5 py-2 text-left text-sm transition-colors ${
+                  isCurrent
+                    ? "bg-white/5 text-[#e8c879]"
+                    : hasPlan
+                      ? "text-white/65 hover:bg-white/5 hover:text-[#e8c879]"
+                      : "text-white/30 hover:text-white/55"
+                }`}
+              >
+                <span
+                  className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors ${
+                    isCurrent
+                      ? "bg-[#e8c879]"
+                      : "bg-transparent group-hover:bg-white/30"
+                  }`}
+                />
+                <span className="tracking-wider">{floorTag(f)}</span>
+              </button>
+            );
+          })}
+        </div>
+      </aside>
+
+      {/* main column */}
+      <div className="flex min-w-0 flex-1 flex-col">
       {/* top bar */}
       <div className="flex items-center justify-between px-6 py-4 md:px-10">
         <div className="text-white">
@@ -237,6 +300,7 @@ const FloorPlanOverlay = ({
             </button>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

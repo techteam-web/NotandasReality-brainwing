@@ -221,10 +221,11 @@ const BuildingPage = () => {
       {/* floor-plan overlay — opens when a floor is clicked */}
       {selectedFloor && (
         <FloorPlanOverlay
-          key={selected}
           buildingId={id}
           buildingName={building ? building.name : "Building"}
           floor={selectedFloor}
+          floors={view.floors}
+          onSelectFloor={setSelected}
           onOpenPano={(regionName) =>
             setPano({ floorNum: selected, regionName })
           }
