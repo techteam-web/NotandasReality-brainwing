@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 952.92 673.92">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #c8dd00;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <path id="deck" class="cls-1" d="M283.65,541.22h189.65v17.22s-9.65,24.52-23.48,24.78-134.35,0-134.35,0c0,0-21.65,1.57-27.65-12.52s-4.17-29.48-4.17-29.48Z"/>
+  <rect id="Double_lobby" class="cls-1" x="286.78" y="296.65" width="181.57" height="124.96"/>
+  <rect id="coffee_lounge" class="cls-1" x="286.78" y="421.61" width="181.57" height="114.52"/>
+</svg>

@@ -52,6 +52,13 @@ const HomePage = () => {
 
    </div>
 
+   <h1
+     className="text-sm uppercase font-semibold text-[#7a7c80] absolute top-[95%] left-[43%]"
+     style={{ fontFamily: "'Times New Roman', Times, serif" }}
+    >
+      bandra worli <br/>sea link
+     </h1>
+
 
     <div className="absolute top-[50%] left-[9%] -rotate-90">
       <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-Times-Roman  " ref={seaWordRef}>

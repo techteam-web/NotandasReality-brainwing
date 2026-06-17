@@ -96,10 +96,10 @@ const AnimatedPlane = ({ className }) => {
         <path
           ref={pathRef}
           d="M -50 180 Q 150 150 280 100"
-          stroke="#576880"
-          strokeWidth="1.5"
+          stroke="#4f5479" /* lighter stroke color */
+          strokeWidth="0.5" /* thinner stroke */
           strokeLinecap="round"
-          strokeDasharray="4 4"
+          strokeDasharray="2 " /* subtler dash */
         />
       </svg>
 
@@ -108,7 +108,7 @@ const AnimatedPlane = ({ className }) => {
         ref={planeRef}
         src={planeSvg}
         alt="Plane"
-        className="w-full h-auto max-w-26 "
+        className="w-full h-auto max-w-24 "
         style={{ transform: "rotate(-9deg)" }}
       />
     </div>
