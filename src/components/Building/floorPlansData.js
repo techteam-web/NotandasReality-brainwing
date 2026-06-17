@@ -38,18 +38,21 @@ const EDGE_SVGS = import.meta.glob(
 
 /**
  * Reads the floors a filename covers. Returns one of:
- *   { ground: true } | { terrace: true } | { basement: true } | { nums: [...] }
- * Numbers are taken from the part before the word "floor" so a trailing
- * "10th_floor_plan" never bleeds extra digits in.
+ *   { ground: true } | { basement: true } | { terrace, nums: [...] }
+ * where `terrace` flags a terrace plan and `nums` lists the numbered floors —
+ * a single filename may carry both (e.g. "15th,terrace_floor") so one plan can
+ * serve a numbered floor and the terrace at once. Numbers are taken from the
+ * part before the word "floor" so a trailing "10th_floor_plan" never bleeds
+ * extra digits in.
  */
 const floorKeysFromName = (name) => {
   const lower = name.toLowerCase();
   if (/ground/.test(lower)) return { ground: true };
-  if (/terrace/.test(lower)) return { terrace: true };
   if (/basement/.test(lower)) return { basement: true };
+  const terrace = /terrace/.test(lower);
   const head = lower.split("floor")[0];
   const nums = (head.match(/\d+/g) || []).map(Number);
-  return { nums };
+  return { terrace, nums };
 };
 
 const keyMatches = (keys, floor) => {

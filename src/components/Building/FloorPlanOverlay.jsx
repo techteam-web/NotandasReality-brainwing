@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getFloorPlan } from "./floorPlansData";
+import { getFloorPano } from "./panoData";
 
 /**
  * Full-screen overlay that opens when a floor is clicked on the BuildingPage.
@@ -24,6 +25,9 @@ const FloorPlanOverlay = ({
   onClose,
 }) => {
   const { available, planImg, viewBox, regions } = getFloorPlan(buildingId, floor);
+  // Some floors (e.g. Edge's terrace) have a 360° capture but no detailed plan
+  // yet — still let the visitor open the pano from the "plan coming soon" state.
+  const hasPano = !!getFloorPano(buildingId, floor);
 
   const [zoom, setZoom] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -247,14 +251,24 @@ const FloorPlanOverlay = ({
         ) : (
           <div className="text-center text-white/80">
             <p className="text-[11px] uppercase tracking-[4px] text-white/50">
-              Plan coming soon
+              {hasPano ? "360° view" : "Plan coming soon"}
             </p>
             <p className="mt-3 font-serif text-2xl italic text-[#e8c879]">
               {floorTitle}
             </p>
             <p className="mt-2 text-sm text-white/60">
-              The detailed plan for this floor isn’t available yet.
+              {hasPano
+                ? "No detailed plan for this floor yet — step into the 360° view to look around."
+                : "The detailed plan for this floor isn’t available yet."}
             </p>
+            {hasPano && (
+              <button
+                onClick={() => onOpenPano?.(null)}
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#e8c879]/60 bg-[#e8c879]/10 px-6 py-2.5 text-xs uppercase tracking-[0.2em] text-[#e8c879] transition-colors hover:border-[#e8c879] hover:bg-[#e8c879]/20"
+              >
+                360° View
+              </button>
+            )}
           </div>
         )}
 

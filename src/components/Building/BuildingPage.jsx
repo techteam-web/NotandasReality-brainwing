@@ -159,7 +159,7 @@ const BuildingPage = () => {
       </Link>
 
       {/* big centered project title */}
-      <header ref={headerRef} className="pointer-events-none absolute left-85 top-36 z-20 flex flex-col items-center text-center md:top-127">
+      <header ref={headerRef} className="pointer-events-none absolute left-80 top-36 z-20 flex flex-col items-center text-center md:top-127 ">
         <p className="font-serif text-base italic text-[#1f2a40]/80 md:text-lg">
           Notandas
         </p>
@@ -240,7 +240,7 @@ const BuildingPage = () => {
           buildingName={building ? building.name : "Building"}
           floor={panoFloor}
           floorTitle={floorTitleOf(panoFloor)}
-          pano={getRegionPano(panoFloor, pano.regionName)}
+          pano={getRegionPano(id, panoFloor, pano.regionName)}
           regionName={pano.regionName}
           onClose={() => setPano(null)}
         />
