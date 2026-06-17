@@ -1,4 +1,4 @@
-import notanHouse from "../../assets/buildings/Notan_house.png";
+import notanCrown from "../../assets/buildings/notan_crown.png";
 import notanJewel from "../../assets/buildings/Notan_jewel.png";
 import notanEdge from "../../assets/buildings/notan_edge.png";
 import notanSpace from "../../assets/buildings/notan_space.png";
@@ -17,15 +17,15 @@ import notanTides from "../../assets/buildings/Notan_tides.png";
  */
 export const BUILDINGS = [
   {
-    id: "notan-house",
-    name: "Notan House",
+    id: "notan-crown",
+    name: "Notan Crown",
     area: "Juhu",
     tagline: "A quiet address by the shore.",
-    img: notanHouse,
+    img: notanCrown,
     top: "30%",
     left: "56%",
     width: "clamp(64px, 6.5vw, 110px)",
-    href: "/projects/notan-house",
+    href: "/projects/notan-crown",
   },
   {
     id: "notan-jewel",
