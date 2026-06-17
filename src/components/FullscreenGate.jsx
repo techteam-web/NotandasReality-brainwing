@@ -36,7 +36,7 @@ const ExpandIcon = ({ className }) => (
 )
 
 const Overlay = ({ onEnter }) => (
-  <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black/85 backdrop-blur-2xl">
+  <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden bg-black/85 backdrop-blur-2xl">
     {/* soft golden glow behind the content */}
     <div
       className="pointer-events-none absolute inset-0"
