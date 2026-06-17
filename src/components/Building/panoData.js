@@ -197,7 +197,7 @@ export const REGION_PANO_MAP = {
   },
   11: {
 
-   "Masterbedroom": { yawDeg: -51, pitchDeg: 0, fovDeg: 71, panDeg: 140 },
+"Masterbedroom": { yawDeg: -102, pitchDeg: -2, fovDeg: 71, panDeg: 140 },
     "Lounge": { yawDeg: -18, pitchDeg: 1, fovDeg: 71, panDeg: 140 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
    "Study Office": { yawDeg: 61, pitchDeg: -6, fovDeg: 63, panDeg: 120 },
