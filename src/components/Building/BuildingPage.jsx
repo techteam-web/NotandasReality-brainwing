@@ -170,7 +170,7 @@ const BuildingPage = () => {
           {building ? building.name : "Building"}
         </h1>
         {building && (
-          <p className="mt-2 text-[10px] uppercase tracking-[0.45em] text-[#1f2a40]/70 md:text-sm">
+          <p className="mt-2 text-[20px] uppercase tracking-[0.45em] text-[#1f2a40]/70 md:text-sm">
             {building.area}, Mumbai
           </p>
         )}
@@ -186,14 +186,14 @@ const BuildingPage = () => {
       {/* right-side floor readout */}
       <aside className="absolute left-[65%] top-1/2 z-20 w-36 -translate-y-1/2 md:right-12 md:w-44">
         <div className="rounded-sm  px-5 py-6 text-center ">
-          <p className="text-[10px] uppercase tracking-[3px] text-[#1f2a40]/70">
+          <p className="text-[20px] uppercase tracking-[3px] text-[#1f2a40]/70">
             {activeFloor ? "Now viewing" : "Hover a floor"}
           </p>
 
-          <div className="mt-3 flex min-h-22 flex-col items-center justify-center">
+          <div className="mt-3 flex h-52 flex-col items-center justify-center">
             {activeFloor ? (
               <>
-                <span className="font-serif text-6xl italic leading-none text-[#b8860b]">
+                <span className="font-serif text-[80px] italic leading-none text-[#b8860b]">
                   {activeFloor.isTerrace
                     ? "✦"
                     : activeFloor.isGround
@@ -205,7 +205,7 @@ const BuildingPage = () => {
                 </span>
               </>
             ) : (
-              <span className="font-serif text-5xl italic leading-none text-[#1f2a40]/25">
+              <span className="font-serif text-[30px] italic leading-none text-[#1f2a40]/25">
                 —
               </span>
             )}
