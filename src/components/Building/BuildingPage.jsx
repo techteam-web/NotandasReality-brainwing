@@ -159,7 +159,7 @@ const BuildingPage = () => {
       </Link>
 
       {/* big centered project title */}
-      <header ref={headerRef} className="pointer-events-none absolute left-80 top-36 z-20 flex flex-col items-center text-center md:top-127 2xl:left-79 2xl:top-110 xl:left-40 xl:top-90 lg:left-36 lg:top-70  ">
+      <header ref={headerRef} className="pointer-events-none absolute left-80 top-36 z-20 flex flex-col items-center text-center md:top-127 2xl:left-49 2xl:top-110 xl:left-40 xl:top-90 lg:left-36 lg:top-70   ">
         <p className="font-serif text-base italic text-[#1f2a40]/80 md:text-lg">
           Notandas
         </p>
