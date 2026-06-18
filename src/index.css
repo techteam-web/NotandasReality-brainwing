@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Time', 'timenow roman', sans-serif;
 }
 
 /* Pulsing ink ring under a hovered building (see BuildingMarker) */
