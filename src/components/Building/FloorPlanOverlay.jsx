@@ -240,7 +240,7 @@ const FloorPlanOverlay = ({
       <div className="flex w-full items-center justify-center px-6 py-5  md:px-10">
         <div className="text-center text-[#1f2a40] ">
           <p className="text-[10px] uppercase tracking-[3px] text-[#7a6230] ">
-            {buildingName} · Floor plan · click a unit for 360°
+            {buildingName} · Floor plan · click a unit to view pano
           </p>
           <h2 className="mt-2 font-serif text-2xl italic text-[#e8c879] md:text-3xl">
             {floorTitle}
@@ -346,7 +346,7 @@ const FloorPlanOverlay = ({
         {available && hovered != null && regions[hovered] && (
           <div className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 rounded-full border border-[#b8860b]/25 bg-white px-4 py-1.5 text-sm font-medium tracking-wide text-[#b8860b] shadow-[0_10px_24px_rgba(31,42,64,0.12)]">
             {regions[hovered].name}
-            <span className="ml-2 text-[#7a6230]">· click for 360°</span>
+            <span className="ml-2 text-[#7a6230]">· click to view pano</span>
           </div>
         )}
 
