@@ -36,7 +36,7 @@ export const BUILDINGS = [
     top: "54%",
     left: "56%",
     width: "clamp(64px, 6.5vw, 110px)",
-    tooltip: "bottom",
+    // tooltip: "bottom",
     href: "/projects/notan-jewel",
   },
   {

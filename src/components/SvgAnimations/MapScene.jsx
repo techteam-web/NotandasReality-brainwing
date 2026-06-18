@@ -291,7 +291,13 @@ const MapScene = () => {
       </div>
 
       {/* coastal palms further down the shoreline */}
-      <div className="ms-grow ms-sway absolute top-[10%] left-[49%] w-12 md:w-16">
+      <div className="ms-grow ms-sway absolute top-[5%] left-[73%] w-12 md:w-16">
+        <img src={palmTreeImg} alt="" className="w-full h-auto mix-blend-multiply" />
+      </div>
+      <div className="ms-grow ms-sway absolute top-[6%] left-[41%] w-12 md:w-16">
+        <img src={palmTreeImg} alt="" className="w-full h-auto mix-blend-multiply" />
+      </div>
+      <div className="ms-grow ms-sway absolute top-[60%] left-[43%] w-12 md:w-16">
         <img src={palmTreeImg} alt="" className="w-full h-auto mix-blend-multiply" />
       </div>
 
@@ -299,9 +305,18 @@ const MapScene = () => {
       <div className="ms-grow ms-sway absolute top-[11%] left-[86%] w-20 md:w-28">
         <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
       </div>
+      <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-20 md:w-28">
+        <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
+      </div>
+      <div className="ms-grow ms-sway absolute top-[71%] left-[73%] w-20 md:w-28">
+        <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
+      </div>
 
       {/* Bandra greens near the southern coast */}
       <div className="ms-grow ms-sway absolute top-[82%] left-[56%] w-16 md:w-20">
+        <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
+      </div>
+      <div className="ms-grow ms-sway absolute top-[92%] left-[66%] w-16 md:w-20">
         <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
       </div>
 
