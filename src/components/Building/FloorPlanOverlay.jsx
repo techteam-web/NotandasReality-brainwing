@@ -126,27 +126,27 @@ const FloorPlanOverlay = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex bg-[#0e1726]/92 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm"
       style={{ fontFamily: "'Times New Roman', Times, serif" }}
     >
       {/* floor selector aside — switch the plan without leaving the overlay */}
-      <aside className="relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-white/10 bg-gradient-to-b from-[#0b1322]/80 via-[#0e1726]/60 to-[#0a111d]/90 md:w-36">
+      <aside className="relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-[#d7bf78]/40 bg-gradient-to-b from-white via-[#fbf8f1] to-[#f4ead4] md:w-36">
         {/* faint gold sheen bleeding down from the top */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#e8c879]/[0.07] to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#e8c879]/20 to-transparent" />
 
         {/* header */}
         <div className="relative px-4 pb-4 pt-6">
-          <p className="text-[9px] font-medium uppercase leading-[1.6] tracking-[3px] text-white/45">
+          <p className="text-[9px] font-medium uppercase leading-[1.6] tracking-[3px] text-[#7a6230]">
             The<br className="hidden md:block" /> Collection
           </p>
-          <span className="mt-3 block h-px w-8 bg-gradient-to-r from-[#e8c879]/90 to-transparent" />
+          <span className="mt-3 block h-px w-8 bg-gradient-to-r from-[#b8860b] to-transparent" />
         </div>
 
         {/* floor list — stacked as nodes on a vertical "elevator shaft" rail */}
         <div className="relative flex-1 overflow-y-auto px-3 pb-4 pt-1">
           <div className="relative">
             {/* the rail itself, gold-tipped at the top */}
-            <span className="pointer-events-none absolute inset-y-2 left-3 w-px bg-gradient-to-b from-[#e8c879]/50 via-white/12 to-white/5" />
+            <span className="pointer-events-none absolute inset-y-2 left-3 w-px bg-gradient-to-b from-[#b8860b]/60 via-[#d7bf78]/20 to-transparent" />
 
             {orderedFloors.map((f) => {
               const isCurrent = floor && f.num === floor.num;
@@ -161,18 +161,18 @@ const FloorPlanOverlay = ({
                   title={hasPlan ? undefined : "Plan coming soon"}
                   className={`group relative flex w-full items-center gap-2.5 rounded-r-md py-2 pl-1.5 pr-2 text-left transition-colors duration-300 ${
                     isCurrent
-                      ? "text-[#e8c879]"
+                      ? "text-[#b8860b]"
                       : hasPlan
-                        ? "text-white/60 hover:text-[#e8c879]"
-                        : "text-white/25 hover:text-white/45"
+                        ? "text-[#5f5131] hover:text-[#b8860b]"
+                        : "text-[#9b8a62] hover:text-[#7a6230]"
                   }`}
                 >
                   {/* sliding highlight — solid for the open floor, a hint on hover */}
                   <span
                     className={`pointer-events-none absolute inset-y-1 left-0 rounded-r-md bg-gradient-to-r transition-all duration-300 ${
                       isCurrent
-                        ? "right-1 from-[#e8c879]/[0.16] via-[#e8c879]/[0.05] to-transparent opacity-100"
-                        : "right-4 from-white/[0.06] to-transparent opacity-0 group-hover:right-1 group-hover:opacity-100"
+                        ? "right-1 from-[#e8c879]/30 via-[#e8c879]/10 to-transparent opacity-100"
+                        : "right-4 from-[#e8c879]/10 to-transparent opacity-0 group-hover:right-1 group-hover:opacity-100"
                     }`}
                   />
 
@@ -180,7 +180,7 @@ const FloorPlanOverlay = ({
                   <span
                     className={`pointer-events-none absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-[#e8c879] transition-opacity duration-300 ${
                       isCurrent
-                        ? "opacity-100 shadow-[0_0_10px_rgba(232,200,121,0.75)]"
+                        ? "opacity-100 shadow-[0_0_10px_rgba(184,134,11,0.45)]"
                         : "opacity-0"
                     }`}
                   />
@@ -190,10 +190,10 @@ const FloorPlanOverlay = ({
                     <span
                       className={`rounded-full border transition-all duration-300 ${
                         isCurrent
-                          ? "h-2.5 w-2.5 border-[#e8c879] bg-[#e8c879] shadow-[0_0_10px_rgba(232,200,121,0.85)]"
+                          ? "h-2.5 w-2.5 border-[#b8860b] bg-[#b8860b] shadow-[0_0_10px_rgba(184,134,11,0.45)]"
                           : hasPlan
-                            ? "h-2 w-2 border-white/30 bg-[#0e1726] group-hover:scale-110 group-hover:border-[#e8c879]/70"
-                            : "h-2 w-2 border-white/15 bg-[#0e1726]"
+                            ? "h-2 w-2 border-[#b8860b]/30 bg-white group-hover:scale-110 group-hover:border-[#b8860b]/70"
+                            : "h-2 w-2 border-[#d9cba9] bg-white"
                       }`}
                     />
                   </span>
@@ -210,7 +210,7 @@ const FloorPlanOverlay = ({
                     {isTop && (
                       <span
                         className={`text-[10px] leading-none transition-colors ${
-                          isCurrent ? "text-[#e8c879]" : "text-white/30 group-hover:text-[#e8c879]/70"
+                          isCurrent ? "text-[#b8860b]" : "text-[#b8860b]/55 group-hover:text-[#b8860b]"
                         }`}
                       >
                         ✦
@@ -225,10 +225,10 @@ const FloorPlanOverlay = ({
 
         {/* footer — quiet level count */}
         <div className="relative border-t border-white/10 px-4 py-3">
-          <p className="text-[8px] uppercase tracking-[2.5px] text-white/35">
+          <p className="text-[8px] uppercase tracking-[2.5px] text-[#7a6230]">
             {floors.length} Levels
           </p>
-          <p className="mt-0.5 text-[8px] uppercase tracking-[2.5px] text-white/25">
+          <p className="mt-0.5 text-[8px] uppercase tracking-[2.5px] text-[#9b8a62]">
             Ground → Terrace
           </p>
         </div>
@@ -238,8 +238,8 @@ const FloorPlanOverlay = ({
       <div className="flex min-w-0 flex-1 flex-col">
       {/* top bar */}
       <div className="flex items-center justify-between px-6 py-4 md:px-10">
-        <div className="text-white">
-          <p className="text-[10px] uppercase tracking-[3px] text-white/55">
+        <div className="text-[#1f2a40]">
+          <p className="text-[10px] uppercase tracking-[3px] text-[#7a6230]">
             {buildingName} · Floor plan · click a unit for 360°
           </p>
           <h2 className="mt-0.5 font-serif text-2xl italic text-[#e8c879] md:text-3xl">
@@ -250,7 +250,7 @@ const FloorPlanOverlay = ({
         <button
           onClick={onClose}
           aria-label="Close floor plan"
-          className="group inline-flex items-center gap-2  border border-white/20 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white transition-colors hover:border-[#e8c879] hover:bg-[#e8c879]/10 hover:text-[#e8c879]"
+          className="group inline-flex items-center gap-2  border border-[#b8860b] bg-[#b8860b] px-4 py-2 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#8f6708] hover:border-[#8f6708]"
         >
           Close
           <span className="text-sm leading-none transition-transform group-hover:rotate-90">
@@ -319,14 +319,14 @@ const FloorPlanOverlay = ({
             )}
           </div>
         ) : (
-          <div className="text-center text-white/80">
-            <p className="text-[11px] uppercase tracking-[4px] text-white/50">
+          <div className="text-center text-[#1f2a40]">
+            <p className="text-[11px] uppercase tracking-[4px] text-[#7a6230]">
               {hasPano ? "360° view" : "Plan coming soon"}
             </p>
             <p className="mt-3 font-serif text-2xl italic text-[#e8c879]">
               {floorTitle}
             </p>
-            <p className="mt-2 text-sm text-white/60">
+            <p className="mt-2 text-sm text-[#4f5b70]">
               {hasPano
                 ? "No detailed plan for this floor yet — step into the 360° view to look around."
                 : "The detailed plan for this floor isn’t available yet."}
@@ -334,7 +334,7 @@ const FloorPlanOverlay = ({
             {hasPano && (
               <button
                 onClick={() => onOpenPano?.(null)}
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#e8c879]/60 bg-[#e8c879]/10 px-6 py-2.5 text-xs uppercase tracking-[0.2em] text-[#e8c879] transition-colors hover:border-[#e8c879] hover:bg-[#e8c879]/20"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#b8860b] bg-[#b8860b] px-6 py-2.5 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#8f6708] hover:border-[#8f6708]"
               >
                 360° View
               </button>
@@ -344,44 +344,39 @@ const FloorPlanOverlay = ({
 
         {/* hovered region label */}
         {available && hovered != null && regions[hovered] && (
-          <div className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 rounded-full bg-black/65 px-4 py-1.5 text-sm font-medium tracking-wide text-[#e8c879]">
+          <div className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 rounded-full border border-[#b8860b]/25 bg-white px-4 py-1.5 text-sm font-medium tracking-wide text-[#b8860b] shadow-[0_10px_24px_rgba(31,42,64,0.12)]">
             {regions[hovered].name}
-            <span className="ml-2 text-white/60">· click for 360°</span>
+            <span className="ml-2 text-[#7a6230]">· click for 360°</span>
           </div>
         )}
 
         {/* zoom toolbar */}
         {available && (
-          <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-white/20 bg-white/10 p-1.5 backdrop-blur-md">
+          <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md">
             <button
               onClick={zoomOut}
               aria-label="Zoom out"
-              className="flex h-9 w-9 items-center justify-center rounded-full text-lg text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#b8860b] text-lg text-white transition-colors hover:bg-[#8f6708]"
             >
               −
             </button>
             <button
               onClick={reset}
-              className="px-3 text-xs uppercase tracking-wider text-white transition-colors hover:text-[#e8c879]"
+              className="rounded-full px-3 text-xs uppercase tracking-wider text-[#1f2a40] transition-colors hover:text-[#b8860b]"
             >
               {Math.round(zoom * 100)}% · Reset
             </button>
             <button
               onClick={zoomIn}
               aria-label="Zoom in"
-              className="flex h-9 w-9 items-center justify-center rounded-full text-lg text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#b8860b] text-lg text-white transition-colors hover:bg-[#8f6708]"
             >
               +
             </button>
 
-            <span className="mx-1 h-5 w-px bg-white/20" />
+           
 
-            <button
-              onClick={() => onOpenPano?.(null)}
-              className="rounded-full px-3 py-1 text-xs uppercase tracking-wider text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
-            >
-              360° View
-            </button>
+            
           </div>
         )}
       </div>
