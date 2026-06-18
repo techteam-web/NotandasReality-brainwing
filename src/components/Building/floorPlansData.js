@@ -15,12 +15,12 @@
  */
 
 /* ---- plan photos (URLs), resolved from the project root ---- */
-const DC_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_DC/*.jpeg", {
+const DC_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_DC/*.{jpg,jpeg}", {
   query: "?url",
   import: "default",
   eager: true,
 });
-const EDGE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_edge/*.jpeg", {
+const EDGE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_edge/*.{jpg,jpeg}", {
   query: "?url",
   import: "default",
   eager: true,

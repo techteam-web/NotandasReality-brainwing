@@ -126,7 +126,7 @@ const FloorPlanOverlay = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm "
       style={{ fontFamily: "'Times New Roman', Times, serif" }}
     >
       {/* floor selector aside — switch the plan without leaving the overlay */}
@@ -159,7 +159,7 @@ const FloorPlanOverlay = ({
                   onClick={() => changeFloor(f.num)}
                   aria-current={isCurrent ? "true" : undefined}
                   title={hasPlan ? undefined : "Plan coming soon"}
-                  className={`group relative flex w-full items-center gap-2.5 rounded-r-md py-2 pl-1.5 pr-2 text-left transition-colors duration-300 ${
+                  className={`group relative flex w-full items-center gap-4 rounded-r-md py-2 pl-1.5 pr-2 text-left transition-colors duration-300 ${
                     isCurrent
                       ? "text-[#b8860b]"
                       : hasPlan
@@ -261,7 +261,7 @@ const FloorPlanOverlay = ({
 
       {/* stage */}
       <div
-        className="relative flex flex-1 items-center justify-center overflow-hidden px-4 pb-24"
+        className="relative flex flex-1 items-center justify-center overflow-hidden px-4 pb-24 "
         onWheel={available ? onWheel : undefined}
       >
         {available ? (
@@ -270,18 +270,19 @@ const FloorPlanOverlay = ({
             onPointerMove={onPointerMove}
             onPointerUp={endDrag}
             onPointerLeave={endDrag}
-            className="relative select-none"
+            className="relative select-none "
             style={{
               transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
               transition: dragging ? "none" : "transform 0.18s ease-out",
               cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
+             
             }}
           >
             <img
               src={planImg}
               alt={`${buildingName} ${floorTitle} plan`}
               draggable="false"
-              className="block max-h-[74vh] max-w-[88vw] w-auto select-none rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.5)] "
+              className="block h-[80vh] max-w-[70vw]  select-none rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.5)] "
             />
 
             {viewBox && regions.length > 0 && (
