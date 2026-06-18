@@ -69,6 +69,7 @@ const Overlay = ({ onEnter }) => (
 
       <button
         onClick={onEnter}
+        onTouchEnd={onEnter}
         className="group relative inline-flex items-center gap-3 rounded-full border border-[rgba(218,165,32,0.6)] bg-[rgba(218,165,32,0.08)] px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[rgb(218,165,32)] transition-all duration-300 hover:bg-[rgba(218,165,32,0.16)] hover:shadow-[0_0_25px_rgba(218,165,32,0.35)]"
       >
         <ExpandIcon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
@@ -109,7 +110,16 @@ const FullscreenGate = ({ children }) => {
 
   const enterFullscreen = useCallback(() => {
     const p = requestFs(document.documentElement)
-    if (p && p.catch) p.catch(() => {}) // ignore rej/unsupported quietly
+    if (!p || !p.catch) {
+      setHasEntered(true)
+      setIsFullscreen(true)
+      return
+    }
+
+    p.catch(() => {
+      setHasEntered(true)
+      setIsFullscreen(true)
+    }) // fall back to app entry on mobile / unsupported browsers
   }, [])
 
   return (
