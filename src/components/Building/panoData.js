@@ -288,7 +288,24 @@ const EDGE_FLOOR_PANO_MAP = {
  * the angle you want, then "Copy config" to get a ready-to-paste snippet keyed
  * by the unit label (e.g. "Unit 3": { … }).
  */
-const EDGE_REGION_PANO_MAP = {};
+const EDGE_REGION_PANO_MAP = {
+// 14: {
+// "Unit 2": { yawDeg: -151, pitchDeg: -8, fovDeg: 78, panDeg: 140 },
+// },
+
+ terrace: {
+"Unit 2": { yawDeg: -176, pitchDeg: 10, fovDeg: 78, panDeg: 170 },
+"Unit 1": { yawDeg: 30, pitchDeg: 10, fovDeg: 78, panDeg: 140 },
+   
+  },
+ 15: {
+"Unit 2": { yawDeg: -176, pitchDeg: 10, fovDeg: 78, panDeg: 170 },
+"Unit 1": { yawDeg: 30, pitchDeg: 10, fovDeg: 78, panDeg: 140 },
+   
+  },
+
+
+};
 
 /* ══════════════════════════════════════════════════════════════════════════
  * REGISTRY + RESOLUTION
