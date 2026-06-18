@@ -66,10 +66,6 @@ const Overlay = ({ onEnter }) => (
         Best Viewed in Full Screen
       </h2>
 
-      <p className="mb-9 max-w-md text-sm leading-relaxed text-[#9aa0a6] md:text-base">
-        This experience unfolds across the entire canvas. Enter full screen to
-        explore the map in its full glory.
-      </p>
 
       <button
         onClick={onEnter}

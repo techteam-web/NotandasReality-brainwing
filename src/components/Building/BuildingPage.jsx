@@ -150,7 +150,7 @@ const BuildingPage = () => {
       {/* back to map */}
       <Link
         to="/"
-        className="group absolute left-6 top-6 z-20 inline-flex items-center gap-2 text-xl font-medium tracking-wide text-[#1f2a40] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#b8860b] md:left-12 md:top-8"
+        className="group absolute left-6 top-6 z-20 inline-flex items-center gap-2 text-xl font-medium tracking-wide text-[#1f2a40] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#b8860b] md:left-12 md:top-8 uppercase"
       >
         <span className="transition-transform duration-300 group-hover:-translate-x-1">
           ←
@@ -182,7 +182,7 @@ const BuildingPage = () => {
 
       {/* right-side floor readout */}
       <aside className="absolute right-6 top-1/2 z-20 w-36 -translate-y-1/2 md:right-12 md:w-44">
-        <div className="rounded-sm border border-white/40 bg-white/55 px-5 py-6 text-center shadow-[0_12px_30px_rgba(31,42,64,0.25)] backdrop-blur-md">
+        <div className="rounded-sm border border-white/40 bg-white/55 px-5 py-6 text-center ">
           <p className="text-[10px] uppercase tracking-[3px] text-[#1f2a40]/70">
             {activeFloor ? "Now viewing" : "Hover a floor"}
           </p>
