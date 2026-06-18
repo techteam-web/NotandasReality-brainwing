@@ -67,7 +67,7 @@ const BuildingPage = () => {
       <div className="relative min-h-screen w-full overflow-hidden bg-[#f3ede0] text-[#3b5382]">
         <Link
           to="/"
-          className="group absolute left-4 top-4 z-20 inline-flex items-center gap-2 text-base font-medium tracking-wide text-[#3b5382] transition-colors hover:text-[#b8860b] sm:left-6 sm:top-6 sm:text-xl md:left-12 md:top-8 lg:left-16 xl:left-24 2xl:left-32 3xl:left-48"
+          className="group absolute left-6 top-6 z-20 inline-flex items-center gap-2 text-xl font-medium tracking-wide text-[#3b5382] transition-colors hover:text-[#b8860b] md:left-12 md:top-8"
         >
           <span className="transition-transform duration-300 group-hover:-translate-x-1">
             ←
@@ -150,7 +150,7 @@ const BuildingPage = () => {
       {/* back to map */}
       <Link
         to="/"
-        className="group absolute left-4 top-4 z-20 inline-flex items-center gap-2 text-base font-medium tracking-wide text-[#1f2a40] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#b8860b] sm:left-6 sm:top-6 sm:text-xl md:left-12 md:top-8 lg:left-26 xl:left-24 2xl:left-32 3xl:left-48"
+        className="group absolute left-6 top-6 z-20 inline-flex items-center gap-2 text-xl font-medium tracking-wide text-[#1f2a40] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#b8860b] md:left-12 md:top-8"
       >
         <span className="transition-transform duration-300 group-hover:-translate-x-1">
           ←
@@ -159,11 +159,11 @@ const BuildingPage = () => {
       </Link>
 
       {/* big centered project title */}
-      <header ref={headerRef} className="pointer-events-none absolute left-1/2 top-36 z-20 flex -translate-x-1/2 flex-col items-center text-center sm:top-24 md:left-24 md:top-[44%] md:bottom-24 md:-translate-x-0 md:items-start md:text-left  lg:left-40  xl:left-63 2xl:left-100 ">
-        <p className="font-serif text-base italic text-[#1f2a40]/80 md:text-lg lg:text-xl 2xl:text-lg">
+      <header ref={headerRef} className="pointer-events-none absolute left-80 top-36 z-20 flex flex-col items-center text-center md:top-127 ">
+        <p className="font-serif text-base italic text-[#1f2a40]/80 md:text-lg">
           Notandas
         </p>
-        <h1 className="mt-1 text-3xl font-light uppercase leading-none tracking-[0.18em] text-[#1f2a40] sm:text-4xl md:text-5xl lg:text-4xl xl:text-4xl 2xl:text-5xl md:tracking-[0.22em]">
+        <h1 className="mt-1 text-3xl font-light uppercase leading-none tracking-[0.18em] text-[#1f2a40] sm:text-4xl md:text-6xl md:tracking-[0.22em]">
           {building ? building.name : "Building"}
         </h1>
         {building && (
@@ -177,11 +177,11 @@ const BuildingPage = () => {
       <img
         src={brandLogo}
         alt="Notandas Reality"
-        className="absolute right-4 top-4 z-20 h-5 w-auto opacity-90 sm:right-6 sm:top-6 sm:h-6 md:right-12 md:top-8 md:h-8 lg:right-16 lg:h-10 xl:right-24 xl:h-12 2xl:right-32 3xl:right-48"
+        className="absolute right-6 top-6 z-20 h-4 w-auto opacity-90 md:right-12 md:top-8 md:h-35"
       />
 
       {/* right-side floor readout */}
-      <aside className="absolute right-4 top-1/2 z-20 w-32 -translate-y-1/2 sm:right-6 sm:w-36 md:right-12 md:w-44 lg:right-16 lg:w-48 xl:right-24 xl:w-56 2xl:right-32 2xl:w-64 3xl:right-48">
+      <aside className="absolute right-6 top-1/2 z-20 w-36 -translate-y-1/2 md:right-12 md:w-44">
         <div className="rounded-sm border border-white/40 bg-white/55 px-5 py-6 text-center shadow-[0_12px_30px_rgba(31,42,64,0.25)] backdrop-blur-md">
           <p className="text-[10px] uppercase tracking-[3px] text-[#1f2a40]/70">
             {activeFloor ? "Now viewing" : "Hover a floor"}
