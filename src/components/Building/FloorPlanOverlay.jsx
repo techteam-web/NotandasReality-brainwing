@@ -235,14 +235,14 @@ const FloorPlanOverlay = ({
       </aside>
 
       {/* main column */}
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex flex-1 flex-col">
       {/* top bar */}
-      <div className="flex items-center justify-between px-6 py-4 md:px-10">
-        <div className="text-[#1f2a40]">
-          <p className="text-[10px] uppercase tracking-[3px] text-[#7a6230]">
+      <div className="flex w-full items-center justify-center px-6 py-5  md:px-10">
+        <div className="text-center text-[#1f2a40] ">
+          <p className="text-[10px] uppercase tracking-[3px] text-[#7a6230] ">
             {buildingName} · Floor plan · click a unit for 360°
           </p>
-          <h2 className="mt-0.5 font-serif text-2xl italic text-[#e8c879] md:text-3xl">
+          <h2 className="mt-2 font-serif text-2xl italic text-[#e8c879] md:text-3xl">
             {floorTitle}
           </h2>
         </div>
@@ -250,7 +250,7 @@ const FloorPlanOverlay = ({
         <button
           onClick={onClose}
           aria-label="Close floor plan"
-          className="group inline-flex items-center gap-2  border border-[#b8860b] bg-[#b8860b] px-4 py-2 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#8f6708] hover:border-[#8f6708]"
+          className="absolute right-6 top-4 inline-flex items-center gap-2  border border-[#b8860b] bg-[#b8860b] px-4 py-2 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#8f6708] hover:border-[#8f6708] md:right-10 md:top-4"
         >
           Close
           <span className="text-sm leading-none transition-transform group-hover:rotate-90">
@@ -281,7 +281,7 @@ const FloorPlanOverlay = ({
               src={planImg}
               alt={`${buildingName} ${floorTitle} plan`}
               draggable="false"
-              className="block max-h-[74vh] max-w-[88vw] w-auto select-none rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+              className="block max-h-[74vh] max-w-[88vw] w-auto select-none rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.5)] "
             />
 
             {viewBox && regions.length > 0 && (
@@ -336,7 +336,7 @@ const FloorPlanOverlay = ({
                 onClick={() => onOpenPano?.(null)}
                 className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#b8860b] bg-[#b8860b] px-6 py-2.5 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#8f6708] hover:border-[#8f6708]"
               >
-                360° View
+                 View Pano
               </button>
             )}
           </div>
@@ -373,8 +373,6 @@ const FloorPlanOverlay = ({
             >
               +
             </button>
-
-           
 
             
           </div>
