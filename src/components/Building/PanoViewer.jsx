@@ -158,7 +158,10 @@ const PanoViewer = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-[#0e1726]">
+    <div
+      className="fixed inset-0 z-50 flex flex-col bg-[#0e1726]"
+      style={{ fontFamily: '"Times New Roman", Times, serif' }}
+    >
       {/* top bar */}
       <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-6 py-4 md:px-10">
         <div className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
@@ -174,10 +177,10 @@ const PanoViewer = ({
         <button
           onClick={onClose}
           aria-label="Close 360° view"
-          className="group inline-flex items-center gap-2 rounded-sm border border-white/30 bg-black/30 px-4 py-2 text-sm text-white backdrop-blur-sm transition-colors hover:border-[#e8c879] hover:text-[#e8c879]"
+          className="group inline-flex items-center gap-2  border border-white/20 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white transition-colors hover:border-[#e8c879] hover:bg-[#e8c879]/10 hover:text-[#e8c879]"
         >
           Close
-          <span className="text-base leading-none transition-transform group-hover:rotate-90">
+          <span className="text-sm leading-none transition-transform group-hover:rotate-90">
             ✕
           </span>
         </button>

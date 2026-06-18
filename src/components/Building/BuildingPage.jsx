@@ -99,7 +99,10 @@ const BuildingPage = () => {
 
   /* ----- interactive full-screen building view ----- */
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-[#dfe7ee] text-[#1f2a40]">
+    <div
+      className="relative h-screen w-full overflow-hidden bg-[#dfe7ee] text-[#1f2a40]"
+      style={{ fontFamily: '"Times New Roman", Times, serif' }}
+    >
       {/* full-bleed building photo */}
       <img
         src={view.viewImg}
