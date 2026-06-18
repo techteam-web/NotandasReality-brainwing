@@ -159,11 +159,11 @@ const BuildingPage = () => {
       </Link>
 
       {/* big centered project title */}
-      <header ref={headerRef} className="pointer-events-none absolute left-80 top-36 z-20 flex flex-col items-center text-center md:top-127 2xl:left-49 2xl:top-110 xl:left-40 xl:top-90 lg:left-36 lg:top-70 3xl:left-80 3xl:top-127   ">
+      <header ref={headerRef} className="pointer-events-none absolute left-80 top-36 z-20 flex flex-col items-center text-center md:top-127 2xl:left-49 2xl:top-110 xl:left-40 xl:top-90 lg:left-36 lg:top-70 3xl:left-80 3xl:top-127 4xl:left-137 4xl:top-150">
         <p className="font-serif text-base italic text-[#1f2a40]/80 md:text-lg">
           Notandas
         </p>
-        <h1 className="mt-1 text-3xl font-light uppercase leading-none tracking-[0.18em] text-[#1f2a40] sm:text-4xl md:text-6xl md:tracking-[0.22em] xl:text-5xl lg:text-4xl 2xl:text-6xl">
+        <h1 className="mt-1 text-3xl font-light uppercase leading-none tracking-[0.18em] text-[#1f2a40] sm:text-4xl md:text-6xl md:tracking-[0.22em] xl:text-5xl lg:text-4xl 2xl:text-6xl 4xl:text-[66px]">
           {building ? building.name : "Building"}
         </h1>
         {building && (
