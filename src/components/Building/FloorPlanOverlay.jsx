@@ -130,40 +130,107 @@ const FloorPlanOverlay = ({
       style={{ fontFamily: "'Times New Roman', Times, serif" }}
     >
       {/* floor selector aside — switch the plan without leaving the overlay */}
-      <aside className="flex w-20 shrink-0 flex-col border-r border-white/10 bg-black/30 md:w-32">
-        <p className="px-4 pb-3 pt-5 text-[9px] uppercase tracking-[3px] text-white/45">
-          The Collection
-        </p>
-        <div className="flex-1 overflow-y-auto px-2 pb-4">
-          {orderedFloors.map((f) => {
-            const isCurrent = floor && f.num === floor.num;
-            const hasPlan = getFloorPlan(buildingId, f).available;
-            return (
-              <button
-                key={f.num}
-                ref={isCurrent ? activeFloorRef : null}
-                onClick={() => changeFloor(f.num)}
-                aria-current={isCurrent ? "true" : undefined}
-                title={hasPlan ? undefined : "Plan coming soon"}
-                className={`group flex w-full items-center gap-2 rounded-sm px-2.5 py-2 text-left text-sm transition-colors ${
-                  isCurrent
-                    ? "bg-white/5 text-[#e8c879]"
-                    : hasPlan
-                      ? "text-white/65 hover:bg-white/5 hover:text-[#e8c879]"
-                      : "text-white/30 hover:text-white/55"
-                }`}
-              >
-                <span
-                  className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors ${
+      <aside className="relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-white/10 bg-gradient-to-b from-[#0b1322]/80 via-[#0e1726]/60 to-[#0a111d]/90 md:w-36">
+        {/* faint gold sheen bleeding down from the top */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#e8c879]/[0.07] to-transparent" />
+
+        {/* header */}
+        <div className="relative px-4 pb-4 pt-6">
+          <p className="text-[9px] font-medium uppercase leading-[1.6] tracking-[3px] text-white/45">
+            The<br className="hidden md:block" /> Collection
+          </p>
+          <span className="mt-3 block h-px w-8 bg-gradient-to-r from-[#e8c879]/90 to-transparent" />
+        </div>
+
+        {/* floor list — stacked as nodes on a vertical "elevator shaft" rail */}
+        <div className="relative flex-1 overflow-y-auto px-3 pb-4 pt-1">
+          <div className="relative">
+            {/* the rail itself, gold-tipped at the top */}
+            <span className="pointer-events-none absolute inset-y-2 left-3 w-px bg-gradient-to-b from-[#e8c879]/50 via-white/12 to-white/5" />
+
+            {orderedFloors.map((f) => {
+              const isCurrent = floor && f.num === floor.num;
+              const hasPlan = getFloorPlan(buildingId, f).available;
+              const isTop = f.isTerrace;
+              return (
+                <button
+                  key={f.num}
+                  ref={isCurrent ? activeFloorRef : null}
+                  onClick={() => changeFloor(f.num)}
+                  aria-current={isCurrent ? "true" : undefined}
+                  title={hasPlan ? undefined : "Plan coming soon"}
+                  className={`group relative flex w-full items-center gap-2.5 rounded-r-md py-2 pl-1.5 pr-2 text-left transition-colors duration-300 ${
                     isCurrent
-                      ? "bg-[#e8c879]"
-                      : "bg-transparent group-hover:bg-white/30"
+                      ? "text-[#e8c879]"
+                      : hasPlan
+                        ? "text-white/60 hover:text-[#e8c879]"
+                        : "text-white/25 hover:text-white/45"
                   }`}
-                />
-                <span className="tracking-wider">{floorTag(f)}</span>
-              </button>
-            );
-          })}
+                >
+                  {/* sliding highlight — solid for the open floor, a hint on hover */}
+                  <span
+                    className={`pointer-events-none absolute inset-y-1 left-0 rounded-r-md bg-gradient-to-r transition-all duration-300 ${
+                      isCurrent
+                        ? "right-1 from-[#e8c879]/[0.16] via-[#e8c879]/[0.05] to-transparent opacity-100"
+                        : "right-4 from-white/[0.06] to-transparent opacity-0 group-hover:right-1 group-hover:opacity-100"
+                    }`}
+                  />
+
+                  {/* gold accent bar pinned to the active floor */}
+                  <span
+                    className={`pointer-events-none absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-[#e8c879] transition-opacity duration-300 ${
+                      isCurrent
+                        ? "opacity-100 shadow-[0_0_10px_rgba(232,200,121,0.75)]"
+                        : "opacity-0"
+                    }`}
+                  />
+
+                  {/* node sitting on the rail */}
+                  <span className="relative z-10 grid h-3 w-3 shrink-0 place-items-center">
+                    <span
+                      className={`rounded-full border transition-all duration-300 ${
+                        isCurrent
+                          ? "h-2.5 w-2.5 border-[#e8c879] bg-[#e8c879] shadow-[0_0_10px_rgba(232,200,121,0.85)]"
+                          : hasPlan
+                            ? "h-2 w-2 border-white/30 bg-[#0e1726] group-hover:scale-110 group-hover:border-[#e8c879]/70"
+                            : "h-2 w-2 border-white/15 bg-[#0e1726]"
+                      }`}
+                    />
+                  </span>
+
+                  {/* floor tag */}
+                  <span
+                    className={`relative z-10 flex items-center gap-1.5 text-sm tracking-[0.18em] transition-transform duration-300 ${
+                      isCurrent
+                        ? "font-medium"
+                        : "group-hover:translate-x-0.5"
+                    }`}
+                  >
+                    {floorTag(f)}
+                    {isTop && (
+                      <span
+                        className={`text-[10px] leading-none transition-colors ${
+                          isCurrent ? "text-[#e8c879]" : "text-white/30 group-hover:text-[#e8c879]/70"
+                        }`}
+                      >
+                        ✦
+                      </span>
+                    )}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* footer — quiet level count */}
+        <div className="relative border-t border-white/10 px-4 py-3">
+          <p className="text-[8px] uppercase tracking-[2.5px] text-white/35">
+            {floors.length} Levels
+          </p>
+          <p className="mt-0.5 text-[8px] uppercase tracking-[2.5px] text-white/25">
+            Ground → Terrace
+          </p>
         </div>
       </aside>
 
