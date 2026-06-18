@@ -35,3 +35,10 @@ body {
 .fs-ring {
     animation: fs-ring-pulse 1.8s ease-out infinite;
 }
+
+@theme {
+  --breakpoint-mob: 25rem;  /* 400px */
+  --breakpoint-3xl: 120rem;  /* 1920px */
+  --breakpoint-4xl: 160rem;  /* 2560px */
+  --breakpoint-5xl: 240rem;  /* 3840px */
+}
