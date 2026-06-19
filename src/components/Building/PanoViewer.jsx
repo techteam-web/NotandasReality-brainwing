@@ -20,6 +20,30 @@ import MiniCompass from "../SvgAnimations/MiniCompass";
 const PITCH_HALF_RANGE = (40 * Math.PI) / 180;
 const HFOV_MIN = (25 * Math.PI) / 180;
 
+const TWO_PI = 2 * Math.PI;
+// Wrap an angle into (-π, π] — same normalization Marzipano uses for yaw.
+const wrapPi = (a) => {
+  let x = a % TWO_PI;
+  if (x > Math.PI) x -= TWO_PI;
+  if (x <= -Math.PI) x += TWO_PI;
+  return x;
+};
+
+/**
+ * Wrap-aware replacement for Marzipano's `limit.yaw`.
+ *
+ * The built-in clamps the raw (already wrapped to ±π) yaw, which breaks when the
+ * allowed arc straddles the ±180° seam: dragging past -180° wraps yaw to +179°
+ * and the clamp snaps it to the far edge, so the view appears to "reset". We
+ * instead clamp the offset *from the arc centre* (always within ±half, half<π),
+ * which has no seam, then wrap the result back.
+ */
+const limitYawArc = (center, half) => (params) => {
+  const delta = Math.min(Math.max(wrapPi(params.yaw - center), -half), half);
+  params.yaw = wrapPi(center + delta);
+  return params;
+};
+
 let marzipanoPromise = null;
 const loadMarzipano = () => {
   if (window.Marzipano) return Promise.resolve(window.Marzipano);
@@ -86,7 +110,7 @@ const PanoViewer = ({
         const limit = Marzipano.RectilinearView.limit;
         const limiter = Marzipano.util.compose(
           limit.traditional(pano.faceSize, (100 * Math.PI) / 180, maxHfov),
-          limit.yaw(yaw - half, yaw + half),
+          limitYawArc(yaw, half),
           limit.pitch(pitch - PITCH_HALF_RANGE, pitch + PITCH_HALF_RANGE),
           limit.hfov(HFOV_MIN, maxHfov)
         );

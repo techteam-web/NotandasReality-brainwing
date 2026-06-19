@@ -294,8 +294,9 @@ const EDGE_REGION_PANO_MAP = {
 // },
 
  terrace: {
-"Unit 2": { yawDeg: -176, pitchDeg: 10, fovDeg: 78, panDeg: 170 },
-"Unit 1": { yawDeg: 30, pitchDeg: 10, fovDeg: 78, panDeg: 140 },
+// REGION_PANO_MAP["terrace"]
+"Terrace": { yawDeg: -151, pitchDeg: -6, fovDeg: 78, panDeg: 140 },
+"Commercial": { yawDeg: -11, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
    
   },
  15: {
