@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #004f31;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <path id="bedroom" class="cls-1" d="M856.15,190.07h140.5s20.86,2.91,21.13,21.44c.26,18.53,0,62.47,0,62.47h-161.63v-83.92Z"/>
+</svg>

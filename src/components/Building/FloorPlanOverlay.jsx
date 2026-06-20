@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { getFloorPlan } from "./floorPlansData";
 import { getFloorPano } from "./panoData";
+import notanMap from "../../assets/floorplanoverbg.png";
+import brandLogo from "../../assets/nuthandasReality.svg";
 
 /**
  * Full-screen overlay that opens when a floor is clicked on the BuildingPage.
@@ -129,16 +131,27 @@ const FloorPlanOverlay = ({
       className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm "
       style={{ fontFamily: "'Times New Roman', Times, serif" }}
     >
+      {/* full-bleed map background */}
+      <img
+        src={notanMap}
+        alt=""
+        aria-hidden="true"
+        draggable="false"
+        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+      />
+
       {/* floor selector aside — switch the plan without leaving the overlay */}
-      <aside className="relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-[#d7bf78]/40 bg-linear-to-b from-white via-[#fbf8f1] to-[#f4ead4] md:w-36">
+      <aside className="relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/10 bg-linear-to-b from-gray via-[#cad1d6] to-[#c3c7c7] md:w-36">
         {/* faint gold sheen bleeding down from the top */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-[#e8c879]/20 to-transparent" />
 
         {/* header */}
         <div className="relative px-4 pb-4 pt-6">
-          <p className="text-[9px] font-medium uppercase leading-[1.6] tracking-[3px] text-[#7a6230]">
-            The<br className="hidden md:block" /> Collection
-          </p>
+          <img
+            src={brandLogo}
+            alt="Notandas Reality"
+            className="h-10 w-auto opacity-90 md:h-29"
+          />
           <span className="mt-3 block h-px w-8 bg-linear-to-r from-[#b8860b] to-transparent" />
         </div>
 
@@ -235,14 +248,14 @@ const FloorPlanOverlay = ({
       </aside>
 
       {/* main column */}
-      <div className="flex flex-1 flex-col">
+      <div className="relative z-10 flex flex-1 flex-col">
       {/* top bar */}
       <div className="flex w-full items-center justify-center px-6 py-5  md:px-10">
         <div className="text-center text-[#1f2a40] ">
           <p className="text-[10px] uppercase tracking-[3px] text-[#7a6230] ">
             {buildingName} · Floor plan · click a unit to view pano
           </p>
-          <h2 className="mt-2 font-serif text-2xl italic text-[#e8c879] md:text-3xl">
+          <h2 className="mt-2 font-serif text-2xl  text-[#e8c879] md:text-3xl">
             {floorTitle}
           </h2>
         </div>
@@ -282,7 +295,7 @@ const FloorPlanOverlay = ({
               src={planImg}
               alt={`${buildingName} ${floorTitle} plan`}
               draggable="false"
-              className="block h-[80vh] max-w-[70vw]  select-none rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.5)] "
+              className="block h-[80vh] max-w-[70vw]  select-none rounded-sm border-2 border-[#1f2a40]/20 object-cover opacity-75 shadow-[0_10px_24px_rgba(31,42,64,0.1)]"
             />
 
             {viewBox && regions.length > 0 && (

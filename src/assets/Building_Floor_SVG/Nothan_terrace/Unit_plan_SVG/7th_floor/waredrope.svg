@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3a1f02;
+        opacity: .5;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <path id="wardrobe" class="cls-1" d="M869.72,207.19h121.87v-13.39h9.27s19.08,5.25,19.34,18.91c.26,13.66,0,51.74,0,51.74h-113.93v22.85h-36.56v-81.42,1.31Z"/>
+</svg>
