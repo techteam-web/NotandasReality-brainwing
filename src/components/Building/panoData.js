@@ -320,39 +320,39 @@ const EDGE_REGION_PANO_MAP = {
     "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
   10: {
-         "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
-  },
-  9: {
-         "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
-  },
-  8 : {
     "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
-  7 : {
+  9: {
+    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  },
+  8: {
+    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  },
+  7: {
 
-   "Refuge Area": { yawDeg: -136, pitchDeg: 5, fovDeg: 78, panDeg: 140 },
-   "Commercial": { yawDeg: 4, pitchDeg: -4, fovDeg: 78, panDeg: 140 },
+    "Refuge Area": { yawDeg: -136, pitchDeg: 5, fovDeg: 78, panDeg: 140 },
+    "Commercial": { yawDeg: 4, pitchDeg: -4, fovDeg: 78, panDeg: 140 },
 
   },
-  6 : {
-      "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  6: {
+    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
-  5 : {
-      "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  5: {
+    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
-  4 : {
-      "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  4: {
+    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
-  3 : {
-      "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  3: {
+    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
-  2 : {
-      "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  2: {
+    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
-  1 : {
-     "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  1: {
+    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
- 
+
 
 };
 
@@ -422,7 +422,96 @@ const JEWEL_FLOOR_PANO_MAP = {
  * Deck / Retail / Refuge / Court) opens its floor's pano at the as-shot
  * framing until tuned. Click a room, drag, then "Copy config" to fill these in.
  */
-const JEWEL_REGION_PANO_MAP = {};
+const JEWEL_REGION_PANO_MAP = {
+  21: {
+    "Deck": { yawDeg: -32, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+
+  },
+
+  20: {
+    "Deck": { yawDeg: -32, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+
+  19: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+
+  18: {
+    "Deck": { yawDeg: -131, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Retial": { yawDeg: -47, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+
+  17: {
+    "Deck": { yawDeg: -131, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Retial": { yawDeg: -47, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  16: {
+
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  15: {
+
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Refuge": { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+  },
+  14: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Refuge": { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+  },
+  13: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  12: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Deck": { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
+  },
+  11: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Deck": { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
+  },
+  10: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Deck": { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
+  },
+  9: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  8: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Refuge": { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+  },
+  7: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Refuge": { yawDeg: 51, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+  },
+  6: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  5: {
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  4: {
+    "Deck": { yawDeg: -120, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
+    "Retial": { yawDeg: -41, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  3: {
+     "Deck": { yawDeg: -120, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
+    "Retial": { yawDeg: -41, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  2: {
+     "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  },
+  1: {
+     "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 }
+  },
+
+};
 
 /* ══════════════════════════════════════════════════════════════════════════
  * NOTAN SPACE
