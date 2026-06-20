@@ -130,23 +130,23 @@ const FloorPlanOverlay = ({
       style={{ fontFamily: "'Times New Roman', Times, serif" }}
     >
       {/* floor selector aside — switch the plan without leaving the overlay */}
-      <aside className="relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-[#d7bf78]/40 bg-gradient-to-b from-white via-[#fbf8f1] to-[#f4ead4] md:w-36">
+      <aside className="relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-[#d7bf78]/40 bg-linear-to-b from-white via-[#fbf8f1] to-[#f4ead4] md:w-36">
         {/* faint gold sheen bleeding down from the top */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#e8c879]/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-[#e8c879]/20 to-transparent" />
 
         {/* header */}
         <div className="relative px-4 pb-4 pt-6">
           <p className="text-[9px] font-medium uppercase leading-[1.6] tracking-[3px] text-[#7a6230]">
             The<br className="hidden md:block" /> Collection
           </p>
-          <span className="mt-3 block h-px w-8 bg-gradient-to-r from-[#b8860b] to-transparent" />
+          <span className="mt-3 block h-px w-8 bg-linear-to-r from-[#b8860b] to-transparent" />
         </div>
 
         {/* floor list — stacked as nodes on a vertical "elevator shaft" rail */}
         <div className="relative flex-1 overflow-y-auto px-3 pb-4 pt-1">
           <div className="relative">
             {/* the rail itself, gold-tipped at the top */}
-            <span className="pointer-events-none absolute inset-y-2 left-3 w-px bg-gradient-to-b from-[#b8860b]/60 via-[#d7bf78]/20 to-transparent" />
+            <span className="pointer-events-none absolute inset-y-2 left-3 w-px bg-linear-to-brom-[#b8860b]/60 via-[#d7bf78]/20 to-transparent" />
 
             {orderedFloors.map((f) => {
               const isCurrent = floor && f.num === floor.num;
@@ -169,7 +169,7 @@ const FloorPlanOverlay = ({
                 >
                   {/* sliding highlight — solid for the open floor, a hint on hover */}
                   <span
-                    className={`pointer-events-none absolute inset-y-1 left-0 rounded-r-md bg-gradient-to-r transition-all duration-300 ${
+                    className={`pointer-events-none absolute inset-y-1 left-0 rounded-r-md bg-linear-to-r transition-all duration-300 ${
                       isCurrent
                         ? "right-1 from-[#e8c879]/30 via-[#e8c879]/10 to-transparent opacity-100"
                         : "right-4 from-[#e8c879]/10 to-transparent opacity-0 group-hover:right-1 group-hover:opacity-100"
@@ -178,7 +178,7 @@ const FloorPlanOverlay = ({
 
                   {/* gold accent bar pinned to the active floor */}
                   <span
-                    className={`pointer-events-none absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-[#e8c879] transition-opacity duration-300 ${
+                    className={`pointer-events-none absolute left-0 top-1/2 h-5 w-0.75 -translate-y-1/2 rounded-full bg-[#e8c879] transition-opacity duration-300 ${
                       isCurrent
                         ? "opacity-100 shadow-[0_0_10px_rgba(184,134,11,0.45)]"
                         : "opacity-0"

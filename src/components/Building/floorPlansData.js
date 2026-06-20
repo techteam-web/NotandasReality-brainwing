@@ -25,6 +25,16 @@ const EDGE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_edge/*.{jpg,jpeg}
   import: "default",
   eager: true,
 });
+const JEWEL_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_jewel/*.{jpg,jpeg}", {
+  query: "?url",
+  import: "default",
+  eager: true,
+});
+const SPACE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_space/*.{jpg,jpeg}", {
+  query: "?url",
+  import: "default",
+  eager: true,
+});
 
 /* ---- hover cut-outs (raw SVG markup) ---- */
 const DC_SVGS = import.meta.glob(
@@ -33,6 +43,16 @@ const DC_SVGS = import.meta.glob(
 );
 const EDGE_SVGS = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_Edge/FloorPlan_ImgSvg/**/*.svg",
+  { query: "?raw", import: "default", eager: true }
+);
+// Jewel/Space keep their per-room cut-outs under a differently-named folder
+// (one SVG per room, grouped by floor folder — same shape as DC).
+const JEWEL_SVGS = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Nothan_jewel/Unit_plan_svg/**/*.svg",
+  { query: "?raw", import: "default", eager: true }
+);
+const SPACE_SVGS = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Nothan_space/floor_plan_SVG/**/*.svg",
   { query: "?raw", import: "default", eager: true }
 );
 
@@ -118,14 +138,19 @@ const buildImages = (files) =>
 
 /**
  * Build the hover-region groups for one building. SVGs sitting in a sub-folder
- * (DC) are grouped by that folder, one region per room file; flat SVGs (Edge)
- * each form their own group with one region per shape inside.
+ * (DC, Jewel, Space) are grouped by that folder, one region per room file; flat
+ * SVGs (Edge) each form their own group with one region per shape inside.
+ *
+ * `marker` is the folder that separates the building root from the floor
+ * folders in each path — "FloorPlan_ImgSvg" for DC/Edge, "Unit_plan_svg" for
+ * Jewel, "floor_plan_SVG" for Space — so the floor key parses off the right
+ * segment.
  */
-const buildGroups = (files) => {
+const buildGroups = (files, marker = "FloorPlan_ImgSvg") => {
   const groups = new Map();
 
   for (const [path, raw] of Object.entries(files)) {
-    const rel = path.split("FloorPlan_ImgSvg/")[1] || "";
+    const rel = path.split(`${marker}/`)[1] || "";
     const inFolder = rel.includes("/");
     const groupKey = inFolder ? rel.split("/")[0] : rel.replace(".svg", "");
     const fileName = rel.split("/").pop().replace(".svg", "");
@@ -158,6 +183,14 @@ const BUILDINGS = {
   "notan-edge": {
     images: buildImages(EDGE_IMAGES),
     groups: buildGroups(EDGE_SVGS),
+  },
+  "notan-jewel": {
+    images: buildImages(JEWEL_IMAGES),
+    groups: buildGroups(JEWEL_SVGS, "Unit_plan_svg"),
+  },
+  "notan-space": {
+    images: buildImages(SPACE_IMAGES),
+    groups: buildGroups(SPACE_SVGS, "floor_plan_SVG"),
   },
 };
 
