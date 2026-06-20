@@ -500,15 +500,15 @@ const JEWEL_REGION_PANO_MAP = {
     "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   3: {
-     "Deck": { yawDeg: -120, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
+    "Deck": { yawDeg: -120, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
     "Retial": { yawDeg: -41, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
     "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   2: {
-     "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   1: {
-     "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 }
+    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 }
   },
 
 };
@@ -568,7 +568,45 @@ const SPACE_FLOOR_PANO_MAP = {
  * Commercial / Cafe / Entrance / Kitchen / Deck / Refuge Area). Tune via the
  * viewer's "Copy config" as with the other buildings.
  */
-const SPACE_REGION_PANO_MAP = {};
+const SPACE_REGION_PANO_MAP = {
+
+  15: {
+    "Commercel": { yawDeg: 178, pitchDeg: 9, fovDeg: 78, panDeg: 140 },
+    
+    "Kitchen": { yawDeg: 91, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+  },
+
+  14: {
+
+    "Commercial": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
+  },
+  13: {
+    "Commercial 01": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
+  },
+
+  10: {
+    "Commercial 01": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
+  },
+
+  9: {
+    "Commercial 01": { yawDeg: 150, pitchDeg: -4, fovDeg: 78, panDeg: 90 },
+  },
+
+  8: {
+    "Commercial 01": { yawDeg: 150, pitchDeg: -4, fovDeg: 48, panDeg: 90 },
+
+    "Refuge Area 01": { yawDeg: -153, pitchDeg: -1, fovDeg: 63, panDeg: 140 },
+  },
+
+  7: {
+    "Commercial 01": { yawDeg: -171, pitchDeg: -8, fovDeg: 78, panDeg: 140 },
+  },
+
+  1: {
+    "Commercial 01": { yawDeg: -179, pitchDeg: -31, fovDeg: 78, panDeg: 140 },
+  }
+
+};
 
 /* ══════════════════════════════════════════════════════════════════════════
  * REGISTRY + RESOLUTION
