@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NOTAN_JWEL</title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+<style> @-ms-viewport { width: device-width; } </style>
+<link rel="stylesheet" href="vendor/reset.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="multiple-scenes ">
+
+<div id="pano"></div>
+
+<div id="sceneList">
+  <ul class="scenes">
+    
+      <a href="javascript:void(0)" class="scene" data-id="0-0021_1st-f_495m">
+        <li class="text">0021_1st F_4.95m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="1-0020_2nd-f_945m">
+        <li class="text">0020_2nd F_9.45m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="2-0019_3rd-f_1275m">
+        <li class="text">0019_3rd F_12.75m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="3-0018_4th-f_165m">
+        <li class="text">0018_4th F_16.5m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="4-0017_5th-f_202m">
+        <li class="text">0017_5th F_20.2m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="5-0016_6th-f_2325m">
+        <li class="text">0016_6th F_23.25m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="6-0015_7th-f_263m">
+        <li class="text">0015_7th F_26.3m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="7-0014_8th-f_2935m">
+        <li class="text">0014_8th F_29.35m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="8-0013_9th-f_324m">
+        <li class="text">0013_9th F_32.4m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="9-0012_10th-f_3545m">
+        <li class="text">0012_10th F_35.45m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="10-0011_11th-f_385m">
+        <li class="text">0011_11th F_38.5m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="11-0010_12th-f_4155m">
+        <li class="text">0010_12th F_41.55m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="12-0009_13th-f_446m">
+        <li class="text">0009_13th F_44.6m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="13-0008_14th-f_4765m">
+        <li class="text">0008_14th F_47.65m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="14-0007_15th-f_507m">
+        <li class="text">0007_15th F_50.7m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="15-0006_16th-f_5375m">
+        <li class="text">0006_16th F_53.75m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="16-0005_17th-f_568m">
+        <li class="text">0005_17th F_56.8m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="17-0004_18th-f_5985m">
+        <li class="text">0004_18th F_59.85m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="18-0003_19th-f_629m">
+        <li class="text">0003_19th F_62.9m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="19-0002_20th-f_6595m">
+        <li class="text">0002_20th F_65.95m</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="20-0001_21st-f_69m">
+        <li class="text">0001_21st F_69m</li>
+      </a>
+    
+  </ul>
+</div>
+
+<div id="titleBar">
+  <h1 class="sceneName"></h1>
+</div>
+
+<a href="javascript:void(0)" id="autorotateToggle">
+  <img class="icon off" src="img/play.png">
+  <img class="icon on" src="img/pause.png">
+</a>
+
+<a href="javascript:void(0)" id="fullscreenToggle">
+  <img class="icon off" src="img/fullscreen.png">
+  <img class="icon on" src="img/windowed.png">
+</a>
+
+<a href="javascript:void(0)" id="sceneListToggle">
+  <img class="icon off" src="img/expand.png">
+  <img class="icon on" src="img/collapse.png">
+</a>
+
+<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+  <img class="icon" src="img/up.png">
+</a>
+<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+  <img class="icon" src="img/down.png">
+</a>
+<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+  <img class="icon" src="img/left.png">
+</a>
+<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+  <img class="icon" src="img/right.png">
+</a>
+<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+  <img class="icon" src="img/plus.png">
+</a>
+<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+  <img class="icon" src="img/minus.png">
+</a>
+
+<script src="vendor/screenfull.min.js" ></script>
+<script src="vendor/bowser.min.js" ></script>
+<script src="vendor/marzipano.js" ></script>
+
+<script src="data.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
