@@ -5,7 +5,7 @@ import { BUILDING_VIEWS } from "./buildingViewsData";
 import FloorPlanOverlay from "./FloorPlanOverlay";
 import PanoViewer from "./PanoViewer";
 import { getRegionPano } from "./panoData";
-import brandLogo from "../../assets/nuthandasReality.svg";
+import brandLogo from "../../assets/notandaslogo.svg";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -179,8 +179,8 @@ const BuildingPage = () => {
       {/* brand mark, top-right */}
       <img
         src={brandLogo}
-        alt="Notandas Reality"
-        className="absolute right-6 top-6 z-20 h-4 w-auto opacity-90 md:right-12 md:top-8 md:h-35"
+        alt="Notandas Realty"
+        className="absolute right-6 top-6 z-20 h-4 w-auto opacity-90 md:right-12 md:top-8 md:h-15"
       />
 
       {/* right-side floor readout */}

@@ -36,6 +36,36 @@ body {
     animation: fs-ring-pulse 1.8s ease-out infinite;
 }
 
+/* Card rises into place when the full-screen overlay appears */
+@keyframes fs-rise {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.fs-rise {
+    animation: fs-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Brand mark drifts gently on the full-screen overlay (see FullscreenGate) */
+@keyframes fs-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.fs-float {
+    animation: fs-float 5.5s ease-in-out infinite;
+}
+
 @theme {
   --breakpoint-mob: 25rem;  /* 400px */
   --breakpoint-3xl: 120rem;  /* 1920px */

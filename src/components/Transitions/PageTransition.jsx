@@ -203,7 +203,7 @@ const PageTransition = ({ children }) => {
             NOTANDAS
           </h2>
           <p className="text-[#DAA520]/80 text-sm md:text-base font-light tracking-[0.7em] indent-[0.7em]">
-            REALITY
+            REALTY
           </p>
           <svg
             viewBox="0 0 120 20"

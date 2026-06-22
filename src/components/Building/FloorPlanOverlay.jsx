@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { getFloorPlan } from "./floorPlansData";
 import { getFloorPano } from "./panoData";
 import notanMap from "../../assets/floorplanoverbg.png";
-import brandLogo from "../../assets/nuthandasReality.svg";
+import brandLogo from "../../assets/notandaslogo.svg";
 
 /**
  * Full-screen overlay that opens when a floor is clicked on the BuildingPage.
@@ -149,8 +149,8 @@ const FloorPlanOverlay = ({
         <div className="relative px-4 pb-4 pt-6">
           <img
             src={brandLogo}
-            alt="Notandas Reality"
-            className="h-10 w-auto opacity-90 md:h-29"
+            alt="Notandas Realty"
+            className="h-10 w-auto opacity-90 md:h-39"
           />
           <span className="mt-3 block h-px w-8 bg-linear-to-r from-[#b8860b] to-transparent" />
         </div>
@@ -295,7 +295,7 @@ const FloorPlanOverlay = ({
               src={planImg}
               alt={`${buildingName} ${floorTitle} plan`}
               draggable="false"
-              className="block h-[80vh] max-w-[70vw]  select-none rounded-sm border-2 border-[#1f2a40]/20 object-cover opacity-75 shadow-[0_10px_24px_rgba(31,42,64,0.1)]"
+              className="block h-[80vh] max-w-[80vw]  select-none rounded-sm border-2 border-[#1f2a40]/20 object-cover opacity-75 shadow-[0_10px_24px_rgba(31,42,64,0.1)]"
             />
 
             {viewBox && regions.length > 0 && (
@@ -366,7 +366,7 @@ const FloorPlanOverlay = ({
 
         {/* zoom toolbar */}
         {available && (
-          <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md">
+          <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md opacity-90 hover:opacity-100" >
             <button
               onClick={zoomOut}
               aria-label="Zoom out"
