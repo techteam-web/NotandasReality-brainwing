@@ -2,6 +2,7 @@ import { cloneElement, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import gateBg from "../../assets/fullscreengatebg.png";
 
 gsap.registerPlugin(useGSAP);
 
@@ -41,6 +42,7 @@ const PageTransition = ({ children }) => {
   const [displayLocation, setDisplayLocation] = useState(location);
 
   const overlayRef = useRef(null);
+  const bgRef = useRef(null);
   const emblemRef = useRef(null);
   const underlineRef = useRef(null);
   const pathRefs = useRef([]);
@@ -90,6 +92,12 @@ const PageTransition = ({ children }) => {
 
   const addEmblemIn = (tl, at) => {
     tl.fromTo(
+      bgRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.45, ease: "power2.out" },
+      at
+    );
+    tl.fromTo(
       emblemRef.current,
       { opacity: 0, y: 26, filter: "blur(6px)" },
       { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power2.out" },
@@ -109,6 +117,7 @@ const PageTransition = ({ children }) => {
       { opacity: 0, y: -22, filter: "blur(5px)", duration: 0.35, ease: "power2.in" },
       at
     );
+    tl.to(bgRef.current, { opacity: 0, duration: 0.35, ease: "power2.in" }, at);
   };
 
   const { contextSafe } = useGSAP(
@@ -120,6 +129,7 @@ const PageTransition = ({ children }) => {
         setWave(i, COVER);
       });
       overlayRef.current.style.pointerEvents = "auto";
+      gsap.set(bgRef.current, { opacity: 1 });
       gsap.set(emblemRef.current, { opacity: 1, y: 0, filter: "blur(0px)" });
 
       const tl = gsap.timeline({
@@ -196,10 +206,20 @@ const PageTransition = ({ children }) => {
         ))}
 
         <div
+          ref={bgRef}
+          className="absolute inset-0 opacity-0"
+          style={{
+            backgroundImage: `url(${gateBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div
           ref={emblemRef}
           className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0"
         >
-          <h2 className="text-[#DAA520] text-2xl md:text-4xl font-semibold tracking-[0.45em] indent-[0.45em]">
+          <h2 className="text-[#DAA520] text-2xl md:text-5xl font-semibold tracking-[0.45em] indent-[0.45em]">
             NOTANDAS
           </h2>
           <p className="text-[#DAA520]/80 text-sm md:text-base font-light tracking-[0.7em] indent-[0.7em]">

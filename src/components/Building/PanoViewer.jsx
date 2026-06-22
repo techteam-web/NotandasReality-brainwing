@@ -193,7 +193,7 @@ const PanoViewer = ({
             {buildingName} · 360° view
             {regionName ? ` · ${regionName}` : ""}
           </p>
-          <h2 className="mt-0.5 font-serif text-2xl italic text-[#e8c879] md:text-3xl">
+          <h2 className="mt-0.5 font-serif text-2xl uppercase text-[#e8c879] md:text-xl">
             {pano ? pano.name : floorTitle}
           </h2>
         </div>

@@ -252,10 +252,10 @@ const FloorPlanOverlay = ({
       {/* top bar */}
       <div className="flex w-full items-center justify-center px-6 py-5  md:px-10">
         <div className="text-center text-[#1f2a40] ">
-          <p className="text-[10px] uppercase tracking-[3px] text-[#7a6230] ">
+          <p className="text-[10px] uppercase tracking-[3px] text-[#88b1cd] ">
             {buildingName} · Floor plan · click a unit to view pano
           </p>
-          <h2 className="mt-2 font-serif text-2xl  text-[#e8c879] md:text-3xl">
+          <h2 className="mt-2 font-serif text-2xl  text-[#88b1cd] md:text-3xl">
             {floorTitle}
           </h2>
         </div>
@@ -263,7 +263,7 @@ const FloorPlanOverlay = ({
         <button
           onClick={onClose}
           aria-label="Close floor plan"
-          className="absolute right-6 top-4 inline-flex items-center gap-2  border border-[#b8860b] bg-[#b8860b] px-4 py-2 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#8f6708] hover:border-[#8f6708] md:right-10 md:top-4"
+          className="absolute right-6 top-4 inline-flex items-center gap-2  border border-[#88b1cd] bg-[#88b1cd] px-4 py-2 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#c49833] hover:border-[#e5ad2b] md:right-10 md:top-4"
         >
           Close
           <span className="text-sm leading-none transition-transform group-hover:rotate-90">
@@ -370,7 +370,7 @@ const FloorPlanOverlay = ({
             <button
               onClick={zoomOut}
               aria-label="Zoom out"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#b8860b] text-lg text-white transition-colors hover:bg-[#8f6708]"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#9BB6C8] text-lg text-white transition-colors hover:bg-[#c49833]"
             >
               −
             </button>
@@ -383,7 +383,7 @@ const FloorPlanOverlay = ({
             <button
               onClick={zoomIn}
               aria-label="Zoom in"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#b8860b] text-lg text-white transition-colors hover:bg-[#8f6708]"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#9BB6C8] text-lg text-white transition-colors hover:bg-[#c49833]"
             >
               +
             </button>

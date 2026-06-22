@@ -251,10 +251,10 @@ const MapScene = () => {
       <div className="ms-wave absolute top-[68%] left-[31%] w-24 text-[#5b77a8] opacity-60">
         <Wave className="w-full h-auto" />
       </div>
-      <div className="ms-wave absolute top-[88%] left-[10%] w-20 text-[#5b77a8] opacity-50">
+      <div className="ms-wave absolute top-[88%] left-[15%] w-20 text-[#5b77a8] opacity-50">
         <Wave className="w-full h-auto" />
       </div>
-      <div className="ms-wave absolute top-[88%] left-[10%] w-20 text-[#5b77a8] opacity-50">
+      <div className="ms-wave absolute top-[95%] left-[25%] w-20 text-[#5b77a8] opacity-50">
         <Wave className="w-full h-auto" />
       </div>
       <div className="ms-wave absolute top-[38%] left-[10%] w-20 text-[#5b77a8] opacity-50">
