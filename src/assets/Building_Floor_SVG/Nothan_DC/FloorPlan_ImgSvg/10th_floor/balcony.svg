@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ceff00;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <path id="balcony" class="cls-1" d="M379.57,864.46h-62.61l-6.26-421.33s-3.13-44.22,50.48-42.65v19.96l23.48.78-5.09,443.24Z"/>
+</svg>

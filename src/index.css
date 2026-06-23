@@ -72,3 +72,29 @@ body {
   --breakpoint-4xl: 160rem;  /* 2560px */
   --breakpoint-5xl: 240rem;  /* 3840px */
 }
+
+/* Custom Scrollbar styled for the brand theme */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3b3a38 rgba(31, 42, 64, 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 1px;
+  height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(90, 92, 97, 0.924);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #615f59;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e8c879;
+}

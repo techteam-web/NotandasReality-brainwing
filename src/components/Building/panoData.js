@@ -644,7 +644,48 @@ const TERRACE_PANO_SCENES = [
    };
 
 
-   const TERRACE_REGION_PANO_MAP = {};
+   const TERRACE_REGION_PANO_MAP = {
+
+// REGION_PANO_MAP[12]
+12: {
+"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+   },
+
+11: {
+"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+},
+10 : {
+"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+},
+9 : {
+"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+},
+8 : {
+"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+},
+7 : {
+"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Seating": { yawDeg: -153, pitchDeg: 6, fovDeg: 51, panDeg: 70 },
+},
+6 : {
+"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Deck": { yawDeg: -116, pitchDeg: 0, fovDeg: 55, panDeg: 70 },
+},
+
+  };
 
 /* ══════════════════════════════════════════════════════════════════════════
  * NOTAN CROWN
@@ -713,7 +754,9 @@ const CROWN_FLOOR_PANO_MAP = {
  * its pano at the as-shot framing until tuned. Use the viewer's "Copy config"
  * to fill these in, same shape/workflow as DC_REGION_PANO_MAP.
  */
-const CROWN_REGION_PANO_MAP = {};
+const CROWN_REGION_PANO_MAP = {
+
+};
 
 /* ══════════════════════════════════════════════════════════════════════════
  * REGISTRY + RESOLUTION

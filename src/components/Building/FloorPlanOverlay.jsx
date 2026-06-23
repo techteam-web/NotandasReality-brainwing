@@ -156,7 +156,7 @@ const FloorPlanOverlay = ({
         </div>
 
         {/* floor list — stacked as nodes on a vertical "elevator shaft" rail */}
-        <div className="relative flex-1 overflow-y-auto px-3 pb-4 pt-1">
+        <div className="relative flex-1 overflow-y-auto custom-scrollbar px-3 pb-4 pt-1">
           <div className="relative">
             {/* the rail itself, gold-tipped at the top */}
             <span className="pointer-events-none absolute inset-y-2 left-3 w-px bg-linear-to-brom-[#b8860b]/60 via-[#d7bf78]/20 to-transparent" />
