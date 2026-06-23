@@ -162,7 +162,7 @@ const BuildingPage = () => {
       </Link>
 
       {/* big centered project title */}
-      <header ref={headerRef} className="pointer-events-none absolute left-80 top-36 z-20 flex flex-col items-center text-center md:top-127 2xl:left-64 2xl:top-90 xl:left-40 xl:top-90 lg:left-36 lg:top-70 3xl:left-80 3xl:top-127 4xl:left-137 4xl:top-150">
+      <header ref={headerRef} className={`pointer-events-none absolute z-20 flex flex-col items-center text-center ${view.headerClass || "left-80 top-36 md:top-127 2xl:left-64 2xl:top-90 xl:left-40 xl:top-90 lg:left-36 lg:top-70 3xl:left-80 3xl:top-127 4xl:left-137 4xl:top-150"}`}>
         <p className="font-serif text-base italic text-[#1f2a40]/80 md:text-lg">
           Notandas
         </p>
@@ -184,7 +184,7 @@ const BuildingPage = () => {
       />
 
       {/* right-side floor readout */}
-      <aside className="absolute left-[65%] top-1/2 z-20 w-36 -translate-y-1/2 md:right-12 md:w-44">
+      <aside className={`absolute z-20 w-36 ${view.asideClass || "left-[65%] top-1/2 -translate-y-1/2 md:right-12 md:w-44"}`}>
         <div className="rounded-sm  px-5 py-6 text-center ">
           <p className="text-[20px] uppercase tracking-[3px] text-[#1f2a40]/70">
             {activeFloor ? "Now viewing" : "Hover a floor"}
