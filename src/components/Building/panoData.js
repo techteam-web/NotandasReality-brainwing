@@ -388,8 +388,10 @@ const JEWEL_PANO_SCENES = [
 
 /**
  * Which pano opens for each Notan Jewel floor. Floors 1–21 each have their own
- * capture; ground and terrace have no exterior pano yet (ground/terrace plans
- * still open, just without a 360°). Tune framing per the file header.
+ * capture; ground has no exterior pano yet (its plan still opens, just without a
+ * 360°). There's no dedicated rooftop capture, so the terrace reuses the topmost
+ * 21st-floor capture (69m) — the highest viewpoint available. Tune framing per
+ * the file header.
  */
 const JEWEL_FLOOR_PANO_MAP = {
   ground: null,
@@ -414,6 +416,7 @@ const JEWEL_FLOOR_PANO_MAP = {
   19: { scene: "18-0003_19th-f_629m", panDeg: DEFAULT_PAN_DEG },
   20: { scene: "19-0002_20th-f_6595m", panDeg: DEFAULT_PAN_DEG },
   21: { scene: "20-0001_21st-f_69m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "20-0001_21st-f_69m", panDeg: DEFAULT_PAN_DEG },
 };
 
 /**
@@ -608,6 +611,110 @@ const SPACE_REGION_PANO_MAP = {
 
 };
 
+const TERRACE_PANO_SCENES = [
+     { id: "0-0044_3rd-f_1311m", name: "3rd Floor · 13.11m", view: { yaw: -1.6844387017249165, pitch: -0.1698891970346157, fov: FOV } },
+     { id: "1-0036_11th-f_4135m", name: "11th Floor · 41.35m", view: { yaw: -1.6938509459920077, pitch: 0.014785591589740577, fov: FOV } },
+     { id: "2-0037_10th-f_3782m", name: "10th Floor · 37.82m", view: { yaw: -1.7126602685595618, pitch: 0.10710405900008269, fov: FOV } },
+     { id: "3-0038_9th-f_3429m", name: "9th Floor · 34.29m", view: { yaw: -1.635431047445671, pitch: 0.16619595362081796, fov: FOV } },
+     { id: "4-0039_8th-f_3076m", name: "8th Floor · 30.76m", view: { yaw: -1.6689950715224882, pitch: 0.050511296798726235, fov: FOV } },
+     { id: "5-0040_7th-f_2723m", name: "7th Floor · 27.23m", view: { yaw: -1.6531720316005618, pitch: 0.022159460482775728, fov: FOV } },
+     { id: "6-0041_6th-f_237m", name: "6th Floor · 23.7m", view: { yaw: -1.641576881094288, pitch: 0.05909189462073705, fov: FOV } },
+     { id: "7-0042_5th-f_2017m", name: "5th Floor · 20.17m", view: { yaw: -1.7237568872214286, pitch: 0.06832500315522694, fov: FOV } },
+     { id: "8-0043_4th-f_1664m", name: "4th Floor · 16.64m", view: { yaw: -1.7535337723208144, pitch: 0.01661959536208002, fov: FOV } },
+     { id: "9-0033_amenity-top-slab_51m", name: "Amenity Top Slab · 51m", view: { yaw: -1.5967191273714452, pitch: 0.010468429223388753, fov: FOV } },
+     { id: "10-0035_12th-f_4488m", name: "12th Floor · 44.88m", view: { yaw: -1.6797549568196324, pitch: 0.06414937500048978, fov: FOV } },
+     { id: "11-0034_terrace-level_4841m", name: "Terrace Level · 48.41m", view: { yaw: -1.6131207130435286, pitch: -0.007832170166164332, fov: FOV } },
+   ];
+
+   const TERRACE_FLOOR_PANO_MAP = {
+     ground: null, // No panoramic view shot for ground floor
+     1: null,      // No panoramic view shot for 1st floor
+     2: null,      // No panoramic view shot for 2nd floor
+     3: { scene: "0-0044_3rd-f_1311m", panDeg: DEFAULT_PAN_DEG },
+     4: { scene: "8-0043_4th-f_1664m", panDeg: DEFAULT_PAN_DEG },
+     5: { scene: "7-0042_5th-f_2017m", panDeg: DEFAULT_PAN_DEG },
+     6: { scene: "6-0041_6th-f_237m", panDeg: DEFAULT_PAN_DEG },
+     7: { scene: "5-0040_7th-f_2723m", panDeg: DEFAULT_PAN_DEG },
+     8: { scene: "4-0039_8th-f_3076m", panDeg: DEFAULT_PAN_DEG },
+     9: { scene: "3-0038_9th-f_3429m", panDeg: DEFAULT_PAN_DEG },
+     10: { scene: "2-0037_10th-f_3782m", panDeg: DEFAULT_PAN_DEG },
+     11: { scene: "1-0036_11th-f_4135m", panDeg: DEFAULT_PAN_DEG },
+     12: { scene: "10-0035_12th-f_4488m", panDeg: DEFAULT_PAN_DEG },
+     terrace: { scene: "11-0034_terrace-level_4841m", panDeg: DEFAULT_PAN_DEG },
+   };
+
+
+   const TERRACE_REGION_PANO_MAP = {};
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * NOTAN CROWN
+ * ════════════════════════════════════════════════════════════════════════ */
+
+/** Raw captured panos (1st–20th + terrace). `view` is the as-shot direction,
+ *  taken straight from the Marzipano export's initialViewParameters. Same cube
+ *  tiling / face size as DC / Edge, so they share SCENE_DEFAULTS. */
+const CROWN_PANO_SCENES = [
+  { id: "0-0042_1st-f_6m", name: "1st Floor · 6m", view: { yaw: 1.7874310617567417, pitch: -0.04447669939426646, fov: FOV } },
+  { id: "1-0041_2nd-f_102m", name: "2nd Floor · 10.2m", view: { yaw: 1.7601826465189694, pitch: -0.08911517502580857, fov: FOV } },
+  { id: "2-0040_3rd-f_1415m", name: "3rd Floor · 14.15m", view: { yaw: 1.67265339501588, pitch: 0.01903441703122688, fov: FOV } },
+  { id: "3-0039_4th-f_181m", name: "4th Floor · 18.1m", view: { yaw: 1.631067665411539, pitch: 0.0006482218323302646, fov: FOV } },
+  { id: "4-0038_5th-f_225m", name: "5th Floor · 22.5m", view: { yaw: 1.6396023904255, pitch: 0.011819003258150218, fov: FOV } },
+  { id: "5-0037_6th-f_26m", name: "6th Floor · 26m", view: { yaw: 1.6738653781505555, pitch: 0.017053825389922395, fov: FOV } },
+  { id: "6-0036_7th-f_2995m", name: "7th Floor · 29.95m", view: { yaw: 1.645977082372453, pitch: 0.02021460161789257, fov: FOV } },
+  { id: "7-0035_8th-f_339m", name: "8th Floor · 33.9m", view: { yaw: 1.5677125597999524, pitch: 0.013709073436068309, fov: FOV } },
+  { id: "8-0034_9th-f_3785m", name: "9th Floor · 37.85m", view: { yaw: 1.6905515147364767, pitch: 0.005429323742319525, fov: FOV } },
+  { id: "9-0033_10th-f_418m", name: "10th Floor · 41.8m", view: { yaw: -1.5638203464445404, pitch: -0.018466217068979773, fov: FOV } },
+  { id: "10-0032_11th-f_4575m", name: "11th Floor · 45.75m", view: { yaw: -1.5717023962382282, pitch: 0.008958716531211053, fov: FOV } },
+  { id: "11-0031_12th-f_497m", name: "12th Floor · 49.7m", view: { yaw: -1.5412028229534194, pitch: 0.011073966136777358, fov: FOV } },
+  { id: "12-0030_13th-f_5365", name: "13th Floor · 53.65m", view: { yaw: -1.566576849482388, pitch: 0, fov: FOV } },
+  { id: "13-0029_14th-f_576", name: "14th Floor · 57.6m", view: { yaw: -1.5729624022050324, pitch: 0.012127569348708178, fov: FOV } },
+  { id: "14-0028_15th-f_6155m", name: "15th Floor · 61.55m", view: { yaw: -1.5685997303141477, pitch: 0.017171797910169317, fov: FOV } },
+  { id: "15-0027_16th-f_655m", name: "16th Floor · 65.5m", view: { yaw: -1.5612193857389727, pitch: 0.011083075787063024, fov: FOV } },
+  { id: "16-0026_17th-f_6945m", name: "17th Floor · 69.45m", view: { yaw: -1.5989901070194232, pitch: -0.005950225500003015, fov: FOV } },
+  { id: "17-0025_18th-f_734m", name: "18th Floor · 73.4m", view: { yaw: -1.5425315540509263, pitch: 0.023910474754940125, fov: FOV } },
+  { id: "18-0024_19th-f_7735m", name: "19th Floor · 77.35m", view: { yaw: -1.6006587105904657, pitch: 0.05614383352319763, fov: FOV } },
+  { id: "19-0023_20th-f_813m", name: "20th Floor · 81.3m", view: { yaw: -1.4545580921276056, pitch: 0.013200680413998356, fov: FOV } },
+  { id: "20-0022_terrace_8525m", name: "Terrace · 85.25m", view: { yaw: -1.5108331638209211, pitch: 0.03194791490365034, fov: FOV } },
+];
+
+/**
+ * Which pano opens for each Notan Crown floor. Floors 1–20 each have their own
+ * capture; ground has no exterior pano (its plan still opens, just without a
+ * 360°). The topmost elevation band is the terrace (85.25m capture, the height
+ * just above the 20th floor). Tune framing per the file header.
+ */
+const CROWN_FLOOR_PANO_MAP = {
+  ground: null,
+  1: { scene: "0-0042_1st-f_6m", panDeg: DEFAULT_PAN_DEG },
+  2: { scene: "1-0041_2nd-f_102m", panDeg: DEFAULT_PAN_DEG },
+  3: { scene: "2-0040_3rd-f_1415m", panDeg: DEFAULT_PAN_DEG },
+  4: { scene: "3-0039_4th-f_181m", panDeg: DEFAULT_PAN_DEG },
+  5: { scene: "4-0038_5th-f_225m", panDeg: DEFAULT_PAN_DEG },
+  6: { scene: "5-0037_6th-f_26m", panDeg: DEFAULT_PAN_DEG },
+  7: { scene: "6-0036_7th-f_2995m", panDeg: DEFAULT_PAN_DEG },
+  8: { scene: "7-0035_8th-f_339m", panDeg: DEFAULT_PAN_DEG },
+  9: { scene: "8-0034_9th-f_3785m", panDeg: DEFAULT_PAN_DEG },
+  10: { scene: "9-0033_10th-f_418m", panDeg: DEFAULT_PAN_DEG },
+  11: { scene: "10-0032_11th-f_4575m", panDeg: DEFAULT_PAN_DEG },
+  12: { scene: "11-0031_12th-f_497m", panDeg: DEFAULT_PAN_DEG },
+  13: { scene: "12-0030_13th-f_5365", panDeg: DEFAULT_PAN_DEG },
+  14: { scene: "13-0029_14th-f_576", panDeg: DEFAULT_PAN_DEG },
+  15: { scene: "14-0028_15th-f_6155m", panDeg: DEFAULT_PAN_DEG },
+  16: { scene: "15-0027_16th-f_655m", panDeg: DEFAULT_PAN_DEG },
+  17: { scene: "16-0026_17th-f_6945m", panDeg: DEFAULT_PAN_DEG },
+  18: { scene: "17-0025_18th-f_734m", panDeg: DEFAULT_PAN_DEG },
+  19: { scene: "18-0024_19th-f_7735m", panDeg: DEFAULT_PAN_DEG },
+  20: { scene: "19-0023_20th-f_813m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "20-0022_terrace_8525m", panDeg: DEFAULT_PAN_DEG },
+};
+
+/**
+ * Per-room facing overrides for Notan Crown — empty for now: each floor opens
+ * its pano at the as-shot framing until tuned. Use the viewer's "Copy config"
+ * to fill these in, same shape/workflow as DC_REGION_PANO_MAP.
+ */
+const CROWN_REGION_PANO_MAP = {};
+
 /* ══════════════════════════════════════════════════════════════════════════
  * REGISTRY + RESOLUTION
  * ════════════════════════════════════════════════════════════════════════ */
@@ -642,6 +749,21 @@ const PANO_BUILDINGS = {
     floorMap: SPACE_FLOOR_PANO_MAP,
     regionMap: SPACE_REGION_PANO_MAP,
   },
+   
+  "notan-terrace": {
+       tilesBase: `${BASE}panos/notan-terrace/tiles`,
+       sceneById: new Map(TERRACE_PANO_SCENES.map((s) => [s.id, s])),
+       floorMap: TERRACE_FLOOR_PANO_MAP,
+       regionMap: TERRACE_REGION_PANO_MAP,
+     },
+
+  "notan-crown": {
+    tilesBase: `${BASE}panos/notan-crown/tiles`,
+    sceneById: new Map(CROWN_PANO_SCENES.map((s) => [s.id, s])),
+    floorMap: CROWN_FLOOR_PANO_MAP,
+    regionMap: CROWN_REGION_PANO_MAP,
+  },
+
 };
 
 const DEG = Math.PI / 180;

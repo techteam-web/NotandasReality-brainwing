@@ -36,6 +36,17 @@ const SPACE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_space/*.{jpg,jpe
   eager: true,
 });
 
+const TERRACE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_terrace/*.{jpg,jpeg}", {
+     query: "?url",
+     import: "default",
+     eager: true,
+   });
+const CROWN_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_crown/*.{jpg,jpeg}", {
+     query: "?url",
+     import: "default",
+     eager: true,
+   });
+
 /* ---- hover cut-outs (raw SVG markup) ---- */
 const DC_SVGS = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_DC/FloorPlan_ImgSvg/**/*.svg",
@@ -56,6 +67,14 @@ const SPACE_SVGS = import.meta.glob(
   { query: "?raw", import: "default", eager: true }
 );
 
+const TERRACE_SVGS = import.meta.glob(
+     "../../assets/Building_Floor_SVG/Nothan_terrace/Unit_plan_SVG/**/*.svg",
+     { query: "?raw", import: "default", eager: true }
+   );
+const CROWN_SVGS = import.meta.glob(
+     "../../assets/Building_Floor_SVG/Nothan_crown/Unit_plan_SVG/**/*.svg",
+     { query: "?raw", import: "default", eager: true }
+   );
 /**
  * Reads the floors a filename covers. Returns one of:
  *   { ground: true } | { basement: true } | { terrace, nums: [...] }
@@ -191,6 +210,14 @@ const BUILDINGS = {
   "notan-space": {
     images: buildImages(SPACE_IMAGES),
     groups: buildGroups(SPACE_SVGS, "floor_plan_SVG"),
+  },
+  "notan-terrace": {
+       images: buildImages(TERRACE_IMAGES),
+       groups: buildGroups(TERRACE_SVGS, "Unit_plan_SVG"),
+     },
+  "notan-crown": {
+    images: buildImages(CROWN_IMAGES),
+    groups: buildGroups(CROWN_SVGS, "Unit_plan_SVG"),
   },
 };
 

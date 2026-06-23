@@ -2,11 +2,15 @@ import notanDcView from "../../assets/ViewsBuildings/Notan-DC.webp";
 import notanEdgeView from "../../assets/ViewsBuildings/Notan_EDGE.webp";
 import notanJewelView from "../../assets/ViewsBuildings/Notan_jewel_sketch.webp";
 import notanSpaceView from "../../assets/ViewsBuildings/Notan_space_sketch.webp";
+import notanTerraceView from "../../assets/ViewsBuildings/Notan_terrace_sketch.webp";
+import notanCrownView from "../../assets/ViewsBuildings/Notan_crown_sketch.webp";
 import {
   NOTAN_DC_FLOORS,
   NOTAN_EDGE_FLOORS,
   NOTAN_JEWEL_FLOORS,
   NOTAN_SPACE_FLOORS,
+  NOTAN_TERRACE_FLOORS,
+  NOTAN_CROWN_FLOORS,
 } from "./floorShapes";
 
 /**
@@ -42,5 +46,17 @@ export const BUILDING_VIEWS = {
     // matches the combined Building_Floor_SVG/Nothan_space/Notan_space_.svg
     viewBox: "0 0 1672 941",
     floors: NOTAN_SPACE_FLOORS,
+  },
+  "notan-terrace": {
+    viewImg: notanTerraceView,
+    // matches the combined Building_Floor_SVG/Nothan_terrace/Notan_terrace_2.8x.svg
+    viewBox: "0 0 4615 2597",
+    floors: NOTAN_TERRACE_FLOORS,
+  },
+  "notan-crown": {
+    viewImg: notanCrownView,
+    // matches the combined Building_Floor_SVG/Nothan_crown/Notan_crown_.svg
+    viewBox: "0 0 1672 941",
+    floors: NOTAN_CROWN_FLOORS,
   },
 };

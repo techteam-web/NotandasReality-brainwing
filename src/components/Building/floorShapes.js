@@ -36,6 +36,16 @@ const NOTAN_SPACE_FILE = import.meta.glob(
   { query: "?raw", import: "default", eager: true }
 );
 
+ const NOTAN_TERRACE_FILE = import.meta.glob(
+     "../../assets/Building_Floor_SVG/Nothan_terrace/Notan_terrace_2.8x.svg",
+     { query: "?raw", import: "default", eager: true }
+   );
+
+ const NOTAN_CROWN_FILE = import.meta.glob(
+     "../../assets/Building_Floor_SVG/Nothan_crown/Notan_crown_.svg",
+     { query: "?raw", import: "default", eager: true }
+   );  
+
 const parseShape = (raw) => {
   const points = raw.match(/points="([^"]+)"/);
   const d = raw.match(/\sd="([^"]+)"/);
@@ -137,3 +147,5 @@ export const NOTAN_DC_FLOORS = buildFloors(NOTAN_DC_FILES);
 export const NOTAN_EDGE_FLOORS = buildFloors(NOTAN_EDGE_FILES);
 export const NOTAN_JEWEL_FLOORS = buildFloorsFromCombined(firstRaw(NOTAN_JEWEL_FILE));
 export const NOTAN_SPACE_FLOORS = buildFloorsFromCombined(firstRaw(NOTAN_SPACE_FILE));
+export const NOTAN_TERRACE_FLOORS = buildFloorsFromCombined(firstRaw(NOTAN_TERRACE_FILE));
+export const NOTAN_CROWN_FLOORS = buildFloorsFromCombined(firstRaw(NOTAN_CROWN_FILE));
