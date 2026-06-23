@@ -102,7 +102,7 @@ const DC_FLOOR_PANO_MAP = {
   12: { scene: "4-0005_12th-f_376m", panDeg: DEFAULT_PAN_DEG },
   13: { scene: "3-0004_13th-f_duplex-l1_4065m", panDeg: DEFAULT_PAN_DEG },
   14: { scene: "2-0003_14th-f_duplex-l2_441m", panDeg: DEFAULT_PAN_DEG },
-  terrace: { scene: "1-0002_terrace-f_4755m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "1-0002_terrace-f_4755m", panDeg: 360 },
 };
 
 /**
@@ -223,9 +223,9 @@ const DC_REGION_PANO_MAP = {
     "Lounge": { yawDeg: -18, pitchDeg: 1, fovDeg: 71, panDeg: 140 },
   },
   terrace: {
-    "Pool Deck": { yawDeg: -88, pitchDeg: -3, fovDeg: 71, panDeg: 140 },
-    "Socity Office": { yawDeg: -18, pitchDeg: 1, fovDeg: 90, panDeg: 70 },
-    "Gym": { yawDeg: 31, pitchDeg: 12, fovDeg: 71, panDeg: 140 },
+    "Pool Deck": { yawDeg: -88, pitchDeg: -3, fovDeg: 71, panDeg: 360 },
+    "Socity Office": { yawDeg: -18, pitchDeg: 1, fovDeg: 90, panDeg: 360 },
+    "Gym": { yawDeg: 31, pitchDeg: 12, fovDeg: 71, panDeg: 360 },
   },
 
 
@@ -281,7 +281,7 @@ const EDGE_FLOOR_PANO_MAP = {
   13: { scene: "6-0020_13th-f_4155m", panDeg: DEFAULT_PAN_DEG },
   14: { scene: "5-0019_14th-f_446m", panDeg: DEFAULT_PAN_DEG },
   15: { scene: "4-0018_terrace-f_4765m", panDeg: DEFAULT_PAN_DEG },
-  terrace: { scene: "3-0017_roof-level_524m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "3-0017_roof-level_524m", panDeg: 360 },
 };
 
 /**
@@ -298,8 +298,8 @@ const EDGE_REGION_PANO_MAP = {
 
   terrace: {
     // REGION_PANO_MAP["terrace"]
-    "Terrace": { yawDeg: -151, pitchDeg: -6, fovDeg: 78, panDeg: 140 },
-    "Commercial": { yawDeg: -11, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    "Terrace": { yawDeg: -151, pitchDeg: -6, fovDeg: 78, panDeg: 360 },
+    "Commercial": { yawDeg: -11, pitchDeg: 1, fovDeg: 78, panDeg: 360 },
 
   },
   15: {
@@ -416,7 +416,7 @@ const JEWEL_FLOOR_PANO_MAP = {
   19: { scene: "18-0003_19th-f_629m", panDeg: DEFAULT_PAN_DEG },
   20: { scene: "19-0002_20th-f_6595m", panDeg: DEFAULT_PAN_DEG },
   21: { scene: "20-0001_21st-f_69m", panDeg: DEFAULT_PAN_DEG },
-  terrace: { scene: "20-0001_21st-f_69m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "20-0001_21st-f_69m", panDeg: 360 },
 };
 
 /**
@@ -563,7 +563,7 @@ const SPACE_FLOOR_PANO_MAP = {
   13: { scene: "12-0005_13th-f_394m", panDeg: DEFAULT_PAN_DEG },
   14: { scene: "13-0004_14th-f_4235m", panDeg: DEFAULT_PAN_DEG },
   15: { scene: "14-0003_15th-f_453m", panDeg: DEFAULT_PAN_DEG },
-  terrace: { scene: "15-0002_terrace_4825m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "15-0002_terrace_4825m", panDeg: 360 },
 };
 
 /**
@@ -640,7 +640,7 @@ const TERRACE_PANO_SCENES = [
      10: { scene: "2-0037_10th-f_3782m", panDeg: DEFAULT_PAN_DEG },
      11: { scene: "1-0036_11th-f_4135m", panDeg: DEFAULT_PAN_DEG },
      12: { scene: "10-0035_12th-f_4488m", panDeg: DEFAULT_PAN_DEG },
-     terrace: { scene: "11-0034_terrace-level_4841m", panDeg: DEFAULT_PAN_DEG },
+     terrace: { scene: "11-0034_terrace-level_4841m", panDeg: 360 },
    };
 
 
@@ -705,7 +705,7 @@ const CROWN_FLOOR_PANO_MAP = {
   18: { scene: "17-0025_18th-f_734m", panDeg: DEFAULT_PAN_DEG },
   19: { scene: "18-0024_19th-f_7735m", panDeg: DEFAULT_PAN_DEG },
   20: { scene: "19-0023_20th-f_813m", panDeg: DEFAULT_PAN_DEG },
-  terrace: { scene: "20-0022_terrace_8525m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "20-0022_terrace_8525m", panDeg: 360 },
 };
 
 /**
@@ -781,7 +781,7 @@ export const floorKey = (floor) =>
  * `panRad` is the total horizontal arc the user may look across. Shared by both
  * floor- and region-level lookups.
  */
-const resolvePano = (building, cfg) => {
+const resolvePano = (building, cfg, isTerrace) => {
   if (!cfg) return null;
   const scene = building.sceneById.get(cfg.scene);
   if (!scene) return null;
@@ -792,13 +792,15 @@ const resolvePano = (building, cfg) => {
     fov: cfg.fovDeg != null ? toRad(cfg.fovDeg) : scene.view.fov,
   };
 
+  const panDeg = isTerrace ? 360 : (cfg.panDeg ?? DEFAULT_PAN_DEG);
+
   return {
     id: scene.id,
     name: scene.name,
     tilesUrl: `${building.tilesBase}/${scene.id}`,
     ...SCENE_DEFAULTS,
     center,
-    panRad: toRad(cfg.panDeg ?? DEFAULT_PAN_DEG),
+    panRad: toRad(panDeg),
   };
 };
 
@@ -809,7 +811,8 @@ const resolvePano = (building, cfg) => {
 export const getFloorPano = (buildingId, floor) => {
   const building = PANO_BUILDINGS[buildingId];
   if (!building || !floor) return null;
-  return resolvePano(building, building.floorMap[floorKey(floor)]);
+  const isTerrace = floorKey(floor) === "terrace" || floor.isTerrace;
+  return resolvePano(building, building.floorMap[floorKey(floor)], isTerrace);
 };
 
 /**
@@ -830,6 +833,8 @@ export const getRegionPano = (buildingId, floor, regionName) => {
       ? building.regionMap[floorKey(floor)]?.[regionName]
       : null;
 
+  const isTerrace = floorKey(floor) === "terrace" || floor.isTerrace;
+
   // Room values win; anything omitted (incl. the scene) inherits the floor's.
-  return resolvePano(building, { ...floorCfg, ...override });
+  return resolvePano(building, { ...floorCfg, ...override }, isTerrace);
 };
