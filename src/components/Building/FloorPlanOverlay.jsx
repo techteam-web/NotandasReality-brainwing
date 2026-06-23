@@ -27,6 +27,13 @@ const FloorPlanOverlay = ({
   onClose,
 }) => {
   const { available, planImg, viewBox, regions } = getFloorPlan(buildingId, floor);
+  // keep the plan's box at the exact same aspect ratio as its SVG viewBox, so
+  // the photo (object-contain) and the hover overlay (preserveAspectRatio
+  // "none") always scale identically — otherwise the box's rendered ratio can
+  // drift from the photo's native one under the h-[80vh]/max-w-[80vw] caps,
+  // letting the photo get cropped while the SVG keeps stretching uncropped.
+  const [, , vbW, vbH] = viewBox ? viewBox.split(/\s+/).map(Number) : [];
+  const planAspect = vbW && vbH ? vbW / vbH : null;
   // Some floors (e.g. Edge's terrace) have a 360° capture but no detailed plan
   // yet — still let the visitor open the pano from the "plan coming soon" state.
   const hasPano = !!getFloorPano(buildingId, floor);
@@ -288,14 +295,16 @@ const FloorPlanOverlay = ({
               transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
               transition: dragging ? "none" : "transform 0.18s ease-out",
               cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
-             
+              height: "80vh",
+              maxWidth: "80vw",
+              aspectRatio: planAspect ?? undefined,
             }}
           >
             <img
               src={planImg}
               alt={`${buildingName} ${floorTitle} plan`}
               draggable="false"
-              className="block h-[80vh] max-w-[80vw]  select-none rounded-sm border-2 border-[#1f2a40]/20 object-cover opacity-75 shadow-[0_10px_24px_rgba(31,42,64,0.1)]"
+              className="block h-full w-full select-none rounded-sm border-2 border-[#1f2a40]/20 object-contain opacity-75 shadow-[0_10px_24px_rgba(31,42,64,0.1)]"
             />
 
             {viewBox && regions.length > 0 && (
