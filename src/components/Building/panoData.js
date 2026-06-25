@@ -771,7 +771,57 @@ const CROWN_FLOOR_PANO_MAP = {
  * its pano at the as-shot framing until tuned. Use the viewer's "Copy config"
  * to fill these in, same shape/workflow as DC_REGION_PANO_MAP.
  */
+const commonConfigCrown = {
+  "Unit 1": { yawDeg: -41, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  "Unit 2": { yawDeg: -111, pitchDeg: 10, fovDeg: 78, panDeg: 140 },
+  "Unit 7": { yawDeg: 72, pitchDeg: 5, fovDeg: 78, panDeg: 140 },
+  "Unit 5": { yawDeg: 98, pitchDeg: 9, fovDeg: 51, panDeg: 140 },
+  "Unit 6": { yawDeg: 41, pitchDeg: 3, fovDeg: 64, panDeg: 140 },
+  "Unit 3": { yawDeg: 135, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+  "Unit 4": { yawDeg: 127, pitchDeg: 2, fovDeg: 45, panDeg: 140 },
+};
+
+const commonConfigCrownLower = {
+  "Unit 1": { yawDeg: 139, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+  "Unit 2": { yawDeg: 69, pitchDeg: 10, fovDeg: 78, panDeg: 140 },
+  "Unit 7": { yawDeg: -108, pitchDeg: 5, fovDeg: 78, panDeg: 140 },
+  "Unit 5": { yawDeg: -82, pitchDeg: 9, fovDeg: 51, panDeg: 140 },
+  "Unit 6": { yawDeg: -139, pitchDeg: 3, fovDeg: 64, panDeg: 140 },
+  "Unit 3": { yawDeg: -45, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+  "Unit 4": { yawDeg: -53, pitchDeg: 2, fovDeg: 45, panDeg: 140 },
+};
+
 const CROWN_REGION_PANO_MAP = {
+  20: commonConfigCrown,
+  19: commonConfigCrown,
+  18: commonConfigCrown,
+  17: commonConfigCrown,
+  16: commonConfigCrown,
+  15: commonConfigCrown,
+  14: commonConfigCrown,
+  13: commonConfigCrown,
+  12: commonConfigCrown,
+  11: commonConfigCrown,
+  10: commonConfigCrown,
+  9: commonConfigCrownLower,
+  8: commonConfigCrownLower,
+  7: commonConfigCrownLower,
+  6: commonConfigCrownLower,
+  5: commonConfigCrownLower,
+  4: commonConfigCrownLower,
+  3: commonConfigCrownLower,
+  2: commonConfigCrownLower,
+
+  1: {
+
+"Unit 1": { yawDeg: 144, pitchDeg: -32, fovDeg: 58, panDeg: 140 },
+"Unit 2": { yawDeg: 79, pitchDeg: -40, fovDeg: 70, panDeg: 140 },
+"Unit 3": { yawDeg: -42, pitchDeg: -32, fovDeg: 53, panDeg: 140 },
+"Unit 4": { yawDeg: -64, pitchDeg: -19, fovDeg: 37, panDeg: 60 },
+"Unit 5": { yawDeg: -101, pitchDeg: -35, fovDeg: 56, panDeg: 140 },
+"Unit 6": { yawDeg: -147, pitchDeg: -30, fovDeg: 48, panDeg: 140 },
+
+  }
 
 };
 
