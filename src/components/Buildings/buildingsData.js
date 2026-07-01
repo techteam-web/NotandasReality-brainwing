@@ -69,7 +69,7 @@ export const BUILDINGS = [
     img: notanDc,
     top: "19%",
     left: "52%",
-      tooltip: "bottom",
+    tooltip: "bottom",
     width: "clamp(42px, 3.2vw, 74px)",
     href: "/projects/notan-dc",
   },
