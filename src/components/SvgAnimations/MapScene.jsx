@@ -321,7 +321,7 @@ const MapScene = () => {
       </div>
 
       {/* Bandra–Worli Sea Link reaching out over the water */}
-      <div className="ms-grow absolute top-[80%] left-[36%] w-40 md:w-56">
+      <div className="ms-grow absolute top-[80%] left-[36%] w-40 md:w-56 lg:w-32 2xl:w-45">
         <img src={seaLinkImg} alt="" className="w-full h-auto mix-blend-multiply" />
       </div>
     </div>

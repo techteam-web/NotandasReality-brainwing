@@ -33,7 +33,7 @@ const HomePage = () => {
 
       <div className="relative">
         <NuthandasLogoAnimated 
-          className="w-48 md:w-74 h-50 transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(218,165,32,0.7)] cursor-pointer"
+          className="w-48 md:w-74 h-50 transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(218,165,32,0.7)] cursor-pointer lg:w-30 lg:left-10 relative xl:w-36 xl:left-15"
         />
       </div>
    
@@ -44,7 +44,7 @@ const HomePage = () => {
     </div>
 
     <h1
-     className="text-sm uppercase font-semibold text-[#7a7c80]"
+     className="text-sm uppercase font-semibold text-[#7a7c80] lg:text-[12px] "
      style={{ fontFamily: "'Times New Roman', Times, serif" }}
     >
       chhatrapati <br/>shivaji maharaj <br/>international airport
@@ -53,21 +53,21 @@ const HomePage = () => {
    </div>
 
    <h1
-     className="text-sm uppercase font-semibold text-[#7a7c80] absolute top-[95%] left-[43%]"
+     className="text-sm uppercase font-semibold text-[#7a7c80] absolute top-[95%] left-[43%] lg:text-[11px] "
      style={{ fontFamily: "'Times New Roman', Times, serif" }}
     >
       bandra worli <br/>sea link
      </h1>
 
 
-    <div className="absolute top-[50%] left-[8%] -rotate-90">
-      <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-Times-Roman  " ref={seaWordRef}>
+    <div className="absolute top-[50%] left-[8%] -rotate-90 xl:left-15 2xl:left-40">
+      <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-Times-Roman lg:hidden xl:block   " ref={seaWordRef}>
         Arabian Sea
       </h1>
     </div>
 
     {/* static compass rose — map decoration */}
-    <Compass className="absolute bottom-4 left-3 w-20 h-20 md:w-54 md:h-54 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
+    <Compass className="absolute bottom-4 left-3 w-20 h-20 md:w-54 md:h-54 lg:w-29 lg:-bottom-25 opacity-90 2xl:w-49 2xl:bottom-4 2xl:left-3  drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
 
 
 
