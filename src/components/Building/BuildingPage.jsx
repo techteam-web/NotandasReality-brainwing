@@ -6,8 +6,27 @@ import FloorPlanOverlay from "./FloorPlanOverlay";
 import PanoViewer from "./PanoViewer";
 import { getRegionPano } from "./panoData";
 import brandLogo from "../../assets/notandaslogo.svg";
+import dcLogo from "../../assets/Buildings_Logo/notan D.C. logo.svg";
+import edgeLogo from "../../assets/Buildings_Logo/notan edge logo.svg";
+import jewelLogo from "../../assets/Buildings_Logo/notan jewel logo.svg";
+import spaceLogo from "../../assets/Buildings_Logo/notan spaces.svg";
+import terraceLogo from "../../assets/Buildings_Logo/notan Terraces logo.svg";
+import landsEndLogo from "../../assets/Buildings_Logo/notan Lands End logo.svg";
+import viewsLogo from "../../assets/Buildings_Logo/notan Views logo.svg";
+import finalLogo from "../../assets/Buildings_Logo/Notandas Final Logo.svg";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+
+const BUILDING_LOGOS = {
+  "notan-dc": dcLogo,
+  "notan-edge": edgeLogo,
+  "notan-jewel": jewelLogo,
+  "notan-space": spaceLogo,
+  "notan-terrace": terraceLogo,
+  "notan-lands-end": landsEndLogo,
+  "notan-views": viewsLogo,
+  "notan-crown": finalLogo,
+};
 
 /**
  * The "View Project" destination.
@@ -29,6 +48,7 @@ const BuildingPage = () => {
   const { id } = useParams();
   const building = BUILDINGS.find((b) => b.id === id);
   const view = BUILDING_VIEWS[id];
+  const logoSrc = BUILDING_LOGOS[id] || brandLogo;
   const [active, setActive] = useState(null);
   const [selected, setSelected] = useState(null); // floor whose plan overlay is open
   const [pano, setPano] = useState(null); // { floorNum, regionName } open in 360°
@@ -178,9 +198,9 @@ const BuildingPage = () => {
 
       {/* brand mark, top-right */}
       <img
-        src={brandLogo}
-        alt="Notandas Realty"
-        className="absolute right-6 top-6 z-20 h-4 w-auto opacity-90 md:right-12 md:top-8 md:h-15"
+        src={logoSrc}
+        alt={building ? building.name : "Notandas Realty"}
+        className="absolute right-6 top-6 z-20 h-34 w-35 opacity-90 md:right-12 md:top-8 md:h-25"
       />
 
       {/* right-side floor readout */}
@@ -248,7 +268,21 @@ const BuildingPage = () => {
           onClose={() => setPano(null)}
         />
       )}
+
+      {!selectedFloor && !panoFloor && (
+        <img
+          src="/Brainwing-logo.webp"
+          alt="Brainwing logo"
+          className="fixed top-18 left-3 w-9 z-50 pointer-events-none opacity-70
+            sm:top-20 sm:left-4 sm:w-10
+            md:top-auto md:bottom-6 md:left-auto md:right-5 md:w-14 md:opacity-80
+            lg:right-6 lg:w-46
+            xl:right-7 xl:w-50"
+        />
+      )}
+      
     </div>
+      
   );
 };
 

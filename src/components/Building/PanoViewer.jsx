@@ -190,11 +190,11 @@ const PanoViewer = ({
       <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-6 py-4 md:px-10">
         <div className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
           <p className="text-[10px] uppercase tracking-[3px] text-white/60">
-            {buildingName} · 360° view
-            {regionName ? ` · ${regionName}` : ""}
+            {buildingName} · Pano view
+           
           </p>
           <h2 className="mt-0.5 font-serif text-2xl uppercase text-[#e8c879] md:text-xl">
-            {pano ? pano.name : floorTitle}
+            {pano ? pano.name.split("·")[0].trim() : floorTitle}
           </h2>
         </div>
 
@@ -233,7 +233,7 @@ const PanoViewer = ({
             <MiniCompass
               yaw={toDeg(angles.yaw)}
               transitionMs={0}
-              className="pointer-events-none absolute bottom-6 left-6 z-10 h-16 w-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-28 md:w-28"
+              className="pointer-events-none absolute bottom-6 left-6 z-10 h-16 w-16 lg:w-23 xl:w-25 2xl:w-35 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-28 md:w-28"
             />
           )}
 

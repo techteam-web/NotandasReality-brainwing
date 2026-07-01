@@ -3,6 +3,25 @@ import { getFloorPlan } from "./floorPlansData";
 import { getFloorPano } from "./panoData";
 import notanMap from "../../assets/floorplanoverbg.png";
 import brandLogo from "../../assets/notandaslogo.svg";
+import dcLogo from "../../assets/Buildings_Logo/notan D.C. logo.svg";
+import edgeLogo from "../../assets/Buildings_Logo/notan edge logo.svg";
+import jewelLogo from "../../assets/Buildings_Logo/notan jewel logo.svg";
+import spaceLogo from "../../assets/Buildings_Logo/notan spaces.svg";
+import terraceLogo from "../../assets/Buildings_Logo/notan Terraces logo.svg";
+import landsEndLogo from "../../assets/Buildings_Logo/notan Lands End logo.svg";
+import viewsLogo from "../../assets/Buildings_Logo/notan Views logo.svg";
+import finalLogo from "../../assets/Buildings_Logo/Notandas Final Logo.svg";
+
+const BUILDING_LOGOS = {
+  "notan-dc": dcLogo,
+  "notan-edge": edgeLogo,
+  "notan-jewel": jewelLogo,
+  "notan-space": spaceLogo,
+  "notan-terrace": terraceLogo,
+  "notan-lands-end": landsEndLogo,
+  "notan-views": viewsLogo,
+  "notan-crown": finalLogo,
+};
 
 /**
  * Full-screen overlay that opens when a floor is clicked on the BuildingPage.
@@ -26,6 +45,7 @@ const FloorPlanOverlay = ({
   onOpenPano,
   onClose,
 }) => {
+  const logoSrc = BUILDING_LOGOS[buildingId] || brandLogo;
   const { available, planImg, viewBox, regions } = getFloorPlan(buildingId, floor);
   // keep the plan's box at the exact same aspect ratio as its SVG viewBox, so
   // the photo (object-contain) and the hover overlay (preserveAspectRatio
@@ -122,7 +142,7 @@ const FloorPlanOverlay = ({
   const floorRank = (f) => (f.isTerrace ? 1e9 : f.isGround ? -1 : f.num);
   const orderedFloors = [...floors].sort((a, b) => floorRank(b) - floorRank(a));
   const floorTag = (f) =>
-    f.isTerrace ? "TER" : f.isGround ? "GF" : `${String(f.num).padStart(2, "0")}F`;
+    f.isTerrace ? "TERRECE" : f.isGround ? "GROUND FLOOR" : `${String(f.num).padStart(2, "0")}F`;
 
   // switch the plan to another floor, resetting the zoom/pan first
   const changeFloor = (num) => {
@@ -144,7 +164,7 @@ const FloorPlanOverlay = ({
         alt=""
         aria-hidden="true"
         draggable="false"
-        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover opacity-35"
       />
 
       {/* floor selector aside — switch the plan without leaving the overlay */}
@@ -155,8 +175,8 @@ const FloorPlanOverlay = ({
         {/* header */}
         <div className="relative px-4 pb-4 pt-6">
           <img
-            src={brandLogo}
-            alt="Notandas Realty"
+            src={logoSrc}
+            alt={buildingName}
             className="h-10 w-auto opacity-90 md:h-39"
           />
           <span className="mt-3 block h-px w-8 bg-linear-to-r from-[#b8860b] to-transparent" />
@@ -304,7 +324,7 @@ const FloorPlanOverlay = ({
               src={planImg}
               alt={`${buildingName} ${floorTitle} plan`}
               draggable="false"
-              className="block h-full w-full select-none rounded-sm border-2 border-[#1f2a40]/20 object-contain opacity-75 shadow-[0_10px_24px_rgba(31,42,64,0.1)]"
+              className="block h-full w-full select-none rounded-sm border-2 border-[#1f2a40]/20 object-contain  shadow-[0_10px_24px_rgba(31,42,64,0.1)]"
             />
 
             {viewBox && regions.length > 0 && (
