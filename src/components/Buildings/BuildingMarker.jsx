@@ -29,7 +29,7 @@ const BuildingMarker = ({ building }) => {
           className="bldg-glow absolute inset-[-20%] rounded-full pointer-events-none
                      bg-[radial-gradient(circle,rgba(218,165,32,0.45)_0%,rgba(218,165,32,0)_70%)]
                      transition-all duration-500 ease-out
-                     group-hover:[animation:none] group-hover:opacity-100 group-hover:scale-135"
+                     group-hover:animate-none group-hover:opacity-100 group-hover:scale-135"
         />
 
         {/* pulsing hand-dashed ink ring at the building's feet */}
