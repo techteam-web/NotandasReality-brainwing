@@ -25,6 +25,20 @@ const BuildingsLayer = () => {
           delay: 1.6,
         }
       );
+
+      // gentle infinite up/down float once each building has popped in
+      gsap.to(".bldg-pop", {
+        y: -10,
+        duration: 2.4,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 2.8,
+        stagger: {
+          each: 0.3,
+          from: "random",
+        },
+      });
     },
     { scope: layerRef }
   );

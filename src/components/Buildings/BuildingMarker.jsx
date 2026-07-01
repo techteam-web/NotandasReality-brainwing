@@ -8,9 +8,11 @@ import BuildingTooltip from "./BuildingTooltip";
  * percentages from buildingsData.js mark exactly where the building's
  * base touches the ground — adjust those values to reposition it.
  *
- * Hover: the building lifts off the map, a warm golden glow blooms
- * behind it, an ink ring pulses at its feet and the map-card tooltip
- * unfolds with name, area, tagline and a link to its views page.
+ * At rest: a warm golden glow pulses gently behind the building.
+ * Hover: the building lifts and scales up from its small resting size,
+ * the glow stops pulsing and blooms bigger, an ink ring pulses at its
+ * feet and the map-card tooltip unfolds with name, area, tagline and
+ * a link to its views page.
  */
 const BuildingMarker = ({ building }) => {
   const { name, area, tagline, img, top, left, width, href, tooltip } = building;
@@ -22,12 +24,12 @@ const BuildingMarker = ({ building }) => {
     >
       {/* gsap pops this in from the ground on page load (see BuildingsLayer) */}
       <div className="bldg-pop relative">
-        {/* warm golden glow blooming behind the building */}
+        {/* warm golden glow: pulses gently at rest, blooms bigger and holds on hover */}
         <div
-          className="absolute inset-[-20%] rounded-full pointer-events-none
-                     bg-[radial-gradient(circle,rgba(218,165,32,0.4)_0%,rgba(218,165,32,0)_70%)]
-                     opacity-0 scale-75 transition-all duration-500 ease-out
-                     group-hover:opacity-100 group-hover:scale-110"
+          className="bldg-glow absolute inset-[-20%] rounded-full pointer-events-none
+                     bg-[radial-gradient(circle,rgba(218,165,32,0.45)_0%,rgba(218,165,32,0)_70%)]
+                     transition-all duration-500 ease-out
+                     group-hover:[animation:none] group-hover:opacity-100 group-hover:scale-135"
         />
 
         {/* pulsing hand-dashed ink ring at the building's feet */}
@@ -50,8 +52,8 @@ const BuildingMarker = ({ building }) => {
             className="relative w-full h-auto select-none
                        drop-shadow-[0_5px_8px_rgba(59,83,130,0.25)]
                        transition-all duration-500 ease-out
-                       group-hover:-translate-y-2 group-hover:scale-110 group-hover:saturate-125
-                       group-hover:drop-shadow-[0_16px_22px_rgba(59,83,130,0.4)]"
+                       group-hover:-translate-y-3 group-hover:scale-150 group-hover:saturate-125
+                       group-hover:drop-shadow-[0_18px_24px_rgba(59,83,130,0.45)]"
           />
         </Link>
 

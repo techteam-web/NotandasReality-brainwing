@@ -4,6 +4,22 @@ body {
     font-family: 'Time', 'timenow roman', sans-serif;
 }
 
+/* Idle glow pulse on each building marker, stops on hover (see BuildingMarker) */
+@keyframes bldg-glow-pulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+.bldg-glow {
+    animation: bldg-glow-pulse 2.4s ease-in-out infinite;
+}
+
 /* Pulsing ink ring under a hovered building (see BuildingMarker) */
 @keyframes bldg-ring-pulse {
     0% {
