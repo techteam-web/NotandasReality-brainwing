@@ -264,14 +264,14 @@ const FloorPlanOverlay = ({
         </div>
 
         {/* footer — quiet level count */}
-        <div className="relative border-t border-white/10 px-4 py-3">
+        {/* <div className="relative border-t border-white/10 px-4 py-3">
           <p className="text-[8px] uppercase tracking-[2.5px] text-[#7a6230]">
             {floors.length} Levels
           </p>
           <p className="mt-0.5 text-[8px] uppercase tracking-[2.5px] text-[#9b8a62]">
             Ground → Terrace
           </p>
-        </div>
+        </div> */}
       </aside>
 
       {/* main column */}

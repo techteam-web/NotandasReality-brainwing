@@ -207,7 +207,7 @@ const BuildingPage = () => {
       <aside className={`absolute z-20 w-36 ${view.asideClass || "left-[65%] top-1/2 -translate-y-1/2 md:right-12 md:w-44"}`}>
         <div className="rounded-sm  px-5 py-6 text-center ">
           <p className="text-[20px] uppercase tracking-[3px] text-[#1f2a40]/70">
-            {activeFloor ? "Now viewing" : "Hover a floor"}
+            {activeFloor ? "Now viewing" : "Pick a floor"}
           </p>
 
           <div className="mt-3 flex min-h-22 flex-col items-center justify-center">

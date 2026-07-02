@@ -188,12 +188,12 @@ const PanoViewer = ({
     >
       {/* top bar */}
       <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-6 py-4 md:px-10">
-        <div className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-          <p className="text-[10px] uppercase tracking-[3px] text-white/60">
+        <div className="text-[#142b53] drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+          <p className="text-[10px] uppercase tracking-[3px] text-[#142b53]">
             {buildingName} · Pano view
            
           </p>
-          <h2 className="mt-0.5 font-serif text-2xl uppercase text-[#e8c879] md:text-xl">
+          <h2 className="mt-0.5 font-serif text-2xl uppercase text-[#142b53] md:text-xl">
             {pano ? pano.name.split("·")[0].trim() : floorTitle}
           </h2>
         </div>
