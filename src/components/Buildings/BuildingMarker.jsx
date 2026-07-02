@@ -53,6 +53,18 @@ const BuildingMarker = ({ building }) => {
           />
         </Link>
 
+        {/* building name inked beneath the pointer, like a place label on an old map */}
+        <p
+          className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap
+                      pointer-events-none select-none font-serif italic text-xs leading-none
+                      tracking-wide text-[#3b5382]
+                      [text-shadow:0_1px_0_rgba(253,250,243,0.9),0_0_6px_rgba(253,250,243,0.8)]
+                      transition-opacity duration-300
+                      ${popsUp ? "" : "group-hover:opacity-0"}`}
+        >
+          {name}
+        </p>
+
         {/* ── the popup: building rises out of the pointer on hover ── */}
         <div
           className={`absolute left-1/2 -translate-x-1/2 flex items-center pointer-events-none
