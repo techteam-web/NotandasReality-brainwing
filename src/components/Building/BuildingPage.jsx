@@ -183,9 +183,6 @@ const BuildingPage = () => {
 
       {/* big centered project title */}
       <header ref={headerRef} className={`pointer-events-none absolute z-20 flex flex-col items-center text-center ${view.headerClass || "left-80 top-36 md:top-127 2xl:left-64 2xl:top-90 xl:left-40 xl:top-90 lg:left-36 lg:top-70 3xl:left-80 3xl:top-127 4xl:left-137 4xl:top-150"}`}>
-        <p className="font-serif text-base italic text-[#1f2a40]/80 md:text-lg">
-          Notandas
-        </p>
         <h1 className="mt-1 text-3xl font-light uppercase leading-none tracking-[0.18em] text-[#1f2a40] sm:text-4xl md:text-6xl md:tracking-[0.22em] xl:text-5xl lg:text-4xl 2xl:text-5xl 4xl:text-[66px]">
           {building ? building.name : "Building"}
         </h1>
@@ -215,7 +212,7 @@ const BuildingPage = () => {
               <>
                 <span className="font-serif text-6xl italic leading-none text-[#b8860b]">
                   {activeFloor.isTerrace
-                    ? "✦"
+                    ? "T"
                     : activeFloor.isGround
                       ? "G"
                       : String(activeFloor.num).padStart(2, "0")}
@@ -233,7 +230,7 @@ const BuildingPage = () => {
 
           <div className="my-4 border-t border-dashed border-[#1f2a40]/25" />
 
-          <p className="text-[11px] leading-snug text-[#1f2a40]/75">
+          <p className="text-[14px] leading-snug text-[#1f2a40]/75">
             {activeFloor
               ? "Click to open floor plan"
               : `${view.floors.length} floors · ground to terrace`}
