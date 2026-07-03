@@ -1,4 +1,4 @@
-import { useState , useRef} from "react";
+import { useState, useRef } from "react";
 import { Link, useParams } from "react-router";
 import { BUILDINGS } from "../Buildings/buildingsData";
 import { BUILDING_VIEWS } from "./buildingViewsData";
@@ -28,6 +28,31 @@ const BUILDING_LOGOS = {
   "notan-crown": finalLogo,
 };
 
+const BUILDING_AMINITIES = {
+
+   "notan-dc": {
+    1 : "Lobby & Reception ",
+    2 : " Rooftop Pool & Jacuzzi ",
+    3 : "Rooftop Cabana & Sunset Deck ",
+    4  : "Rooftop Bar | Fully Equipped Fitness Centre | Business Centre"
+   },
+
+  "notan-space": {
+    1: "Grand lobby with reception and lounge",
+    2: " Ground-floor café and lounge",
+    3: "Private pantry and washroom in every unit",
+    4: "3 high-speed elevators + separate service/fire elevator"
+  },
+
+  "notan-jewel": {
+    1: "Signature Lobby Lounge",
+    2: " Dedicated Reception Desks",
+    3: "Intelligent Car Tower Parking",
+    4: "3 high-speed elevators + Refuge Zones & Double-Height Deck"
+  }
+
+}
+
 /**
  * The "View Project" destination.
  *
@@ -49,6 +74,11 @@ const BuildingPage = () => {
   const building = BUILDINGS.find((b) => b.id === id);
   const view = BUILDING_VIEWS[id];
   const logoSrc = BUILDING_LOGOS[id] || brandLogo;
+  const amenities = Object.values(BUILDING_AMINITIES[id] || {})
+    .flatMap((item) => item.split("|"))
+    .map((item) => item.trim())
+    .filter(Boolean);
+  const hasAmenities = amenities.length > 0;
   const [active, setActive] = useState(null);
   const [selected, setSelected] = useState(null); // floor whose plan overlay is open
   const [pano, setPano] = useState(null); // { floorNum, regionName } open in 360°
@@ -238,6 +268,22 @@ const BuildingPage = () => {
         </div>
       </aside>
 
+      {hasAmenities && (
+        <section className={`pointer-events-none absolute ${view.aminityClass || "bottom-5 left-5"} z-20 w-[calc(100%-2.5rem)] max-w-md border-l-2 border-[#b8860b]/70 bg-[#fdfaf3]/60 px-5 py-4 text-[#1f2a40] shadow-[0_18px_45px_rgba(31,42,64,0.16)] backdrop-blur-sm sm:bottom-8 sm:left-8 sm:w-[min(28rem,44vw)]`}>
+          <p className="text-[10px] uppercase tracking-[0.42em] text-[#1f2a40]/65">
+            Amenities
+          </p>
+          <ul className="mt-3 grid gap-x-5 gap-y-2 text-sm leading-snug text-[#1f2a40]/85 sm:grid-cols-2">
+            {amenities.map((amenity) => (
+              <li key={amenity} className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b8860b]" />
+                <span>{amenity}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* floor-plan overlay — opens when a floor is clicked */}
       {selectedFloor && (
         <FloorPlanOverlay
@@ -277,9 +323,9 @@ const BuildingPage = () => {
             xl:right-7 xl:w-50"
         />
       )}
-      
+
     </div>
-      
+
   );
 };
 

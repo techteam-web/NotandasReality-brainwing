@@ -49,6 +49,7 @@ export const BUILDING_VIEWS = {
     // matches the combined Building_Floor_SVG/Nothan_space/Notan_space_.svg
     viewBox: "0 0 1672 941",
     floors: NOTAN_SPACE_FLOORS,
+    aminityClass: "",
    
   },
   "notan-terrace": {
