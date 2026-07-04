@@ -231,7 +231,7 @@ const BuildingPage = () => {
       />
 
       {/* right-side floor readout */}
-      <aside className={`absolute z-20 w-36 ${view.asideClass || "left-[65%] top-1/2 -translate-y-1/2 md:right-12 md:w-44"}`}>
+         <aside className={`absolute z-20 w-36 ${view.asideClass || "left-[65%] top-1/2 -translate-y-1/2 md:right-12 md:w-44"}`}>
         <div className="rounded-sm  px-5 py-6 text-center ">
           <p className="text-[20px] uppercase tracking-[3px] text-[#1f2a40]/70">
             {activeFloor ? "Now viewing" : "Pick a floor"}
@@ -269,7 +269,7 @@ const BuildingPage = () => {
       </aside>
 
       {hasAmenities && (
-        <section className={`pointer-events-none absolute ${view.aminityClass || "bottom-5 left-5"} z-20 w-[calc(100%-2.5rem)] max-w-md border-l-2 border-[#b8860b]/70 bg-[#fdfaf3]/60 px-5 py-4 text-[#1f2a40] shadow-[0_18px_45px_rgba(31,42,64,0.16)] backdrop-blur-sm sm:bottom-8 sm:left-8 sm:w-[min(28rem,44vw)]`}>
+        <section className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 right-75 "} z-20 w-[calc(100%-2.5rem)] max-w-md border-l-2 border-[#b8860b]/70 bg-[#fdfaf3]/60 px-5 py-4 text-[#1f2a40] shadow-[0_18px_45px_rgba(31,42,64,0.16)] backdrop-blur-sm sm:w-[min(28rem,44vw)]`}>
           <p className="text-[10px] uppercase tracking-[0.42em] text-[#1f2a40]/65">
             Amenities
           </p>

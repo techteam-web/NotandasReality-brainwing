@@ -42,6 +42,7 @@ export const BUILDING_VIEWS = {
     // matches the combined Building_Floor_SVG/Nothan_jewel/nothan_jewel-2.8x.svg
     viewBox: "0 0 4615 2597",
     floors: NOTAN_JEWEL_FLOORS,
+  
   // default header/aside positions are fine for this one, so no need to override
   },
   "notan-space": {
@@ -49,7 +50,7 @@ export const BUILDING_VIEWS = {
     // matches the combined Building_Floor_SVG/Nothan_space/Notan_space_.svg
     viewBox: "0 0 1672 941",
     floors: NOTAN_SPACE_FLOORS,
-    aminityClass: "",
+    amenityClass: "",
    
   },
   "notan-terrace": {
@@ -66,6 +67,6 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_CROWN_FLOORS,
     headerClass: "left-80 top-36 md:top-127 2xl:left-64 2xl:top-90 xl:left-20 xl:top-90 lg:left-20 lg:top-70 3xl:left-80 3xl:top-127 4xl:left-137 4xl:top-150",
-    asideClass: "left-[25%] top-[20%] md:right-12 md:w-44 2xl:top-[10%] xl:top-[10%]  lg:top-[5%] 3xl:top-[14%] 4xl:top-[10%]",
+    asideClass: "left-[25%] top-[20%] md:left-auto md:right-12 md:w-44 2xl:top-[10%] xl:top-[10%]  lg:top-[5%] 3xl:top-[14%] 4xl:top-[10%]",
   },
 };
