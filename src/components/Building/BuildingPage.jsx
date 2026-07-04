@@ -203,7 +203,7 @@ const BuildingPage = () => {
       {/* back to map */}
       <Link
         to="/"
-        className="group absolute left-6 top-6 z-20 inline-flex items-center gap-2 text-xl font-medium tracking-wide text-[#1f2a40] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#b8860b] md:left-12 md:top-8 uppercase"
+        className="group absolute left-6 top-6 z-20 inline-flex items-center gap-2 text-xl font-bold tracking-wide text-[#eab737] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#d9b55b] md:left-12 md:top-8 uppercase"
       >
         <span className="transition-transform duration-300 group-hover:-translate-x-1">
           ←
@@ -269,14 +269,15 @@ const BuildingPage = () => {
       </aside>
 
       {hasAmenities && (
-        <section className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 right-75 "} z-20 w-[calc(100%-2.5rem)] max-w-md border-l-2 border-[#b8860b]/70 bg-[#fdfaf3]/60 px-5 py-4 text-[#1f2a40] shadow-[0_18px_45px_rgba(31,42,64,0.16)] backdrop-blur-sm sm:w-[min(28rem,44vw)]`}>
-          <p className="text-[10px] uppercase tracking-[0.42em] text-[#1f2a40]/65">
+        <section className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} z-20 w-[calc(100%-2.5rem)] max-w-md border border-[#1f2a40]/15 bg-[#fdfaf3]/85 px-6 py-5 text-[#1f2a40] shadow-[0_10px_30px_rgba(31,42,64,0.10)] backdrop-blur-sm sm:w-[min(28rem,44vw) lg:w-90 lg:bottom-15 lg:h-52 lg:left-15 3xl:bottom-59 3xl:left-87 3xl:h-65 ]`}>
+          <p className="text-[11px] uppercase tracking-[0.42em] text-[#1f2a40]/70">
             Amenities
           </p>
-          <ul className="mt-3 grid gap-x-5 gap-y-2 text-sm leading-snug text-[#1f2a40]/85 sm:grid-cols-2">
+          <div className="mt-2 h-px w-10 bg-[#b8860b]/80" />
+          <ul className="mt-3 divide-y divide-[#1f2a40]/10 text-sm leading-snug text-[#1f2a40]/85">
             {amenities.map((amenity) => (
-              <li key={amenity} className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b8860b]" />
+              <li key={amenity} className="flex items-baseline gap-3 py-1.5">
+                <span className="h-1 w-1 shrink-0 rotate-45 bg-[#b8860b]" />
                 <span>{amenity}</span>
               </li>
             ))}

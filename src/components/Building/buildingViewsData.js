@@ -28,6 +28,7 @@ export const BUILDING_VIEWS = {
     // every floor SVG shares this coordinate space
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
+    headerClass: "left-80 top-36 md:top-127 2xl:left-64 2xl:top-90 xl:left-20 xl:top-90 lg:left-20 lg:top-70 3xl:left-90 3xl:top-105 4xl:left-137 4xl:top-150",
   
   },
   "notan-edge": {
@@ -42,6 +43,8 @@ export const BUILDING_VIEWS = {
     // matches the combined Building_Floor_SVG/Nothan_jewel/nothan_jewel-2.8x.svg
     viewBox: "0 0 4615 2597",
     floors: NOTAN_JEWEL_FLOORS,
+    amenityClass: "bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-15 lg:h-35  3xl:top-165 3xl:left-87 4xl:bottom-70 4xl:left-90 xl:h-52 xl:left-27 ",
+    headerClass: "left-80 top-36 md:top-127 2xl:left-24 2xl:top-90 xl:left-23 xl:top-74 lg:left-23 lg:top-54 3xl:left-70 3xl:top-127 4xl:left-90 4xl:top-150",
   
   // default header/aside positions are fine for this one, so no need to override
   },
@@ -50,7 +53,9 @@ export const BUILDING_VIEWS = {
     // matches the combined Building_Floor_SVG/Nothan_space/Notan_space_.svg
     viewBox: "0 0 1672 941",
     floors: NOTAN_SPACE_FLOORS,
-    amenityClass: "",
+   amenityClass: "bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-15 lg:h-35  3xl:top-165 3xl:left-87 4xl:bottom-70 4xl:left-90 xl:h-52 xl:left-27 ",
+    headerClass: "left-80 top-36 md:top-127 2xl:left-24 2xl:top-90 xl:left-23 xl:top-74 lg:left-23 lg:top-54 3xl:left-80 3xl:top-109 4xl:left-90 4xl:top-150",
+  
    
   },
   "notan-terrace": {
@@ -67,6 +72,6 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_CROWN_FLOORS,
     headerClass: "left-80 top-36 md:top-127 2xl:left-64 2xl:top-90 xl:left-20 xl:top-90 lg:left-20 lg:top-70 3xl:left-80 3xl:top-127 4xl:left-137 4xl:top-150",
-    asideClass: "left-[25%] top-[20%] md:left-auto md:right-12 md:w-44 2xl:top-[10%] xl:top-[10%]  lg:top-[5%] 3xl:top-[14%] 4xl:top-[10%]",
+      asideClass: "left-[25%] top-[20%] md:right-12 md:w-44 2xl:top-[10%] xl:top-[10%]  lg:top-[5%] 3xl:top-[14%] 4xl:top-[10%]",
   },
 };
