@@ -165,6 +165,7 @@ const DC_REGION_PANO_MAP = {
     "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
+"Balcony": { yawDeg: -92, pitchDeg: -6, fovDeg: 58, panDeg: 140 },
   },
   6: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
@@ -811,17 +812,7 @@ const CROWN_REGION_PANO_MAP = {
   4: commonConfigCrownLower,
   3: commonConfigCrownLower,
   2: commonConfigCrownLower,
-
-  1: {
-
-"Unit 1": { yawDeg: 144, pitchDeg: -32, fovDeg: 58, panDeg: 140 },
-"Unit 2": { yawDeg: 79, pitchDeg: -40, fovDeg: 70, panDeg: 140 },
-"Unit 3": { yawDeg: -42, pitchDeg: -32, fovDeg: 53, panDeg: 140 },
-"Unit 4": { yawDeg: -64, pitchDeg: -19, fovDeg: 37, panDeg: 60 },
-"Unit 5": { yawDeg: -101, pitchDeg: -35, fovDeg: 56, panDeg: 140 },
-"Unit 6": { yawDeg: -147, pitchDeg: -30, fovDeg: 48, panDeg: 140 },
-
-  }
+  1: commonConfigCrownLower,
 
 };
 
