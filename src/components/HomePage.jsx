@@ -67,7 +67,7 @@ const HomePage = () => {
     </div>
 
     {/* static compass rose — map decoration */}
-    <Compass className="absolute bottom-4 left-3 w-20 h-20 md:w-54 md:h-54 lg:w-29 lg:-bottom-25 opacity-90 2xl:w-49 2xl:bottom-4 2xl:left-3  drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
+    <Compass className="absolute bottom-4 left-3 w-20 h-20 md:w-54 md:h-54 lg:w-29 lg:-bottom-25 xl:w-30 opacity-90 2xl:w-40 2xl:-bottom-8 2xl:left-3  drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
 
 
 
