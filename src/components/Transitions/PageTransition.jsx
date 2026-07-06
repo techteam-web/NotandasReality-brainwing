@@ -32,13 +32,13 @@ const PageTransition = ({ children }) => {
     tl.fromTo(
       bgRef.current,
       { opacity: 0 },
-      { opacity: 1, duration: 0.45, ease: "power2.out" },
+      { opacity: 1, duration: 0.6, ease: "power2.out" },
       at
     );
     tl.fromTo(
       emblemRef.current,
       { opacity: 0, filter: "blur(4px)" },
-      { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power2.out" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.out" },
       at
     );
 
@@ -46,16 +46,16 @@ const PageTransition = ({ children }) => {
     tl.fromTo(
       ".logo-emblem",
       { strokeDashoffset: 1, fillOpacity: 0, strokeDasharray: 1 },
-      { strokeDashoffset: 0, fillOpacity: 1, duration: 0.5, ease: "power2.out" },
-      at + 0.05
+      { strokeDashoffset: 0, fillOpacity: 1, duration: 0.7, ease: "power2.out" },
+      at + 0.1
     );
 
     // 2. Draw separator horizontal lines
     tl.fromTo(
       ".logo-line",
       { strokeDashoffset: 1, strokeDasharray: 1 },
-      { strokeDashoffset: 0, duration: 0.4, ease: "power1.inOut" },
-      at + 0.15
+      { strokeDashoffset: 0, duration: 0.55, ease: "power1.inOut" },
+      at + 0.25
     );
 
     // 3. Stagger letters fade + slide in
@@ -66,21 +66,21 @@ const PageTransition = ({ children }) => {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.35,
-        stagger: 0.02,
+        duration: 0.5,
+        stagger: 0.03,
         ease: "back.out(1.2)",
       },
-      at + 0.20
+      at + 0.35
     );
   };
 
   const addEmblemOut = (tl, at) => {
     tl.to(
       emblemRef.current,
-      { opacity: 0, y: -22, filter: "blur(5px)", duration: 0.35, ease: "power2.in" },
+      { opacity: 0, y: -22, filter: "blur(5px)", duration: 0.5, ease: "power2.in" },
       at
     );
-    tl.to(bgRef.current, { opacity: 0, duration: 0.35, ease: "power2.in" }, at);
+    tl.to(bgRef.current, { opacity: 0, duration: 0.5, ease: "power2.in" }, at);
   };
 
   const { contextSafe } = useGSAP(
@@ -102,14 +102,14 @@ const PageTransition = ({ children }) => {
       tl.fromTo(
         ".logo-emblem",
         { strokeDashoffset: 1, fillOpacity: 0, strokeDasharray: 1 },
-        { strokeDashoffset: 0, fillOpacity: 1, duration: 0.5, ease: "power2.out" },
+        { strokeDashoffset: 0, fillOpacity: 1, duration: 0.7, ease: "power2.out" },
         0.1
       );
       tl.fromTo(
         ".logo-line",
         { strokeDashoffset: 1, strokeDasharray: 1 },
-        { strokeDashoffset: 0, duration: 0.4, ease: "power1.inOut" },
-        0.2
+        { strokeDashoffset: 0, duration: 0.55, ease: "power1.inOut" },
+        0.25
       );
       tl.fromTo(
         ".logo-letter",
@@ -118,16 +118,16 @@ const PageTransition = ({ children }) => {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.35,
-          stagger: 0.015,
+          duration: 0.5,
+          stagger: 0.02,
           ease: "back.out(1.2)",
         },
-        0.25
+        0.35
       );
 
-      addEmblemOut(tl, 0.75);
-      tl.to(bgRef.current, { opacity: 0, duration: 0.35, ease: "power2.in" }, 0.75);
-      tl.to(overlayRef.current, { opacity: 0, duration: 0.45, ease: "power2.inOut" }, 0.85);
+      addEmblemOut(tl, 1.15);
+      tl.to(bgRef.current, { opacity: 0, duration: 0.5, ease: "power2.in" }, 1.15);
+      tl.to(overlayRef.current, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, 1.3);
     },
     { scope: overlayRef }
   );
@@ -155,19 +155,19 @@ const PageTransition = ({ children }) => {
       // 1. Fade in the main solid cover overlay
       tl.to(
         overlayRef.current,
-        { opacity: 1, duration: 0.45, ease: "power2.out" },
+        { opacity: 1, duration: 0.6, ease: "power2.out" },
         0
       );
 
       // 2. Animate emblem entrance
-      addEmblemIn(tl, 0.55);
+      addEmblemIn(tl, 0.7);
 
       // 3. Swap the route behind the cover
-      tl.add(() => setDisplayLocation(nextLocation), 1.1);
+      tl.add(() => setDisplayLocation(nextLocation), 1.5);
 
       // 4. Fade out emblem and final overlay
-      addEmblemOut(tl, 1.5);
-      tl.to(overlayRef.current, { opacity: 0, duration: 0.45, ease: "power2.inOut" }, 1.6);
+      addEmblemOut(tl, 2.1);
+      tl.to(overlayRef.current, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, 2.25);
     });
 
     runTransition(location);

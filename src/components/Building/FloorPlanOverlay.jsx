@@ -164,7 +164,7 @@ const FloorPlanOverlay = ({
         alt=""
         aria-hidden="true"
         draggable="false"
-        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover opacity-35"
+        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover opacity-25"
       />
 
       {/* floor selector aside — switch the plan without leaving the overlay */}
