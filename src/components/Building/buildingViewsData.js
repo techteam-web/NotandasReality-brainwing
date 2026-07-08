@@ -37,6 +37,7 @@ export const BUILDING_VIEWS = {
     // matches the shared viewBox baked into Building_Floor_SVG/Nothan_Edge/*.svg
     viewBox: "-9554435 -6002850 4615 2597",
     floors: NOTAN_EDGE_FLOORS,
+    headerClass: "left-80 top-36 md:top-127 2xl:left-74 2xl:top-90 xl:left-55  xl:top-65 lg:left-30 lg:top-50 3xl:left-102 3xl:top-105 4xl:left-137 4xl:top-150",
 
   },
   "notan-jewel": {
@@ -64,7 +65,7 @@ export const BUILDING_VIEWS = {
     // matches the combined Building_Floor_SVG/Nothan_terrace/Notan_terrace_2.8x.svg
     viewBox: "0 0 4615 2597",
     floors: NOTAN_TERRACE_FLOORS,
-    headerClass: "left-80 top-36 md:top-127 2xl:left-24 2xl:top-90 xl:left-7 xl:top-90 lg:left-9 lg:top-70 3xl:left-70 3xl:top-127 4xl:left-90 4xl:top-150",
+     headerClass: "left-80 top-36 md:top-127 2xl:left-60 2xl:top-70 xl:left-45  xl:top-55 lg:left-7 lg:top-40 3xl:left-90 3xl:top-105 4xl:left-137 4xl:top-150",
   
   },
   "notan-crown": {

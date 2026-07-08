@@ -60,8 +60,8 @@ const HomePage = () => {
      </h1>
 
 
-    <div className="absolute top-[50%] left-[8%] -rotate-90 xl:left-15 2xl:left-40">
-      <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-Times-Roman lg:hidden xl:block   " ref={seaWordRef}>
+    <div className="absolute top-[50%] left-[8%] -rotate-90 xl:left-15 2xl:left-15 3xl:left-40">
+      <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-Times-Roman lg:hidden xl:block " ref={seaWordRef}>
         Arabian Sea
       </h1>
     </div>

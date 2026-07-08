@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router"
-import HomePage from "./components/HomePage"
-import NotFoundPage from "./components/NotFoundPage"
-import BuildingPage from "./components/Building/BuildingPage"
-import PageTransition from "./components/Transitions/PageTransition"
-import FullscreenGate from "./components/FullscreenGate"
+import { Routes, Route } from "react-router";
+import HomePage from "./components/HomePage";
+import NotFoundPage from "./components/NotFoundPage";
+import BuildingPage from "./components/Building/BuildingPage";
+import PageTransition from "./components/Transitions/PageTransition";
+import FullscreenGate from "./components/FullscreenGate";
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         </Routes>
       </PageTransition>
     </FullscreenGate>
-  )
-}
+  );
+};
 
-export default App
+export default App;
