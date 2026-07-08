@@ -11,29 +11,26 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
 
   return (
     <div
-      className={`absolute left-1/2 -translate-x-1/2 w-52 z-50 pointer-events-none
-                  opacity-0 scale-95 transition-all duration-300 ease-out
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
-                  ${
-                    onTop
-                      ? "bottom-full pb-4 translate-y-2 group-hover:translate-y-0"
-                      : "top-full pt-4 -translate-y-2 group-hover:translate-y-0"
-                  }`}
+      className={`pointer-events-none absolute left-1/2 z-50 w-52 -translate-x-1/2 scale-95 opacity-0 transition-all duration-300 ease-out group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100 ${
+        onTop
+          ? "bottom-full translate-y-2 pb-4 group-hover:translate-y-0"
+          : "top-full -translate-y-2 pt-4 group-hover:translate-y-0"
+      }`}
     >
       {/* arrow pointing at the building (rendered first when card sits below) */}
       {!onTop && (
-        <div className="mx-auto -mb-1.5 w-3 h-3 rotate-45 bg-[#fdfaf3] border-l border-t border-[#3b5382]/35" />
+        <div className="mx-auto -mb-1.5 h-3 w-3 rotate-45 border-t border-l border-[#3b5382]/35 bg-[#fdfaf3]" />
       )}
 
-      <div className="relative bg-[#fdfaf3]/95 backdrop-blur-[2px] border border-[#3b5382]/35 rounded-sm px-4 py-3 shadow-[0_12px_30px_rgba(59,83,130,0.25)] -rotate-1 group-hover:rotate-0 transition-transform duration-300">
+      <div className="relative -rotate-1 rounded-sm border border-[#3b5382]/35 bg-[#fdfaf3]/95 px-4 py-3 shadow-[0_12px_30px_rgba(59,83,130,0.25)] backdrop-blur-[2px] transition-transform duration-300 group-hover:rotate-0">
         {/* inner hairline frame, like an old map legend box */}
-        <div className="absolute inset-1 border border-[#3b5382]/15 rounded-[1px] pointer-events-none" />
+        <div className="pointer-events-none absolute inset-1 rounded-[1px] border border-[#3b5382]/15" />
 
-        <p className="text-[10px] uppercase tracking-[3px] text-[#4E5157]/80">
+        <p className="text-[10px] tracking-[3px] text-[#4E5157]/80 uppercase">
           ◈ {area}
         </p>
 
-        <h3 className="mt-0.5 font-serif italic text-lg leading-tight text-[#3b5382]">
+        <h3 className="mt-0.5 font-serif text-lg leading-tight text-[#3b5382] italic">
           {name}
         </h3>
 
@@ -55,7 +52,7 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
       </div>
 
       {onTop && (
-        <div className="mx-auto -mt-1.5 w-3 h-3 rotate-45 bg-[#fdfaf3] border-r border-b border-[#3b5382]/35" />
+        <div className="mx-auto -mt-1.5 h-3 w-3 rotate-45 border-r border-b border-[#3b5382]/35 bg-[#fdfaf3]" />
       )}
     </div>
   );

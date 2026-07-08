@@ -1,26 +1,26 @@
-import { useState, useEffect, useCallback } from "react"
-import brandLogo from "../assets/notandaslogo.svg"
-import fullscreenBg from "../assets/fullscreengatebg.png"
+import { useState, useEffect, useCallback } from "react";
+import brandLogo from "../assets/notandaslogo.svg";
+import fullscreenBg from "../assets/fullscreengatebg.png";
 
 // Watercolour paper backdrop bundled from /src/assets. The CSS wash below
 // stands in underneath it so the paper feels continuous if the image fails.
-const BG_SRC = fullscreenBg
+const BG_SRC = fullscreenBg;
 
 // ---- cross-browser fullscreen helpers -------------------------------------
 const getFsElement = () =>
   document.fullscreenElement ||
   document.webkitFullscreenElement ||
   document.msFullscreenElement ||
-  null
+  null;
 
 const requestFs = (el) => {
   const fn =
     el.requestFullscreen ||
     el.webkitRequestFullscreen ||
-    el.msRequestFullscreen
+    el.msRequestFullscreen;
   // requestFullscreen must be called from a user gesture (the button click)
-  return fn ? fn.call(el) : undefined
-}
+  return fn ? fn.call(el) : undefined;
+};
 
 // maximise / expand-arrows glyph
 const ExpandIcon = ({ className }) => (
@@ -39,7 +39,7 @@ const ExpandIcon = ({ className }) => (
     <path d="M8 21H5a2 2 0 0 1-2-2v-3" />
     <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
   </svg>
-)
+);
 
 // Hand-drawn gold underline — the same loose double-stroke swoosh used beneath
 // the floor titles in the plan overlay (see FloorPlanOverlay design language)
@@ -65,9 +65,9 @@ const GoldUnderline = ({ className }) => (
       opacity="0.5"
     />
   </svg>
-)
+);
 
-const serif = { fontFamily: "'Times New Roman', Times, serif" }
+const serif = { fontFamily: "'Times New Roman', Times, serif" };
 
 const Overlay = ({ onEnter }) => (
   <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden">
@@ -92,9 +92,9 @@ const Overlay = ({ onEnter }) => (
       aria-hidden="true"
       draggable="false"
       onError={(e) => {
-        e.currentTarget.style.display = "none"
+        e.currentTarget.style.display = "none";
       }}
-      className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+      className="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
     />
 
     {/* gentle cream vignette to seat the panel and keep the text legible */}
@@ -125,11 +125,10 @@ const Overlay = ({ onEnter }) => (
           draggable="false"
         />
 
-        
         {/* italic serif heading with the hand-drawn gold underline */}
         <div className="relative inline-block">
           <h2
-            className="text-3xl italic tracking-wide text-[#1f2a40] md:text-[2.6rem] md:leading-tight"
+            className="text-3xl tracking-wide text-[#1f2a40] italic md:text-[2.6rem] md:leading-tight"
             style={serif}
           >
             Best Viewed in Full Screen
@@ -138,30 +137,29 @@ const Overlay = ({ onEnter }) => (
         </div>
 
         {/* slim diamond divider */}
-        <div className="mb-6 mt-9 flex items-center gap-3" aria-hidden="true">
+        <div className="mt-9 mb-6 flex items-center gap-3" aria-hidden="true">
           <span className="h-px w-12 bg-[rgba(184,134,11,0.45)]" />
           <span className="h-1.5 w-1.5 rotate-45 bg-[#b8860b]" />
           <span className="h-px w-12 bg-[rgba(184,134,11,0.45)]" />
         </div>
 
-
         <button
           onClick={onEnter}
           onTouchEnd={onEnter}
-          className="group inline-flex items-center gap-2.5 rounded-full border border-[#b8860b] bg-[#b8860b] px-9 py-3.5 text-xs font-semibold uppercase tracking-[0.26em] text-[#faf6ed] shadow-[0_12px_28px_-12px_rgba(184,134,11,0.7)] transition-all duration-300 hover:border-[#8f6708] hover:bg-[#8f6708] hover:shadow-[0_16px_34px_-12px_rgba(184,134,11,0.8)] active:translate-y-px"
+          className="group inline-flex items-center gap-2.5 rounded-full border border-[#b8860b] bg-[#b8860b] px-9 py-3.5 text-xs font-semibold tracking-[0.26em] text-[#faf6ed] uppercase shadow-[0_12px_28px_-12px_rgba(184,134,11,0.7)] transition-all duration-300 hover:border-[#8f6708] hover:bg-[#8f6708] hover:shadow-[0_16px_34px_-12px_rgba(184,134,11,0.8)] active:translate-y-px"
           style={serif}
         >
           <ExpandIcon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
           Enter Full Screen
         </button>
 
-        <p className="mt-7 text-[11px] uppercase tracking-[0.32em] text-[#a89c83]">
+        <p className="mt-7 text-[11px] tracking-[0.32em] text-[#a89c83] uppercase">
           Press Esc to exit
         </p>
       </div>
     </div>
   </div>
-)
+);
 
 /**
  * Wraps the app and only reveals it while the browser is in full screen.
@@ -169,38 +167,38 @@ const Overlay = ({ onEnter }) => (
  * overlay invites them back to full screen.
  */
 const FullscreenGate = ({ children }) => {
-  const [isFullscreen, setIsFullscreen] = useState(() => !!getFsElement())
-  const [hasEntered, setHasEntered] = useState(() => !!getFsElement())
+  const [isFullscreen, setIsFullscreen] = useState(() => !!getFsElement());
+  const [hasEntered, setHasEntered] = useState(() => !!getFsElement());
 
   useEffect(() => {
     const onChange = () => {
-      const fs = !!getFsElement()
-      setIsFullscreen(fs)
-      if (fs) setHasEntered(true)
-    }
+      const fs = !!getFsElement();
+      setIsFullscreen(fs);
+      if (fs) setHasEntered(true);
+    };
     const events = [
       "fullscreenchange",
       "webkitfullscreenchange",
       "MSFullscreenChange",
-    ]
-    events.forEach((e) => document.addEventListener(e, onChange))
+    ];
+    events.forEach((e) => document.addEventListener(e, onChange));
     return () =>
-      events.forEach((e) => document.removeEventListener(e, onChange))
-  }, [])
+      events.forEach((e) => document.removeEventListener(e, onChange));
+  }, []);
 
   const enterFullscreen = useCallback(() => {
-    const p = requestFs(document.documentElement)
+    const p = requestFs(document.documentElement);
     if (!p || !p.catch) {
-      setHasEntered(true)
-      setIsFullscreen(true)
-      return
+      setHasEntered(true);
+      setIsFullscreen(true);
+      return;
     }
 
     p.catch(() => {
-      setHasEntered(true)
-      setIsFullscreen(true)
-    }) // fall back to app entry on mobile / unsupported browsers
-  }, [])
+      setHasEntered(true);
+      setIsFullscreen(true);
+    }); // fall back to app entry on mobile / unsupported browsers
+  }, []);
 
   return (
     <>
@@ -213,7 +211,7 @@ const FullscreenGate = ({ children }) => {
 
       {!isFullscreen && <Overlay onEnter={enterFullscreen} />}
     </>
-  )
-}
+  );
+};
 
-export default FullscreenGate
+export default FullscreenGate;

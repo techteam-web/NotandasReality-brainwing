@@ -14,8 +14,8 @@ import terraceLogo from "../../assets/Buildings_Logo/notan Terraces logo.svg";
 import landsEndLogo from "../../assets/Buildings_Logo/notan Lands End logo.svg";
 import viewsLogo from "../../assets/Buildings_Logo/notan Views logo.svg";
 import finalLogo from "../../assets/Buildings_Logo/Notandas Final Logo.svg";
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const BUILDING_LOGOS = {
   "notan-dc": dcLogo,
@@ -29,29 +29,27 @@ const BUILDING_LOGOS = {
 };
 
 const BUILDING_AMINITIES = {
-
-   "notan-dc": {
-    1 : "Lobby & Reception ",
-    2 : " Rooftop Pool & Jacuzzi ",
-    3 : "Rooftop Cabana & Sunset Deck ",
-    4  : "Rooftop Bar | Fully Equipped Fitness Centre | Business Centre"
-   },
+  "notan-dc": {
+    1: "Lobby & Reception ",
+    2: " Rooftop Pool & Jacuzzi ",
+    3: "Rooftop Cabana & Sunset Deck ",
+    4: "Rooftop Bar | Fully Equipped Fitness Centre | Business Centre",
+  },
 
   "notan-space": {
     1: "Grand lobby with reception and lounge",
     2: " Ground-floor café and lounge",
     3: "Private pantry and washroom in every unit",
-    4: "3 high-speed elevators + separate service/fire elevator"
+    4: "3 high-speed elevators + separate service/fire elevator",
   },
 
   "notan-jewel": {
     1: "Signature Lobby Lounge",
     2: " Dedicated Reception Desks",
     3: "Intelligent Car Tower Parking",
-    4: "3 high-speed elevators + Refuge Zones & Double-Height Deck"
-  }
-
-}
+    4: "3 high-speed elevators + Refuge Zones & Double-Height Deck",
+  },
+};
 
 /**
  * The "View Project" destination.
@@ -88,7 +86,7 @@ const BuildingPage = () => {
   const activeFloor = view?.floors.find((f) => f.num === active) ?? null;
   const selectedFloor = view?.floors.find((f) => f.num === selected) ?? null;
   const panoFloor = pano
-    ? view?.floors.find((f) => f.num === pano.floorNum) ?? null
+    ? (view?.floors.find((f) => f.num === pano.floorNum) ?? null)
     : null;
 
   const floorTitleOf = (f) =>
@@ -100,16 +98,19 @@ const BuildingPage = () => {
           : `Floor ${String(f.num).padStart(2, "0")}`
       : "";
 
-  useGSAP(() => {
-    gsap.from("p, h1", {
-      x: 50,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.15,
-      ease: "power4.out",
-      delay: 1.6 // wait for the page transition "ink" wave to recede
-    });
-  }, { scope: headerRef });
+  useGSAP(
+    () => {
+      gsap.from("p, h1", {
+        x: 50,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "power4.out",
+        delay: 1.6, // wait for the page transition "ink" wave to recede
+      });
+    },
+    { scope: headerRef },
+  );
 
   /* ----- building art not added yet ----- */
   if (!view) {
@@ -117,7 +118,7 @@ const BuildingPage = () => {
       <div className="relative min-h-screen w-full overflow-hidden bg-[#f3ede0] text-[#3b5382]">
         <Link
           to="/"
-          className="group absolute left-6 top-6 z-20 inline-flex items-center gap-2 text-xl font-medium tracking-wide text-[#3b5382] transition-colors hover:text-[#b8860b] md:left-12 md:top-8"
+          className="group absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-xl font-medium tracking-wide text-[#3b5382] transition-colors hover:text-[#b8860b] md:top-8 md:left-12"
         >
           <span className="transition-transform duration-300 group-hover:-translate-x-1">
             ←
@@ -126,15 +127,15 @@ const BuildingPage = () => {
         </Link>
 
         <div className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-          <p className="text-[11px] uppercase tracking-[4px] text-[#4E5157]/70">
+          <p className="text-[11px] tracking-[4px] text-[#4E5157]/70 uppercase">
             Views coming soon
           </p>
-          <h2 className="mt-3 font-serif text-3xl italic text-[#3b5382] md:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl text-[#3b5382] italic md:text-4xl">
             {building ? building.name : "This project"}
           </h2>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-[#4E5157]/90">
-            The floor plates for this building are being prepared. Explore
-            Notan DC in the meantime, or head back to the map.
+            The floor plates for this building are being prepared. Explore Notan
+            DC in the meantime, or head back to the map.
           </p>
           <Link
             to="/projects/notan-dc"
@@ -158,11 +159,11 @@ const BuildingPage = () => {
         src={view.viewImg}
         alt={building ? building.name : "Building"}
         draggable="false"
-        className="absolute inset-0 h-full w-full select-none object-cover"
+        className="absolute inset-0 h-full w-full object-cover select-none"
       />
 
       {/* floor overlay — slice matches the photo's object-cover crop */}
-      <div className="absolute inset-0 h-full w-full pointer-events-none">
+      <div className="pointer-events-none absolute inset-0 h-full w-full">
         {view.floors.map((f) => {
           const isActive = f.num === active;
           const common = {
@@ -203,7 +204,7 @@ const BuildingPage = () => {
       {/* back to map */}
       <Link
         to="/"
-        className="group absolute left-6 top-6 z-20 inline-flex items-center gap-2 text-xl font-bold tracking-wide text-[#eab737] drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#d9b55b] md:left-12 md:top-8 uppercase"
+        className="group absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-xl font-bold tracking-wide text-[#eab737] uppercase drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#d9b55b] md:top-8 md:left-12"
       >
         <span className="transition-transform duration-300 group-hover:-translate-x-1">
           ←
@@ -212,12 +213,15 @@ const BuildingPage = () => {
       </Link>
 
       {/* big centered project title */}
-      <header ref={headerRef} className={`pointer-events-none absolute z-20 flex flex-col items-center text-center ${view.headerClass || "left-80 top-36 md:top-127 2xl:left-64 2xl:top-90 xl:left-40 xl:top-90 lg:left-36 lg:top-70 3xl:left-80 3xl:top-127 4xl:left-137 4xl:top-150"}`}>
-        <h1 className="mt-1 text-3xl font-light uppercase leading-none tracking-[0.18em] text-[#1f2a40] sm:text-4xl md:text-6xl md:tracking-[0.22em] xl:text-[30px] lg:text-4xl 2xl:text-[35px] 4xl:text-[66px]">
+      <header
+        ref={headerRef}
+        className={`pointer-events-none absolute z-20 flex flex-col items-center text-center ${view.headerClass || "top-36 left-80 md:top-127 lg:top-70 lg:left-36 xl:top-90 xl:left-40 2xl:top-90 2xl:left-64 3xl:top-127 3xl:left-80 4xl:top-150 4xl:left-137"}`}
+      >
+        <h1 className="mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-4xl xl:text-[30px] 2xl:text-[35px] 4xl:text-[66px]">
           {building ? building.name : "Building"}
         </h1>
         {building && (
-          <p className="mt-2 text-[10px] uppercase tracking-[0.45em] text-[#1f2a40]/70 md:text-sm xl:text-[10px]">
+          <p className="mt-2 text-[10px] tracking-[0.45em] text-[#1f2a40]/70 uppercase md:text-sm xl:text-[10px]">
             {building.area}, Mumbai
           </p>
         )}
@@ -227,20 +231,22 @@ const BuildingPage = () => {
       <img
         src={logoSrc}
         alt={building ? building.name : "Notandas Realty"}
-        className="absolute right-6 top-6 z-20 h-34 w-35 opacity-90 md:right-12 md:top-8 md:h-25"
+        className="absolute top-6 right-6 z-20 h-34 w-35 opacity-90 md:top-8 md:right-12 md:h-25"
       />
 
       {/* right-side floor readout */}
-         <aside className={`absolute z-20 w-36 ${view.asideClass || "left-[65%] top-1/2 -translate-y-1/2 md:right-12 md:w-44"}`}>
-        <div className="rounded-sm  px-5 py-6 text-center ">
-          <p className="text-[20px] uppercase tracking-[3px] text-[#1f2a40]/70">
+      <aside
+        className={`absolute z-20 w-36 ${view.asideClass || "top-1/2 left-[65%] -translate-y-1/2 md:right-12 md:w-44"}`}
+      >
+        <div className="rounded-sm px-5 py-6 text-center">
+          <p className="text-[20px] tracking-[3px] text-[#1f2a40]/70 uppercase">
             {activeFloor ? "Now viewing" : "Pick a floor"}
           </p>
 
           <div className="mt-3 flex min-h-22 flex-col items-center justify-center">
             {activeFloor ? (
               <>
-                <span className="font-serif text-6xl italic leading-none text-[#b8860b]">
+                <span className="font-serif text-6xl leading-none text-[#b8860b] italic">
                   {activeFloor.isTerrace
                     ? "T"
                     : activeFloor.isGround
@@ -252,7 +258,7 @@ const BuildingPage = () => {
                 </span>
               </>
             ) : (
-              <span className="font-serif text-5xl italic leading-none text-[#1f2a40]/25">
+              <span className="font-serif text-5xl leading-none text-[#1f2a40]/25 italic">
                 —
               </span>
             )}
@@ -269,8 +275,10 @@ const BuildingPage = () => {
       </aside>
 
       {hasAmenities && (
-        <section className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} z-20 w-[calc(100%-2.5rem)] max-w-md border border-[#1f2a40]/15 bg-[#fdfaf3]/85 px-6 py-5 text-[#1f2a40] shadow-[0_10px_30px_rgba(31,42,64,0.10)] backdrop-blur-sm sm:w-[min(28rem,44vw) lg:w-90 lg:bottom-15 lg:h-52 lg:left-15 3xl:bottom-59 3xl:left-87 3xl:h-65 ]`}>
-          <p className="text-[11px] uppercase tracking-[0.42em] text-[#1f2a40]/70">
+        <section
+          className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} sm:w-[min(28rem,44vw) ] z-20 w-[calc(100%-2.5rem)] max-w-md border border-[#1f2a40]/15 bg-[#fdfaf3]/85 px-6 py-5 text-[#1f2a40] shadow-[0_10px_30px_rgba(31,42,64,0.10)] backdrop-blur-sm lg:bottom-15 lg:left-15 lg:h-52 lg:w-90 3xl:bottom-59 3xl:left-87 3xl:h-65`}
+        >
+          <p className="text-[11px] tracking-[0.42em] text-[#1f2a40]/70 uppercase">
             Amenities
           </p>
           <div className="mt-2 h-px w-10 bg-[#b8860b]/80" />
@@ -317,16 +325,10 @@ const BuildingPage = () => {
         <img
           src="/Brainwing-logo.webp"
           alt="Brainwing logo"
-          className="fixed top-18 left-3 w-9 z-50 pointer-events-none opacity-70
-            sm:top-20 sm:left-4 sm:w-10
-            md:top-auto md:bottom-6 md:left-auto md:right-5 md:w-14 md:opacity-80
-            lg:right-6 lg:w-46
-            xl:right-7 xl:w-50"
+          className="pointer-events-none fixed top-18 left-3 z-50 w-9 opacity-70 sm:top-20 sm:left-4 sm:w-10 md:top-auto md:right-5 md:bottom-6 md:left-auto md:w-14 md:opacity-80 lg:right-6 lg:w-46 xl:right-7 xl:w-50"
         />
       )}
-
     </div>
-
   );
 };
 

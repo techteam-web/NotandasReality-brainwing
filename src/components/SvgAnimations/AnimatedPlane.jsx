@@ -28,7 +28,7 @@ const AnimatedPlane = ({ className }) => {
           duration: 2.5,
           ease: "power3.out",
           delay: 0.5,
-        }
+        },
       );
 
       // 2. Continuous slight hovering/floating effect after landing
@@ -85,10 +85,13 @@ const AnimatedPlane = ({ className }) => {
   }, []);
 
   return (
-    <div ref={containerRef} className={`relative ${className} lg:top-15 lg:left-10 `}>
+    <div
+      ref={containerRef}
+      className={`relative ${className} lg:top-15 lg:left-10`}
+    >
       {/* Decorative Flight Trail */}
       <svg
-        className="absolute top-1/2 left-0 -translate-y-1/2 translate-x-[-110%] w-75 h-50 -z-10 pointer-events-none "
+        className="pointer-events-none absolute top-1/2 left-0 -z-10 h-50 w-75 translate-x-[-110%] -translate-y-1/2"
         viewBox="0 0 300 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +111,7 @@ const AnimatedPlane = ({ className }) => {
         ref={planeRef}
         src={planeSvg}
         alt="Plane"
-        className="w-full h-auto max-w-24 "
+        className="h-auto w-full max-w-24"
         style={{ transform: "rotate(-9deg)" }}
       />
     </div>

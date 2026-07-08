@@ -46,7 +46,10 @@ const FloorPlanOverlay = ({
   onClose,
 }) => {
   const logoSrc = BUILDING_LOGOS[buildingId] || brandLogo;
-  const { available, planImg, viewBox, regions } = getFloorPlan(buildingId, floor);
+  const { available, planImg, viewBox, regions } = getFloorPlan(
+    buildingId,
+    floor,
+  );
   // keep the plan's box at the exact same aspect ratio as its SVG viewBox, so
   // the photo (object-contain) and the hover overlay (preserveAspectRatio
   // "none") always scale identically — otherwise the box's rendered ratio can
@@ -142,7 +145,11 @@ const FloorPlanOverlay = ({
   const floorRank = (f) => (f.isTerrace ? 1e9 : f.isGround ? -1 : f.num);
   const orderedFloors = [...floors].sort((a, b) => floorRank(b) - floorRank(a));
   const floorTag = (f) =>
-    f.isTerrace ? "TERRECE" : f.isGround ? "GROUND FLOOR" : `${String(f.num).padStart(2, "0")}F`;
+    f.isTerrace
+      ? "TERRECE"
+      : f.isGround
+        ? "GROUND FLOOR"
+        : `${String(f.num).padStart(2, "0")}F`;
 
   // switch the plan to another floor, resetting the zoom/pan first
   const changeFloor = (num) => {
@@ -155,7 +162,7 @@ const FloorPlanOverlay = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm "
+      className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm"
       style={{ fontFamily: "'Times New Roman', Times, serif" }}
     >
       {/* full-bleed map background */}
@@ -164,16 +171,16 @@ const FloorPlanOverlay = ({
         alt=""
         aria-hidden="true"
         draggable="false"
-        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover opacity-25"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25 select-none"
       />
 
       {/* floor selector aside — switch the plan without leaving the overlay */}
-      <aside className="relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/10 bg-linear-to-b from-gray via-[#cad1d6] to-[#c3c7c7] md:w-36">
+      <aside className="from-gray relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/10 bg-linear-to-b via-[#cad1d6] to-[#c3c7c7] md:w-36">
         {/* faint gold sheen bleeding down from the top */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-[#e8c879]/20 to-transparent" />
 
         {/* header */}
-        <div className="relative px-4 pb-4 pt-6">
+        <div className="relative px-4 pt-6 pb-4">
           <img
             src={logoSrc}
             alt={buildingName}
@@ -183,10 +190,10 @@ const FloorPlanOverlay = ({
         </div>
 
         {/* floor list — stacked as nodes on a vertical "elevator shaft" rail */}
-        <div className="relative flex-1 overflow-y-auto custom-scrollbar px-3 pb-4 pt-1">
+        <div className="custom-scrollbar relative flex-1 overflow-y-auto px-3 pt-1 pb-4">
           <div className="relative">
             {/* the rail itself, gold-tipped at the top */}
-            <span className="pointer-events-none absolute inset-y-2 left-3 w-px bg-linear-to-brom-[#b8860b]/60 via-[#d7bf78]/20 to-transparent" />
+            <span className="bg-linear-to-brom-[#b8860b]/60 pointer-events-none absolute inset-y-2 left-3 w-px via-[#d7bf78]/20 to-transparent" />
 
             {orderedFloors.map((f) => {
               const isCurrent = floor && f.num === floor.num;
@@ -199,7 +206,7 @@ const FloorPlanOverlay = ({
                   onClick={() => changeFloor(f.num)}
                   aria-current={isCurrent ? "true" : undefined}
                   title={hasPlan ? undefined : "Plan coming soon"}
-                  className={`group relative flex w-full items-center gap-4 rounded-r-md py-2 pl-1.5 pr-2 text-left transition-colors duration-300 ${
+                  className={`group relative flex w-full items-center gap-4 rounded-r-md py-2 pr-2 pl-1.5 text-left transition-colors duration-300 ${
                     isCurrent
                       ? "text-[#b8860b]"
                       : hasPlan
@@ -218,7 +225,7 @@ const FloorPlanOverlay = ({
 
                   {/* gold accent bar pinned to the active floor */}
                   <span
-                    className={`pointer-events-none absolute left-0 top-1/2 h-5 w-0.75 -translate-y-1/2 rounded-full bg-[#e8c879] transition-opacity duration-300 ${
+                    className={`pointer-events-none absolute top-1/2 left-0 h-5 w-0.75 -translate-y-1/2 rounded-full bg-[#e8c879] transition-opacity duration-300 ${
                       isCurrent
                         ? "opacity-100 shadow-[0_0_10px_rgba(184,134,11,0.45)]"
                         : "opacity-0"
@@ -241,16 +248,16 @@ const FloorPlanOverlay = ({
                   {/* floor tag */}
                   <span
                     className={`relative z-10 flex items-center gap-1.5 text-sm tracking-[0.18em] transition-transform duration-300 ${
-                      isCurrent
-                        ? "font-medium"
-                        : "group-hover:translate-x-0.5"
+                      isCurrent ? "font-medium" : "group-hover:translate-x-0.5"
                     }`}
                   >
                     {floorTag(f)}
                     {isTop && (
                       <span
                         className={`text-[10px] leading-none transition-colors ${
-                          isCurrent ? "text-[#b8860b]" : "text-[#b8860b]/55 group-hover:text-[#b8860b]"
+                          isCurrent
+                            ? "text-[#b8860b]"
+                            : "text-[#b8860b]/55 group-hover:text-[#b8860b]"
                         }`}
                       >
                         ✦
@@ -276,151 +283,149 @@ const FloorPlanOverlay = ({
 
       {/* main column */}
       <div className="relative z-10 flex flex-1 flex-col">
-      {/* top bar */}
-      <div className="flex w-full items-center justify-center px-6 py-5  md:px-10">
-        <div className="text-center text-[#1f2a40] ">
-          <p className="text-[10px] uppercase tracking-[3px] text-[#212C42] ">
-            {buildingName} · Floor plan · click a unit to view pano
-          </p>
-          <h2 className="mt-2 font-serif text-2xl  text-[#212C42] md:text-3xl">
-            {floorTitle}
-          </h2>
+        {/* top bar */}
+        <div className="flex w-full items-center justify-center px-6 py-5 md:px-10">
+          <div className="text-center text-[#1f2a40]">
+            <p className="text-[10px] tracking-[3px] text-[#212C42] uppercase">
+              {buildingName} · Floor plan · click a unit to view pano
+            </p>
+            <h2 className="mt-2 font-serif text-2xl text-[#212C42] md:text-3xl">
+              {floorTitle}
+            </h2>
+          </div>
+
+          <button
+            onClick={onClose}
+            aria-label="Close floor plan"
+            className="absolute top-4 right-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#e5ad2b] hover:bg-[#c49833] md:top-4 md:right-10"
+          >
+            Close
+            <span className="text-sm leading-none transition-transform group-hover:rotate-90">
+              ✕
+            </span>
+          </button>
         </div>
 
-        <button
-          onClick={onClose}
-          aria-label="Close floor plan"
-          className="absolute right-6 top-4 inline-flex items-center gap-2  border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#c49833] hover:border-[#e5ad2b] md:right-10 md:top-4"
+        {/* stage */}
+        <div
+          className="relative flex flex-1 items-center justify-center overflow-hidden px-4 pb-24"
+          onWheel={available ? onWheel : undefined}
         >
-          Close
-          <span className="text-sm leading-none transition-transform group-hover:rotate-90">
-            ✕
-          </span>
-        </button>
-      </div>
+          {available ? (
+            <div
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={endDrag}
+              onPointerLeave={endDrag}
+              className="relative select-none"
+              style={{
+                transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
+                transition: dragging ? "none" : "transform 0.18s ease-out",
+                cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
+                height: "80vh",
+                maxWidth: "80vw",
+                aspectRatio: planAspect ?? undefined,
+              }}
+            >
+              <img
+                src={planImg}
+                alt={`${buildingName} ${floorTitle} plan`}
+                draggable="false"
+                className="block h-full w-full rounded-sm border-2 border-[#1f2a40]/20 object-contain shadow-[0_10px_24px_rgba(31,42,64,0.1)] select-none"
+              />
 
-      {/* stage */}
-      <div
-        className="relative flex flex-1 items-center justify-center overflow-hidden px-4 pb-24 "
-        onWheel={available ? onWheel : undefined}
-      >
-        {available ? (
-          <div
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={endDrag}
-            onPointerLeave={endDrag}
-            className="relative select-none "
-            style={{
-              transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
-              transition: dragging ? "none" : "transform 0.18s ease-out",
-              cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
-              height: "80vh",
-              maxWidth: "80vw",
-              aspectRatio: planAspect ?? undefined,
-            }}
-          >
-            <img
-              src={planImg}
-              alt={`${buildingName} ${floorTitle} plan`}
-              draggable="false"
-              className="block h-full w-full select-none rounded-sm border-2 border-[#1f2a40]/20 object-contain  shadow-[0_10px_24px_rgba(31,42,64,0.1)]"
-            />
+              {viewBox && regions.length > 0 && (
+                <svg
+                  viewBox={viewBox}
+                  preserveAspectRatio="none"
+                  className="pointer-events-none absolute inset-0 h-full w-full"
+                >
+                  {regions.map((r, i) => {
+                    const isOn = hovered === i;
+                    const common = {
+                      pointerEvents: "all",
+                      vectorEffect: "non-scaling-stroke",
+                      style: {
+                        cursor: "pointer",
+                        fill: isOn
+                          ? "rgba(184,134,11,0.6)"
+                          : "rgba(232,200,121,0.3)",
+                        stroke: isOn ? "#b8860b" : "rgba(232,200,121,0.85)",
+                        strokeWidth: isOn ? 2.5 : 1.5,
+                        transition: "fill 0.2s ease, stroke 0.2s ease",
+                      },
+                      onMouseEnter: () => setHovered(i),
+                      onMouseLeave: () =>
+                        setHovered((cur) => (cur === i ? null : cur)),
+                      onClick: () => openPano(r.name),
+                    };
+                    return r.type === "polygon" ? (
+                      <polygon key={i} points={r.points} {...common} />
+                    ) : (
+                      <path key={i} d={r.d} {...common} />
+                    );
+                  })}
+                </svg>
+              )}
+            </div>
+          ) : (
+            <div className="text-center text-[#1f2a40]">
+              <p className="text-[11px] tracking-[4px] text-[#7a6230] uppercase">
+                {hasPano ? "360° view" : "Plan coming soon"}
+              </p>
+              <p className="mt-3 font-serif text-2xl text-[#e8c879] italic">
+                {floorTitle}
+              </p>
+              <p className="mt-2 text-sm text-[#4f5b70]">
+                {hasPano
+                  ? "No detailed plan for this floor yet — step into the 360° view to look around."
+                  : "The detailed plan for this floor isn’t available yet."}
+              </p>
+              {hasPano && (
+                <button
+                  onClick={() => onOpenPano?.(null)}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#b8860b] bg-[#b8860b] px-6 py-2.5 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#8f6708] hover:bg-[#8f6708]"
+                >
+                  View Pano
+                </button>
+              )}
+            </div>
+          )}
 
-            {viewBox && regions.length > 0 && (
-              <svg
-                viewBox={viewBox}
-                preserveAspectRatio="none"
-                className="pointer-events-none absolute inset-0 h-full w-full"
-              >
-                {regions.map((r, i) => {
-                  const isOn = hovered === i;
-                  const common = {
-                    pointerEvents: "all",
-                    vectorEffect: "non-scaling-stroke",
-                    style: {
-                      cursor: "pointer",
-                      fill: isOn
-                        ? "rgba(184,134,11,0.6)"
-                        : "rgba(232,200,121,0.3)",
-                      stroke: isOn ? "#b8860b" : "rgba(232,200,121,0.85)",
-                      strokeWidth: isOn ? 2.5 : 1.5,
-                      transition: "fill 0.2s ease, stroke 0.2s ease",
-                    },
-                    onMouseEnter: () => setHovered(i),
-                    onMouseLeave: () =>
-                      setHovered((cur) => (cur === i ? null : cur)),
-                    onClick: () => openPano(r.name),
-                  };
-                  return r.type === "polygon" ? (
-                    <polygon key={i} points={r.points} {...common} />
-                  ) : (
-                    <path key={i} d={r.d} {...common} />
-                  );
-                })}
-              </svg>
-            )}
-          </div>
-        ) : (
-          <div className="text-center text-[#1f2a40]">
-            <p className="text-[11px] uppercase tracking-[4px] text-[#7a6230]">
-              {hasPano ? "360° view" : "Plan coming soon"}
-            </p>
-            <p className="mt-3 font-serif text-2xl italic text-[#e8c879]">
-              {floorTitle}
-            </p>
-            <p className="mt-2 text-sm text-[#4f5b70]">
-              {hasPano
-                ? "No detailed plan for this floor yet — step into the 360° view to look around."
-                : "The detailed plan for this floor isn’t available yet."}
-            </p>
-            {hasPano && (
+          {/* hovered region label */}
+          {available && hovered != null && regions[hovered] && (
+            <div className="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2 rounded-full border border-[#b8860b]/25 bg-white px-4 py-1.5 text-sm font-medium tracking-wide text-[#b8860b] shadow-[0_10px_24px_rgba(31,42,64,0.12)]">
+              {regions[hovered].name}
+              <span className="ml-2 text-[#7a6230]">· click to view pano</span>
+            </div>
+          )}
+
+          {/* zoom toolbar */}
+          {available && (
+            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100">
               <button
-                onClick={() => onOpenPano?.(null)}
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#b8860b] bg-[#b8860b] px-6 py-2.5 text-xs uppercase tracking-[0.2em] text-white shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:bg-[#8f6708] hover:border-[#8f6708]"
+                onClick={zoomOut}
+                aria-label="Zoom out"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
               >
-                 View Pano
+                −
               </button>
-            )}
-          </div>
-        )}
-
-        {/* hovered region label */}
-        {available && hovered != null && regions[hovered] && (
-          <div className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 rounded-full border border-[#b8860b]/25 bg-white px-4 py-1.5 text-sm font-medium tracking-wide text-[#b8860b] shadow-[0_10px_24px_rgba(31,42,64,0.12)]">
-            {regions[hovered].name}
-            <span className="ml-2 text-[#7a6230]">· click to view pano</span>
-          </div>
-        )}
-
-        {/* zoom toolbar */}
-        {available && (
-          <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md opacity-90 hover:opacity-100" >
-            <button
-              onClick={zoomOut}
-              aria-label="Zoom out"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
-            >
-              −
-            </button>
-            <button
-              onClick={reset}
-              className="rounded-full px-3 text-xs uppercase tracking-wider text-[#1f2a40] transition-colors hover:text-[#b8860b]"
-            >
-              {Math.round(zoom * 100)}% · Reset
-            </button>
-            <button
-              onClick={zoomIn}
-              aria-label="Zoom in"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
-            >
-              +
-            </button>
-
-            
-          </div>
-        )}
-      </div>
+              <button
+                onClick={reset}
+                className="rounded-full px-3 text-xs tracking-wider text-[#1f2a40] uppercase transition-colors hover:text-[#b8860b]"
+              >
+                {Math.round(zoom * 100)}% · Reset
+              </button>
+              <button
+                onClick={zoomIn}
+                aria-label="Zoom in"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
+              >
+                +
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

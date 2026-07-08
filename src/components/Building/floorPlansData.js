@@ -20,61 +20,76 @@ const DC_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_DC/*.{jpg,jpeg}", {
   import: "default",
   eager: true,
 });
-const EDGE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_edge/*.{jpg,jpeg}", {
-  query: "?url",
-  import: "default",
-  eager: true,
-});
-const JEWEL_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_jewel/*.{jpg,jpeg}", {
-  query: "?url",
-  import: "default",
-  eager: true,
-});
-const SPACE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_space/*.{jpg,jpeg}", {
-  query: "?url",
-  import: "default",
-  eager: true,
-});
+const EDGE_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_edge/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
+const JEWEL_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_jewel/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
+const SPACE_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_space/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
 
-const TERRACE_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_terrace/*.{jpg,jpeg}", {
-     query: "?url",
-     import: "default",
-     eager: true,
-   });
-const CROWN_IMAGES = import.meta.glob("/Notan_floor_plans/Notan_crown/*.{jpg,jpeg}", {
-     query: "?url",
-     import: "default",
-     eager: true,
-   });
+const TERRACE_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_terrace/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
+const CROWN_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_crown/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
 
 /* ---- hover cut-outs (raw SVG markup) ---- */
 const DC_SVGS = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_DC/FloorPlan_ImgSvg/**/*.svg",
-  { query: "?raw", import: "default", eager: true }
+  { query: "?raw", import: "default", eager: true },
 );
 const EDGE_SVGS = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_Edge/FloorPlan_ImgSvg/**/*.svg",
-  { query: "?raw", import: "default", eager: true }
+  { query: "?raw", import: "default", eager: true },
 );
 // Jewel/Space keep their per-room cut-outs under a differently-named folder
 // (one SVG per room, grouped by floor folder — same shape as DC).
 const JEWEL_SVGS = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_jewel/Unit_plan_svg/**/*.svg",
-  { query: "?raw", import: "default", eager: true }
+  { query: "?raw", import: "default", eager: true },
 );
 const SPACE_SVGS = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_space/floor_plan_SVG/**/*.svg",
-  { query: "?raw", import: "default", eager: true }
+  { query: "?raw", import: "default", eager: true },
 );
 
 const TERRACE_SVGS = import.meta.glob(
-     "../../assets/Building_Floor_SVG/Nothan_terrace/Unit_plan_SVG/**/*.svg",
-     { query: "?raw", import: "default", eager: true }
-   );
+  "../../assets/Building_Floor_SVG/Nothan_terrace/Unit_plan_SVG/**/*.svg",
+  { query: "?raw", import: "default", eager: true },
+);
 const CROWN_SVGS = import.meta.glob(
-     "../../assets/Building_Floor_SVG/Nothan_crown/Unit_plan_SVG/**/*.svg",
-     { query: "?raw", import: "default", eager: true }
-   );
+  "../../assets/Building_Floor_SVG/Nothan_crown/Unit_plan_SVG/**/*.svg",
+  { query: "?raw", import: "default", eager: true },
+);
 /**
  * Reads the floors a filename covers. Returns one of:
  *   { ground: true } | { basement: true } | { terrace, nums: [...] }
@@ -151,7 +166,10 @@ const viewBoxOf = (raw) => {
 /* ---- build the photo lookup for one building ---- */
 const buildImages = (files) =>
   Object.entries(files).map(([path, url]) => {
-    const file = path.split("/").pop().replace(/\.jpe?g$/i, "");
+    const file = path
+      .split("/")
+      .pop()
+      .replace(/\.jpe?g$/i, "");
     return { keys: floorKeysFromName(file), url };
   });
 
@@ -212,9 +230,9 @@ const BUILDINGS = {
     groups: buildGroups(SPACE_SVGS, "floor_plan_SVG"),
   },
   "notan-terrace": {
-       images: buildImages(TERRACE_IMAGES),
-       groups: buildGroups(TERRACE_SVGS, "Unit_plan_SVG"),
-     },
+    images: buildImages(TERRACE_IMAGES),
+    groups: buildGroups(TERRACE_SVGS, "Unit_plan_SVG"),
+  },
   "notan-crown": {
     images: buildImages(CROWN_IMAGES),
     groups: buildGroups(CROWN_SVGS, "Unit_plan_SVG"),
@@ -227,7 +245,8 @@ const BUILDINGS = {
  */
 export const getFloorPlan = (buildingId, floor) => {
   const b = BUILDINGS[buildingId];
-  if (!b || !floor) return { available: false, planImg: null, viewBox: null, regions: [] };
+  if (!b || !floor)
+    return { available: false, planImg: null, viewBox: null, regions: [] };
 
   const img = b.images.find((i) => keyMatches(i.keys, floor));
   const group = b.groups.find((g) => keyMatches(g.keys, floor));

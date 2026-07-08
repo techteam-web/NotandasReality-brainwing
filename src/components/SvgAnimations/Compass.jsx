@@ -35,7 +35,8 @@ const Compass = ({ yaw = 0, transitionMs = 80, className = "" }) => {
 
     const rose = document.createElementNS(SVG_NS, "g");
     for (const node of Array.from(svg.childNodes)) {
-      if (node.nodeType !== 1 || node.tagName.toLowerCase() === "defs") continue;
+      if (node.nodeType !== 1 || node.tagName.toLowerCase() === "defs")
+        continue;
       rose.appendChild(node); // moves it out of <svg> into the group
     }
     svg.appendChild(rose);

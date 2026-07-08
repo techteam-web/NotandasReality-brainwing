@@ -1,78 +1,77 @@
-import notanMap from "../assets/notan_map.png"
-import NuthandasLogoAnimated from "./SvgAnimations/NuthandasLogoAnimated"
-import AnimatedPlane from "./SvgAnimations/AnimatedPlane"
-import Compass from "./SvgAnimations/Compass"
-import MapScene from "./SvgAnimations/MapScene"
-import BuildingsLayer from "./Buildings/BuildingsLayer"
+import notanMap from "../assets/notan_map.png";
+import NuthandasLogoAnimated from "./SvgAnimations/NuthandasLogoAnimated";
+import AnimatedPlane from "./SvgAnimations/AnimatedPlane";
+import Compass from "./SvgAnimations/Compass";
+import MapScene from "./SvgAnimations/MapScene";
+import BuildingsLayer from "./Buildings/BuildingsLayer";
 import { useRef } from "react";
-import gsap from "gsap"
-import { useGSAP } from '@gsap/react';
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(useGSAP); 
+gsap.registerPlugin(useGSAP);
 
 const HomePage = () => {
   const seaWordRef = useRef();
 
   useGSAP(() => {
-    gsap.fromTo(seaWordRef.current, 
-      { opacity: 0, y: 20 }, 
-      { opacity: 1, y: 0, duration: 2, ease: "power2.out", delay: 3}
+    gsap.fromTo(
+      seaWordRef.current,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 2, ease: "power2.out", delay: 3 },
     );
   });
 
   return (
     <div
-      className="relative w-full h-screen bg-black text-white bg-cover bg-no-repeat overflow-hidden"
+      className="relative h-screen w-full overflow-hidden bg-black bg-cover bg-no-repeat text-white"
       style={{
         backgroundImage: `url(${notanMap})`,
-        backgroundPosition: `center calc(100% + 0px)` // Adjust the 50px or 0% (top) / 100% (bottom) to your exact needs
+        backgroundPosition: `center calc(100% + 0px)`, // Adjust the 50px or 0% (top) / 100% (bottom) to your exact needs
       }}
     >
       <MapScene />
       <BuildingsLayer />
 
       <div className="relative">
-        <NuthandasLogoAnimated 
-          className="w-48 md:w-74 h-50 transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(218,165,32,0.7)] cursor-pointer lg:w-30 lg:left-10 relative xl:w-30 xl:left-10"
-        />
+        <NuthandasLogoAnimated className="relative h-50 w-48 cursor-pointer transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(218,165,32,0.7)] md:w-74 lg:left-10 lg:w-30 xl:left-10 xl:w-30" />
       </div>
-   
-   <div className="absolute bottom-[50%] right-27 ">
 
-    <div className="w-36 h-16 ml-15 mb-15">
-      <AnimatedPlane />
-    </div>
+      <div className="absolute right-27 bottom-[50%]">
+        <div className="mb-15 ml-15 h-16 w-36">
+          <AnimatedPlane />
+        </div>
 
-    <h1
-     className="text-sm uppercase font-semibold text-[#7a7c80] lg:text-[12px] "
-     style={{ fontFamily: "'Times New Roman', Times, serif" }}
-    >
-      chhatrapati <br/>shivaji maharaj <br/>international airport
-     </h1>
+        <h1
+          className="text-sm font-semibold text-[#7a7c80] uppercase lg:text-[12px]"
+          style={{ fontFamily: "'Times New Roman', Times, serif" }}
+        >
+          chhatrapati <br />
+          shivaji maharaj <br />
+          international airport
+        </h1>
+      </div>
 
-   </div>
-
-   <h1
-     className="text-sm uppercase font-semibold text-[#7a7c80] absolute top-[95%] left-[43%] lg:text-[11px] "
-     style={{ fontFamily: "'Times New Roman', Times, serif" }}
-    >
-      bandra worli <br/>sea link
-     </h1>
-
-
-    <div className="absolute top-[50%] left-[8%] -rotate-90 xl:left-15 2xl:left-15 3xl:left-40">
-      <h1 className="text-2xl tracking-[28px] capitalize font-semibold text-[#3b5382] font-Times-Roman lg:hidden xl:block " ref={seaWordRef}>
-        Arabian Sea
+      <h1
+        className="absolute top-[95%] left-[43%] text-sm font-semibold text-[#7a7c80] uppercase lg:text-[11px]"
+        style={{ fontFamily: "'Times New Roman', Times, serif" }}
+      >
+        bandra worli <br />
+        sea link
       </h1>
+
+      <div className="absolute top-[50%] left-[8%] -rotate-90 xl:left-15 2xl:left-15 3xl:left-40">
+        <h1
+          className="font-Times-Roman text-2xl font-semibold tracking-[28px] text-[#3b5382] capitalize lg:hidden xl:block"
+          ref={seaWordRef}
+        >
+          Arabian Sea
+        </h1>
+      </div>
+
+      {/* static compass rose — map decoration */}
+      <Compass className="absolute bottom-4 left-3 h-20 w-20 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-25 lg:w-23 xl:-bottom-20 xl:w-30 2xl:-bottom-8 2xl:left-3 2xl:w-40" />
     </div>
+  );
+};
 
-    {/* static compass rose — map decoration */}
-    <Compass className="absolute bottom-4 left-3 w-20 h-20 md:w-54 md:h-54 lg:w-23 lg:-bottom-25 xl:w-30 xl:-bottom-20 opacity-90 2xl:w-40 2xl:-bottom-8 2xl:left-3  drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" />
-
-
-
-    </div>
-  )
-}
-
-export default HomePage
+export default HomePage;

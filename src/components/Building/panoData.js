@@ -56,23 +56,87 @@ const SCENE_DEFAULTS = { levels: LEVELS, faceSize: FACE_SIZE };
 
 /** Raw captured panos. `view` is the as-shot direction (radians). */
 const DC_PANO_SCENES = [
-  { id: "0-0001_mumty-level-services_5074m", name: "Mumty Level Services · 50.74m", view: { yaw: -1.5290442265518642, pitch: 0.11888036727305895, fov: FOV } },
+  {
+    id: "0-0001_mumty-level-services_5074m",
+    name: "Mumty Level Services · 50.74m",
+    view: { yaw: -1.5290442265518642, pitch: 0.11888036727305895, fov: FOV },
+  },
 
-  { id: "1-0002_terrace-f_4755m", name: "Terrace · 47.55m", view: { yaw: -1.5328247846000842, pitch: -0.05337156400268661, fov: FOV } },
-  { id: "2-0003_14th-f_duplex-l2_441m", name: "14th Floor (Duplex L2) · 44.1m", view: { yaw: -1.5025580399221958, pitch: -0.0071226837266102905, fov: FOV } },
-  { id: "3-0004_13th-f_duplex-l1_4065m", name: "13th Floor (Duplex L1) · 40.65m", view: { yaw: -1.5134883441799545, pitch: -0.09122142821705559, fov: FOV } },
-  { id: "4-0005_12th-f_376m", name: "12th Floor · 37.6m", view: { yaw: -1.5102851862449782, pitch: -0.02585270389657346, fov: FOV } },
-  { id: "5-0006_11th-f_triplex-l3_3455m", name: "11th Floor (Triplex L3) · 34.55m", view: { yaw: -1.5486359738136262, pitch: -0.006817886789779237, fov: FOV } },
-  { id: "6-0007_10th-f_triplex-l2_315m", name: "10th Floor (Triplex L2) · 31.5m", view: { yaw: -1.5108486534543353, pitch: 0.05098137912418288, fov: FOV } },
-  { id: "7-0008_9th-f_triplex-l1_2845m", name: "9th Floor (Triplex L1) · 28.45m", view: { yaw: -1.5585108284581999, pitch: 0.06360864731005478, fov: FOV } },
-  { id: "8-0009_8th-f_refuge_254m", name: "8th Floor (Refuge) · 25.4m", view: { yaw: -1.5298932973069874, pitch: 0.040010136982782996, fov: FOV } },
-  { id: "9-0010_7th-f_2235m", name: "7th Floor · 22.35m", view: { yaw: -1.4987107667626844, pitch: 0.051311109601915206, fov: FOV } },
-  { id: "10-0011_6th-f_193m", name: "6th Floor · 19.3m", view: { yaw: -1.4914254012875485, pitch: -0.0013190155049223051, fov: FOV } },
-  { id: "11-0012_5th-f_1625m", name: "5th Floor · 16.25m", view: { yaw: -1.4926547063556388, pitch: 0.024533688391645825, fov: FOV } },
-  { id: "12-0013_4th-f_132m", name: "4th Floor · 13.2m", view: { yaw: -1.4637364463515041, pitch: 0.10024517837445757, fov: FOV } },
-  { id: "13-0014_3rd-f_1015m", name: "3rd Floor · 10.15m", view: { yaw: -1.5211718660988858, pitch: -0.33136389031925084, fov: FOV } },
-  { id: "14-l0015_2nd-f_71m", name: "2nd Floor · 7.1m", view: { yaw: -1.537132932918846, pitch: -0.4347103457519772, fov: FOV } },
-  { id: "15-l0016_1st-f_405m", name: "1st Floor · 4.05m", view: { yaw: -1.4853486625285068, pitch: -0.5961658989145775, fov: FOV } },
+  {
+    id: "1-0002_terrace-f_4755m",
+    name: "Terrace · 47.55m",
+    view: { yaw: -1.5328247846000842, pitch: -0.05337156400268661, fov: FOV },
+  },
+  {
+    id: "2-0003_14th-f_duplex-l2_441m",
+    name: "14th Floor (Duplex L2) · 44.1m",
+    view: { yaw: -1.5025580399221958, pitch: -0.0071226837266102905, fov: FOV },
+  },
+  {
+    id: "3-0004_13th-f_duplex-l1_4065m",
+    name: "13th Floor (Duplex L1) · 40.65m",
+    view: { yaw: -1.5134883441799545, pitch: -0.09122142821705559, fov: FOV },
+  },
+  {
+    id: "4-0005_12th-f_376m",
+    name: "12th Floor · 37.6m",
+    view: { yaw: -1.5102851862449782, pitch: -0.02585270389657346, fov: FOV },
+  },
+  {
+    id: "5-0006_11th-f_triplex-l3_3455m",
+    name: "11th Floor (Triplex L3) · 34.55m",
+    view: { yaw: -1.5486359738136262, pitch: -0.006817886789779237, fov: FOV },
+  },
+  {
+    id: "6-0007_10th-f_triplex-l2_315m",
+    name: "10th Floor (Triplex L2) · 31.5m",
+    view: { yaw: -1.5108486534543353, pitch: 0.05098137912418288, fov: FOV },
+  },
+  {
+    id: "7-0008_9th-f_triplex-l1_2845m",
+    name: "9th Floor (Triplex L1) · 28.45m",
+    view: { yaw: -1.5585108284581999, pitch: 0.06360864731005478, fov: FOV },
+  },
+  {
+    id: "8-0009_8th-f_refuge_254m",
+    name: "8th Floor (Refuge) · 25.4m",
+    view: { yaw: -1.5298932973069874, pitch: 0.040010136982782996, fov: FOV },
+  },
+  {
+    id: "9-0010_7th-f_2235m",
+    name: "7th Floor · 22.35m",
+    view: { yaw: -1.4987107667626844, pitch: 0.051311109601915206, fov: FOV },
+  },
+  {
+    id: "10-0011_6th-f_193m",
+    name: "6th Floor · 19.3m",
+    view: { yaw: -1.4914254012875485, pitch: -0.0013190155049223051, fov: FOV },
+  },
+  {
+    id: "11-0012_5th-f_1625m",
+    name: "5th Floor · 16.25m",
+    view: { yaw: -1.4926547063556388, pitch: 0.024533688391645825, fov: FOV },
+  },
+  {
+    id: "12-0013_4th-f_132m",
+    name: "4th Floor · 13.2m",
+    view: { yaw: -1.4637364463515041, pitch: 0.10024517837445757, fov: FOV },
+  },
+  {
+    id: "13-0014_3rd-f_1015m",
+    name: "3rd Floor · 10.15m",
+    view: { yaw: -1.5211718660988858, pitch: -0.33136389031925084, fov: FOV },
+  },
+  {
+    id: "14-l0015_2nd-f_71m",
+    name: "2nd Floor · 7.1m",
+    view: { yaw: -1.537132932918846, pitch: -0.4347103457519772, fov: FOV },
+  },
+  {
+    id: "15-l0016_1st-f_405m",
+    name: "1st Floor · 4.05m",
+    view: { yaw: -1.4853486625285068, pitch: -0.5961658989145775, fov: FOV },
+  },
 ];
 
 /**
@@ -134,19 +198,16 @@ const DC_FLOOR_PANO_MAP = {
  */
 const DC_REGION_PANO_MAP = {
   1: {
-
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
     "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
-
   },
   2: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
     "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
-
   },
   3: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
@@ -165,7 +226,7 @@ const DC_REGION_PANO_MAP = {
     "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
-"Balcony": { yawDeg: -92, pitchDeg: -6, fovDeg: 58, panDeg: 140 },
+    Balcony: { yawDeg: -92, pitchDeg: -6, fovDeg: 58, panDeg: 140 },
   },
   6: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
@@ -198,9 +259,8 @@ const DC_REGION_PANO_MAP = {
     "Bedroom 01": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
   },
   11: {
-
-    "Masterbedroom": { yawDeg: -102, pitchDeg: -2, fovDeg: 71, panDeg: 140 },
-    "Lounge": { yawDeg: -18, pitchDeg: 1, fovDeg: 71, panDeg: 140 },
+    Masterbedroom: { yawDeg: -102, pitchDeg: -2, fovDeg: 71, panDeg: 140 },
+    Lounge: { yawDeg: -18, pitchDeg: 1, fovDeg: 71, panDeg: 140 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
     "Study Office": { yawDeg: 61, pitchDeg: -6, fovDeg: 63, panDeg: 120 },
   },
@@ -221,15 +281,13 @@ const DC_REGION_PANO_MAP = {
     "Bedroom 02": { yawDeg: 3, pitchDeg: 0, fovDeg: 71, panDeg: 120 },
     "Bedroom 2": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
-    "Lounge": { yawDeg: -18, pitchDeg: 1, fovDeg: 71, panDeg: 140 },
+    Lounge: { yawDeg: -18, pitchDeg: 1, fovDeg: 71, panDeg: 140 },
   },
   terrace: {
     "Pool Deck": { yawDeg: -88, pitchDeg: -3, fovDeg: 71, panDeg: 360 },
     "Socity Office": { yawDeg: -18, pitchDeg: 1, fovDeg: 90, panDeg: 360 },
-    "Gym": { yawDeg: 31, pitchDeg: 12, fovDeg: 71, panDeg: 360 },
+    Gym: { yawDeg: 31, pitchDeg: 12, fovDeg: 71, panDeg: 360 },
   },
-
-
 };
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -238,22 +296,86 @@ const DC_REGION_PANO_MAP = {
 
 /** Raw captured panos. `view` is the as-shot direction (radians). */
 const EDGE_PANO_SCENES = [
-  { id: "3-0017_roof-level_524m", name: "Terrace · 52.4m", view: { yaw: -1.4212356099624053, pitch: -0.13387637790737372, fov: FOV } },
-  { id: "4-0018_terrace-f_4765m", name: "15th Floor · 47.65m", view: { yaw: -1.4411417325977247, pitch: -0.09144206526422494, fov: FOV } },
-  { id: "5-0019_14th-f_446m", name: "14th Floor · 44.6m", view: { yaw: -1.4555278783939762, pitch: -0.03021479871734911, fov: FOV } },
-  { id: "6-0020_13th-f_4155m", name: "13th Floor · 41.55m", view: { yaw: -1.2835976281572172, pitch: -0.08276636659185144, fov: FOV } },
-  { id: "7-0021_12th-f_385m", name: "12th Floor · 38.5m", view: { yaw: -1.3184411960648568, pitch: -0.14631098710741064, fov: FOV } },
-  { id: "8-0022_11th-f_3545m", name: "11th Floor · 35.45m", view: { yaw: -1.2283058370422442, pitch: -0.10356123347483859, fov: FOV } },
-  { id: "9-0023_10th-f_324m", name: "10th Floor · 32.4m", view: { yaw: -1.327650457865733, pitch: -0.03857890659613972, fov: FOV } },
-  { id: "10-0024_9th-f_2935m", name: "9th Floor · 29.35m", view: { yaw: -1.4970755373835196, pitch: 0.011190338271322986, fov: FOV } },
-  { id: "11-0025_8th-f_refuge_263m", name: "8th Floor (Refuge) · 26.3m", view: { yaw: -1.216811710436719, pitch: -0.008562222001279096, fov: FOV } },
-  { id: "12-0026_7th-f_2325m", name: "7th Floor · 23.25m", view: { yaw: -1.1446689488485084, pitch: 0.03754689157078417, fov: FOV } },
-  { id: "13-0027_6th-f_202m", name: "6th Floor · 20.2m", view: { yaw: -1.164383943830508, pitch: -0.13002194036717896, fov: FOV } },
-  { id: "14-0028_5th-f_1715m", name: "5th Floor · 17.15m", view: { yaw: -1.3024809609728045, pitch: -0.1606284014682693, fov: FOV } },
-  { id: "15-0029_4th-f_141m", name: "4th Floor · 14.1m", view: { yaw: -1.387462168615313, pitch: -0.20579761975137245, fov: FOV } },
-  { id: "0-0030_3rd-f_115m", name: "3rd Floor · 11.5m", view: { yaw: -1.15827338281564, pitch: -0.0635767358605488, fov: FOV } },
-  { id: "1-0031_2nd-f_8m", name: "2nd Floor · 8m", view: { yaw: -1.353179265406654, pitch: -0.2681335713898747, fov: FOV } },
-  { id: "2-0032_1st-f_45m", name: "1st Floor · 4.5m", view: { yaw: -1.2697968880296848, pitch: -0.49851198147082876, fov: FOV } },
+  {
+    id: "3-0017_roof-level_524m",
+    name: "Terrace · 52.4m",
+    view: { yaw: -1.4212356099624053, pitch: -0.13387637790737372, fov: FOV },
+  },
+  {
+    id: "4-0018_terrace-f_4765m",
+    name: "15th Floor · 47.65m",
+    view: { yaw: -1.4411417325977247, pitch: -0.09144206526422494, fov: FOV },
+  },
+  {
+    id: "5-0019_14th-f_446m",
+    name: "14th Floor · 44.6m",
+    view: { yaw: -1.4555278783939762, pitch: -0.03021479871734911, fov: FOV },
+  },
+  {
+    id: "6-0020_13th-f_4155m",
+    name: "13th Floor · 41.55m",
+    view: { yaw: -1.2835976281572172, pitch: -0.08276636659185144, fov: FOV },
+  },
+  {
+    id: "7-0021_12th-f_385m",
+    name: "12th Floor · 38.5m",
+    view: { yaw: -1.3184411960648568, pitch: -0.14631098710741064, fov: FOV },
+  },
+  {
+    id: "8-0022_11th-f_3545m",
+    name: "11th Floor · 35.45m",
+    view: { yaw: -1.2283058370422442, pitch: -0.10356123347483859, fov: FOV },
+  },
+  {
+    id: "9-0023_10th-f_324m",
+    name: "10th Floor · 32.4m",
+    view: { yaw: -1.327650457865733, pitch: -0.03857890659613972, fov: FOV },
+  },
+  {
+    id: "10-0024_9th-f_2935m",
+    name: "9th Floor · 29.35m",
+    view: { yaw: -1.4970755373835196, pitch: 0.011190338271322986, fov: FOV },
+  },
+  {
+    id: "11-0025_8th-f_refuge_263m",
+    name: "8th Floor (Refuge) · 26.3m",
+    view: { yaw: -1.216811710436719, pitch: -0.008562222001279096, fov: FOV },
+  },
+  {
+    id: "12-0026_7th-f_2325m",
+    name: "7th Floor · 23.25m",
+    view: { yaw: -1.1446689488485084, pitch: 0.03754689157078417, fov: FOV },
+  },
+  {
+    id: "13-0027_6th-f_202m",
+    name: "6th Floor · 20.2m",
+    view: { yaw: -1.164383943830508, pitch: -0.13002194036717896, fov: FOV },
+  },
+  {
+    id: "14-0028_5th-f_1715m",
+    name: "5th Floor · 17.15m",
+    view: { yaw: -1.3024809609728045, pitch: -0.1606284014682693, fov: FOV },
+  },
+  {
+    id: "15-0029_4th-f_141m",
+    name: "4th Floor · 14.1m",
+    view: { yaw: -1.387462168615313, pitch: -0.20579761975137245, fov: FOV },
+  },
+  {
+    id: "0-0030_3rd-f_115m",
+    name: "3rd Floor · 11.5m",
+    view: { yaw: -1.15827338281564, pitch: -0.0635767358605488, fov: FOV },
+  },
+  {
+    id: "1-0031_2nd-f_8m",
+    name: "2nd Floor · 8m",
+    view: { yaw: -1.353179265406654, pitch: -0.2681335713898747, fov: FOV },
+  },
+  {
+    id: "2-0032_1st-f_45m",
+    name: "1st Floor · 4.5m",
+    view: { yaw: -1.2697968880296848, pitch: -0.49851198147082876, fov: FOV },
+  },
 ];
 
 /**
@@ -299,62 +421,84 @@ const EDGE_REGION_PANO_MAP = {
 
   terrace: {
     // REGION_PANO_MAP["terrace"]
-    "Terrace": { yawDeg: -151, pitchDeg: -6, fovDeg: 78, panDeg: 360 },
-    "Commercial": { yawDeg: -11, pitchDeg: 1, fovDeg: 78, panDeg: 360 },
-
+    Terrace: { yawDeg: -151, pitchDeg: -6, fovDeg: 78, panDeg: 360 },
+    Commercial: { yawDeg: -11, pitchDeg: 1, fovDeg: 78, panDeg: 360 },
   },
   15: {
-    "Terrace": { yawDeg: -151, pitchDeg: -6, fovDeg: 78, panDeg: 140 },
-    "Commercial": { yawDeg: -11, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Terrace: { yawDeg: -151, pitchDeg: -6, fovDeg: 78, panDeg: 140 },
+    Commercial: { yawDeg: -11, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   14: {
-
-
-    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
 
   13: {
-
-    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    "2,3,6,8,10,13 Floor": {
+      yawDeg: 94,
+      pitchDeg: -3,
+      fovDeg: 78,
+      panDeg: 140,
+    },
   },
   11: {
-    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
   10: {
-    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    "2,3,6,8,10,13 Floor": {
+      yawDeg: 94,
+      pitchDeg: -3,
+      fovDeg: 78,
+      panDeg: 140,
+    },
   },
   9: {
-    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
   8: {
-    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    "2,3,6,8,10,13 Floor": {
+      yawDeg: 94,
+      pitchDeg: -3,
+      fovDeg: 78,
+      panDeg: 140,
+    },
   },
   7: {
-
     "Refuge Area": { yawDeg: -136, pitchDeg: 5, fovDeg: 78, panDeg: 140 },
-    "Commercial": { yawDeg: 4, pitchDeg: -4, fovDeg: 78, panDeg: 140 },
-
+    Commercial: { yawDeg: 4, pitchDeg: -4, fovDeg: 78, panDeg: 140 },
   },
   6: {
-    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    "2,3,6,8,10,13 Floor": {
+      yawDeg: 94,
+      pitchDeg: -3,
+      fovDeg: 78,
+      panDeg: 140,
+    },
   },
   5: {
-    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
   4: {
-    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
   3: {
-    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    "2,3,6,8,10,13 Floor": {
+      yawDeg: 94,
+      pitchDeg: -3,
+      fovDeg: 78,
+      panDeg: 140,
+    },
   },
   2: {
-    "2,3,6,8,10,13 Floor": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    "2,3,6,8,10,13 Floor": {
+      yawDeg: 94,
+      pitchDeg: -3,
+      fovDeg: 78,
+      panDeg: 140,
+    },
   },
   1: {
-    "Commercial": { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+    Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
-
-
 };
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -364,27 +508,179 @@ const EDGE_REGION_PANO_MAP = {
 /** Raw captured panos (one per floor, 1st–21st). `view` is the as-shot
  *  direction, taken straight from the Marzipano export's initialViewParameters. */
 const JEWEL_PANO_SCENES = [
-  { id: "0-0021_1st-f_495m", name: "1st Floor · 4.95m", view: { yaw: -1.4047344812653382, pitch: -0.7070016510705361, fov: 1.1538002191503893 } },
-  { id: "1-0020_2nd-f_945m", name: "2nd Floor · 9.45m", view: { yaw: -1.4388594442496885, pitch: -0.5314121363835422, fov: FOV_140 } },
-  { id: "2-0019_3rd-f_1275m", name: "3rd Floor · 12.75m", view: { yaw: -1.5131621025944195, pitch: -0.0018451810291093551, fov: FOV_140 } },
-  { id: "3-0018_4th-f_165m", name: "4th Floor · 16.5m", view: { yaw: -1.4150536860942076, pitch: 0.021413551599513525, fov: FOV_140 } },
-  { id: "4-0017_5th-f_202m", name: "5th Floor · 20.2m", view: { yaw: -1.499326089118311, pitch: -0.005472554589861289, fov: FOV_140 } },
-  { id: "5-0016_6th-f_2325m", name: "6th Floor · 23.25m", view: { yaw: -1.5165769040901935, pitch: -0.00001659806060416713, fov: FOV_140 } },
-  { id: "6-0015_7th-f_263m", name: "7th Floor · 26.3m", view: { yaw: -1.5152075679709522, pitch: 0.014805615998703558, fov: FOV_140 } },
-  { id: "7-0014_8th-f_2935m", name: "8th Floor · 29.35m", view: { yaw: -1.519816479194139, pitch: 0.03874880161129646, fov: FOV_140 } },
-  { id: "8-0013_9th-f_324m", name: "9th Floor · 32.4m", view: { yaw: -1.5174037100327258, pitch: 0, fov: FOV_140 } },
-  { id: "9-0012_10th-f_3545m", name: "10th Floor · 35.45m", view: { yaw: -1.5173176484325097, pitch: 0.035058439553088405, fov: FOV_140 } },
-  { id: "10-0011_11th-f_385m", name: "11th Floor · 38.5m", view: { yaw: -1.5235151369313087, pitch: 0.03261761571613775, fov: FOV_140 } },
-  { id: "11-0010_12th-f_4155m", name: "12th Floor · 41.55m", view: { yaw: -1.5300719775816898, pitch: 0.0332132585239755, fov: FOV_140 } },
-  { id: "12-0009_13th-f_446m", name: "13th Floor · 44.6m", view: { yaw: -1.519970804621435, pitch: 0.011334683464532702, fov: FOV_140 } },
-  { id: "13-0008_14th-f_4765m", name: "14th Floor · 47.65m", view: { yaw: -1.5007748095935405, pitch: 0.019740437931641708, fov: FOV_140 } },
-  { id: "14-0007_15th-f_507m", name: "15th Floor · 50.7m", view: { yaw: -1.33489947691975, pitch: -0.05913867615340784, fov: FOV_140 } },
-  { id: "15-0006_16th-f_5375m", name: "16th Floor · 53.75m", view: { yaw: -1.3771566755734064, pitch: 0.031063991833551796, fov: FOV_140 } },
-  { id: "16-0005_17th-f_568m", name: "17th Floor · 56.8m", view: { yaw: -1.4013658064258827, pitch: 0.02001293034224716, fov: FOV_140 } },
-  { id: "17-0004_18th-f_5985m", name: "18th Floor · 59.85m", view: { yaw: -1.3435181422390183, pitch: 0.029925824711890314, fov: FOV_140 } },
-  { id: "18-0003_19th-f_629m", name: "19th Floor · 62.9m", view: { yaw: -1.4342326092910351, pitch: 0.04945244512757618, fov: FOV_140 } },
-  { id: "19-0002_20th-f_6595m", name: "20th Floor · 65.95m", view: { yaw: -1.3988493382427762, pitch: 0.029318858276100812, fov: FOV_140 } },
-  { id: "20-0001_21st-f_69m", name: "21st Floor · 69m", view: { yaw: -1.4459648477948779, pitch: -0.06948277387783186, fov: FOV_140 } },
+  {
+    id: "0-0021_1st-f_495m",
+    name: "1st Floor · 4.95m",
+    view: {
+      yaw: -1.4047344812653382,
+      pitch: -0.7070016510705361,
+      fov: 1.1538002191503893,
+    },
+  },
+  {
+    id: "1-0020_2nd-f_945m",
+    name: "2nd Floor · 9.45m",
+    view: {
+      yaw: -1.4388594442496885,
+      pitch: -0.5314121363835422,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "2-0019_3rd-f_1275m",
+    name: "3rd Floor · 12.75m",
+    view: {
+      yaw: -1.5131621025944195,
+      pitch: -0.0018451810291093551,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "3-0018_4th-f_165m",
+    name: "4th Floor · 16.5m",
+    view: {
+      yaw: -1.4150536860942076,
+      pitch: 0.021413551599513525,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "4-0017_5th-f_202m",
+    name: "5th Floor · 20.2m",
+    view: {
+      yaw: -1.499326089118311,
+      pitch: -0.005472554589861289,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "5-0016_6th-f_2325m",
+    name: "6th Floor · 23.25m",
+    view: {
+      yaw: -1.5165769040901935,
+      pitch: -0.00001659806060416713,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "6-0015_7th-f_263m",
+    name: "7th Floor · 26.3m",
+    view: {
+      yaw: -1.5152075679709522,
+      pitch: 0.014805615998703558,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "7-0014_8th-f_2935m",
+    name: "8th Floor · 29.35m",
+    view: { yaw: -1.519816479194139, pitch: 0.03874880161129646, fov: FOV_140 },
+  },
+  {
+    id: "8-0013_9th-f_324m",
+    name: "9th Floor · 32.4m",
+    view: { yaw: -1.5174037100327258, pitch: 0, fov: FOV_140 },
+  },
+  {
+    id: "9-0012_10th-f_3545m",
+    name: "10th Floor · 35.45m",
+    view: {
+      yaw: -1.5173176484325097,
+      pitch: 0.035058439553088405,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "10-0011_11th-f_385m",
+    name: "11th Floor · 38.5m",
+    view: {
+      yaw: -1.5235151369313087,
+      pitch: 0.03261761571613775,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "11-0010_12th-f_4155m",
+    name: "12th Floor · 41.55m",
+    view: { yaw: -1.5300719775816898, pitch: 0.0332132585239755, fov: FOV_140 },
+  },
+  {
+    id: "12-0009_13th-f_446m",
+    name: "13th Floor · 44.6m",
+    view: {
+      yaw: -1.519970804621435,
+      pitch: 0.011334683464532702,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "13-0008_14th-f_4765m",
+    name: "14th Floor · 47.65m",
+    view: {
+      yaw: -1.5007748095935405,
+      pitch: 0.019740437931641708,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "14-0007_15th-f_507m",
+    name: "15th Floor · 50.7m",
+    view: { yaw: -1.33489947691975, pitch: -0.05913867615340784, fov: FOV_140 },
+  },
+  {
+    id: "15-0006_16th-f_5375m",
+    name: "16th Floor · 53.75m",
+    view: {
+      yaw: -1.3771566755734064,
+      pitch: 0.031063991833551796,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "16-0005_17th-f_568m",
+    name: "17th Floor · 56.8m",
+    view: {
+      yaw: -1.4013658064258827,
+      pitch: 0.02001293034224716,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "17-0004_18th-f_5985m",
+    name: "18th Floor · 59.85m",
+    view: {
+      yaw: -1.3435181422390183,
+      pitch: 0.029925824711890314,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "18-0003_19th-f_629m",
+    name: "19th Floor · 62.9m",
+    view: {
+      yaw: -1.4342326092910351,
+      pitch: 0.04945244512757618,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "19-0002_20th-f_6595m",
+    name: "20th Floor · 65.95m",
+    view: {
+      yaw: -1.3988493382427762,
+      pitch: 0.029318858276100812,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "20-0001_21st-f_69m",
+    name: "21st Floor · 69m",
+    view: {
+      yaw: -1.4459648477948779,
+      pitch: -0.06948277387783186,
+      fov: FOV_140,
+    },
+  },
 ];
 
 /**
@@ -428,93 +724,89 @@ const JEWEL_FLOOR_PANO_MAP = {
  */
 const JEWEL_REGION_PANO_MAP = {
   21: {
-    "Deck": { yawDeg: -32, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-
+    Deck: { yawDeg: -32, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
 
   20: {
-    "Deck": { yawDeg: -32, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Deck: { yawDeg: -32, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
 
   19: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
 
   18: {
-    "Deck": { yawDeg: -131, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-    "Retial": { yawDeg: -47, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Deck: { yawDeg: -131, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Retial: { yawDeg: -47, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
 
   17: {
-    "Deck": { yawDeg: -131, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-    "Retial": { yawDeg: -47, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Deck: { yawDeg: -131, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Retial: { yawDeg: -47, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   16: {
-
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   15: {
-
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Refuge": { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Refuge: { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
   },
   14: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Refuge": { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Refuge: { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
   },
   13: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   12: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Deck": { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Deck: { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
   },
   11: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Deck": { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Deck: { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
   },
   10: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Deck": { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Deck: { yawDeg: -88, pitchDeg: 2, fovDeg: 78, panDeg: 40 },
   },
   9: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   8: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Refuge": { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Refuge: { yawDeg: 26, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
   },
   7: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
-    "Refuge": { yawDeg: 51, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Refuge: { yawDeg: 51, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
   },
   6: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   5: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   4: {
-    "Deck": { yawDeg: -120, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
-    "Retial": { yawDeg: -41, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Deck: { yawDeg: -120, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
+    Retial: { yawDeg: -41, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   3: {
-    "Deck": { yawDeg: -120, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
-    "Retial": { yawDeg: -41, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Deck: { yawDeg: -120, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
+    Retial: { yawDeg: -41, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   2: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
   1: {
-    "Lobby": { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 }
+    Lobby: { yawDeg: 99, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
   },
-
 };
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -523,23 +815,147 @@ const JEWEL_REGION_PANO_MAP = {
 
 /** Raw captured panos (1st–15th + terrace; a lift-top capture is unused). */
 const SPACE_PANO_SCENES = [
-  { id: "0-0017_1st-f_4m", name: "1st Floor · 4m", view: { yaw: -0.01540383879819096, pitch: -0.642853912288226, fov: FOV_140 } },
-  { id: "1-0016_2nd-f_695m", name: "2nd Floor · 6.95m", view: { yaw: -0.09133075540263746, pitch: -0.45393969101971265, fov: FOV_140 } },
-  { id: "2-0015_3rd-f_99m", name: "3rd Floor · 9.9m", view: { yaw: -0.12398669782422544, pitch: -0.19124766433418117, fov: FOV_140 } },
-  { id: "3-0014_4th-f_1285m", name: "4th Floor · 12.85m", view: { yaw: -0.09666438934122823, pitch: -0.07749760322259469, fov: FOV_140 } },
-  { id: "4-0013_5th-f_158m", name: "5th Floor · 15.8m", view: { yaw: -0.013425609630726143, pitch: 0, fov: FOV_140 } },
-  { id: "5-0012_6th-f_1875m", name: "6th Floor · 18.75m", view: { yaw: 0, pitch: 0.020296991320202906, fov: FOV_140 } },
-  { id: "6-0011_7th-f_217m", name: "7th Floor · 21.7m", view: { yaw: -0.022823536372234443, pitch: -0.005536289433848651, fov: FOV_140 } },
-  { id: "7-0010_8th-f_2465m", name: "8th Floor · 24.65m", view: { yaw: 0, pitch: -0.0073807241164374204, fov: FOV_140 } },
-  { id: "8-0009_9th-f_276m", name: "9th Floor · 27.6m", view: { yaw: -0.012072169568979163, pitch: -0.012886363300644632, fov: FOV_140 } },
-  { id: "9-0008_10th-f_3055m", name: "10th Floor · 30.55m", view: { yaw: 0.0034109025933943826, pitch: -0.02054623402799649, fov: FOV_140 } },
-  { id: "10-0007_11th-f_335m", name: "11th Floor · 33.5m", view: { yaw: -0.014768170593798757, pitch: 0.0036903620582187102, fov: FOV_140 } },
-  { id: "11-0006_12th-f_3645m", name: "12th Floor · 36.45m", view: { yaw: -0.030583491027734055, pitch: 0.005532606843919652, fov: FOV_140 } },
-  { id: "12-0005_13th-f_394m", name: "13th Floor · 39.4m", view: { yaw: -0.016219472021358428, pitch: 0.007978278065799316, fov: FOV_140 } },
-  { id: "13-0004_14th-f_4235m", name: "14th Floor · 42.35m", view: { yaw: -0.07624257543402813, pitch: -0.1154955057431799, fov: FOV_140 } },
-  { id: "14-0003_15th-f_453m", name: "15th Floor · 45.3m", view: { yaw: -0.030618619206409292, pitch: -0.035382873147350224, fov: FOV_140 } },
-  { id: "15-0002_terrace_4825m", name: "Terrace · 48.25m", view: { yaw: -0.13540685393475904, pitch: -0.08747508583870989, fov: FOV_140 } },
-  { id: "16-0001_lift-top_50m", name: "Lift Top · 50m", view: { yaw: 0.09564901300375794, pitch: -0.02461806659832888, fov: FOV_140 } },
+  {
+    id: "0-0017_1st-f_4m",
+    name: "1st Floor · 4m",
+    view: {
+      yaw: -0.01540383879819096,
+      pitch: -0.642853912288226,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "1-0016_2nd-f_695m",
+    name: "2nd Floor · 6.95m",
+    view: {
+      yaw: -0.09133075540263746,
+      pitch: -0.45393969101971265,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "2-0015_3rd-f_99m",
+    name: "3rd Floor · 9.9m",
+    view: {
+      yaw: -0.12398669782422544,
+      pitch: -0.19124766433418117,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "3-0014_4th-f_1285m",
+    name: "4th Floor · 12.85m",
+    view: {
+      yaw: -0.09666438934122823,
+      pitch: -0.07749760322259469,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "4-0013_5th-f_158m",
+    name: "5th Floor · 15.8m",
+    view: { yaw: -0.013425609630726143, pitch: 0, fov: FOV_140 },
+  },
+  {
+    id: "5-0012_6th-f_1875m",
+    name: "6th Floor · 18.75m",
+    view: { yaw: 0, pitch: 0.020296991320202906, fov: FOV_140 },
+  },
+  {
+    id: "6-0011_7th-f_217m",
+    name: "7th Floor · 21.7m",
+    view: {
+      yaw: -0.022823536372234443,
+      pitch: -0.005536289433848651,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "7-0010_8th-f_2465m",
+    name: "8th Floor · 24.65m",
+    view: { yaw: 0, pitch: -0.0073807241164374204, fov: FOV_140 },
+  },
+  {
+    id: "8-0009_9th-f_276m",
+    name: "9th Floor · 27.6m",
+    view: {
+      yaw: -0.012072169568979163,
+      pitch: -0.012886363300644632,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "9-0008_10th-f_3055m",
+    name: "10th Floor · 30.55m",
+    view: {
+      yaw: 0.0034109025933943826,
+      pitch: -0.02054623402799649,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "10-0007_11th-f_335m",
+    name: "11th Floor · 33.5m",
+    view: {
+      yaw: -0.014768170593798757,
+      pitch: 0.0036903620582187102,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "11-0006_12th-f_3645m",
+    name: "12th Floor · 36.45m",
+    view: {
+      yaw: -0.030583491027734055,
+      pitch: 0.005532606843919652,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "12-0005_13th-f_394m",
+    name: "13th Floor · 39.4m",
+    view: {
+      yaw: -0.016219472021358428,
+      pitch: 0.007978278065799316,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "13-0004_14th-f_4235m",
+    name: "14th Floor · 42.35m",
+    view: {
+      yaw: -0.07624257543402813,
+      pitch: -0.1154955057431799,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "14-0003_15th-f_453m",
+    name: "15th Floor · 45.3m",
+    view: {
+      yaw: -0.030618619206409292,
+      pitch: -0.035382873147350224,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "15-0002_terrace_4825m",
+    name: "Terrace · 48.25m",
+    view: {
+      yaw: -0.13540685393475904,
+      pitch: -0.08747508583870989,
+      fov: FOV_140,
+    },
+  },
+  {
+    id: "16-0001_lift-top_50m",
+    name: "Lift Top · 50m",
+    view: {
+      yaw: 0.09564901300375794,
+      pitch: -0.02461806659832888,
+      fov: FOV_140,
+    },
+  },
 ];
 
 /**
@@ -573,16 +989,14 @@ const SPACE_FLOOR_PANO_MAP = {
  * viewer's "Copy config" as with the other buildings.
  */
 const SPACE_REGION_PANO_MAP = {
-
   15: {
-    "Commercel": { yawDeg: 178, pitchDeg: 9, fovDeg: 78, panDeg: 140 },
-    
-    "Kitchen": { yawDeg: 91, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+    Commercel: { yawDeg: 178, pitchDeg: 9, fovDeg: 78, panDeg: 140 },
+
+    Kitchen: { yawDeg: 91, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
   },
 
   14: {
-
-    "Commercial": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
+    Commercial: { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
   },
   13: {
     "Commercial 01": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
@@ -608,102 +1022,144 @@ const SPACE_REGION_PANO_MAP = {
 
   1: {
     "Commercial 01": { yawDeg: -179, pitchDeg: -31, fovDeg: 78, panDeg: 140 },
-  }
-
+  },
 };
 
 const TERRACE_PANO_SCENES = [
-     { id: "0-0044_3rd-f_1311m", name: "3rd Floor · 13.11m", view: { yaw: -1.6844387017249165, pitch: -0.1698891970346157, fov: FOV } },
-     { id: "1-0036_11th-f_4135m", name: "11th Floor · 41.35m", view: { yaw: -1.6938509459920077, pitch: 0.014785591589740577, fov: FOV } },
-     { id: "2-0037_10th-f_3782m", name: "10th Floor · 37.82m", view: { yaw: -1.7126602685595618, pitch: 0.10710405900008269, fov: FOV } },
-     { id: "3-0038_9th-f_3429m", name: "9th Floor · 34.29m", view: { yaw: -1.635431047445671, pitch: 0.16619595362081796, fov: FOV } },
-     { id: "4-0039_8th-f_3076m", name: "8th Floor · 30.76m", view: { yaw: -1.6689950715224882, pitch: 0.050511296798726235, fov: FOV } },
-     { id: "5-0040_7th-f_2723m", name: "7th Floor · 27.23m", view: { yaw: -1.6531720316005618, pitch: 0.022159460482775728, fov: FOV } },
-     { id: "6-0041_6th-f_237m", name: "6th Floor · 23.7m", view: { yaw: -1.641576881094288, pitch: 0.05909189462073705, fov: FOV } },
-     { id: "7-0042_5th-f_2017m", name: "5th Floor · 20.17m", view: { yaw: -1.7237568872214286, pitch: 0.06832500315522694, fov: FOV } },
-     { id: "8-0043_4th-f_1664m", name: "4th Floor · 16.64m", view: { yaw: -1.7535337723208144, pitch: 0.01661959536208002, fov: FOV } },
-     { id: "9-0033_amenity-top-slab_51m", name: "Amenity Top Slab · 51m", view: { yaw: -1.5967191273714452, pitch: 0.010468429223388753, fov: FOV } },
-     { id: "10-0035_12th-f_4488m", name: "12th Floor · 44.88m", view: { yaw: -1.6797549568196324, pitch: 0.06414937500048978, fov: FOV } },
-     { id: "11-0034_terrace-level_4841m", name: "Terrace Level · 48.41m", view: { yaw: -1.6131207130435286, pitch: -0.007832170166164332, fov: FOV } },
-   ];
+  {
+    id: "0-0044_3rd-f_1311m",
+    name: "3rd Floor · 13.11m",
+    view: { yaw: -1.6844387017249165, pitch: -0.1698891970346157, fov: FOV },
+  },
+  {
+    id: "1-0036_11th-f_4135m",
+    name: "11th Floor · 41.35m",
+    view: { yaw: -1.6938509459920077, pitch: 0.014785591589740577, fov: FOV },
+  },
+  {
+    id: "2-0037_10th-f_3782m",
+    name: "10th Floor · 37.82m",
+    view: { yaw: -1.7126602685595618, pitch: 0.10710405900008269, fov: FOV },
+  },
+  {
+    id: "3-0038_9th-f_3429m",
+    name: "9th Floor · 34.29m",
+    view: { yaw: -1.635431047445671, pitch: 0.16619595362081796, fov: FOV },
+  },
+  {
+    id: "4-0039_8th-f_3076m",
+    name: "8th Floor · 30.76m",
+    view: { yaw: -1.6689950715224882, pitch: 0.050511296798726235, fov: FOV },
+  },
+  {
+    id: "5-0040_7th-f_2723m",
+    name: "7th Floor · 27.23m",
+    view: { yaw: -1.6531720316005618, pitch: 0.022159460482775728, fov: FOV },
+  },
+  {
+    id: "6-0041_6th-f_237m",
+    name: "6th Floor · 23.7m",
+    view: { yaw: -1.641576881094288, pitch: 0.05909189462073705, fov: FOV },
+  },
+  {
+    id: "7-0042_5th-f_2017m",
+    name: "5th Floor · 20.17m",
+    view: { yaw: -1.7237568872214286, pitch: 0.06832500315522694, fov: FOV },
+  },
+  {
+    id: "8-0043_4th-f_1664m",
+    name: "4th Floor · 16.64m",
+    view: { yaw: -1.7535337723208144, pitch: 0.01661959536208002, fov: FOV },
+  },
+  {
+    id: "9-0033_amenity-top-slab_51m",
+    name: "Amenity Top Slab · 51m",
+    view: { yaw: -1.5967191273714452, pitch: 0.010468429223388753, fov: FOV },
+  },
+  {
+    id: "10-0035_12th-f_4488m",
+    name: "12th Floor · 44.88m",
+    view: { yaw: -1.6797549568196324, pitch: 0.06414937500048978, fov: FOV },
+  },
+  {
+    id: "11-0034_terrace-level_4841m",
+    name: "Terrace Level · 48.41m",
+    view: { yaw: -1.6131207130435286, pitch: -0.007832170166164332, fov: FOV },
+  },
+];
 
-   const TERRACE_FLOOR_PANO_MAP = {
-     ground: null, // No panoramic view shot for ground floor
-     1: null,      // No panoramic view shot for 1st floor
-     2: null,      // No panoramic view shot for 2nd floor
-     3: { scene: "0-0044_3rd-f_1311m", panDeg: DEFAULT_PAN_DEG },
-     4: { scene: "8-0043_4th-f_1664m", panDeg: DEFAULT_PAN_DEG },
-     5: { scene: "7-0042_5th-f_2017m", panDeg: DEFAULT_PAN_DEG },
-     6: { scene: "6-0041_6th-f_237m", panDeg: DEFAULT_PAN_DEG },
-     7: { scene: "5-0040_7th-f_2723m", panDeg: DEFAULT_PAN_DEG },
-     8: { scene: "4-0039_8th-f_3076m", panDeg: DEFAULT_PAN_DEG },
-     9: { scene: "3-0038_9th-f_3429m", panDeg: DEFAULT_PAN_DEG },
-     10: { scene: "2-0037_10th-f_3782m", panDeg: DEFAULT_PAN_DEG },
-     11: { scene: "1-0036_11th-f_4135m", panDeg: DEFAULT_PAN_DEG },
-     12: { scene: "10-0035_12th-f_4488m", panDeg: DEFAULT_PAN_DEG },
-     terrace: { scene: "11-0034_terrace-level_4841m", panDeg: 360 },
-   };
+const TERRACE_FLOOR_PANO_MAP = {
+  ground: null, // No panoramic view shot for ground floor
+  1: null, // No panoramic view shot for 1st floor
+  2: null, // No panoramic view shot for 2nd floor
+  3: { scene: "0-0044_3rd-f_1311m", panDeg: DEFAULT_PAN_DEG },
+  4: { scene: "8-0043_4th-f_1664m", panDeg: DEFAULT_PAN_DEG },
+  5: { scene: "7-0042_5th-f_2017m", panDeg: DEFAULT_PAN_DEG },
+  6: { scene: "6-0041_6th-f_237m", panDeg: DEFAULT_PAN_DEG },
+  7: { scene: "5-0040_7th-f_2723m", panDeg: DEFAULT_PAN_DEG },
+  8: { scene: "4-0039_8th-f_3076m", panDeg: DEFAULT_PAN_DEG },
+  9: { scene: "3-0038_9th-f_3429m", panDeg: DEFAULT_PAN_DEG },
+  10: { scene: "2-0037_10th-f_3782m", panDeg: DEFAULT_PAN_DEG },
+  11: { scene: "1-0036_11th-f_4135m", panDeg: DEFAULT_PAN_DEG },
+  12: { scene: "10-0035_12th-f_4488m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "11-0034_terrace-level_4841m", panDeg: 360 },
+};
 
+const TERRACE_REGION_PANO_MAP = {
+  // REGION_PANO_MAP[12]
+  12: {
+    Study: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
 
-   const TERRACE_REGION_PANO_MAP = {
+  11: {
+    Dinning: { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Study: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
+  10: {
+    Dinning: { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
+  9: {
+    Dinning: { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
+  8: {
+    Dinning: { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
+  7: {
+    Waredrope: { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+    Study: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    Seating: { yawDeg: -153, pitchDeg: 6, fovDeg: 51, panDeg: 70 },
+  },
+  6: {
+    Dinning: { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
 
-// REGION_PANO_MAP[12]
-12: {
-"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-   },
-
-11: {
-"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-},
-10 : {
-"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-},
-9 : {
-"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-},
-8 : {
-"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-},
-7 : {
-"Waredrope": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-"Study": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Seating": { yawDeg: -153, pitchDeg: 6, fovDeg: 51, panDeg: 70 },
-},
-6 : {
-"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-},
-
-5 : {
-"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-},  
-4 : {
-"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-},  
-3 : {
-"Dinning": { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
-"Bedroom": { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
-"Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
-},  
- 
-
-
-  };
+  5: {
+    Dinning: { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
+  4: {
+    Dinning: { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
+  3: {
+    Dinning: { yawDeg: -167, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+    Bedroom: { yawDeg: 167, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+    "Bedroom 1": { yawDeg: 86, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+  },
+};
 
 /* ══════════════════════════════════════════════════════════════════════════
  * NOTAN CROWN
@@ -713,27 +1169,111 @@ const TERRACE_PANO_SCENES = [
  *  taken straight from the Marzipano export's initialViewParameters. Same cube
  *  tiling / face size as DC / Edge, so they share SCENE_DEFAULTS. */
 const CROWN_PANO_SCENES = [
-  { id: "0-0042_1st-f_6m", name: "1st Floor · 6m", view: { yaw: 1.7874310617567417, pitch: -0.04447669939426646, fov: FOV } },
-  { id: "1-0041_2nd-f_102m", name: "2nd Floor · 10.2m", view: { yaw: 1.7601826465189694, pitch: -0.08911517502580857, fov: FOV } },
-  { id: "2-0040_3rd-f_1415m", name: "3rd Floor · 14.15m", view: { yaw: 1.67265339501588, pitch: 0.01903441703122688, fov: FOV } },
-  { id: "3-0039_4th-f_181m", name: "4th Floor · 18.1m", view: { yaw: 1.631067665411539, pitch: 0.0006482218323302646, fov: FOV } },
-  { id: "4-0038_5th-f_225m", name: "5th Floor · 22.5m", view: { yaw: 1.6396023904255, pitch: 0.011819003258150218, fov: FOV } },
-  { id: "5-0037_6th-f_26m", name: "6th Floor · 26m", view: { yaw: 1.6738653781505555, pitch: 0.017053825389922395, fov: FOV } },
-  { id: "6-0036_7th-f_2995m", name: "7th Floor · 29.95m", view: { yaw: 1.645977082372453, pitch: 0.02021460161789257, fov: FOV } },
-  { id: "7-0035_8th-f_339m", name: "8th Floor · 33.9m", view: { yaw: 1.5677125597999524, pitch: 0.013709073436068309, fov: FOV } },
-  { id: "8-0034_9th-f_3785m", name: "9th Floor · 37.85m", view: { yaw: 1.6905515147364767, pitch: 0.005429323742319525, fov: FOV } },
-  { id: "9-0033_10th-f_418m", name: "10th Floor · 41.8m", view: { yaw: -1.5638203464445404, pitch: -0.018466217068979773, fov: FOV } },
-  { id: "10-0032_11th-f_4575m", name: "11th Floor · 45.75m", view: { yaw: -1.5717023962382282, pitch: 0.008958716531211053, fov: FOV } },
-  { id: "11-0031_12th-f_497m", name: "12th Floor · 49.7m", view: { yaw: -1.5412028229534194, pitch: 0.011073966136777358, fov: FOV } },
-  { id: "12-0030_13th-f_5365", name: "13th Floor · 53.65m", view: { yaw: -1.566576849482388, pitch: 0, fov: FOV } },
-  { id: "13-0029_14th-f_576", name: "14th Floor · 57.6m", view: { yaw: -1.5729624022050324, pitch: 0.012127569348708178, fov: FOV } },
-  { id: "14-0028_15th-f_6155m", name: "15th Floor · 61.55m", view: { yaw: -1.5685997303141477, pitch: 0.017171797910169317, fov: FOV } },
-  { id: "15-0027_16th-f_655m", name: "16th Floor · 65.5m", view: { yaw: -1.5612193857389727, pitch: 0.011083075787063024, fov: FOV } },
-  { id: "16-0026_17th-f_6945m", name: "17th Floor · 69.45m", view: { yaw: -1.5989901070194232, pitch: -0.005950225500003015, fov: FOV } },
-  { id: "17-0025_18th-f_734m", name: "18th Floor · 73.4m", view: { yaw: -1.5425315540509263, pitch: 0.023910474754940125, fov: FOV } },
-  { id: "18-0024_19th-f_7735m", name: "19th Floor · 77.35m", view: { yaw: -1.6006587105904657, pitch: 0.05614383352319763, fov: FOV } },
-  { id: "19-0023_20th-f_813m", name: "20th Floor · 81.3m", view: { yaw: -1.4545580921276056, pitch: 0.013200680413998356, fov: FOV } },
-  { id: "20-0022_terrace_8525m", name: "Terrace · 85.25m", view: { yaw: -1.5108331638209211, pitch: 0.03194791490365034, fov: FOV } },
+  {
+    id: "0-0042_1st-f_6m",
+    name: "1st Floor · 6m",
+    view: { yaw: 1.7874310617567417, pitch: -0.04447669939426646, fov: FOV },
+  },
+  {
+    id: "1-0041_2nd-f_102m",
+    name: "2nd Floor · 10.2m",
+    view: { yaw: 1.7601826465189694, pitch: -0.08911517502580857, fov: FOV },
+  },
+  {
+    id: "2-0040_3rd-f_1415m",
+    name: "3rd Floor · 14.15m",
+    view: { yaw: 1.67265339501588, pitch: 0.01903441703122688, fov: FOV },
+  },
+  {
+    id: "3-0039_4th-f_181m",
+    name: "4th Floor · 18.1m",
+    view: { yaw: 1.631067665411539, pitch: 0.0006482218323302646, fov: FOV },
+  },
+  {
+    id: "4-0038_5th-f_225m",
+    name: "5th Floor · 22.5m",
+    view: { yaw: 1.6396023904255, pitch: 0.011819003258150218, fov: FOV },
+  },
+  {
+    id: "5-0037_6th-f_26m",
+    name: "6th Floor · 26m",
+    view: { yaw: 1.6738653781505555, pitch: 0.017053825389922395, fov: FOV },
+  },
+  {
+    id: "6-0036_7th-f_2995m",
+    name: "7th Floor · 29.95m",
+    view: { yaw: 1.645977082372453, pitch: 0.02021460161789257, fov: FOV },
+  },
+  {
+    id: "7-0035_8th-f_339m",
+    name: "8th Floor · 33.9m",
+    view: { yaw: 1.5677125597999524, pitch: 0.013709073436068309, fov: FOV },
+  },
+  {
+    id: "8-0034_9th-f_3785m",
+    name: "9th Floor · 37.85m",
+    view: { yaw: 1.6905515147364767, pitch: 0.005429323742319525, fov: FOV },
+  },
+  {
+    id: "9-0033_10th-f_418m",
+    name: "10th Floor · 41.8m",
+    view: { yaw: -1.5638203464445404, pitch: -0.018466217068979773, fov: FOV },
+  },
+  {
+    id: "10-0032_11th-f_4575m",
+    name: "11th Floor · 45.75m",
+    view: { yaw: -1.5717023962382282, pitch: 0.008958716531211053, fov: FOV },
+  },
+  {
+    id: "11-0031_12th-f_497m",
+    name: "12th Floor · 49.7m",
+    view: { yaw: -1.5412028229534194, pitch: 0.011073966136777358, fov: FOV },
+  },
+  {
+    id: "12-0030_13th-f_5365",
+    name: "13th Floor · 53.65m",
+    view: { yaw: -1.566576849482388, pitch: 0, fov: FOV },
+  },
+  {
+    id: "13-0029_14th-f_576",
+    name: "14th Floor · 57.6m",
+    view: { yaw: -1.5729624022050324, pitch: 0.012127569348708178, fov: FOV },
+  },
+  {
+    id: "14-0028_15th-f_6155m",
+    name: "15th Floor · 61.55m",
+    view: { yaw: -1.5685997303141477, pitch: 0.017171797910169317, fov: FOV },
+  },
+  {
+    id: "15-0027_16th-f_655m",
+    name: "16th Floor · 65.5m",
+    view: { yaw: -1.5612193857389727, pitch: 0.011083075787063024, fov: FOV },
+  },
+  {
+    id: "16-0026_17th-f_6945m",
+    name: "17th Floor · 69.45m",
+    view: { yaw: -1.5989901070194232, pitch: -0.005950225500003015, fov: FOV },
+  },
+  {
+    id: "17-0025_18th-f_734m",
+    name: "18th Floor · 73.4m",
+    view: { yaw: -1.5425315540509263, pitch: 0.023910474754940125, fov: FOV },
+  },
+  {
+    id: "18-0024_19th-f_7735m",
+    name: "19th Floor · 77.35m",
+    view: { yaw: -1.6006587105904657, pitch: 0.05614383352319763, fov: FOV },
+  },
+  {
+    id: "19-0023_20th-f_813m",
+    name: "20th Floor · 81.3m",
+    view: { yaw: -1.4545580921276056, pitch: 0.013200680413998356, fov: FOV },
+  },
+  {
+    id: "20-0022_terrace_8525m",
+    name: "Terrace · 85.25m",
+    view: { yaw: -1.5108331638209211, pitch: 0.03194791490365034, fov: FOV },
+  },
 ];
 
 /**
@@ -813,7 +1353,6 @@ const CROWN_REGION_PANO_MAP = {
   3: commonConfigCrownLower,
   2: commonConfigCrownLower,
   1: commonConfigCrownLower,
-
 };
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -850,13 +1389,13 @@ const PANO_BUILDINGS = {
     floorMap: SPACE_FLOOR_PANO_MAP,
     regionMap: SPACE_REGION_PANO_MAP,
   },
-   
+
   "notan-terrace": {
-       tilesBase: `${BASE}panos/notan-terrace/tiles`,
-       sceneById: new Map(TERRACE_PANO_SCENES.map((s) => [s.id, s])),
-       floorMap: TERRACE_FLOOR_PANO_MAP,
-       regionMap: TERRACE_REGION_PANO_MAP,
-     },
+    tilesBase: `${BASE}panos/notan-terrace/tiles`,
+    sceneById: new Map(TERRACE_PANO_SCENES.map((s) => [s.id, s])),
+    floorMap: TERRACE_FLOOR_PANO_MAP,
+    regionMap: TERRACE_REGION_PANO_MAP,
+  },
 
   "notan-crown": {
     tilesBase: `${BASE}panos/notan-crown/tiles`,
@@ -864,7 +1403,6 @@ const PANO_BUILDINGS = {
     floorMap: CROWN_FLOOR_PANO_MAP,
     regionMap: CROWN_REGION_PANO_MAP,
   },
-
 };
 
 const DEG = Math.PI / 180;

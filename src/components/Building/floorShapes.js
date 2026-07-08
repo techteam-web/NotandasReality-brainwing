@@ -15,12 +15,12 @@
 // Loaded eagerly as raw strings at build time — no runtime fetch.
 const NOTAN_DC_FILES = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_DC/*.svg",
-  { query: "?raw", import: "default", eager: true }
+  { query: "?raw", import: "default", eager: true },
 );
 
 const NOTAN_EDGE_FILES = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_Edge/*.svg",
-  { query: "?raw", import: "default", eager: true }
+  { query: "?raw", import: "default", eager: true },
 );
 
 // Jewel and Space ship ONE combined elevation SVG (every floor is an element
@@ -28,23 +28,23 @@ const NOTAN_EDGE_FILES = import.meta.glob(
 // returns a single entry per building; buildFloorsFromCombined splits it.
 const NOTAN_JEWEL_FILE = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_jewel/nothan_jewel-2.8x.svg",
-  { query: "?raw", import: "default", eager: true }
+  { query: "?raw", import: "default", eager: true },
 );
 
 const NOTAN_SPACE_FILE = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_space/Notan_space_.svg",
-  { query: "?raw", import: "default", eager: true }
+  { query: "?raw", import: "default", eager: true },
 );
 
- const NOTAN_TERRACE_FILE = import.meta.glob(
-     "../../assets/Building_Floor_SVG/Nothan_terrace/Notan_terrace_2.8x.svg",
-     { query: "?raw", import: "default", eager: true }
-   );
+const NOTAN_TERRACE_FILE = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Nothan_terrace/Notan_terrace_2.8x.svg",
+  { query: "?raw", import: "default", eager: true },
+);
 
- const NOTAN_CROWN_FILE = import.meta.glob(
-     "../../assets/Building_Floor_SVG/Nothan_crown/Notan_crown_.svg",
-     { query: "?raw", import: "default", eager: true }
-   );  
+const NOTAN_CROWN_FILE = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Nothan_crown/Notan_crown_.svg",
+  { query: "?raw", import: "default", eager: true },
+);
 
 const parseShape = (raw) => {
   const points = raw.match(/points="([^"]+)"/);
@@ -145,7 +145,15 @@ const firstRaw = (files) => Object.values(files)[0];
 
 export const NOTAN_DC_FLOORS = buildFloors(NOTAN_DC_FILES);
 export const NOTAN_EDGE_FLOORS = buildFloors(NOTAN_EDGE_FILES);
-export const NOTAN_JEWEL_FLOORS = buildFloorsFromCombined(firstRaw(NOTAN_JEWEL_FILE));
-export const NOTAN_SPACE_FLOORS = buildFloorsFromCombined(firstRaw(NOTAN_SPACE_FILE));
-export const NOTAN_TERRACE_FLOORS = buildFloorsFromCombined(firstRaw(NOTAN_TERRACE_FILE));
-export const NOTAN_CROWN_FLOORS = buildFloorsFromCombined(firstRaw(NOTAN_CROWN_FILE));
+export const NOTAN_JEWEL_FLOORS = buildFloorsFromCombined(
+  firstRaw(NOTAN_JEWEL_FILE),
+);
+export const NOTAN_SPACE_FLOORS = buildFloorsFromCombined(
+  firstRaw(NOTAN_SPACE_FILE),
+);
+export const NOTAN_TERRACE_FLOORS = buildFloorsFromCombined(
+  firstRaw(NOTAN_TERRACE_FILE),
+);
+export const NOTAN_CROWN_FLOORS = buildFloorsFromCombined(
+  firstRaw(NOTAN_CROWN_FILE),
+);

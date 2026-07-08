@@ -11,18 +11,59 @@ import seaLinkImg from "../../assets/Bandra_sea_link_.png";
 
 // Hand-sketched sailboat (stroke-based, drawn in with GSAP)
 const SailBoat = ({ className }) => (
-  <svg viewBox="0 0 400 400" className={className} xmlns="http://www.w3.org/2000/svg">
-    <g fill="none" stroke="currentColor" strokeWidth="6.8" strokeLinecap="round" strokeLinejoin="round">
-      <path className="ms-draw" d="M220.834 34C192.114 112.977 165.587 197.056 118.632 267.644C115.859 271.81 93.6893 300.065 95.4753 303.649C96.2613 305.225 123.514 294.565 126.614 294.049C154.085 289.458 186.625 295.479 212.847 302.048" />
-      <path className="ms-draw" d="M222.183 39.3965C239.934 129.776 222.953 221.733 222.953 311.903" />
-      <path className="ms-draw" d="M242.742 110.896C255.726 179.101 247.963 245.97 228.928 311.902" />
-      <path className="ms-draw" d="M242.418 118.99C271.634 175.716 300.427 242.775 300.427 307.856" />
-      <path className="ms-draw" d="M232.975 304.762C255.403 299.129 272.032 304.198 290.983 315.949" />
-      <path className="ms-draw" d="M94.0234 334.836C165.065 328.376 237.876 339.889 305.823 317.299" />
-      <path className="ms-draw" d="M308.521 324.043C306.065 331.934 302.677 338.96 297.729 345.628" />
-      <path className="ms-draw" d="M92 340.232C92 346.078 92 351.924 92 357.77" />
-      <path className="ms-draw" opacity="0.5" d="M98.0703 362.076C100.77 360.199 105.672 356.48 109.115 356.48C116.875 356.48 123.729 367.371 132.055 363.943C136.409 362.147 138.728 355.572 143.95 354.613C152.751 353.006 185.23 367.346 188.98 364.877C194.745 361.077 228.782 356.48 248.173 363.943C255.862 366.902 291.77 349.948 297.728 351.817" />
-      <path className="ms-draw" d="M137.193 319.762C142.107 295.621 208.692 296.057 208.692 325.393" />
+  <svg
+    viewBox="0 0 400 400"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="6.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path
+        className="ms-draw"
+        d="M220.834 34C192.114 112.977 165.587 197.056 118.632 267.644C115.859 271.81 93.6893 300.065 95.4753 303.649C96.2613 305.225 123.514 294.565 126.614 294.049C154.085 289.458 186.625 295.479 212.847 302.048"
+      />
+      <path
+        className="ms-draw"
+        d="M222.183 39.3965C239.934 129.776 222.953 221.733 222.953 311.903"
+      />
+      <path
+        className="ms-draw"
+        d="M242.742 110.896C255.726 179.101 247.963 245.97 228.928 311.902"
+      />
+      <path
+        className="ms-draw"
+        d="M242.418 118.99C271.634 175.716 300.427 242.775 300.427 307.856"
+      />
+      <path
+        className="ms-draw"
+        d="M232.975 304.762C255.403 299.129 272.032 304.198 290.983 315.949"
+      />
+      <path
+        className="ms-draw"
+        d="M94.0234 334.836C165.065 328.376 237.876 339.889 305.823 317.299"
+      />
+      <path
+        className="ms-draw"
+        d="M308.521 324.043C306.065 331.934 302.677 338.96 297.729 345.628"
+      />
+      <path
+        className="ms-draw"
+        d="M92 340.232C92 346.078 92 351.924 92 357.77"
+      />
+      <path
+        className="ms-draw"
+        opacity="0.5"
+        d="M98.0703 362.076C100.77 360.199 105.672 356.48 109.115 356.48C116.875 356.48 123.729 367.371 132.055 363.943C136.409 362.147 138.728 355.572 143.95 354.613C152.751 353.006 185.23 367.346 188.98 364.877C194.745 361.077 228.782 356.48 248.173 363.943C255.862 366.902 291.77 349.948 297.728 351.817"
+      />
+      <path
+        className="ms-draw"
+        d="M137.193 319.762C142.107 295.621 208.692 296.057 208.692 325.393"
+      />
     </g>
   </svg>
 );
@@ -46,8 +87,18 @@ const DoodleBird = ({ transform, glide = false }) => (
 
 // Doodle-sketched flock — loose scribble gulls drifting in a ragged V
 const Flock = ({ className }) => (
-  <svg viewBox="0 0 220 150" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    viewBox="0 0 220 150"
+    className={className}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      stroke="currentColor"
+      strokeWidth="4.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <DoodleBird transform="translate(8 56) scale(1.15)" />
       <DoodleBird transform="translate(64 22) scale(0.9) rotate(-8)" glide />
       <DoodleBird transform="translate(76 88) scale(0.95) rotate(6)" />
@@ -64,18 +115,36 @@ const Flock = ({ className }) => (
 
 // Two hand-scribbled gulls hovering near the coast
 const Gulls = ({ className }) => (
-  <svg viewBox="0 0 120 80" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    viewBox="0 0 120 80"
+    className={className}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      stroke="currentColor"
+      strokeWidth="3.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M6 34 Q20 14 36 26 Q41 30 46 27 Q58 12 76 22" />
       <path d="M10 36 Q21 22 33 29" opacity="0.4" strokeWidth="2.4" />
-      <path d="M58 56 Q68 44 78 51 Q82 54 86 52 Q94 42 106 48" strokeWidth="2.6" />
+      <path
+        d="M58 56 Q68 44 78 51 Q82 54 86 52 Q94 42 106 48"
+        strokeWidth="2.6"
+      />
     </g>
   </svg>
 );
 
 // Hand-drawn wave squiggle for the open sea
 const Wave = ({ className }) => (
-  <svg viewBox="0 0 120 20" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    viewBox="0 0 120 20"
+    className={className}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       className="ms-wave-path"
       d="M4 12 Q 14 4 24 12 T 44 12 T 64 12 T 84 12 T 104 12"
@@ -129,7 +198,7 @@ const MapScene = () => {
       gsap.fromTo(
         ".ms-ship",
         { opacity: 0, x: -30 },
-        { opacity: 0.85, x: 0, duration: 2, ease: "power2.out", delay: 1.5 }
+        { opacity: 0.85, x: 0, duration: 2, ease: "power2.out", delay: 1.5 },
       );
       gsap.to(".ms-ship", {
         x: 60,
@@ -153,7 +222,11 @@ const MapScene = () => {
       flockTl
         .set(".ms-flock", { x: "10vw", y: 0 })
         .to(".ms-flock", { opacity: 0.75, duration: 2, ease: "none" }, 0)
-        .to(".ms-flock", { x: "-30vw", y: "3vh", duration: 24, ease: "none" }, 0)
+        .to(
+          ".ms-flock",
+          { x: "-30vw", y: "3vh", duration: 24, ease: "none" },
+          0,
+        )
         .to(".ms-flock", { opacity: 0, duration: 2.5 }, 21);
       // each scribbled bird flaps on its own beat
       gsap.to(".ms-bird", {
@@ -170,7 +243,7 @@ const MapScene = () => {
       gsap.fromTo(
         ".ms-gulls",
         { opacity: 0, y: 10 },
-        { opacity: 0.7, y: 0, duration: 2, ease: "power2.out", delay: 2.5 }
+        { opacity: 0.7, y: 0, duration: 2, ease: "power2.out", delay: 2.5 },
       );
       gsap.to(".ms-gulls", {
         y: -10,
@@ -193,7 +266,7 @@ const MapScene = () => {
           ease: "back.out(1.7)",
           stagger: 0.3,
           delay: 1.2,
-        }
+        },
       );
       gsap.to(".ms-sway", {
         rotation: 2,
@@ -216,113 +289,153 @@ const MapScene = () => {
       //   delay: 3,
       // });
     },
-    { scope: rootRef }
+    { scope: rootRef },
   );
 
   return (
     <div
       ref={rootRef}
-      className="absolute inset-0 overflow-hidden pointer-events-none select-none"
+      className="pointer-events-none absolute inset-0 overflow-hidden select-none"
       aria-hidden="true"
     >
       {/* ---------------- Sea side (Arabian Sea, left of the coastline) ---------------- */}
 
-      <div className="ms-boat absolute top-[10%] left-[20%] w-20 md:w-28 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)]">
-        <SailBoat className="w-full h-auto" />
+      <div className="ms-boat absolute top-[10%] left-[20%] w-20 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)] md:w-28">
+        <SailBoat className="h-auto w-full" />
       </div>
-      <div className="ms-boat absolute top-[70%] left-[7%] w-20 md:w-28 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)]">
-        <SailBoat className="w-full h-auto" />
+      <div className="ms-boat absolute top-[70%] left-[7%] w-20 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)] md:w-28">
+        <SailBoat className="h-auto w-full" />
       </div>
 
-      <div className="ms-ship absolute top-[58%] left-[22%] w-20 md:w-28 opacity-0">
-        <img src={shipSvg} alt="" className="w-full h-auto opacity-80" />
+      <div className="ms-ship absolute top-[58%] left-[22%] w-20 opacity-0 md:w-28">
+        <img src={shipSvg} alt="" className="h-auto w-full opacity-80" />
       </div>
 
       {/* drifting hand-drawn swells scattered over the open water */}
       <div className="ms-wave absolute top-[26%] left-[24%] w-20 text-[#5b77a8] opacity-60">
-        <Wave className="w-full h-auto" />
+        <Wave className="h-auto w-full" />
       </div>
       <div className="ms-wave absolute top-[16%] left-[32%] w-20 text-[#5b77a8] opacity-60">
-        <Wave className="w-full h-auto" />
+        <Wave className="h-auto w-full" />
       </div>
       <div className="ms-wave absolute top-[42%] left-[4%] w-16 text-[#5b77a8] opacity-50">
-        <Wave className="w-full h-auto" />
+        <Wave className="h-auto w-full" />
       </div>
       <div className="ms-wave absolute top-[68%] left-[31%] w-24 text-[#5b77a8] opacity-60">
-        <Wave className="w-full h-auto" />
+        <Wave className="h-auto w-full" />
       </div>
       <div className="ms-wave absolute top-[88%] left-[15%] w-20 text-[#5b77a8] opacity-50">
-        <Wave className="w-full h-auto" />
+        <Wave className="h-auto w-full" />
       </div>
       <div className="ms-wave absolute top-[95%] left-[25%] w-20 text-[#5b77a8] opacity-50">
-        <Wave className="w-full h-auto" />
+        <Wave className="h-auto w-full" />
       </div>
       <div className="ms-wave absolute top-[38%] left-[10%] w-20 text-[#5b77a8] opacity-50">
-        <Wave className="w-full h-auto" />
+        <Wave className="h-auto w-full" />
       </div>
       <div className="ms-wave absolute top-[48%] left-[10%] w-20 text-[#5b77a8] opacity-50">
-        <Wave className="w-full h-auto" />
+        <Wave className="h-auto w-full" />
       </div>
 
       {/* ---------------- Sky ---------------- */}
 
-      <div className="ms-flock absolute top-[6%] left-[52%] w-14 md:w-20 text-[#4E5157] opacity-0">
-        <Flock className="w-full h-auto" />
+      <div className="ms-flock absolute top-[6%] left-[52%] w-14 text-[#4E5157] opacity-0 md:w-20">
+        <Flock className="h-auto w-full" />
       </div>
-      <div className="ms-flock absolute top-[88%] left-[22%] w-14 md:w-20 text-[#4E5157] opacity-0">
-        <Flock className="w-full h-auto" />
+      <div className="ms-flock absolute top-[88%] left-[22%] w-14 text-[#4E5157] opacity-0 md:w-20">
+        <Flock className="h-auto w-full" />
       </div>
 
-      <div className="ms-gulls absolute top-[30%] left-[28%] w-10 md:w-14 text-[#41526e] opacity-0">
-        <Gulls className="w-full h-auto" />
+      <div className="ms-gulls absolute top-[30%] left-[28%] w-10 text-[#41526e] opacity-0 md:w-14">
+        <Gulls className="h-auto w-full" />
       </div>
-      <div className="ms-gulls absolute top-[50%] left-[28%] w-10 md:w-14 text-[#41526e] opacity-0">
-        <Gulls className="w-full h-auto" />
+      <div className="ms-gulls absolute top-[50%] left-[28%] w-10 text-[#41526e] opacity-0 md:w-14">
+        <Gulls className="h-auto w-full" />
       </div>
-      <div className="ms-gulls absolute top-[10%] left-[15%] w-10 md:w-14 text-[#41526e] opacity-0">
-        <Gulls className="w-full h-auto" />
+      <div className="ms-gulls absolute top-[10%] left-[15%] w-10 text-[#41526e] opacity-0 md:w-14">
+        <Gulls className="h-auto w-full" />
       </div>
 
       {/* ---------------- Land side (right of the coastline) ---------------- */}
 
       {/* Juhu beach scene, right on the shoreline */}
       <div className="ms-grow absolute top-[14%] left-[37%] w-28 md:w-40">
-        <img src={beachImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={beachImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
 
       {/* coastal palms further down the shoreline */}
       <div className="ms-grow ms-sway absolute top-[5%] left-[73%] w-12 md:w-16">
-        <img src={palmTreeImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={palmTreeImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
       <div className="ms-grow ms-sway absolute top-[6%] left-[41%] w-12 md:w-16">
-        <img src={palmTreeImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={palmTreeImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
       <div className="ms-grow ms-sway absolute top-[60%] left-[43%] w-12 md:w-16">
-        <img src={palmTreeImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={palmTreeImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
 
       {/* inland green pocket below Vile Parle */}
       <div className="ms-grow ms-sway absolute top-[11%] left-[86%] w-20 md:w-28">
-        <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={forestImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
       <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-20 md:w-28">
-        <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={forestImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
       <div className="ms-grow ms-sway absolute top-[71%] left-[73%] w-20 md:w-28">
-        <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={forestImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
 
       {/* Bandra greens near the southern coast */}
       <div className="ms-grow ms-sway absolute top-[82%] left-[56%] w-16 md:w-20">
-        <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={forestImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
       <div className="ms-grow ms-sway absolute top-[92%] left-[66%] w-16 md:w-20">
-        <img src={forestImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={forestImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
 
       {/* Bandra–Worli Sea Link reaching out over the water */}
       <div className="ms-grow absolute top-[80%] left-[36%] w-40 md:w-56 lg:w-32 2xl:w-45">
-        <img src={seaLinkImg} alt="" className="w-full h-auto mix-blend-multiply" />
+        <img
+          src={seaLinkImg}
+          alt=""
+          className="h-auto w-full mix-blend-multiply"
+        />
       </div>
     </div>
   );

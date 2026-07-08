@@ -100,7 +100,7 @@ const PanoViewer = ({
 
         const source = Marzipano.ImageUrlSource.fromString(
           `${pano.tilesUrl}/{z}/{f}/{y}/{x}.jpg`,
-          { cubeMapPreviewUrl: `${pano.tilesUrl}/preview.jpg` }
+          { cubeMapPreviewUrl: `${pano.tilesUrl}/preview.jpg` },
         );
         const geometry = new Marzipano.CubeGeometry(pano.levels);
 
@@ -112,7 +112,7 @@ const PanoViewer = ({
           limit.traditional(pano.faceSize, (100 * Math.PI) / 180, maxHfov),
           limitYawArc(yaw, half),
           limit.pitch(pitch - PITCH_HALF_RANGE, pitch + PITCH_HALF_RANGE),
-          limit.hfov(HFOV_MIN, maxHfov)
+          limit.hfov(HFOV_MIN, maxHfov),
         );
 
         const view = new Marzipano.RectilinearView({ ...pano.center }, limiter);
@@ -187,13 +187,12 @@ const PanoViewer = ({
       style={{ fontFamily: '"Times New Roman", Times, serif' }}
     >
       {/* top bar */}
-      <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-6 py-4 md:px-10">
+      <div className="absolute top-0 right-0 left-0 z-10 flex items-center justify-between px-6 py-4 md:px-10">
         <div className="text-[#142b53] drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-          <p className="text-[10px] uppercase tracking-[3px] text-[#142b53]">
+          <p className="text-[10px] tracking-[3px] text-[#142b53] uppercase">
             {buildingName} · Pano view
-           
           </p>
-          <h2 className="mt-0.5 font-serif text-2xl uppercase text-[#142b53] md:text-xl">
+          <h2 className="mt-0.5 font-serif text-2xl text-[#142b53] uppercase md:text-xl">
             {pano ? pano.name.split("·")[0].trim() : floorTitle}
           </h2>
         </div>
@@ -201,7 +200,7 @@ const PanoViewer = ({
         <button
           onClick={onClose}
           aria-label="Close 360° view"
-          className="group inline-flex items-center gap-2  border border-white/20 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white transition-colors hover:border-[#e8c879] hover:bg-[#e8c879]/10 hover:text-[#e8c879]"
+          className="group inline-flex items-center gap-2 border border-white/20 bg-white/10 px-4 py-2 text-xs tracking-[0.2em] text-white uppercase transition-colors hover:border-[#e8c879] hover:bg-[#e8c879]/10 hover:text-[#e8c879]"
         >
           Close
           <span className="text-sm leading-none transition-transform group-hover:rotate-90">
@@ -217,7 +216,7 @@ const PanoViewer = ({
 
           {loading && !failed && (
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-white/70">
-              <span className="text-[11px] uppercase tracking-[4px]">
+              <span className="text-[11px] tracking-[4px] uppercase">
                 Loading 360° view…
               </span>
             </div>
@@ -233,7 +232,7 @@ const PanoViewer = ({
             <MiniCompass
               yaw={toDeg(angles.yaw)}
               transitionMs={0}
-              className="pointer-events-none absolute bottom-6 left-6 z-10 h-16 w-16 lg:w-23 xl:w-25 2xl:w-35 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-28 md:w-28"
+              className="pointer-events-none absolute bottom-6 left-6 z-10 h-16 w-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-28 md:w-28 lg:w-23 xl:w-25 2xl:w-35"
             />
           )}
 
@@ -256,7 +255,7 @@ const PanoViewer = ({
               </button>
               <button
                 onClick={resetView}
-                className="px-3 text-xs uppercase tracking-wider text-white transition-colors hover:text-[#e8c879]"
+                className="px-3 text-xs tracking-wider text-white uppercase transition-colors hover:text-[#e8c879]"
               >
                 Reset
               </button>
@@ -271,7 +270,7 @@ const PanoViewer = ({
               </span>
               <button
                 onClick={copyConfig}
-                className="rounded-full px-3 py-1 text-xs uppercase tracking-wider text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
+                className="rounded-full px-3 py-1 text-xs tracking-wider text-white uppercase transition-colors hover:bg-white/15 hover:text-[#e8c879]"
               >
                 {copied ? "Copied!" : "Copy config"}
               </button>
@@ -281,10 +280,10 @@ const PanoViewer = ({
       ) : (
         /* floor has no pano yet */
         <div className="flex flex-1 flex-col items-center justify-center px-6 text-center text-white/80">
-          <p className="text-[11px] uppercase tracking-[4px] text-white/50">
+          <p className="text-[11px] tracking-[4px] text-white/50 uppercase">
             360° view coming soon
           </p>
-          <p className="mt-3 font-serif text-2xl italic text-[#e8c879]">
+          <p className="mt-3 font-serif text-2xl text-[#e8c879] italic">
             {floorTitle}
           </p>
           <p className="mt-2 text-sm text-white/60">

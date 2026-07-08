@@ -67,13 +67,22 @@ const MiniCompass = ({ yaw = 0, transitionMs = 0, className = "" }) => (
 
       {/* aged-paper disc (fixed) */}
       <circle cx="50" cy="50" r="48" fill="url(#mc-paper)" />
-      <circle cx="50" cy="50" r="47.4" fill="none" stroke={INK} strokeWidth="0.6" />
+      <circle
+        cx="50"
+        cy="50"
+        r="47.4"
+        fill="none"
+        stroke={INK}
+        strokeWidth="0.6"
+      />
 
       {/* rotating card — spins so the current heading reads under the top marker */}
       <g
         transform={`rotate(${-yaw} 50 50)`}
         style={{
-          transition: transitionMs ? `transform ${transitionMs}ms ease-out` : "none",
+          transition: transitionMs
+            ? `transform ${transitionMs}ms ease-out`
+            : "none",
         }}
       >
         {/* dotted outer rim */}
@@ -89,8 +98,22 @@ const MiniCompass = ({ yaw = 0, transitionMs = 0, className = "" }) => (
         />
 
         {/* degree band */}
-        <circle cx="50" cy="50" r="36" fill="none" stroke={INK} strokeWidth="0.4" />
-        <circle cx="50" cy="50" r="29" fill="none" stroke={INK} strokeWidth="0.4" />
+        <circle
+          cx="50"
+          cy="50"
+          r="36"
+          fill="none"
+          stroke={INK}
+          strokeWidth="0.4"
+        />
+        <circle
+          cx="50"
+          cy="50"
+          r="29"
+          fill="none"
+          stroke={INK}
+          strokeWidth="0.4"
+        />
 
         {TICKS.map((a) => {
           const major = a % 30 === 0;
@@ -138,7 +161,14 @@ const MiniCompass = ({ yaw = 0, transitionMs = 0, className = "" }) => (
         <Arm apex={35} half={3.8} rotate={315} />
 
         {/* centre hub */}
-        <circle cx="50" cy="50" r="3" fill={PAPER_HI} stroke={INK} strokeWidth="0.6" />
+        <circle
+          cx="50"
+          cy="50"
+          r="3"
+          fill={PAPER_HI}
+          stroke={INK}
+          strokeWidth="0.6"
+        />
         <circle cx="50" cy="50" r="1.2" fill={INK} />
 
         {/* serif cardinal letters, upright on the card */}

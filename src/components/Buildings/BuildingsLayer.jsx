@@ -24,7 +24,7 @@ const BuildingsLayer = () => {
           ease: "back.out(2)",
           stagger: 0.12,
           delay: 1.6,
-        }
+        },
       );
 
       // gentle infinite up/down drift once each pointer has popped in
@@ -41,11 +41,11 @@ const BuildingsLayer = () => {
       //   },
       // });
     },
-    { scope: layerRef }
+    { scope: layerRef },
   );
 
   return (
-    <div ref={layerRef} className="absolute inset-0 pointer-events-none">
+    <div ref={layerRef} className="pointer-events-none absolute inset-0">
       {BUILDINGS.map((building) => (
         <BuildingMarker key={building.id} building={building} />
       ))}

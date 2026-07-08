@@ -17,12 +17,13 @@ import BuildingTooltip from "./BuildingTooltip";
  * (use it for pointers near the top edge of the screen).
  */
 const BuildingMarker = ({ building }) => {
-  const { name, area, tagline, img, top, left, width, href, tooltip } = building;
+  const { name, area, tagline, img, top, left, width, href, tooltip } =
+    building;
   const popsUp = tooltip !== "bottom";
 
   return (
     <div
-      className="absolute z-10 group pointer-events-none hover:z-50"
+      className="group pointer-events-none absolute z-10 hover:z-50"
       style={{ top, left, transform: "translate(-50%, -50%)" }}
     >
       {/* gsap pops this in on load and floats it gently (see BuildingsLayer) */}
@@ -35,62 +36,41 @@ const BuildingMarker = ({ building }) => {
         >
           {/* expanding sonar rings, fade away while the popup is open */}
           <span className="bldg-ping absolute inset-0 rounded-full border border-[#b8860b]/70 transition-opacity duration-300 group-hover:opacity-0" />
-          <span className="bldg-ping absolute inset-0 rounded-full border border-[#b8860b]/70 [animation-delay:1.1s] transition-opacity duration-300 group-hover:opacity-0" />
+          <span className="bldg-ping absolute inset-0 rounded-full border border-[#b8860b]/70 transition-opacity duration-300 [animation-delay:1.1s] group-hover:opacity-0" />
 
           {/* soft golden halo, blooms while the popup is open */}
-          <span
-            className="absolute -inset-3 rounded-full pointer-events-none
-                       bg-[radial-gradient(circle,rgba(218,165,32,0.4)_0%,rgba(218,165,32,0)_70%)]
-                       transition-transform duration-500 group-hover:scale-150"
-          />
+          <span className="pointer-events-none absolute -inset-3 rounded-full bg-[radial-gradient(circle,rgba(218,165,32,0.4)_0%,rgba(218,165,32,0)_70%)] transition-transform duration-500 group-hover:scale-150" />
 
           {/* golden core with a paper rim and ink hairline */}
-          <span
-            className="absolute inset-0 rounded-full border-2 border-[#fdfaf3]
-                       bg-[radial-gradient(circle_at_35%_30%,#e8c879_0%,#b8860b_75%)]
-                       shadow-[0_0_0_1px_rgba(59,83,130,0.4),0_2px_6px_rgba(59,83,130,0.35)]
-                       transition-transform duration-300 group-hover:scale-110"
-          />
+          <span className="absolute inset-0 rounded-full border-2 border-[#fdfaf3] bg-[radial-gradient(circle_at_35%_30%,#e8c879_0%,#b8860b_75%)] shadow-[0_0_0_1px_rgba(59,83,130,0.4),0_2px_6px_rgba(59,83,130,0.35)] transition-transform duration-300 group-hover:scale-110" />
         </Link>
 
         {/* building name inked beneath the pointer, like a place label on an old map */}
         <p
-          className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap
-                      pointer-events-none select-none font-serif italic text-xs leading-none
-                      tracking-wide text-[#3b5382]
-                      [text-shadow:0_1px_0_rgba(253,250,243,0.9),0_0_6px_rgba(253,250,243,0.8)]
-                      transition-opacity duration-300
-                      ${popsUp ? "" : "group-hover:opacity-0"}`}
+          className={`pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 font-serif text-xs leading-none tracking-wide whitespace-nowrap text-[#3b5382] italic transition-opacity duration-300 select-none [text-shadow:0_1px_0_rgba(253,250,243,0.9),0_0_6px_rgba(253,250,243,0.8)] ${popsUp ? "" : "group-hover:opacity-0"}`}
         >
           {name}
         </p>
 
         {/* ── the popup: building rises out of the pointer on hover ── */}
         <div
-          className={`absolute left-1/2 -translate-x-1/2 flex items-center pointer-events-none
-                      opacity-0 scale-75 transition-all duration-500 ease-out
-                      group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
-                      ${
-                        popsUp
-                          ? "bottom-full flex-col origin-bottom translate-y-2 group-hover:translate-y-0"
-                          : "top-full flex-col-reverse origin-top -translate-y-2 group-hover:translate-y-0"
-                      }`}
+          className={`pointer-events-none absolute left-1/2 flex -translate-x-1/2 scale-75 items-center opacity-0 transition-all duration-500 ease-out group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100 ${
+            popsUp
+              ? "bottom-full origin-bottom translate-y-2 flex-col group-hover:translate-y-0"
+              : "top-full origin-top -translate-y-2 flex-col-reverse group-hover:translate-y-0"
+          }`}
           style={{ width: `calc(${width} * 2)` }}
         >
           <div className="relative w-full">
             {/* warm golden glow breathing behind the popped-up building */}
-            <div
-              className="bldg-glow absolute inset-[-25%] rounded-full pointer-events-none
-                         bg-[radial-gradient(circle,rgba(218,165,32,0.45)_0%,rgba(218,165,32,0)_70%)]"
-            />
+            <div className="bldg-glow pointer-events-none absolute inset-[-25%] rounded-full bg-[radial-gradient(circle,rgba(218,165,32,0.45)_0%,rgba(218,165,32,0)_70%)]" />
 
             <Link to={href} tabIndex={-1} className="block cursor-pointer">
               <img
                 src={img}
                 alt={name}
                 draggable="false"
-                className="relative w-full h-auto select-none
-                           drop-shadow-[0_14px_20px_rgba(59,83,130,0.35)]"
+                className="relative h-auto w-full drop-shadow-[0_14px_20px_rgba(59,83,130,0.35)] select-none"
               />
             </Link>
 

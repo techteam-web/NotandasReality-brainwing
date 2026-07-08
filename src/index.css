@@ -1,92 +1,94 @@
 @import "tailwindcss";
 
 body {
-    font-family: 'Time', 'timenow roman', sans-serif;
+  font-family: "Time", "timenow roman", sans-serif;
 }
 
 /* Golden glow breathing behind the popped-up building (see BuildingMarker) */
 @keyframes bldg-glow-pulse {
-    0%, 100% {
-        opacity: 0.5;
-        transform: scale(0.85);
-    }
-    50% {
-        opacity: 0.9;
-        transform: scale(1.05);
-    }
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
 }
 
 .bldg-glow {
-    animation: bldg-glow-pulse 2.4s ease-in-out infinite;
+  animation: bldg-glow-pulse 2.4s ease-in-out infinite;
 }
 
 /* Expanding golden sonar rings around each map pointer (see BuildingMarker) */
 @keyframes bldg-ping {
-    0% {
-        transform: scale(0.5);
-        opacity: 0.9;
-    }
-    100% {
-        transform: scale(2.6);
-        opacity: 0;
-    }
+  0% {
+    transform: scale(0.5);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
 }
 
 .bldg-ping {
-    animation: bldg-ping 2.2s ease-out infinite;
+  animation: bldg-ping 2.2s ease-out infinite;
 }
 
 /* Expanding ring on the "enter full screen" overlay (see FullscreenGate) */
 @keyframes fs-ring-pulse {
-    0% {
-        transform: scale(0.7);
-        opacity: 0.7;
-    }
-    100% {
-        transform: scale(1.5);
-        opacity: 0;
-    }
+  0% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
 .fs-ring {
-    animation: fs-ring-pulse 1.8s ease-out infinite;
+  animation: fs-ring-pulse 1.8s ease-out infinite;
 }
 
 /* Card rises into place when the full-screen overlay appears */
 @keyframes fs-rise {
-    from {
-        opacity: 0;
-        transform: translateY(16px) scale(0.98);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .fs-rise {
-    animation: fs-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fs-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Brand mark drifts gently on the full-screen overlay (see FullscreenGate) */
 @keyframes fs-float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .fs-float {
-    animation: fs-float 5.5s ease-in-out infinite;
+  animation: fs-float 5.5s ease-in-out infinite;
 }
 
 @theme {
-  --breakpoint-mob: 25rem;  /* 400px */
-  --breakpoint-3xl: 120rem;  /* 1920px */
-  --breakpoint-4xl: 160rem;  /* 2560px */
-  --breakpoint-5xl: 240rem;  /* 3840px */
+  --breakpoint-mob: 25rem; /* 400px */
+  --breakpoint-3xl: 120rem; /* 1920px */
+  --breakpoint-4xl: 160rem; /* 2560px */
+  --breakpoint-5xl: 240rem; /* 3840px */
 }
 
 /* Custom Scrollbar styled for the brand theme */
