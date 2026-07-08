@@ -76,6 +76,7 @@ const BuildingPage = () => {
     .flatMap((item) => item.split("|"))
     .map((item) => item.trim())
     .filter(Boolean);
+  const amenityRef = useRef(null);
   const hasAmenities = amenities.length > 0;
   const [active, setActive] = useState(null);
   const [selected, setSelected] = useState(null); // floor whose plan overlay is open
@@ -110,6 +111,32 @@ const BuildingPage = () => {
       });
     },
     { scope: headerRef },
+     
+    
+  );
+
+  useGSAP(
+   
+    () => {
+      const tl = gsap.timeline();
+      tl.from(amenityRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power4.out",
+        delay: 1.6, // wait for the page transition "ink" wave to recede
+      })
+       .from("li", {
+        y: 20,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "power4.out",
+     
+      });
+    },
+    { scope: amenityRef },
+    
   );
 
   /* ----- building art not added yet ----- */
@@ -276,6 +303,7 @@ const BuildingPage = () => {
 
       {hasAmenities && (
         <section
+          ref={amenityRef}
           className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} sm:w-[min(28rem,44vw) ] z-20 w-[calc(100%-2.5rem)] max-w-md border border-[#1f2a40]/15 bg-[#fdfaf3]/85 px-6 py-5 text-[#1f2a40] shadow-[0_10px_30px_rgba(31,42,64,0.10)] backdrop-blur-sm lg:bottom-15 lg:left-15 lg:h-52 lg:w-90 3xl:bottom-59 3xl:left-87 3xl:h-65`}
         >
           <p className="text-[11px] tracking-[0.42em] text-[#1f2a40]/70 uppercase">
