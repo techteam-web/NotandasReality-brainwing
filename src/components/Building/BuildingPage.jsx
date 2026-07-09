@@ -134,9 +134,10 @@ const BuildingPage = () => {
         ease: "power4.out",
      
       });
+      return () =>  tl.kill();
+
     },
     { scope: amenityRef },
-    
   );
 
   /* ----- building art not added yet ----- */
