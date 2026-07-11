@@ -69,7 +69,7 @@ const HomePage = () => {
       </div>
 
       {/* static compass rose — map decoration */}
-      <Compass className="absolute bottom-4 left-3 h-20 w-20 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-25 lg:w-23 xl:-bottom-20 xl:w-30 2xl:-bottom-8 2xl:left-3 2xl:w-40" />
+      <Compass className="absolute bottom-4 left-3 h-20 w-20 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-25 lg:w-23 xl:-bottom-17 xl:w-30 2xl:-bottom-8 2xl:left-3 2xl:w-40" />
     </div>
   );
 };
