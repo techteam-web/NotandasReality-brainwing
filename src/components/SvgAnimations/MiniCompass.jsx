@@ -114,6 +114,22 @@ const MiniCompass = ({ yaw = 0, transitionMs = 0, className = "" }) => (
           stroke={INK}
           strokeWidth="0.4"
         />
+        <circle
+          cx="50"
+          cy="50"
+          r="23.5"
+          fill="none"
+          stroke={INK}
+          strokeWidth="0.35"
+        />
+        <circle
+          cx="50"
+          cy="50"
+          r="16.5"
+          fill="none"
+          stroke={INK}
+          strokeWidth="0.3"
+        />
 
         {TICKS.map((a) => {
           const major = a % 30 === 0;
