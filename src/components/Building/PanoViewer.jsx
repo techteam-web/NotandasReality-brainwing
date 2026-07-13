@@ -247,18 +247,19 @@ const PanoViewer = ({
                 −
               </button>
               <button
+                onClick={resetView}
+                className="px-3 text-xs tracking-wider text-white uppercase transition-colors hover:text-[#e8c879]"
+              >
+                Reset
+              </button>
+              <button
                 onClick={() => zoom(0.87)}
                 aria-label="Zoom in"
                 className="flex h-9 w-9 items-center justify-center rounded-full text-lg text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
               >
                 +
               </button>
-              <button
-                onClick={resetView}
-                className="px-3 text-xs tracking-wider text-white uppercase transition-colors hover:text-[#e8c879]"
-              >
-                Reset
-              </button>
+              
 
               <span className="mx-1 hidden h-5 w-px bg-white/20 sm:block" />
 
