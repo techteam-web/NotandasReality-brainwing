@@ -50,11 +50,12 @@ const FloorPlanOverlay = ({
     buildingId,
     floor,
   );
-  // keep the plan's box at the exact same aspect ratio as its SVG viewBox, so
-  // the photo (object-contain) and the hover overlay (preserveAspectRatio
-  // "none") always scale identically — otherwise the box's rendered ratio can
-  // drift from the photo's native one under the h-[80vh]/max-w-[80vw] caps,
-  // letting the photo get cropped while the SVG keeps stretching uncropped.
+  // Size the plan box to the largest rectangle that matches the SVG viewBox's
+  // aspect ratio while fitting inside 80vw × 80vh. The width must be derived
+  // with min() — height:80vh + max-width:80vw distorts the box's ratio when
+  // the clamp kicks in (aspect-ratio only resolves the *auto* axis, so the
+  // explicit 80vh height never shrinks back), which made the photo letterbox
+  // while the overlay kept filling the full box on narrow/scaled screens.
   const [, , vbW, vbH] = viewBox ? viewBox.split(/\s+/).map(Number) : [];
   const planAspect = vbW && vbH ? vbW / vbH : null;
   // Some floors (e.g. Edge's terrace) have a 360° capture but no detailed plan
@@ -322,9 +323,12 @@ const FloorPlanOverlay = ({
                 transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
                 transition: dragging ? "none" : "transform 0.18s ease-out",
                 cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
-                height: "80vh",
-                maxWidth: "80vw",
-                aspectRatio: planAspect ?? undefined,
+                ...(planAspect
+                  ? {
+                      width: `min(80vw, ${80 * planAspect}vh)`,
+                      aspectRatio: planAspect,
+                    }
+                  : { height: "80vh", maxWidth: "80vw" }),
               }}
             >
               <img
@@ -337,7 +341,10 @@ const FloorPlanOverlay = ({
               {viewBox && regions.length > 0 && (
                 <svg
                   viewBox={viewBox}
-                  preserveAspectRatio="none"
+                  // "meet" letterboxes exactly like the photo's object-contain,
+                  // so the shapes stay glued to the image even if the box's
+                  // ratio ever drifts from the viewBox's ("none" would stretch)
+                  preserveAspectRatio="xMidYMid meet"
                   className="pointer-events-none absolute inset-0 h-full w-full"
                 >
                   {regions.map((r, i) => {
