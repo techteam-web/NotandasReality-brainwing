@@ -59,14 +59,14 @@ const MiniCompass = ({ yaw = 0, transitionMs = 0, className = "" }) => (
     <svg viewBox="0 0 100 100" width="100%" height="100%">
       <defs>
         <radialGradient id="mc-paper" cx="42%" cy="38%" r="68%">
-          <stop offset="0%" stopColor="#efe7d4" />
-          <stop offset="62%" stopColor="#e3d8bf" />
-          <stop offset="100%" stopColor="#cabd9d" />
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="62%" stopColor="#ffffff" />
+          <stop offset="100%" stopColor="#ffffff" />
         </radialGradient>
       </defs>
 
-      {/* aged-paper disc (fixed) */}
-      <circle cx="50" cy="50" r="48" fill="url(#mc-paper)" />
+      {/* white disc (fixed) */}
+      <circle cx="50" cy="50" r="48" fill="#ffffff" />
       <circle
         cx="50"
         cy="50"
