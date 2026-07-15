@@ -297,7 +297,7 @@ const FloorPlanOverlay = ({
           <button
             onClick={onClose}
             aria-label="Close floor plan"
-            className="absolute top-4 right-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#e5ad2b] hover:bg-[#c49833] md:top-4 md:right-10"
+            className="absolute group top-4 right-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#e5ad2b] hover:bg-[#c49833] md:top-4 md:right-10"
           >
             Close
             <span className="text-sm leading-none transition-transform group-hover:rotate-90">

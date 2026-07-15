@@ -36,17 +36,17 @@ const TICKS = Array.from({ length: 72 }, (_, i) => i * 5);
 // One arm of the star, pointing up; rotated into the four/eight directions.
 const Arm = ({ apex, half, rotate }) => (
   <g transform={`rotate(${rotate} 50 50)`}>
-    {/* leading half catches the light, trailing half is inked */}
+    {/* leading half is inked, trailing half catches the light */}
     <polygon
       points={`50,${apex} 50,50 ${50 - half},50`}
-      fill={PAPER_HI}
+      fill={INK}
       stroke={INK}
       strokeWidth="0.35"
       strokeLinejoin="round"
     />
     <polygon
       points={`50,${apex} 50,50 ${50 + half},50`}
-      fill={INK}
+      fill={PAPER_HI}
       stroke={INK}
       strokeWidth="0.35"
       strokeLinejoin="round"
