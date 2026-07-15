@@ -171,10 +171,10 @@ const MiniCompass = ({ yaw = 0, transitionMs = 0, className = "" }) => (
         <Arm apex={24} half={3.3} rotate={90} />
         <Arm apex={24} half={3.3} rotate={180} />
         <Arm apex={24} half={3.3} rotate={270} />
-        <Arm apex={35} half={3.8} rotate={45} />
-        <Arm apex={35} half={3.8} rotate={135} />
-        <Arm apex={35} half={3.8} rotate={225} />
-        <Arm apex={35} half={3.8} rotate={315} />
+        <Arm apex={32} half={3} rotate={45} />
+        <Arm apex={32} half={3} rotate={135} />
+        <Arm apex={32} half={3} rotate={225} />
+        <Arm apex={32} half={3} rotate={315} />
 
         {/* centre hub */}
         <circle
