@@ -54,19 +54,16 @@ const Arm = ({ apex, half, rotate }) => (
   </g>
 );
 
-const MiniCompass = ({ yaw = 0, transitionMs = 0, className = "" }) => (
+const MiniCompass = ({
+  yaw = 0,
+  transitionMs = 0,
+  className = "",
+  backgroundFill = "#ffffff",
+}) => (
   <div className={className}>
     <svg viewBox="0 0 100 100" width="100%" height="100%">
-      <defs>
-        <radialGradient id="mc-paper" cx="42%" cy="38%" r="68%">
-          <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="62%" stopColor="#ffffff" />
-          <stop offset="100%" stopColor="#ffffff" />
-        </radialGradient>
-      </defs>
-
-      {/* white disc (fixed) */}
-      <circle cx="50" cy="50" r="48" fill="#ffffff" />
+      {/* compass background disc */}
+      <circle cx="50" cy="50" r="48" fill={backgroundFill} />
       <circle
         cx="50"
         cy="50"
