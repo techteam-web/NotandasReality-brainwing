@@ -350,13 +350,13 @@ const BuildingPage = () => {
         />
       )}
 
-      {!selectedFloor && !panoFloor && (
+      {/* {!selectedFloor && !panoFloor && (
         <img
           src="/Brainwing-logo.webp"
           alt="Brainwing logo"
           className="pointer-events-none fixed top-18 left-3 z-50 w-9 opacity-70 sm:top-20 sm:left-4 sm:w-10 md:top-auto md:right-5 md:bottom-6 md:left-auto md:w-14 md:opacity-80 lg:right-6 lg:w-46 xl:right-7 xl:w-50"
         />
-      )}
+      )} */}
     </div>
   );
 };
