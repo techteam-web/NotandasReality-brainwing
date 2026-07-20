@@ -11,6 +11,8 @@ import terraceLogo from "../../assets/Buildings_Logo/notan Terraces logo.svg";
 import landsEndLogo from "../../assets/Buildings_Logo/notan Lands End logo.svg";
 import viewsLogo from "../../assets/Buildings_Logo/notan Views logo.svg";
 import finalLogo from "../../assets/Buildings_Logo/Notandas Final Logo.svg";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const BUILDING_LOGOS = {
   "notan-dc": dcLogo,
@@ -66,10 +68,23 @@ const FloorPlanOverlay = ({
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(null);
   const [dragging, setDragging] = useState(false);
+  const imgRef = useRef();
 
   const drag = useRef(null); // { startX, startY, originX, originY }
   const moved = useRef(false); // true once a drag actually pans, to swallow the click
   const activeFloorRef = useRef(null); // the open floor's button in the aside
+
+
+  useGSAP(() => {
+    if (!imgRef.current) return;
+    gsap.from(imgRef.current, { 
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.5,
+      ease: "power2.out",
+      
+    })
+  }, []);
 
   // close on Escape
   useEffect(() => {
@@ -160,8 +175,10 @@ const FloorPlanOverlay = ({
     setHovered(null);
     onSelectFloor?.(num);
   };
+  
 
   return (
+    
     <div
       className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm"
       style={{ fontFamily: "'Times New Roman', Times, serif" }}
@@ -309,7 +326,7 @@ const FloorPlanOverlay = ({
 
         {/* stage */}
         <div
-          className="relative flex flex-1 items-center justify-center overflow-hidden px-4 pb-24"
+          className="relative flex flex-1 items-center justify-center  overflow-hidden px-4 pb-24"
           onWheel={available ? onWheel : undefined}
         >
           {available ? (
@@ -332,6 +349,7 @@ const FloorPlanOverlay = ({
               }}
             >
               <img
+                ref={imgRef}
                 src={planImg}
                 alt={`${buildingName} ${floorTitle} plan`}
                 draggable="false"
