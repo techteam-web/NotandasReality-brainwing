@@ -232,12 +232,12 @@ const BuildingPage = () => {
       {/* back to map */}
       <Link
         to="/"
-        className="group absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-xl font-bold tracking-wide text-[#eab737] uppercase drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)] transition-colors hover:text-[#d9b55b] md:top-8 md:left-12"
+        className="group absolute top-6 left-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#e5ad2b] hover:bg-[#c49833] md:top-8 md:left-12"
       >
         <span className="transition-transform duration-300 group-hover:-translate-x-1">
           ←
         </span>
-        Back to map
+        Back
       </Link>
 
       {/* big centered project title */}

@@ -162,7 +162,7 @@ const FloorPlanOverlay = ({
   const orderedFloors = [...floors].sort((a, b) => floorRank(b) - floorRank(a));
   const floorTag = (f) =>
     f.isTerrace
-      ? "TERRECE"
+      ? "TERRACE"
       : f.isGround
         ? "GROUND FLOOR"
         : `${String(f.num).padStart(2, "0")}F`;

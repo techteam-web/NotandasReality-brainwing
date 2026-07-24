@@ -53,7 +53,7 @@ export const BUILDINGS = [
   },
   {
     id: "notan-space",
-    name: "Notan Space",
+    name: "Notan Spaces",
     area: "Santacruz East",
     tagline: "The Architecture of Ambition.",
     img: notanSpace,
@@ -76,7 +76,7 @@ export const BUILDINGS = [
   },
   {
     id: "notan-terrace",
-    name: "Notan Terrace",
+    name: "Notan Terraces",
     area: "Juhu",
     tagline: "Evenings that open outward.",
     img: notanTerrace,
