@@ -326,7 +326,7 @@ const FloorPlanOverlay = ({
 
         {/* stage */}
         <div
-          className="relative flex flex-1 items-center justify-center  overflow-hidden px-4 pb-24"
+          className="relative flex flex-1 items-center justify-center  overflow-hidden px-4 pb-14"
           onWheel={available ? onWheel : undefined}
         >
           {available ? (
@@ -427,7 +427,7 @@ const FloorPlanOverlay = ({
 
           {/* zoom toolbar */}
           {available && (
-            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100">
+            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 xl:h-13 xl:-bottom-px 2xl:bottom-2 3xl:bottom-3">
               <button
                 onClick={zoomOut}
                 aria-label="Zoom out"

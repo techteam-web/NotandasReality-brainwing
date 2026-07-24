@@ -238,24 +238,24 @@ const PanoViewer = ({
 
           {/* bottom toolbar */}
           {!failed && (
-            <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-wrap items-center justify-center gap-1 rounded-full border border-white/20 bg-black/45 p-1.5 backdrop-blur-md">
+            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 xl:h-13 xl:-bottom-px 2xl:bottom-2 3xl:bottom-3">
               <button
                 onClick={() => zoom(1.15)}
                 aria-label="Zoom out"
-                className="flex h-9 w-9 items-center justify-center rounded-full text-lg text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
               >
                 −
               </button>
               <button
                 onClick={resetView}
-                className="px-3 text-xs tracking-wider text-white uppercase transition-colors hover:text-[#e8c879]"
+                className="px-3 text-xs tracking-wider  uppercase transition-colors hover:bg-[#c49833] text-[#212C42]"
               >
                 Reset
               </button>
               <button
                 onClick={() => zoom(0.87)}
                 aria-label="Zoom in"
-                className="flex h-9 w-9 items-center justify-center rounded-full text-lg text-white transition-colors hover:bg-white/15 hover:text-[#e8c879]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
               >
                 +
               </button>
@@ -264,14 +264,14 @@ const PanoViewer = ({
               <span className="mx-1 hidden h-5 w-px bg-white/20 sm:block" />
 
               {/* live angles — read these off to tune FLOOR_PANO_MAP */}
-              <span className="hidden px-2 font-mono text-[11px] tracking-wide text-white/70 sm:inline">
+              <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
                 yaw {Math.round(toDeg(angles.yaw))}° · pitch{" "}
                 {Math.round(toDeg(angles.pitch))}° · fov{" "}
                 {Math.round(toDeg(angles.fov))}°
               </span>
               <button
                 onClick={copyConfig}
-                className="rounded-full px-3 py-1 text-xs tracking-wider text-white uppercase transition-colors hover:bg-white/15 hover:text-[#e8c879]"
+                className="rounded-full px-3 py-1 text-xs tracking-wider uppercase transition-colors bg-white/15 hover:text-[#e8c879]"
               >
                 {copied ? "Copied!" : "Copy config"}
               </button>
