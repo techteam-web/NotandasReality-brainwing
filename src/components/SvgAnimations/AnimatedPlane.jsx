@@ -99,7 +99,7 @@ const AnimatedPlane = ({ className }) => {
         <path
           ref={pathRef}
           d="M -50 180 Q 150 150 280 100"
-          stroke="#4f5479" /* lighter stroke color */
+          stroke="#6f7f95" /* lighter stroke color */
           strokeWidth="0.5" /* thinner stroke */
           strokeLinecap="round"
           strokeDasharray="1" /* subtler dash */

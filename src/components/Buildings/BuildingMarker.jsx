@@ -8,10 +8,10 @@ import BuildingTooltip from "./BuildingTooltip";
  * buildingsData.js — they mark exactly where the pointer sits, so
  * adjust those values to reposition it.
  *
- * At rest: a small golden beacon pulses on the map, sending out soft
+ * At rest: a small blue-gray beacon pulses on the map, sending out soft
  * sonar rings like a marked spot on an old chart.
  * Hover: the building pops up out of the pointer on a dashed ink stem,
- * a warm golden glow breathes behind it and the map-card tooltip
+ * a cool blue glow breathes behind it and the map-card tooltip
  * unfolds with name, area, tagline and a link to its views page.
  * `tooltip: "bottom"` hangs the whole popup below the pointer instead
  * (use it for pointers near the top edge of the screen).
@@ -28,26 +28,26 @@ const BuildingMarker = ({ building }) => {
     >
       {/* gsap pops this in on load and floats it gently (see BuildingsLayer) */}
       <div className="bldg-pop relative h-5 w-5">
-        {/* ── the pointer: a small golden beacon ── */}
+        {/* ── the pointer: a small blue-gray beacon ── */}
         <Link
           to={href}
           aria-label={`View ${name}`}
           className="pointer-events-auto relative block h-full w-full cursor-pointer"
         >
           {/* expanding sonar rings, fade away while the popup is open */}
-          <span className="bldg-ping absolute inset-0 rounded-full border border-[#b8860b]/70 transition-opacity duration-300 group-hover:opacity-0" />
-          <span className="bldg-ping absolute inset-0 rounded-full border border-[#b8860b]/70 transition-opacity duration-300 [animation-delay:1.1s] group-hover:opacity-0" />
+          <span className="bldg-ping absolute inset-0 rounded-full border border-[#6f7f95]/70 transition-opacity duration-300 group-hover:opacity-0" />
+          <span className="bldg-ping absolute inset-0 rounded-full border border-[#6f7f95]/70 transition-opacity duration-300 [animation-delay:1.1s] group-hover:opacity-0" />
 
-          {/* soft golden halo, blooms while the popup is open */}
-          <span className="pointer-events-none absolute -inset-3 rounded-full bg-[radial-gradient(circle,rgba(218,165,32,0.4)_0%,rgba(218,165,32,0)_70%)] transition-transform duration-500 group-hover:scale-150" />
+          {/* soft blue halo, blooms while the popup is open */}
+          <span className="pointer-events-none absolute -inset-3 rounded-full bg-[radial-gradient(circle,rgba(94,109,133,0.42)_0%,rgba(94,109,133,0)_70%)] transition-transform duration-500 group-hover:scale-150" />
 
-          {/* golden core with a paper rim and ink hairline */}
-          <span className="absolute inset-0 rounded-full border-2 border-[#fdfaf3] bg-[radial-gradient(circle_at_35%_30%,#e8c879_0%,#b8860b_75%)] shadow-[0_0_0_1px_rgba(59,83,130,0.4),0_2px_6px_rgba(59,83,130,0.35)] transition-transform duration-300 group-hover:scale-110" />
+          {/* cool core with a light rim and ink hairline */}
+          <span className="absolute inset-0 rounded-full border-2 border-[#f5f7fb] bg-[radial-gradient(circle_at_35%_30%,#8ea2bf_0%,#4e667f_75%)] shadow-[0_0_0_1px_rgba(78,81,87,0.42),0_2px_6px_rgba(78,81,87,0.34)] transition-transform duration-300 group-hover:scale-110" />
         </Link>
 
         {/* building name inked beneath the pointer, like a place label on an old map */}
         <p
-          className={`pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 font-serif text-xs leading-none tracking-wide whitespace-nowrap text-[#3b5382] italic transition-opacity duration-300 select-none [text-shadow:0_1px_0_rgba(253,250,243,0.9),0_0_6px_rgba(253,250,243,0.8)] ${popsUp ? "" : "group-hover:opacity-0"}`}
+          className={`pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 font-serif text-xs leading-none tracking-wide whitespace-nowrap text-[#4E5157] italic transition-opacity duration-300 select-none [text-shadow:0_1px_0_rgba(245,247,251,0.9),0_0_6px_rgba(245,247,251,0.8)] ${popsUp ? "" : "group-hover:opacity-0"}`}
         >
           {name}
         </p>
@@ -62,15 +62,15 @@ const BuildingMarker = ({ building }) => {
           style={{ width: `calc(${width} * 2)` }}
         >
           <div className="relative w-full">
-            {/* warm golden glow breathing behind the popped-up building */}
-            <div className="bldg-glow pointer-events-none absolute inset-[-25%] rounded-full bg-[radial-gradient(circle,rgba(218,165,32,0.45)_0%,rgba(218,165,32,0)_70%)]" />
+            {/* cool blue glow breathing behind the popped-up building */}
+            <div className="bldg-glow pointer-events-none absolute inset-[-25%] rounded-full bg-[radial-gradient(circle,rgba(94,109,133,0.46)_0%,rgba(94,109,133,0)_70%)]" />
 
             <Link to={href} tabIndex={-1} className="block cursor-pointer">
               <img
                 src={img}
                 alt={name}
                 draggable="false"
-                className="relative h-auto w-full drop-shadow-[0_14px_20px_rgba(59,83,130,0.35)] select-none"
+                className="relative h-auto w-full drop-shadow-[0_14px_20px_rgba(78,81,87,0.34)] select-none"
               />
             </Link>
 
@@ -84,7 +84,7 @@ const BuildingMarker = ({ building }) => {
           </div>
 
           {/* dashed ink stem tying the building to its pointer */}
-          <div className="h-5 border-l-2 border-dashed border-[#3b5382]/50" />
+          <div className="h-5 border-l-2 border-dashed border-[#4E5157]/50" />
         </div>
       </div>
     </div>

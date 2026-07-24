@@ -304,12 +304,9 @@ const MapScene = () => {
         <SailBoat className="h-auto w-full" />
       </div>
       <div className="ms-boat absolute top-[70%] left-[7%] w-20 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)] md:w-28">
-        <SailBoat className="h-auto w-full" />
+         <img src={shipSvg} alt="" className="h-auto w-full opacity-80" />
       </div>
 
-      <div className="ms-ship absolute top-[58%] left-[22%] w-20 opacity-0 md:w-28">
-        <img src={shipSvg} alt="" className="h-auto w-full opacity-80" />
-      </div>
 
       {/* drifting hand-drawn swells scattered over the open water */}
       <div className="ms-wave absolute top-[26%] left-[24%] w-20 text-[#5b77a8] opacity-60">
@@ -358,14 +355,7 @@ const MapScene = () => {
 
       {/* ---------------- Land side (right of the coastline) ---------------- */}
 
-      {/* Juhu beach scene, right on the shoreline */}
-      <div className="ms-grow absolute top-[14%] left-[37%] w-28 md:w-40">
-        <img
-          src={beachImg}
-          alt=""
-          className="h-auto w-full mix-blend-multiply"
-        />
-      </div>
+     
 
       {/* coastal palms further down the shoreline */}
       <div className="ms-grow ms-sway absolute top-[5%] left-[73%] w-12 md:w-16">
@@ -395,21 +385,21 @@ const MapScene = () => {
         <img
           src={forestImg}
           alt=""
-          className="h-auto w-full mix-blend-multiply"
+          className="h-22 w-full mix-blend-multiply"
         />
       </div>
       <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-20 md:w-28">
         <img
           src={forestImg}
           alt=""
-          className="h-auto w-full mix-blend-multiply"
+          className="h-20 w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[71%] left-[73%] w-20 md:w-28">
+      <div className="ms-grow ms-sway absolute top-[71%] left-[73%] w-20 md:w-38 ">
         <img
           src={forestImg}
           alt=""
-          className="h-auto w-full mix-blend-multiply"
+          className="h-22 w-full mix-blend-multiply"
         />
       </div>
 
@@ -418,14 +408,14 @@ const MapScene = () => {
         <img
           src={forestImg}
           alt=""
-          className="h-auto w-full mix-blend-multiply"
+          className="h-18 w-full mix-blend-multiply"
         />
       </div>
       <div className="ms-grow ms-sway absolute top-[92%] left-[66%] w-16 md:w-20">
         <img
           src={forestImg}
           alt=""
-          className="h-auto w-full mix-blend-multiply"
+          className="h-18 w-full mix-blend-multiply"
         />
       </div>
 

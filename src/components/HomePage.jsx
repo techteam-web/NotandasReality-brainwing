@@ -34,16 +34,16 @@ const HomePage = () => {
       <BuildingsLayer />
 
       <div className="relative">
-        <NuthandasLogoAnimated className="relative h-50 w-48 cursor-pointer transition-all duration-500 hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(218,165,32,0.7)] md:w-74 lg:left-10 lg:w-30 xl:left-10 xl:w-30" />
+        <NuthandasLogoAnimated className="relative h-50 w-48 cursor-pointer transition-all duration-500  md:w-74 lg:left-10 lg:w-30 xl:left-10 xl:w-30" />
       </div>
 
       <div className="absolute right-27 bottom-[50%]">
-        <div className="mb-15 ml-15 h-16 w-36">
+        <div className="mb-15 ml-15 h-16 w-36 opacity-70">
           <AnimatedPlane />
         </div>
 
         <h1
-          className="text-sm font-semibold text-[#7a7c80] uppercase lg:text-[12px]"
+          className="text-sm font-semibold text-[#A7B0BE] uppercase tracking-widest lg:text-[12px] "
           style={{ fontFamily: "'Times New Roman', Times, serif" }}
         >
           chhatrapati <br />
@@ -53,7 +53,7 @@ const HomePage = () => {
       </div>
 
       <h1
-        className="absolute top-[95%] left-[43%] text-sm font-semibold text-[#7a7c80] uppercase lg:text-[11px]"
+        className="absolute top-[95%] left-[43%] text-sm font-semibold text-[#A7B0BE] uppercase lg:text-[11px] opacity-75"
         style={{ fontFamily: "'Times New Roman', Times, serif" }}
       >
         bandra worli <br />
@@ -74,7 +74,8 @@ const HomePage = () => {
 
       <MiniCompass
         backgroundFill="none"
-        className="absolute bottom-4 left-3 h-20 w-20 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-15 lg:w-15 xl:-bottom-14 xl:w-20 2xl:-bottom-10 2xl:left-7 2xl:w-25"
+        showMarker={false}
+        className="absolute bottom-4 left-3 h-20 w-20  drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-15 lg:w-15 xl:-bottom-14 xl:w-20 2xl:-bottom-10 2xl:left-7 2xl:w-25"
       />
     </div>
   );

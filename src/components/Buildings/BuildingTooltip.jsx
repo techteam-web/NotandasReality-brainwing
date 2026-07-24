@@ -2,8 +2,8 @@ import { Link } from "react-router";
 
 /**
  * Vintage map-card tooltip that appears when a building is hovered.
- * Looks like a small paper label pinned onto the map: cream paper,
- * ink-blue hairline borders, serif italic name and a hand-dashed divider.
+ * Looks like a small paper label pinned onto the map: cool paper,
+ * slate hairline borders, serif italic name and a hand-dashed divider.
  * Renders above the building by default; pass position="bottom" to flip it.
  */
 const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
@@ -19,18 +19,18 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
     >
       {/* arrow pointing at the building (rendered first when card sits below) */}
       {!onTop && (
-        <div className="mx-auto -mb-1.5 h-3 w-3 rotate-45 border-t border-l border-[#3b5382]/35 bg-[#fdfaf3]" />
+        <div className="mx-auto -mb-1.5 h-3 w-3 rotate-45 border-t border-l border-[#4E5157]/35 bg-[#f5f7fb]" />
       )}
 
-      <div className="relative -rotate-1 rounded-sm border border-[#3b5382]/35 bg-[#fdfaf3]/95 px-4 py-3 shadow-[0_12px_30px_rgba(59,83,130,0.25)] backdrop-blur-[2px] transition-transform duration-300 group-hover:rotate-0">
+      <div className="relative -rotate-1 rounded-sm border border-[#4E5157]/35 bg-[#f5f7fb]/95 px-4 py-3 shadow-[0_12px_30px_rgba(78,81,87,0.25)] backdrop-blur-[2px] transition-transform duration-300 group-hover:rotate-0">
         {/* inner hairline frame, like an old map legend box */}
-        <div className="pointer-events-none absolute inset-1 rounded-[1px] border border-[#3b5382]/15" />
+        <div className="pointer-events-none absolute inset-1 rounded-[1px] border border-[#4E5157]/15" />
 
         <p className="text-[10px] tracking-[3px] text-[#4E5157]/80 uppercase">
           ◈ {area}
         </p>
 
-        <h3 className="mt-0.5 font-serif text-lg leading-tight text-[#3b5382] italic">
+        <h3 className="mt-0.5 font-serif text-lg leading-tight text-[#4E5157] italic">
           {name}
         </h3>
 
@@ -38,11 +38,11 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
           {tagline}
         </p>
 
-        <div className="my-2 border-t border-dashed border-[#3b5382]/30" />
+        <div className="my-2 border-t border-dashed border-[#4E5157]/30" />
 
         <Link
           to={href}
-          className="group/link inline-flex items-center gap-1.5 text-[11px] font-medium tracking-wide text-[#3b5382] transition-colors duration-300 hover:text-[#b8860b]"
+          className="group/link inline-flex items-center gap-1.5 text-[11px] font-medium tracking-wide text-[#4E5157] transition-colors duration-300 hover:text-[#6f7f95]"
         >
           View Project
           <span className="transition-transform duration-300 group-hover/link:translate-x-1">
@@ -52,7 +52,7 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
       </div>
 
       {onTop && (
-        <div className="mx-auto -mt-1.5 h-3 w-3 rotate-45 border-r border-b border-[#3b5382]/35 bg-[#fdfaf3]" />
+        <div className="mx-auto -mt-1.5 h-3 w-3 rotate-45 border-r border-b border-[#4E5157]/35 bg-[#f5f7fb]" />
       )}
     </div>
   );
