@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import brandLogo from "../assets/notandaslogo.svg";
 import fullscreenBg from "../assets/fullscreengatebg.png";
 
-// Watercolour paper backdrop bundled from /src/assets. The CSS wash below
-// stands in underneath it so the paper feels continuous if the image fails.
+// Soft atmospheric backdrop bundled from /src/assets. The gradients below
+// stand in underneath it so the page still feels layered if the image fails.
 const BG_SRC = fullscreenBg;
 
 // ---- cross-browser fullscreen helpers -------------------------------------
@@ -41,9 +41,9 @@ const ExpandIcon = ({ className }) => (
   </svg>
 );
 
-// Hand-drawn gold underline — the same loose double-stroke swoosh used beneath
-// the floor titles in the plan overlay (see FloorPlanOverlay design language)
-const GoldUnderline = ({ className }) => (
+// Cool underline gesture that echoes the layered atmosphere used elsewhere on
+// the page without leaning on warm metallic accents.
+const AccentUnderline = ({ className }) => (
   <svg
     viewBox="0 0 240 20"
     className={className}
@@ -53,13 +53,13 @@ const GoldUnderline = ({ className }) => (
   >
     <path
       d="M5 11 C 55 4, 120 4, 165 8 C 200 11, 222 9, 235 6"
-      stroke="#c79a3a"
+      stroke="#6f7f95"
       strokeWidth="3"
       strokeLinecap="round"
     />
     <path
       d="M22 16 C 80 12, 150 13, 214 13"
-      stroke="#c79a3a"
+      stroke="#4e5157"
       strokeWidth="1.4"
       strokeLinecap="round"
       opacity="0.5"
@@ -71,21 +71,21 @@ const serif = { fontFamily: "'Times New Roman', Times, serif" };
 
 const Overlay = ({ onEnter }) => (
   <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden">
-    {/* CSS watercolour wash — stands in until /public/fullscreen_bg.png exists,
-        and shows through the panel either way so the paper feels continuous */}
+    {/* Deep atmospheric wash that keeps the page in the requested blue-gray
+        family even if the backdrop image is unavailable. */}
     <div
-      className="absolute inset-0 bg-[#f4efe3]"
+      className="absolute inset-0 bg-[#070B17]"
       style={{
         background:
-          "radial-gradient(120% 90% at 88% 8%, rgba(150,182,214,0.30), transparent 42%)," +
-          "radial-gradient(90% 80% at 6% 78%, rgba(150,182,214,0.34), transparent 46%)," +
-          "radial-gradient(70% 60% at 50% 110%, rgba(214,182,138,0.28), transparent 55%)," +
-          "linear-gradient(180deg, #f6f1e7 0%, #f3eee2 55%, #efe7d6 100%)",
+          "radial-gradient(120% 90% at 88% 8%, rgba(84,101,126,0.32), transparent 42%)," +
+          "radial-gradient(90% 80% at 6% 78%, rgba(48,63,87,0.38), transparent 46%)," +
+          "radial-gradient(70% 60% at 50% 110%, rgba(78,81,87,0.22), transparent 55%)," +
+          "linear-gradient(180deg, #070B17 0%, #0A1020 52%, #11192B 100%)",
       }}
     />
 
-    {/* the actual watercolour sheet (full-bleed). Hides itself cleanly if the
-        file hasn't been added yet, falling back to the wash above */}
+    {/* The backdrop image sits under the wash and quietly falls away if the
+        asset is missing. */}
     <img
       src={BG_SRC}
       alt=""
@@ -97,7 +97,7 @@ const Overlay = ({ onEnter }) => (
       className="pointer-events-none absolute inset-0 h-full w-full object-cover select-none"
     />
 
-    {/* gentle cream vignette to seat the panel and keep the text legible */}
+    {/* Subtle vignette to keep the central panel readable. */}
     <div
       className="pointer-events-none absolute inset-0"
       style={{
@@ -111,13 +111,13 @@ const Overlay = ({ onEnter }) => (
       {/* fine gold double keyline, like the framed floor-plan sheets */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-2 rounded-[10px] border border-[rgba(184,134,11,0.28)]"
+        className="pointer-events-none absolute inset-2 rounded-[10px] border border-[rgba(117,129,150,0.26)]"
       />
-      {/* faint gold sheen bleeding down from the top, as in the plan aside */}
-      <span className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-linear-to-b from-[#e8c879]/20 to-transparent" />
+      {/* Cool top sheen. */}
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-linear-to-b from-[#4E5157]/18 via-[#2f3e58]/10 to-transparent" />
 
       <div className="relative flex flex-col items-center">
-        {/* brand mark */}
+        {/* Brand mark */}
         <img
           src={brandLogo}
           alt="Notandas Realty"
@@ -125,35 +125,35 @@ const Overlay = ({ onEnter }) => (
           draggable="false"
         />
 
-        {/* italic serif heading with the hand-drawn gold underline */}
+        {/* Serif heading with a cool underline accent. */}
         <div className="relative inline-block">
           <h2
-            className="text-3xl tracking-wide text-[#1f2a40] italic md:text-[2.6rem] md:leading-tight"
+            className="text-3xl tracking-wide text-[#4E5157] italic md:text-[2.6rem] md:leading-tight"
             style={serif}
           >
             Best Viewed in Full Screen
           </h2>
-          <GoldUnderline className="absolute -bottom-3 left-1/2 h-4 w-[78%] -translate-x-1/2" />
+          <AccentUnderline className="absolute -bottom-7 left-1/2 h-4 w-[78%] -translate-x-1/2" />
         </div>
 
-        {/* slim diamond divider */}
+        {/* Slim divider. */}
         <div className="mt-9 mb-6 flex items-center gap-3" aria-hidden="true">
-          <span className="h-px w-12 bg-[rgba(184,134,11,0.45)]" />
-          <span className="h-1.5 w-1.5 rotate-45 bg-[#b8860b]" />
-          <span className="h-px w-12 bg-[rgba(184,134,11,0.45)]" />
+          {/* <span className="h-px w-12 bg-[rgba(117,129,150,0.45)]" />
+          <span className="h-1.5 w-1.5 rotate-45 bg-[#4E5157]" />
+          <span className="h-px w-12 bg-[rgba(117,129,150,0.45)]" /> */}
         </div>
 
         <button
           onClick={onEnter}
           onTouchEnd={onEnter}
-          className="group inline-flex items-center gap-2.5 rounded-full border border-[#b8860b] bg-[#b8860b] px-9 py-3.5 text-xs font-semibold tracking-[0.26em] text-[#faf6ed] uppercase shadow-[0_12px_28px_-12px_rgba(184,134,11,0.7)] transition-all duration-300 hover:border-[#8f6708] hover:bg-[#8f6708] hover:shadow-[0_16px_34px_-12px_rgba(184,134,11,0.8)] active:translate-y-px"
+          className="group inline-flex items-center gap-2.5 rounded-full border border-[rgba(117,129,150,0.34)] bg-[linear-gradient(180deg,#1A2334_0%,#11192B_100%)] px-9 py-3.5 text-xs font-semibold tracking-[0.26em] text-[#E6EAF0] uppercase shadow-[0_12px_28px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-[rgba(152,165,188,0.5)] hover:bg-[linear-gradient(180deg,#202A3E_0%,#151D2F_100%)] hover:shadow-[0_16px_34px_-12px_rgba(0,0,0,0.82)] active:translate-y-px"
           style={serif}
         >
           <ExpandIcon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
           Enter Full Screen
         </button>
 
-        <p className="mt-7 text-[11px] tracking-[0.32em] text-[#a89c83] uppercase">
+        <p className="mt-7 text-[11px] tracking-[0.32em] text-[#6b6f76] uppercase">
           Press Esc to exit
         </p>
       </div>
