@@ -2,28 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { getFloorPlan } from "./floorPlansData";
 import { getFloorPano } from "./panoData";
 import notanMap from "../../assets/floorplanoverbg.png";
-import brandLogo from "../../assets/notandaslogo.svg";
-import dcLogo from "../../assets/Buildings_Logo/notan D.C. logo.svg";
-import edgeLogo from "../../assets/Buildings_Logo/notan edge logo.svg";
-import jewelLogo from "../../assets/Buildings_Logo/notan jewel logo.svg";
-import spaceLogo from "../../assets/Buildings_Logo/notan spaces.svg";
-import terraceLogo from "../../assets/Buildings_Logo/notan Terraces logo.svg";
-import landsEndLogo from "../../assets/Buildings_Logo/notan Lands End logo.svg";
-import viewsLogo from "../../assets/Buildings_Logo/notan Views logo.svg";
-import finalLogo from "../../assets/Buildings_Logo/Notandas Final Logo.svg";
+import NotandasNMark from "../SvgAnimations/NotandasNMark";
+import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "./buildingLogos";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-
-const BUILDING_LOGOS = {
-  "notan-dc": dcLogo,
-  "notan-edge": edgeLogo,
-  "notan-jewel": jewelLogo,
-  "notan-space": spaceLogo,
-  "notan-terrace": terraceLogo,
-  "notan-lands-end": landsEndLogo,
-  "notan-views": viewsLogo,
-  "notan-crown": finalLogo,
-};
 
 /**
  * Full-screen overlay that opens when a floor is clicked on the BuildingPage.
@@ -47,7 +29,8 @@ const FloorPlanOverlay = ({
   onOpenPano,
   onClose,
 }) => {
-  const logoSrc = BUILDING_LOGOS[buildingId] || brandLogo;
+  const logoSrc = BUILDING_LOGOS[buildingId] ?? null;
+  const logoIsTight = TIGHT_CROPPED_LOGOS.has(buildingId);
   const { available, planImg, viewBox, regions } = getFloorPlan(
     buildingId,
     floor,
@@ -165,7 +148,7 @@ const FloorPlanOverlay = ({
       ? "TERRACE"
       : f.isGround
         ? "GROUND FLOOR"
-        : `${String(f.num).padStart(2, "0")}F`;
+        : `${String(f.num).padStart(2, "0")}FLOOR`;
 
   // switch the plan to another floor, resetting the zoom/pan first
   const changeFloor = (num) => {
@@ -193,26 +176,32 @@ const FloorPlanOverlay = ({
       />
 
       {/* floor selector aside — switch the plan without leaving the overlay */}
-      <aside className="from-gray relative flex w-20 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/10 bg-linear-to-b via-[#cad1d6] to-[#c3c7c7] md:w-36">
-        {/* faint gold sheen bleeding down from the top */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-[#e8c879]/20 to-transparent" />
+      <aside className="from-gray relative flex w-24 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/12 bg-linear-to-b via-[#cad1d6] to-[#c3c7c7] md:w-44">
+        {/* faint blue-gray sheen bleeding down from the top */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-[#4E5157]/18 to-transparent" />
 
         {/* header */}
         <div className="relative px-4 pt-6 pb-4">
-          <img
-            src={logoSrc}
-            alt={buildingName}
-            className="h-10 w-auto opacity-90 md:h-39"
-          />
-          <span className="mt-3 block h-px w-8 bg-linear-to-r from-[#b8860b] to-transparent" />
+          {logoSrc ? (
+            <img
+              src={logoSrc}
+              alt={buildingName}
+              className={`mx-auto w-auto max-w-full opacity-95 ${
+                logoIsTight ? "h-10 md:h-12" : "h-20 md:h-24"
+              }`}
+            />
+          ) : (
+            <NotandasNMark
+              className="mx-auto h-20 w-20 opacity-95 md:h-24 md:w-24"
+              aria-label={buildingName}
+            />
+          )}
+          <span className="mt-3 block h-px w-8 bg-linear-to-r from-[#4E5157] to-transparent" />
         </div>
 
         {/* floor list — stacked as nodes on a vertical "elevator shaft" rail */}
         <div className="custom-scrollbar relative flex-1 overflow-y-auto px-3 pt-1 pb-4">
           <div className="relative">
-            {/* the rail itself, gold-tipped at the top */}
-            <span className="bg-linear-to-brom-[#b8860b]/60 pointer-events-none absolute inset-y-2 left-3 w-px via-[#d7bf78]/20 to-transparent" />
-
             {orderedFloors.map((f) => {
               const isCurrent = floor && f.num === floor.num;
               const hasPlan = getFloorPlan(buildingId, f).available;
@@ -226,26 +215,26 @@ const FloorPlanOverlay = ({
                   title={hasPlan ? undefined : "Plan coming soon"}
                   className={`group relative flex w-full items-center gap-4 rounded-r-md py-2 pr-2 pl-1.5 text-left transition-colors duration-300 ${
                     isCurrent
-                      ? "text-[#b8860b]"
+                      ? "text-[#4E5157]"
                       : hasPlan
-                        ? "text-[#5f5131] hover:text-[#b8860b]"
-                        : "text-[#9b8a62] hover:text-[#7a6230]"
+                        ? "text-[#4E5157]/75 hover:text-[#4E5157]"
+                        : "text-[#6f7f95] hover:text-[#4E5157]"
                   }`}
                 >
                   {/* sliding highlight — solid for the open floor, a hint on hover */}
                   <span
                     className={`pointer-events-none absolute inset-y-1 left-0 rounded-r-md bg-linear-to-r transition-all duration-300 ${
                       isCurrent
-                        ? "right-1 from-[#e8c879]/30 via-[#e8c879]/10 to-transparent opacity-100"
-                        : "right-4 from-[#e8c879]/10 to-transparent opacity-0 group-hover:right-1 group-hover:opacity-100"
+                        ? "right-1 from-[#4E5157]/28 via-[#6f7f95]/10 to-transparent opacity-100"
+                        : "right-4 from-[#4E5157]/12 to-transparent opacity-0 group-hover:right-1 group-hover:opacity-100"
                     }`}
                   />
 
-                  {/* gold accent bar pinned to the active floor */}
+                  {/* blue-gray accent bar pinned to the active floor */}
                   <span
                     className={`pointer-events-none absolute top-1/2 left-0 h-5 w-0.75 -translate-y-1/2 rounded-full bg-[#e8c879] transition-opacity duration-300 ${
                       isCurrent
-                        ? "opacity-100 shadow-[0_0_10px_rgba(184,134,11,0.45)]"
+                        ? "bg-[#4E5157] opacity-100 shadow-[0_0_10px_rgba(78,81,87,0.35)]"
                         : "opacity-0"
                     }`}
                   />
@@ -255,10 +244,10 @@ const FloorPlanOverlay = ({
                     <span
                       className={`rounded-full border transition-all duration-300 ${
                         isCurrent
-                          ? "h-2.5 w-2.5 border-[#b8860b] bg-[#b8860b] shadow-[0_0_10px_rgba(184,134,11,0.45)]"
+                          ? "h-2.5 w-2.5 border-[#4E5157] bg-[#4E5157] shadow-[0_0_10px_rgba(78,81,87,0.35)]"
                           : hasPlan
-                            ? "h-2 w-2 border-[#b8860b]/30 bg-white group-hover:scale-110 group-hover:border-[#b8860b]/70"
-                            : "h-2 w-2 border-[#d9cba9] bg-white"
+                            ? "h-2 w-2 border-[#4E5157]/30 bg-white group-hover:scale-110 group-hover:border-[#4E5157]/70"
+                            : "h-2 w-2 border-[#6f7f95] bg-white"
                       }`}
                     />
                   </span>
@@ -270,17 +259,6 @@ const FloorPlanOverlay = ({
                     }`}
                   >
                     {floorTag(f)}
-                    {isTop && (
-                      <span
-                        className={`text-[10px] leading-none transition-colors ${
-                          isCurrent
-                            ? "text-[#b8860b]"
-                            : "text-[#b8860b]/55 group-hover:text-[#b8860b]"
-                        }`}
-                      >
-                        ✦
-                      </span>
-                    )}
                   </span>
                 </button>
               );
@@ -304,7 +282,7 @@ const FloorPlanOverlay = ({
         {/* top bar */}
         <div className="flex w-full items-center justify-center px-6 py-5 md:px-10">
           <div className="text-center text-[#1f2a40]">
-            <p className="text-[10px] tracking-[3px] text-[#212C42] uppercase">
+            <p className="text-[10px] tracking-[3px] text-[#423e21] uppercase">
               {buildingName} · Floor plan · click a unit to view pano
             </p>
             <h2 className="mt-2 font-serif text-2xl text-[#212C42] md:text-3xl">
@@ -373,9 +351,9 @@ const FloorPlanOverlay = ({
                       style: {
                         cursor: "pointer",
                         fill: isOn
-                          ? "rgba(184,134,11,0.6)"
-                          : "rgba(232,200,121,0.3)",
-                        stroke: isOn ? "#b8860b" : "rgba(232,200,121,0.85)",
+                          ? "rgba(7,11,23,0.55)"
+                          : "rgba(78,81,87,0.26)",
+                        stroke: isOn ? "#070B17" : "rgba(78,81,87,0.82)",
                         strokeWidth: isOn ? 2.5 : 1.5,
                         transition: "fill 0.2s ease, stroke 0.2s ease",
                       },

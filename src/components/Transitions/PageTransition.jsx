@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import gateBg from "../../assets/fullscreengatebg.png";
+import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "../Building/buildingLogos";
 
 gsap.registerPlugin(useGSAP);
 
@@ -10,8 +11,12 @@ gsap.registerPlugin(useGSAP);
   "Ink tide" page transition (Simplified & Clean).
 
   A solid ink-black background cover with the gate overlay image fades in,
-  the gold Notandas logo draws and animates while the screen is covered 
-  (the route swaps underneath), then the screen fades out to reveal the new page.
+  a logo animates while the screen is covered (the route swaps underneath),
+  then the screen fades out to reveal the new page.
+
+  The logo matches the destination: navigating to /projects/:id shows that
+  project's own mark; every other route (and any project without a dedicated
+  mark) falls back to the animated Notandas Realty emblem.
 
   Usage (children must be a single <Routes> element):
     <PageTransition>
@@ -19,28 +24,44 @@ gsap.registerPlugin(useGSAP);
     </PageTransition>
 */
 
+// /projects/notan-jewel -> "notan-jewel", or null for non-project routes.
+const getProjectId = (pathname) =>
+  pathname.match(/^\/projects\/([^/]+)/)?.[1] ?? null;
+
 const PageTransition = ({ children }) => {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
+
+  // Derived from the *target* location, so during a transition the overlay
+  // already carries the logo of the page being revealed underneath.
+  const projectId = getProjectId(location.pathname);
+  const projectLogo = projectId ? (BUILDING_LOGOS[projectId] ?? null) : null;
+  const logoIsTight = projectId ? TIGHT_CROPPED_LOGOS.has(projectId) : false;
 
   const overlayRef = useRef(null);
   const bgRef = useRef(null);
   const emblemRef = useRef(null);
   const tlRef = useRef(null);
 
-  const addEmblemIn = (tl, at) => {
-    tl.fromTo(
-      bgRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.6, ease: "power2.out" },
-      at,
-    );
-    tl.fromTo(
-      emblemRef.current,
-      { opacity: 0, filter: "blur(4px)" },
-      { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.out" },
-      at,
-    );
+  // Animates whichever logo the overlay is currently showing: the dedicated
+  // project mark (an <img>) or the drawn Notandas Realty emblem (inline SVG).
+  const addLogoDraw = (tl, at, letterStagger = 0.03) => {
+    if (overlayRef.current?.querySelector(".logo-building")) {
+      tl.fromTo(
+        ".logo-building",
+        { opacity: 0, y: 15, scale: 0.94, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        at + 0.1,
+      );
+      return;
+    }
 
     // 1. Draw monogram swirl outline and fade fill opacity
     tl.fromTo(
@@ -72,11 +93,28 @@ const PageTransition = ({ children }) => {
         y: 0,
         scale: 1,
         duration: 0.5,
-        stagger: 0.03,
+        stagger: letterStagger,
         ease: "back.out(1.2)",
       },
       at + 0.35,
     );
+  };
+
+  const addEmblemIn = (tl, at) => {
+    tl.fromTo(
+      bgRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.6, ease: "power2.out" },
+      at,
+    );
+    tl.fromTo(
+      emblemRef.current,
+      { opacity: 0, filter: "blur(4px)" },
+      { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.out" },
+      at,
+    );
+
+    addLogoDraw(tl, at);
   };
 
   const addEmblemOut = (tl, at) => {
@@ -109,37 +147,8 @@ const PageTransition = ({ children }) => {
       });
       tlRef.current = tl;
 
-      // Animate drawing elements quickly for mount transition
-      tl.fromTo(
-        ".logo-emblem",
-        { strokeDashoffset: 1, fillOpacity: 0, strokeDasharray: 1 },
-        {
-          strokeDashoffset: 0,
-          fillOpacity: 1,
-          duration: 0.7,
-          ease: "power2.out",
-        },
-        0.1,
-      );
-      tl.fromTo(
-        ".logo-line",
-        { strokeDashoffset: 1, strokeDasharray: 1 },
-        { strokeDashoffset: 0, duration: 0.55, ease: "power1.inOut" },
-        0.25,
-      );
-      tl.fromTo(
-        ".logo-letter",
-        { opacity: 0, y: 15, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.02,
-          ease: "back.out(1.2)",
-        },
-        0.35,
-      );
+      // Animate the logo quickly for the mount transition
+      addLogoDraw(tl, 0, 0.02);
 
       addEmblemOut(tl, 1.15);
       tl.to(
@@ -165,9 +174,13 @@ const PageTransition = ({ children }) => {
       // Clean reset states before animating
       gsap.set(overlayRef.current, { opacity: 0, pointerEvents: "auto" });
       gsap.set(bgRef.current, { opacity: 0 });
-      gsap.set(".logo-emblem", { strokeDashoffset: 1, fillOpacity: 0 });
-      gsap.set(".logo-line", { strokeDashoffset: 1 });
-      gsap.set(".logo-letter", { opacity: 0, y: 15, scale: 0.95 });
+      if (overlayRef.current?.querySelector(".logo-building")) {
+        gsap.set(".logo-building", { opacity: 0, y: 15, scale: 0.94 });
+      } else {
+        gsap.set(".logo-emblem", { strokeDashoffset: 1, fillOpacity: 0 });
+        gsap.set(".logo-line", { strokeDashoffset: 1 });
+        gsap.set(".logo-letter", { opacity: 0, y: 15, scale: 0.95 });
+      }
 
       const tl = gsap.timeline({
         onComplete: () => {
@@ -225,6 +238,21 @@ const PageTransition = ({ children }) => {
           ref={emblemRef}
           className="absolute inset-0 flex flex-col items-center justify-center opacity-0"
         >
+          {projectLogo ? (
+            /* Dedicated project mark — the square SVG marks carry generous
+               built-in padding, hence the larger box than the emblem SVG;
+               tight-cropped marks (Crown's landscape PNG) use a smaller one. */
+            <img
+              src={projectLogo}
+              alt=""
+              draggable="false"
+              className={`logo-building h-auto max-w-[85vw] select-none ${
+                logoIsTight
+                  ? "w-60 sm:w-70 md:w-85"
+                  : "w-90 sm:w-110 md:w-135"
+              }`}
+            />
+          ) : (
           <svg
             viewBox="0 0 308 125"
             className="h-auto w-[280px] text-[#101014] sm:w-[320px] md:w-[400px]"
@@ -329,6 +357,7 @@ const PageTransition = ({ children }) => {
               fill="currentColor"
             />
           </svg>
+          )}
         </div>
       </div>
     </>

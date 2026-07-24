@@ -188,11 +188,11 @@ const PanoViewer = ({
     >
       {/* top bar */}
       <div className="absolute top-0 right-0 left-0 z-10 flex items-center justify-between px-6 py-4 md:px-10">
-        <div className="text-[#142b53] drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-          <p className="text-[10px] tracking-[3px] text-[#142b53] uppercase">
+        <div className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+          <p className="text-[10px] tracking-[3px] text-white uppercase">
             {buildingName} · Pano view
           </p>
-          <h2 className="mt-0.5 font-serif text-2xl text-[#142b53] uppercase md:text-xl">
+          <h2 className="mt-0.5 font-serif text-2xl text-white uppercase md:text-xl">
             {pano ? pano.name.split("·")[0].trim() : floorTitle}
           </h2>
         </div>
@@ -261,10 +261,10 @@ const PanoViewer = ({
               </button>
               
 
-              <span className="mx-1 hidden h-5 w-px bg-white/20 sm:block" />
+              {/* <span className="mx-1 hidden h-5 w-px bg-white/20 sm:block" /> */}
 
               {/* live angles — read these off to tune FLOOR_PANO_MAP */}
-              <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
+              {/* <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
                 yaw {Math.round(toDeg(angles.yaw))}° · pitch{" "}
                 {Math.round(toDeg(angles.pitch))}° · fov{" "}
                 {Math.round(toDeg(angles.fov))}°
@@ -274,7 +274,7 @@ const PanoViewer = ({
                 className="rounded-full px-3 py-1 text-xs tracking-wider uppercase transition-colors bg-white/15 hover:text-[#e8c879]"
               >
                 {copied ? "Copied!" : "Copy config"}
-              </button>
+              </button> */}
             </div>
           )}
         </>

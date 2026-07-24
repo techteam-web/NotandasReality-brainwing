@@ -5,28 +5,10 @@ import { BUILDING_VIEWS } from "./buildingViewsData";
 import FloorPlanOverlay from "./FloorPlanOverlay";
 import PanoViewer from "./PanoViewer";
 import { getRegionPano } from "./panoData";
-import brandLogo from "../../assets/notandaslogo.svg";
-import dcLogo from "../../assets/Buildings_Logo/notan D.C. logo.svg";
-import edgeLogo from "../../assets/Buildings_Logo/notan edge logo.svg";
-import jewelLogo from "../../assets/Buildings_Logo/notan jewel logo.svg";
-import spaceLogo from "../../assets/Buildings_Logo/notan spaces.svg";
-import terraceLogo from "../../assets/Buildings_Logo/notan Terraces logo.svg";
-import landsEndLogo from "../../assets/Buildings_Logo/notan Lands End logo.svg";
-import viewsLogo from "../../assets/Buildings_Logo/notan Views logo.svg";
-import finalLogo from "../../assets/Buildings_Logo/Notandas Final Logo.svg";
+import NotandasNMark from "../SvgAnimations/NotandasNMark";
+import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "./buildingLogos";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
-const BUILDING_LOGOS = {
-  "notan-dc": dcLogo,
-  "notan-edge": edgeLogo,
-  "notan-jewel": jewelLogo,
-  "notan-space": spaceLogo,
-  "notan-terrace": terraceLogo,
-  "notan-lands-end": landsEndLogo,
-  "notan-views": viewsLogo,
-  "notan-crown": finalLogo,
-};
 
 const BUILDING_AMINITIES = {
   "notan-dc": {
@@ -54,12 +36,13 @@ const BUILDING_AMINITIES = {
 /**
  * The "View Project" destination.
  *
- * Full-bleed building photo (from ViewsBuildings) with the project title set
- * large across the top and the Notandas mark in the corner — a hero shot,
+ * Full-bleed building photo (from ViewsBuildings) with the project's own
+ * logo set large across the top (projects without a dedicated mark fall back
+ * to the name as text) and the Notandas mark in the corner — a hero shot,
  * like a brochure cover. Every floor cut-out (Building_Floor_SVG) is laid
  * over the photo in the same coordinate space, so the shapes sit exactly on
- * their real floors. Hovering a floor lights it gold and reveals its number
- * on the right-hand readout.
+ * their real floors. Hovering a floor tints it in the theme's ink
+ * (#070B17) and reveals its number on the right-hand readout.
  *
  * The photo uses object-cover and the overlay uses preserveAspectRatio
  * "xMidYMid slice" — both crop the same way, so floors stay aligned on any
@@ -71,7 +54,8 @@ const BuildingPage = () => {
   const { id } = useParams();
   const building = BUILDINGS.find((b) => b.id === id);
   const view = BUILDING_VIEWS[id];
-  const logoSrc = BUILDING_LOGOS[id] || brandLogo;
+  const projectLogo = BUILDING_LOGOS[id] ?? null;
+  const logoIsTight = TIGHT_CROPPED_LOGOS.has(id);
   const amenities = Object.values(BUILDING_AMINITIES[id] || {})
     .flatMap((item) => item.split("|"))
     .map((item) => item.trim())
@@ -200,9 +184,9 @@ const BuildingPage = () => {
             style: {
               cursor: "pointer",
               fill: isActive
-                ? "rgba(218,165,32,0.42)"
+                ? "rgba(7,11,23,0.55)"
                 : "rgba(59,83,130,0.001)",
-              stroke: isActive ? "#DAA520" : "rgba(255,255,255,0.001)",
+              stroke: isActive ? "#070B17" : "rgba(255,255,255,0.001)",
               strokeWidth: isActive ? 2.5 : 1,
               transition: "fill 0.25s ease, stroke 0.25s ease",
             },
@@ -240,14 +224,34 @@ const BuildingPage = () => {
         Back
       </Link>
 
-      {/* big centered project title */}
+      {/* big centered project logo (name as text when no dedicated mark) */}
       <header
         ref={headerRef}
-        className={`pointer-events-none absolute z-20 flex flex-col items-center text-center ${view.headerClass || "top-36 left-80 md:top-127 lg:top-70 lg:left-36 xl:top-90 xl:left-40 2xl:top-90 2xl:left-64 3xl:top-127 3xl:left-80 4xl:top-150 4xl:left-137"}`}
+        className={`pointer-events-none absolute z-20 flex flex-col items-center  text-center ${view.headerClass || "top-36 left-80 md:top-127 lg:top-70 lg:left-36 xl:top-90 xl:left-40 2xl:top-90 2xl:left-64 3xl:top-127 3xl:left-80 4xl:top-150 4xl:left-137"}`}
       >
-        <h1 className="mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-4xl xl:text-[30px] 2xl:text-[35px] 4xl:text-[66px]">
-          {building ? building.name : "Building"}
-        </h1>
+        {projectLogo ? (
+          <h1 className="mt-1">
+            {/* Square marks sit in the middle ~40% of their canvas — the
+               negative margins swallow the transparent padding so the logo
+               occupies the same slot the text title did. Tight-cropped marks
+               (Crown's landscape PNG) have no padding, so they render at a
+               smaller box with normal margins. */}
+            <img
+              src={projectLogo}
+              alt={building ? building.name : "Building"}
+              draggable="false"
+              className={`h-auto max-w-[80vw] select-none ${
+                logoIsTight
+                  ? "w-44 sm:w-52 md:w-72 lg:w-56 xl:w-48 2xl:w-56 4xl:w-96"
+                  : "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-76 xl:w-68 2xl:w-76 4xl:w-130"
+              }`}
+            />
+          </h1>
+        ) : (
+          <h1 className="mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-4xl xl:text-[30px] 2xl:text-[35px] 4xl:text-[66px]">
+            {building ? building.name : "Building"}
+          </h1>
+        )}
         {building && (
           <p className="mt-2 text-[10px] tracking-[0.45em] text-[#1f2a40]/70 uppercase md:text-sm xl:text-[10px]">
             {building.area}, Mumbai
@@ -256,10 +260,9 @@ const BuildingPage = () => {
       </header>
 
       {/* brand mark, top-right */}
-      <img
-        src={logoSrc}
-        alt={building ? building.name : "Notandas Realty"}
-        className="absolute top-6 right-6 z-20 h-34 w-35 opacity-90 md:top-8 md:right-12 md:h-25"
+      <NotandasNMark
+        className="absolute top-4 right-4 z-20 h-32 w-20 opacity-95 md:top-6 md:right-8 md:h-40 md:w-24"
+        aria-label={building ? building.name : "Notandas Realty"}
       />
 
       {/* right-side floor readout */}
@@ -267,23 +270,21 @@ const BuildingPage = () => {
         className={`absolute z-20 w-36 ${view.asideClass || "top-1/2 left-[65%] -translate-y-1/2 md:right-12 md:w-44"}`}
       >
         <div className="rounded-sm px-5 py-6 text-center">
-          <p className="text-[20px] tracking-[3px] text-[#1f2a40]/70 uppercase">
+          <p className="text-[20px] tracking-[3px] text-[#1f2a40] uppercase">
             {activeFloor ? "Now viewing" : "Pick a floor"}
           </p>
 
           <div className="mt-3 flex min-h-22 flex-col items-center justify-center">
             {activeFloor ? (
               <>
-                <span className="font-serif text-6xl leading-none text-[#b8860b] italic">
+                <span className="font-serif text-6xl leading-none text-[#4E5157] italic">
                   {activeFloor.isTerrace
                     ? "T"
                     : activeFloor.isGround
                       ? "G"
                       : String(activeFloor.num).padStart(2, "0")}
                 </span>
-                <span className="mt-2 text-sm font-medium tracking-wide text-[#1f2a40]">
-                  {activeFloor.label}
-                </span>
+                
               </>
             ) : (
               <span className="font-serif text-5xl leading-none text-[#1f2a40]/25 italic">
@@ -303,23 +304,27 @@ const BuildingPage = () => {
       </aside>
 
       {hasAmenities && (
-        <section
+        <div
           ref={amenityRef}
-          className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} sm:w-[min(28rem,44vw) ] z-20 w-[calc(100%-2.5rem)] max-w-md border border-[#1f2a40]/15 bg-[#fdfaf3]/85 px-6 py-5 text-[#1f2a40] shadow-[0_10px_30px_rgba(31,42,64,0.10)] backdrop-blur-sm lg:bottom-15 lg:left-15 lg:h-52 lg:w-90 3xl:bottom-59 3xl:left-87 3xl:h-65`}
+          className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} z-20 w-[calc(100%-2.5rem)] max-w-md sm:w-[min(28rem,44vw)] lg:w-90`}
         >
-          <p className="text-[11px] tracking-[0.42em] text-[#1f2a40]/70 uppercase">
-            Amenities
-          </p>
-          <div className="mt-2 h-px w-10 bg-[#b8860b]/80" />
-          <ul className="mt-3 divide-y divide-[#1f2a40]/10 text-sm leading-snug text-[#1f2a40]/85">
-            {amenities.map((amenity) => (
-              <li key={amenity} className="flex items-baseline gap-3 py-1.5">
-                <span className="h-1 w-1 shrink-0 rotate-45 bg-[#b8860b]" />
-                <span>{amenity}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+          <section className="border border-[#b8860b]/40 bg-linear-to-b from-[#070B17]/90 to-[#070B17]/95 px-5 py-4 text-center shadow-[0_10px_30px_rgba(31,42,64,0.35)] backdrop-blur-sm">
+            <p className="text-[11px] tracking-[0.42em] text-[#e5ad2b] uppercase">
+              Amenities
+            </p>
+            <div className="mx-auto mt-2 h-px w-10 bg-[#b8860b]/70" />
+            <ul className="mt-2.5 flex flex-wrap items-center justify-center gap-y-1 text-xs leading-relaxed text-[#f3ede0]/90 sm:text-sm 4xl:text-base">
+              {amenities.map((amenity) => (
+                <li
+                  key={amenity}
+                  className="after:mx-2 after:text-[#e5ad2b]/50 after:content-['|'] last:after:content-none sm:after:mx-2.5"
+                >
+                  {amenity}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       )}
 
       {/* floor-plan overlay — opens when a floor is clicked */}
