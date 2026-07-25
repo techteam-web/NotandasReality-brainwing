@@ -192,7 +192,7 @@ const PanoViewer = ({
           <p className="text-[10px] tracking-[3px] text-white uppercase">
             {buildingName} · Pano view
           </p>
-          <h2 className="mt-0.5 font-serif text-2xl text-white uppercase md:text-xl">
+          <h2 className="mt-0.5 font-serif text-2xl text-white  md:text-xl">
             {pano ? pano.name.split("·")[0].trim() : floorTitle}
           </h2>
         </div>
