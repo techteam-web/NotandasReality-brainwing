@@ -373,10 +373,10 @@ const FloorPlanOverlay = ({
             </div>
           ) : (
             <div className="text-center text-[#1f2a40]">
-              <p className="text-[11px] tracking-[4px] text-[#7a6230] uppercase">
+              <p className="text-[11px] tracking-[4px] text-[#4E5157] uppercase">
                 {hasPano ? "360° view" : "Plan coming soon"}
               </p>
-              <p className="mt-3 font-serif text-2xl text-[#e8c879] italic">
+              <p className="mt-3 font-serif text-2xl text-[#4E5157] italic">
                 {floorTitle}
               </p>
               <p className="mt-2 text-sm text-[#4f5b70]">
@@ -397,9 +397,9 @@ const FloorPlanOverlay = ({
 
           {/* hovered region label */}
           {available && hovered != null && regions[hovered] && (
-            <div className="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2 rounded-full border border-[#b8860b]/25 bg-white px-4 py-1.5 text-sm font-medium tracking-wide text-[#b8860b] shadow-[0_10px_24px_rgba(31,42,64,0.12)]">
+            <div className="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2 rounded-full border border-[#b8860b]/25 bg-white px-4 py-1.5 text-sm font-medium tracking-wide text-[#4E5157] shadow-[0_10px_24px_rgba(31,42,64,0.12)]">
               {regions[hovered].name}
-              <span className="ml-2 text-[#7a6230]">· click to view pano</span>
+              <span className="ml-2 text-[#4E5157]">· click to view pano</span>
             </div>
           )}
 
