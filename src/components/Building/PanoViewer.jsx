@@ -192,7 +192,7 @@ const PanoViewer = ({
           <p className="text-[10px] tracking-[3px] text-white uppercase">
             {buildingName} · Pano view
           </p>
-          <h2 className="mt-0.5 font-serif text-2xl text-white  md:text-xl">
+          <h2 className="mt-0.5  text-2xl text-white  md:text-2xl">
             {pano ? pano.name.split("·")[0].trim() : floorTitle}
           </h2>
         </div>
@@ -248,7 +248,7 @@ const PanoViewer = ({
               </button>
               <button
                 onClick={resetView}
-                className="px-3 text-xs tracking-wider  uppercase transition-colors hover:bg-[#c49833] text-[#212C42]"
+                className="p-2 text-xs tracking-wider  uppercase transition-colors hover:bg-[#c49833] hover:text-amber-50 text-[#212C42]"
               >
                 Reset
               </button>
