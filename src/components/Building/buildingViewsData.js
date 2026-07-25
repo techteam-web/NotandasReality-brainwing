@@ -29,9 +29,9 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-60 2xl:top-90 xl:left-40  xl:top-60 lg:left-20 lg:top-50 3xl:left-89 3xl:top-90 4xl:left-137 4xl:top-150 ",
+      "left-80 top-36 md:top-127 2xl:left-75 2xl:top-30 xl:left-55  xl:top-40 lg:left-30 lg:top-30 3xl:left-100 3xl:top-55 4xl:left-130 4xl:top-100 ",
     amenityClass:
-      "bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-10 lg:h-35 2xl:h-65 2xl:left-57 2xl:top-137 3xl:top-150 3xl:left-87 3xl:h-75 4xl:top-190 4xl:left-148 4xl:h-76 xl:h-62 xl:left-32 xl:top-115 ",
+      "bottom-55 left-75 md:bottom-15 md:left-15 lg:top-65 lg:-left-30 2xl:left-17 2xl:top-80 3xl:top-110 3xl:left-45 4xl:top-170 4xl:left-90 xl:-left-10 xl:top-73",
   },
   "notan-edge": {
     viewImg: notanEdgeView,
@@ -47,9 +47,9 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 4615 2597",
     floors: NOTAN_JEWEL_FLOORS,
     amenityClass:
-      "bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-15 lg:h-35 2xl:left-55 2xl:top-133 2xl:h-60 3xl:top-165 3xl:left-87 4xl:top-220 4xl:left-120 xl:h-52 xl:left-27 ",
+      "bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-15 lg:h-35 2xl:left-55 2xl:top-133 2xl:h-60 3xl:top-90 3xl:left-39 4xl:top-220 4xl:left-120 xl:h-52 xl:left-27 ",
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-59 2xl:top-80 xl:left-38 xl:top-64 lg:left-23 lg:top-34 3xl:left-89 3xl:top-107 4xl:left-90 4xl:top-150",
+      "left-80 top-36 md:top-127 2xl:left-59 2xl:top-80 xl:left-38 xl:top-64 lg:left-23 lg:top-34 3xl:left-89 3xl:top-30 4xl:left-90 4xl:top-150",
 
     // default header/aside positions are fine for this one, so no need to override
   },

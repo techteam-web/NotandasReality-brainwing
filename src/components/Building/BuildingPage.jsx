@@ -12,9 +12,9 @@ import { useGSAP } from "@gsap/react";
 
 const BUILDING_AMINITIES = {
   "notan-dc": {
-    1: "Lobby & Reception ",
-    2: " Rooftop Pool & Jacuzzi ",
-    3: "Rooftop Cabana & Sunset Deck ",
+    1: "Lobby & Reception",
+    2: "Rooftop Pool & Jacuzzi",
+    3: "Rooftop Cabana & Sunset Deck",
     4: "Rooftop Bar | Fully Equipped Fitness Centre | Business Centre",
   },
 
@@ -29,7 +29,8 @@ const BUILDING_AMINITIES = {
     1: "Signature Lobby Lounge",
     2: " Dedicated Reception Desks",
     3: "Intelligent Car Tower Parking",
-    4: "3 high-speed elevators + Refuge Zones & Double-Height Deck",
+    4: "3 high-speed elevators ",
+    5 :"Refuge Zones & Double-Height Deck",
   },
 };
 
@@ -74,13 +75,36 @@ const BuildingPage = () => {
     ? (view?.floors.find((f) => f.num === pano.floorNum) ?? null)
     : null;
 
+  const getOrdinalFloor = (num) => {
+    if (num === null || num === undefined) return "";
+    const mod100 = num % 100;
+    let suffix = "th";
+    if (mod100 < 11 || mod100 > 13) {
+      switch (num % 10) {
+        case 1:
+          suffix = "st";
+          break;
+        case 2:
+          suffix = "nd";
+          break;
+        case 3:
+          suffix = "rd";
+          break;
+        default:
+          suffix = "th";
+          break;
+      }
+    }
+    return `${num}${suffix} Floor`;
+  };
+
   const floorTitleOf = (f) =>
     f
       ? f.isTerrace
         ? "Terrace"
         : f.isGround
           ? "Ground Floor"
-          : `Floor ${String(f.num).padStart(2, "0")}`
+          : getOrdinalFloor(f.num)
       : "";
 
   useGSAP(
@@ -216,7 +240,7 @@ const BuildingPage = () => {
       {/* back to map */}
       <Link
         to="/"
-        className="group absolute top-6 left-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#e5ad2b] hover:bg-[#c49833] md:top-8 md:left-12"
+        className="group absolute top-6 left-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#3a3d43] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#767889] hover:bg-[#4E5157] md:top-8 md:left-12"
       >
         <span className="transition-transform duration-300 group-hover:-translate-x-1">
           ←
@@ -227,7 +251,7 @@ const BuildingPage = () => {
       {/* big centered project logo (name as text when no dedicated mark) */}
       <header
         ref={headerRef}
-        className={`pointer-events-none absolute z-20 flex flex-col items-center  text-center ${view.headerClass || "top-36 left-80 md:top-127 lg:top-70 lg:left-36 xl:top-90 xl:left-40 2xl:top-90 2xl:left-64 3xl:top-127 3xl:left-80 4xl:top-150 4xl:left-137"}`}
+        className={`pointer-events-none absolute z-20 flex flex-col items-center text-center ${view.headerClass || "top-36 left-80 md:top-127 lg:top-70 lg:left-36 xl:top-90 xl:left-40 2xl:top-90 2xl:left-64 3xl:top-127 3xl:left-80 4xl:top-150 4xl:left-137"}`}
       >
         {projectLogo ? (
           <h1 className="mt-1">
@@ -240,7 +264,7 @@ const BuildingPage = () => {
               src={projectLogo}
               alt={building ? building.name : "Building"}
               draggable="false"
-              className={`h-auto max-w-[80vw] select-none ${
+              className={`h-auto xl:h-60 lg:h-70 2xl:h-75 4xl:h-120 max-w-[80vw] select-none ${
                 logoIsTight
                   ? "w-44 sm:w-52 md:w-72 lg:w-56 xl:w-48 2xl:w-56 4xl:w-96"
                   : "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-76 xl:w-68 2xl:w-76 4xl:w-130"
@@ -306,23 +330,25 @@ const BuildingPage = () => {
       {hasAmenities && (
         <div
           ref={amenityRef}
-          className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} z-20 w-[calc(100%-2.5rem)] max-w-md sm:w-[min(28rem,44vw)] lg:w-90`}
+          className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} z-20 w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl`}
         >
-          <section className="border border-[#b8860b]/40 bg-linear-to-b from-[#070B17]/90 to-[#070B17]/95 px-5 py-4 text-center shadow-[0_10px_30px_rgba(31,42,64,0.35)] backdrop-blur-sm">
-            <p className="text-[11px] tracking-[0.42em] text-[#e5ad2b] uppercase">
-              Amenities
-            </p>
-            <div className="mx-auto mt-2 h-px w-10 bg-[#b8860b]/70" />
-            <ul className="mt-2.5 flex flex-wrap items-center justify-center gap-y-1 text-xs leading-relaxed text-[#f3ede0]/90 sm:text-sm 4xl:text-base">
-              {amenities.map((amenity) => (
-                <li
-                  key={amenity}
-                  className="after:mx-2 after:text-[#e5ad2b]/50 after:content-['|'] last:after:content-none sm:after:mx-2.5"
-                >
-                  {amenity}
-                </li>
-              ))}
-            </ul>
+          <section className="px-5 py-3 text-center">
+            <div className="inline-flex flex-col items-center">
+              <p className="text-[11px] tracking-[0.42em] text-[#3a3935] uppercase">
+                Amenities
+              </p>
+              <div className="mt-2 h-px w-10 bg-[#595753]" />
+              <ul className="mt-2.5 flex max-w-lg flex-wrap items-center justify-center gap-y-1 text-base leading-snug text-black sm:text-lg">
+                {amenities.map((amenity) => (
+                  <li
+                    key={amenity}
+                    className="after:mx-2 after:text-black/40 after:content-['|'] last:after:content-none xl:text-[15.5px] mix-blend-difference lg:text-[16px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]" 
+                  >
+                    {amenity}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
         </div>
       )}

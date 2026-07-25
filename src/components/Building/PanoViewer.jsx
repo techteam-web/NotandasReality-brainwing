@@ -200,7 +200,7 @@ const PanoViewer = ({
         <button
           onClick={onClose}
           aria-label="Close 360° view"
-          className="group absolute top-4 right-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#e5ad2b] hover:bg-[#c49833] md:top-4 md:right-10"
+          className="group absolute top-4 right-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#767889] hover:bg-[#4E5157] md:top-4 md:right-10"
         >
           Close
           <span className="text-sm leading-none transition-transform group-hover:rotate-90">
@@ -242,20 +242,20 @@ const PanoViewer = ({
               <button
                 onClick={() => zoom(1.15)}
                 aria-label="Zoom out"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#3e3b33]"
               >
                 −
               </button>
               <button
                 onClick={resetView}
-                className="p-2 text-xs tracking-wider  uppercase transition-colors hover:bg-[#c49833] hover:text-amber-50 text-[#212C42]"
+                className="p-2 text-xs tracking-wider  uppercase transition-colors hover:border-[#767889] hover:text-[#c3b947] text-[#302f2a]"
               >
                 Reset
               </button>
               <button
                 onClick={() => zoom(0.87)}
                 aria-label="Zoom in"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#444036]"
               >
                 +
               </button>

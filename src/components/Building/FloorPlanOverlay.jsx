@@ -20,6 +20,29 @@ const MIN_ZOOM = 0.6;
 const MAX_ZOOM = 4;
 const STEP = 0.3;
 
+const getOrdinalFloor = (num) => {
+  if (num === null || num === undefined) return "";
+  const mod100 = num % 100;
+  let suffix = "th";
+  if (mod100 < 11 || mod100 > 13) {
+    switch (num % 10) {
+      case 1:
+        suffix = "st";
+        break;
+      case 2:
+        suffix = "nd";
+        break;
+      case 3:
+        suffix = "rd";
+        break;
+      default:
+        suffix = "th";
+        break;
+    }
+  }
+  return `${num}${suffix} Floor`;
+};
+
 const FloorPlanOverlay = ({
   buildingId,
   buildingName,
@@ -57,7 +80,6 @@ const FloorPlanOverlay = ({
   const moved = useRef(false); // true once a drag actually pans, to swallow the click
   const activeFloorRef = useRef(null); // the open floor's button in the aside
 
-
   useGSAP(() => {
     if (!imgRef.current) return;
     gsap.from(imgRef.current, { 
@@ -65,7 +87,6 @@ const FloorPlanOverlay = ({
       scale: 0.9,
       duration: 0.5,
       ease: "power2.out",
-      
     })
   }, []);
 
@@ -137,7 +158,7 @@ const FloorPlanOverlay = ({
       ? "Terrace"
       : floor.isGround
         ? "Ground Floor"
-        : `Floor ${String(floor.num).padStart(2, "0")}`
+        : getOrdinalFloor(floor.num)
     : "";
 
   // floors listed high → low in the aside (terrace on top, ground at the bottom)
@@ -145,10 +166,10 @@ const FloorPlanOverlay = ({
   const orderedFloors = [...floors].sort((a, b) => floorRank(b) - floorRank(a));
   const floorTag = (f) =>
     f.isTerrace
-      ? "TERRACE"
+      ? "Terrace"
       : f.isGround
-        ? "GROUND FLOOR"
-        : `${String(f.num).padStart(2, "0")}FLOOR`;
+        ? "Ground Floor"
+        : getOrdinalFloor(f.num);
 
   // switch the plan to another floor, resetting the zoom/pan first
   const changeFloor = (num) => {
@@ -158,10 +179,8 @@ const FloorPlanOverlay = ({
     setHovered(null);
     onSelectFloor?.(num);
   };
-  
 
   return (
-    
     <div
       className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm"
       style={{ fontFamily: "'Times New Roman', Times, serif" }}
@@ -176,7 +195,7 @@ const FloorPlanOverlay = ({
       />
 
       {/* floor selector aside — switch the plan without leaving the overlay */}
-      <aside className="from-gray relative flex w-24 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/12 bg-linear-to-b via-[#cad1d6] to-[#c3c7c7] md:w-44">
+      <aside className="from-gray relative flex w-36 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/12 bg-linear-to-b via-[#cad1d6] to-[#c3c7c7] md:w-56 lg:w-60">
         {/* faint blue-gray sheen bleeding down from the top */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-[#4E5157]/18 to-transparent" />
 
@@ -200,12 +219,11 @@ const FloorPlanOverlay = ({
         </div>
 
         {/* floor list — stacked as nodes on a vertical "elevator shaft" rail */}
-        <div className="custom-scrollbar relative flex-1 overflow-y-auto px-3 pt-1 pb-4">
+        <div className="custom-scrollbar relative flex-1 overflow-y-auto px-4 pt-1 pb-4">
           <div className="relative">
             {orderedFloors.map((f) => {
               const isCurrent = floor && f.num === floor.num;
               const hasPlan = getFloorPlan(buildingId, f).available;
-              const isTop = f.isTerrace;
               return (
                 <button
                   key={f.num}
@@ -213,7 +231,7 @@ const FloorPlanOverlay = ({
                   onClick={() => changeFloor(f.num)}
                   aria-current={isCurrent ? "true" : undefined}
                   title={hasPlan ? undefined : "Plan coming soon"}
-                  className={`group relative flex w-full items-center gap-4 rounded-r-md py-2 pr-2 pl-1.5 text-left transition-colors duration-300 ${
+                  className={`group relative flex w-full items-center gap-3 rounded-r-md py-2.5 pr-3 pl-2 text-left transition-colors duration-300 ${
                     isCurrent
                       ? "text-[#4E5157]"
                       : hasPlan
@@ -254,8 +272,8 @@ const FloorPlanOverlay = ({
 
                   {/* floor tag */}
                   <span
-                    className={`relative z-10 flex items-center gap-1.5 text-sm tracking-[0.18em] transition-transform duration-300 ${
-                      isCurrent ? "font-medium" : "group-hover:translate-x-0.5"
+                    className={`relative z-10 flex items-center gap-1.5 text-sm tracking-[0.08em] whitespace-nowrap transition-transform duration-300 ${
+                      isCurrent ? "font-semibold" : "font-normal group-hover:translate-x-0.5"
                     }`}
                   >
                     {floorTag(f)}
@@ -266,15 +284,6 @@ const FloorPlanOverlay = ({
           </div>
         </div>
 
-        {/* footer — quiet level count */}
-        {/* <div className="relative border-t border-white/10 px-4 py-3">
-          <p className="text-[8px] uppercase tracking-[2.5px] text-[#7a6230]">
-            {floors.length} Levels
-          </p>
-          <p className="mt-0.5 text-[8px] uppercase tracking-[2.5px] text-[#9b8a62]">
-            Ground → Terrace
-          </p>
-        </div> */}
       </aside>
 
       {/* main column */}
@@ -293,7 +302,7 @@ const FloorPlanOverlay = ({
           <button
             onClick={onClose}
             aria-label="Close floor plan"
-            className="absolute group top-4 right-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#e5ad2b] hover:bg-[#c49833] md:top-4 md:right-10"
+            className="absolute group top-4 right-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#767889] hover:bg-[#4E5157] **:md:top-4 md:right-10"
           >
             Close
             <span className="text-sm leading-none transition-transform group-hover:rotate-90">
@@ -387,7 +396,7 @@ const FloorPlanOverlay = ({
               {hasPano && (
                 <button
                   onClick={() => onOpenPano?.(null)}
-                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#b8860b] bg-[#b8860b] px-6 py-2.5 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#8f6708] hover:bg-[#8f6708]"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#363d57] bg-[#2d2c27] px-6 py-2.5 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#26344c] hover:bg-[#434650]"
                 >
                   View Pano
                 </button>
@@ -409,7 +418,7 @@ const FloorPlanOverlay = ({
               <button
                 onClick={zoomOut}
                 aria-label="Zoom out"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#3d3b37]"
               >
                 −
               </button>
@@ -422,7 +431,7 @@ const FloorPlanOverlay = ({
               <button
                 onClick={zoomIn}
                 aria-label="Zoom in"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#c49833]"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#413f3c]"
               >
                 +
               </button>
