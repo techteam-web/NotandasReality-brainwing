@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MARZIPANO_SRC, floorKey, toDeg } from "./panoData";
 import MiniCompass from "../SvgAnimations/MiniCompass";
+import NotandasNMark from "../SvgAnimations/NotandasNMark";
 
 /**
  * Full-screen 360° pano overlay for a single building floor.
@@ -189,10 +190,10 @@ const PanoViewer = ({
       {/* top bar */}
       <div className="absolute top-0 right-0 left-0 z-10 flex items-center justify-between px-6 py-4 md:px-10">
         <div className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-          <p className="text-[10px] tracking-[3px] text-white uppercase">
+          <p className="text-[14px] tracking-[3px] text-white uppercase">
             {buildingName} · Pano view
           </p>
-          <h2 className="mt-0.5  text-2xl text-white  md:text-2xl">
+          <h2 className="mt-0.5  text-2xl text-white  md:text-[24px]">
             {pano ? pano.name.split("·")[0].trim() : floorTitle}
           </h2>
         </div>
@@ -227,18 +228,24 @@ const PanoViewer = ({
             </div>
           )}
 
-          {/* realtime mini compass — the dial spins with the live look direction */}
+          {/* realtime mini compass and brand mark in small bottom left corner */}
           {!loading && !failed && (
-            <MiniCompass
-              yaw={toDeg(angles.yaw)}
-              transitionMs={0}
-              className="pointer-events-none absolute bottom-6 left-6 z-10 h-16 w-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-28 md:w-28 lg:w-23 xl:w-25 2xl:w-35"
-            />
+            <div className="pointer-events-none absolute bottom-5 left-5 z-10 flex items-center gap-3 md:bottom-8 md:left-8 md:gap-4">
+              <MiniCompass
+                yaw={toDeg(angles.yaw)}
+                transitionMs={0}
+                className="h-16 w-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-24 md:w-24 lg:w-20 xl:w-22 2xl:w-28"
+              />
+              
+            </div>
           )}
-
+          <NotandasNMark
+                className="relative left-[95%] top-[80%] h-12 w-18 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] md:h-16 md:w-10 lg:h-56 lg:w-25 xl:top-[78%] xl:left-[94%] lg:top-[73%] lg:left-[93%] 2xl:top-[82%] 2xl:left-[94%] 3xl:top-[85%] 3xl:left-[96%] 4xl:top-[88%] 4xl:left-[96%]"
+                aria-label={buildingName || "Notandas Realty"}
+              />
           {/* bottom toolbar */}
           {!failed && (
-            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 xl:h-13 xl:-bottom-px 2xl:bottom-2 3xl:bottom-3">
+            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 xl:h-13 xl:-bottom-px 2xl:bottom-2 3xl:bottom-3 xl:mb-5">
               <button
                 onClick={() => zoom(1.15)}
                 aria-label="Zoom out"

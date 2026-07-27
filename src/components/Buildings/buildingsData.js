@@ -19,7 +19,7 @@ export const BUILDINGS = [
   {
     id: "notan-crown",
     name: "Notan Crown",
-    area: "Bandra West",
+    area: "S.V.Road,Bandra West",
     tagline: "A quiet address by the shore.",
     img: notanCrown,
     top: "92%",
@@ -42,7 +42,7 @@ export const BUILDINGS = [
   {
     id: "notan-edge",
     name: "Notan Edge",
-    area: "Vile Parle",
+    area: "V.M.Road,Vile Parle",
     tagline: "Where the city meets the sky.",
     img: notanEdge,
     top: "29%",
@@ -65,7 +65,7 @@ export const BUILDINGS = [
   {
     id: "notan-dc",
     name: "Notan DC",
-    area: "Juhu",
+    area: "N.S.Road No.10,J.V.P.D,Juhu",
     tagline: "Rooted in legacy. Reimagined for tomorrow.",
     img: notanDc,
     top: "18%",
@@ -77,7 +77,7 @@ export const BUILDINGS = [
   {
     id: "notan-terrace",
     name: "Notan Terraces",
-    area: "Juhu",
+    area: "N.S.Road No.11,J.V.P.D,Juhu",
     tagline: "Evenings that open outward.",
     img: notanTerrace,
     top: "25.4%",

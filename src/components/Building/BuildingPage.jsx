@@ -22,7 +22,8 @@ const BUILDING_AMINITIES = {
     1: "Grand lobby with reception and lounge",
     2: " Ground-floor café and lounge",
     3: "Private pantry and washroom in every unit",
-    4: "3 high-speed elevators + separate service/fire elevator",
+    4: "3 high-speed elevators",
+    5: "Separate service/fire elevator",
   },
 
   "notan-jewel": {
@@ -264,20 +265,29 @@ const BuildingPage = () => {
               src={projectLogo}
               alt={building ? building.name : "Building"}
               draggable="false"
-              className={`h-auto xl:h-60 lg:h-70 2xl:h-75 4xl:h-120 max-w-[80vw] select-none ${
-                logoIsTight
+              className={`h-auto xl:h-50 lg:h-70 2xl:h-75 4xl:h-120 max-w-[80vw] select-none ${
+                view.headerLogoClass ||
+                (logoIsTight
                   ? "w-44 sm:w-52 md:w-72 lg:w-56 xl:w-48 2xl:w-56 4xl:w-96"
-                  : "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-76 xl:w-68 2xl:w-76 4xl:w-130"
+                  : "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-76 xl:w-68 2xl:w-76 4xl:w-130")
               }`}
             />
           </h1>
         ) : (
-          <h1 className="mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-4xl xl:text-[30px] 2xl:text-[35px] 4xl:text-[66px]">
+          <h1
+            className={`mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-4xl xl:text-[30px] 2xl:text-[35px] 4xl:text-[66px] ${
+              view.headerTitleClass || ""
+            }`}
+          >
             {building ? building.name : "Building"}
           </h1>
         )}
         {building && (
-          <p className="mt-2 text-[10px] tracking-[0.45em] text-[#1f2a40]/70 uppercase md:text-sm xl:text-[10px]">
+          <p
+            className={`mt-2 text-[10px] tracking-[0.45em] text-[#1f2a40]/70 uppercase md:text-sm xl:text-[10px] ${
+              view.headerSubClass || ""
+            }`}
+          >
             {building.area}, Mumbai
           </p>
         )}
@@ -285,7 +295,7 @@ const BuildingPage = () => {
 
       {/* brand mark, top-right */}
       <NotandasNMark
-        className="absolute top-4 right-4 z-20 h-32 w-20 opacity-95 md:top-6 md:right-8 md:h-40 md:w-24"
+        className="absolute top-4 right-4 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 xl:-top-7 xl:-right-2 xl:h-48 xl:w-28 2xl:-top-8 2xl:-right-7 2xl:h-56 2xl:w-32"
         aria-label={building ? building.name : "Notandas Realty"}
       />
 
@@ -317,20 +327,23 @@ const BuildingPage = () => {
             )}
           </div>
 
-          <div className="my-4 border-t border-dashed border-[#1f2a40]/25" />
+          {/* <div className="my-4 border-t border-dashed border-[#1f2a40]/25" /> */}
 
-          <p className="text-[14px] leading-snug text-[#1f2a40]/75">
+          {/* <p className="text-[14px] leading-snug text-[#1f2a40]/75">
             {activeFloor
               ? "Click to open floor plan"
-              : `${view.floors.length} floors · ground to terrace`}
-          </p>
+              : `${view.floors.length} floors `}
+          </p> */}
         </div>
       </aside>
 
       {hasAmenities && (
         <div
           ref={amenityRef}
-          className={`pointer-events-none absolute ${view.amenityClass || "bottom-55 left-75 "} z-20 w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl`}
+          className={`pointer-events-none absolute z-20 ${
+            view.amenityClass ||
+            "bottom-55 left-75 w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl"
+          }`}
         >
           <section className="px-5 py-3 text-center">
             <div className="inline-flex flex-col items-center">
@@ -338,11 +351,18 @@ const BuildingPage = () => {
                 Amenities
               </p>
               <div className="mt-2 h-px w-10 bg-[#595753]" />
-              <ul className="mt-2.5 flex max-w-lg flex-wrap items-center justify-center gap-y-1 text-base leading-snug text-black sm:text-lg">
+              <ul
+                className={`mt-2.5 flex flex-wrap items-center justify-center gap-y-1 text-base leading-snug text-black sm:text-lg ${
+                  view.amenityListClass || "max-w-lg"
+                }`}
+              >
                 {amenities.map((amenity) => (
                   <li
                     key={amenity}
-                    className="after:mx-2 after:text-black/40 after:content-['|'] last:after:content-none xl:text-[15.5px] mix-blend-difference lg:text-[16px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]" 
+                    className={`after:mx-2 after:text-black/40 after:content-['|'] last:after:content-none mix-blend-multiply ${
+                      view.amenityItemClass ||
+                      "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
+                    }`}
                   >
                     {amenity}
                   </li>
