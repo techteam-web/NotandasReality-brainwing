@@ -295,7 +295,11 @@ const BuildingPage = () => {
 
       {/* brand mark, top-right */}
       <NotandasNMark
-        className="absolute top-4 right-4 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 xl:-top-7 xl:-right-2 xl:h-48 xl:w-28 2xl:-top-8 2xl:-right-7 2xl:h-56 2xl:w-32"
+        className={
+          view.nMarkClass ||
+          "absolute top-4 right-4 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 xl:-top-7 xl:-right-2 xl:h-48 xl:w-28 2xl:-top-8 2xl:-right-7 2xl:h-56 2xl:w-32"
+        }
+        fill={view.nMarkFill || "white"}
         aria-label={building ? building.name : "Notandas Realty"}
       />
 
