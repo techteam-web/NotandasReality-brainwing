@@ -107,7 +107,7 @@ const Overlay = ({ onEnter }) => (
     />
 
     {/* the framed cream panel — echoes the sketch-bordered panels of the plan */}
-    <div className="fs-rise relative mx-6 w-[min(92vw,32rem)] overflow-hidden rounded-[14px] border border-[rgba(31,42,64,0.18)] bg-[#faf6ed]/88 px-9 py-12 text-center shadow-[0_30px_80px_-32px_rgba(60,50,25,0.55)] backdrop-blur-md sm:px-14">
+    <div className="fs-rise relative mx-6 w-[min(92vw,32rem)] overflow-hidden rounded-[14px] border border-[rgba(31,42,64,0.18)] bg-[#faf6ed]/88 px-9 py-22 text-center shadow-[0_30px_80px_-32px_rgba(60,50,25,0.55)] backdrop-blur-md sm:px-14">
       {/* fine gold double keyline, like the framed floor-plan sheets */}
       <span
         aria-hidden="true"
@@ -128,7 +128,7 @@ const Overlay = ({ onEnter }) => (
         {/* Serif heading with a cool underline accent. */}
         <div className="relative inline-block">
           <h2
-            className="text-3xl tracking-wide text-[#4E5157] italic md:text-[2.6rem] md:leading-tight"
+            className="text-3xl tracking-wide text-[#4E5157] italic md:text-[2rem] md:leading-tight"
             style={serif}
           >
             Best Viewed in Full Screen
@@ -137,7 +137,7 @@ const Overlay = ({ onEnter }) => (
         </div>
 
         {/* Slim divider. */}
-        <div className="mt-9 mb-6 flex items-center gap-3" aria-hidden="true">
+        <div className="mt-9 mb-7 flex items-center gap-3" aria-hidden="true">
           {/* <span className="h-px w-12 bg-[rgba(117,129,150,0.45)]" />
           <span className="h-1.5 w-1.5 rotate-45 bg-[#4E5157]" />
           <span className="h-px w-12 bg-[rgba(117,129,150,0.45)]" /> */}
