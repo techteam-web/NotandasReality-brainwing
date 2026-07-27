@@ -45,9 +45,7 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
           className="group/link inline-flex items-center gap-1.5 text-[11px] font-medium tracking-wide text-[#4E5157] transition-colors duration-300 hover:text-[#6f7f95]"
         >
           View Project
-          <span className="transition-transform duration-300 group-hover/link:translate-x-1">
-            →
-          </span>
+          
         </Link>
       </div>
 
