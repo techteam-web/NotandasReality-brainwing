@@ -27,7 +27,7 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
         <div className="pointer-events-none absolute inset-1 rounded-[1px] border border-[#4E5157]/15" />
 
         <p className="text-[10px] tracking-[3px] text-[#4E5157]/80 uppercase">
-          ◈ {area}
+           {area}
         </p>
 
         <h3 className="mt-0.5 font-serif text-lg leading-tight text-[#4E5157] italic">
