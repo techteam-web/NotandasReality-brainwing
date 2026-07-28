@@ -381,21 +381,21 @@ const MapScene = () => {
       </div>
 
       {/* inland green pocket below Vile Parle */}
-      <div className="ms-grow ms-sway absolute top-[11%] left-[86%] w-20 md:w-28">
+      <div className="ms-grow ms-sway absolute top-[11%] left-[86%] w-20 md:w-25">
         <img
           src={forestImg}
           alt=""
           className="h-22 w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-20 md:w-28">
+      <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-20 md:w-25">
         <img
           src={forestImg}
           alt=""
           className="h-20 w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[71%] left-[73%] w-20 md:w-38 ">
+      <div className="ms-grow ms-sway absolute top-[71%] left-[73%] w-20 md:w-30 ">
         <img
           src={forestImg}
           alt=""
