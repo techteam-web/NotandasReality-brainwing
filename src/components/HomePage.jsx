@@ -34,16 +34,16 @@ const HomePage = () => {
       <BuildingsLayer />
 
       <div className="relative">
-        <NuthandasLogoAnimated className="relative h-50 w-48 cursor-pointer transition-all duration-500  md:w-74 lg:left-10 lg:w-30 xl:left-10 xl:w-30" />
+        <NuthandasLogoAnimated className="relative h-50 w-48 transition-all duration-500  md:w-74 lg:left-10 lg:w-30 xl:left-10 xl:w-30 pointer-events-none" />
       </div>
 
       <div className="absolute right-27 bottom-[50%]">
-        <div className="mb-15 ml-15 h-16 w-36 opacity-70">
+        <div className="mb-15 ml-15 h-16 w-36 opacity-70 pointer-events-none">
           <AnimatedPlane />
         </div>
 
         <h1
-          className="text-sm font-semibold text-[#A7B0BE] uppercase tracking-widest lg:text-[12px] "
+          className="text-sm font-semibold text-[#A7B0BE] uppercase tracking-widest lg:text-[12px] pointer-events-none"
           style={{ fontFamily: "'Times New Roman', Times, serif" }}
         >
           chhatrapati <br />
@@ -53,7 +53,7 @@ const HomePage = () => {
       </div>
 
       <h1
-        className="absolute top-[95%] left-[43%] text-sm font-semibold text-[#A7B0BE] uppercase lg:text-[11px] opacity-75"
+        className="absolute top-[95%] left-[43%] text-sm font-semibold text-[#A7B0BE] uppercase lg:text-[11px] opacity-75 pointer-events-none"
         style={{ fontFamily: "'Times New Roman', Times, serif" }}
       >
         bandra worli <br />
@@ -62,7 +62,7 @@ const HomePage = () => {
 
       <div className="absolute top-[50%] left-[8%] -rotate-90 xl:left-15 2xl:left-15 3xl:left-40">
         <h1
-          className="font-Times-Roman text-2xl font-semibold tracking-[28px] text-[#3b5382] capitalize lg:hidden xl:block"
+          className="font-Times-Roman text-2xl font-semibold tracking-[28px] text-[#3b5382] capitalize lg:hidden xl:block pointer-events-none"
           ref={seaWordRef}
         >
           Arabian Sea
