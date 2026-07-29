@@ -1455,6 +1455,18 @@ export const getFloorPano = (buildingId, floor) => {
 };
 
 /**
+ * The height a floor's pano was captured at, as a display label ("44.6m"), or
+ * null when that floor has no 360°. Every scene name carries its elevation
+ * (e.g. "14th Floor · 44.6m"), so the number is read straight off the scene.
+ */
+export const getFloorPanoHeight = (buildingId, floor) => {
+  const match = getFloorPano(buildingId, floor)?.name.match(
+    /(\d+(?:\.\d+)?)\s*m\s*$/,
+  );
+  return match ? `${match[1]}m` : null;
+};
+
+/**
  * Resolve the pano a floor-plan room opens. It's the floor's own pano, re-framed
  * by the matching region entry (facing/zoom/arc) when one exists.
  * `regionName == null` (the "whole floor" 360° button) falls back to the floor's

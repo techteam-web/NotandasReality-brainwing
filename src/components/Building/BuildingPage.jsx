@@ -288,7 +288,7 @@ const BuildingPage = () => {
               view.headerSubClass || ""
             }`}
           >
-            {building.area}, Mumbai
+            {building.subtitle || `${building.area}, Mumbai`}
           </p>
         )}
       </header>
@@ -309,7 +309,7 @@ const BuildingPage = () => {
       >
         <div className="rounded-sm px-5 py-6 text-center">
           <p className="text-[20px] tracking-[3px] text-[#1f2a40] uppercase">
-            {activeFloor ? "Now viewing" : "Pick a floor"}
+            {activeFloor ? "Now viewing Floor:": "Pick a floor"}
           </p>
 
           <div className="mt-3 flex min-h-22 flex-col items-center justify-center">
@@ -363,7 +363,7 @@ const BuildingPage = () => {
                 {amenities.map((amenity) => (
                   <li
                     key={amenity}
-                    className={`after:mx-2 after:text-black/40 after:content-['|'] last:after:content-none mix-blend-multiply ${
+                    className={` after:mx-2 after:text-black/40 after:content-['|'] last:after:content-none mix-blend-multiply ${
                       view.amenityItemClass ||
                       "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
                     }`}
@@ -396,11 +396,20 @@ const BuildingPage = () => {
       {panoFloor && (
         <PanoViewer
           key={`${pano.floorNum}-${pano.regionName ?? "floor"}`}
+          buildingId={id}
           buildingName={building ? building.name : "Building"}
           floor={panoFloor}
+          floors={view.floors}
           floorTitle={floorTitleOf(panoFloor)}
           pano={getRegionPano(id, panoFloor, pano.regionName)}
           regionName={pano.regionName}
+          /* switching floors from inside the 360° opens that floor's default
+             framing (a room's angles don't carry over) and moves the plan
+             underneath along with it */
+          onSelectFloor={(num) => {
+            setSelected(num);
+            setPano({ floorNum: num, regionName: null });
+          }}
           onClose={() => setPano(null)}
         />
       )}

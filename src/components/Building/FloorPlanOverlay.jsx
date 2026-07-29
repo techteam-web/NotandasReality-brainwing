@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getFloorPlan } from "./floorPlansData";
-import { getFloorPano } from "./panoData";
+import { getFloorPano, getFloorPanoHeight } from "./panoData";
 import notanMap from "../../assets/floorplanoverbg.png";
 import NotandasNMark from "../SvgAnimations/NotandasNMark";
 import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "./buildingLogos";
@@ -224,6 +224,8 @@ const FloorPlanOverlay = ({
             {orderedFloors.map((f) => {
               const isCurrent = floor && f.num === floor.num;
               const hasPlan = getFloorPlan(buildingId, f).available;
+              // height that floor's 360° was shot at — null on floors with no pano
+              const panoHeight = getFloorPanoHeight(buildingId, f);
               return (
                 <button
                   key={f.num}
@@ -278,6 +280,21 @@ const FloorPlanOverlay = ({
                   >
                     {floorTag(f)}
                   </span>
+
+                  {/* height that floor's pano was shot at, pinned to the right
+                      of the tag — only from md up, where the aside is wide
+                      enough for it not to crowd the longer floor names */}
+                  {panoHeight && (
+                    <span
+                      className={`relative z-10 ml-auto hidden shrink-0 pl-1 text-[11px] tracking-[0.04em] tabular-nums transition-colors duration-300 md:inline ${
+                        isCurrent
+                          ? "text-[#4E5157]"
+                          : "text-[#4E5157]/55 group-hover:text-[#4E5157]/80"
+                      }`}
+                    >
+                      {panoHeight}
+                    </span>
+                  )}
                 </button>
               );
             })}

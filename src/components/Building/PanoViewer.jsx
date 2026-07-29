@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { MARZIPANO_SRC, floorKey, toDeg } from "./panoData";
+import {
+  MARZIPANO_SRC,
+  floorKey,
+  toDeg,
+  getFloorPano,
+  getFloorPanoHeight,
+} from "./panoData";
 import MiniCompass from "../SvgAnimations/MiniCompass";
 import NotandasNMark from "../SvgAnimations/NotandasNMark";
 
@@ -45,6 +51,32 @@ const limitYawArc = (center, half) => (params) => {
   return params;
 };
 
+const getOrdinalFloor = (num) => {
+  if (num === null || num === undefined) return "";
+  const mod100 = num % 100;
+  let suffix = "th";
+  if (mod100 < 11 || mod100 > 13) {
+    switch (num % 10) {
+      case 1:
+        suffix = "st";
+        break;
+      case 2:
+        suffix = "nd";
+        break;
+      case 3:
+        suffix = "rd";
+        break;
+      default:
+        suffix = "th";
+        break;
+    }
+  }
+  return `${num}${suffix} Floor`;
+};
+
+const floorTag = (f) =>
+  f.isTerrace ? "Terrace" : f.isGround ? "Ground Floor" : getOrdinalFloor(f.num);
+
 let marzipanoPromise = null;
 const loadMarzipano = () => {
   if (window.Marzipano) return Promise.resolve(window.Marzipano);
@@ -61,29 +93,69 @@ const loadMarzipano = () => {
 };
 
 const PanoViewer = ({
+  buildingId,
   buildingName,
   floor,
+  floors = [],
   floorTitle,
   pano,
   regionName,
+  onSelectFloor,
   onClose,
 }) => {
   const panoRef = useRef(null);
   const viewerRef = useRef(null);
   const viewRef = useRef(null);
   const rafRef = useRef(0);
+  const menuRef = useRef(null); // dropdown wrapper, for outside-click detection
+  const menuItemRef = useRef(null); // the open floor's row in the dropdown
 
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
   const [angles, setAngles] = useState({ yaw: 0, pitch: 0, fov: 0 });
   const [copied, setCopied] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // close on Escape
+  // floors listed high → low, like the plan overlay's aside
+  const floorRank = (f) => (f.isTerrace ? 1e9 : f.isGround ? -1 : f.num);
+  const orderedFloors = [...floors].sort((a, b) => floorRank(b) - floorRank(a));
+  const canSwitchFloor = !!onSelectFloor && orderedFloors.length > 1;
+  // the picker's label — the floor you're on, falling back to the capture's name
+  const headingTitle =
+    floorTitle || (pano ? pano.name.split("·")[0].trim() : "");
+
+  // jump straight to another floor's 360° — the floor dropdown in the header
+  const changeFloor = (num) => {
+    setMenuOpen(false);
+    if (floor && num === floor.num) return;
+    onSelectFloor?.(num);
+  };
+
+  // Escape closes the floor dropdown first, then the viewer
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && onClose();
+    const onKey = (e) => {
+      if (e.key !== "Escape") return;
+      if (menuOpen) setMenuOpen(false);
+      else onClose();
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  }, [menuOpen, onClose]);
+
+  // dismiss the floor dropdown on any click outside it
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onDown = (e) => {
+      if (!menuRef.current?.contains(e.target)) setMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, [menuOpen]);
+
+  // open the list already scrolled to the floor you're standing on
+  useEffect(() => {
+    if (menuOpen) menuItemRef.current?.scrollIntoView({ block: "nearest" });
+  }, [menuOpen]);
 
   // build the Marzipano viewer for this floor's pano
   useEffect(() => {
@@ -193,9 +265,97 @@ const PanoViewer = ({
           <p className="text-[14px] tracking-[3px] text-white uppercase">
             {buildingName} · Pano view
           </p>
-          <h2 className="mt-0.5  text-2xl text-white  md:text-[24px]">
-            {pano ? pano.name.split("·")[0].trim() : floorTitle}
-          </h2>
+
+          {/* the floor title doubles as the floor picker — open it to step to
+              another floor's 360° without going back to the plan */}
+          <div ref={menuRef} className="relative mt-0.5">
+            <button
+              type="button"
+              onClick={() => canSwitchFloor && setMenuOpen((o) => !o)}
+              aria-haspopup={canSwitchFloor ? "listbox" : undefined}
+              aria-expanded={canSwitchFloor ? menuOpen : undefined}
+              aria-label={canSwitchFloor ? "Change floor" : undefined}
+              className={`group inline-flex items-center gap-2.5 rounded-sm border py-1 transition-colors ${
+                canSwitchFloor
+                  ? menuOpen
+                    ? "border-[#e8c879]/70 bg-white/10 px-3"
+                    : "border-white/25 bg-white/5 px-3 hover:border-[#e8c879]/70 hover:bg-white/10"
+                  : "cursor-default border-transparent"
+              }`}
+            >
+              <h2 className="text-2xl text-white md:text-[24px]">
+                {headingTitle}
+              </h2>
+              {canSwitchFloor && (
+                <svg
+                  viewBox="0 0 12 8"
+                  aria-hidden="true"
+                  className={`h-2.5 w-3 shrink-0 fill-none stroke-[#e8c879] stroke-[1.6] transition-transform duration-300 ${
+                    menuOpen ? "rotate-180" : "group-hover:translate-y-0.5"
+                  }`}
+                >
+                  <path
+                    d="M1 1.5 6 6.5 11 1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </button>
+
+            {canSwitchFloor && menuOpen && (
+              <div
+                role="listbox"
+                aria-label="Floors"
+                className="custom-scrollbar absolute top-[calc(100%+10px)] left-0 z-30 max-h-[58vh] w-56 overflow-y-auto rounded-md border border-white/15 bg-[#0e1726]/95 p-1.5 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md md:w-64"
+              >
+                {orderedFloors.map((f) => {
+                  const isCurrent = floor && f.num === floor.num;
+                  // floors with no 360° capture stay listed, but greyed out
+                  const hasPano = !!getFloorPano(buildingId, f);
+                  const panoHeight = getFloorPanoHeight(buildingId, f);
+                  return (
+                    <button
+                      key={f.num}
+                      ref={isCurrent ? menuItemRef : null}
+                      role="option"
+                      aria-selected={!!isCurrent}
+                      disabled={!hasPano}
+                      onClick={() => changeFloor(f.num)}
+                      title={hasPano ? undefined : "360° view coming soon"}
+                      className={`group/row flex w-full items-center gap-2.5 rounded-sm px-2.5 py-2 text-left transition-colors ${
+                        isCurrent
+                          ? "bg-white/15 text-white"
+                          : hasPano
+                            ? "text-white/70 hover:bg-white/10 hover:text-white"
+                            : "cursor-not-allowed text-white/25"
+                      }`}
+                    >
+                      <span
+                        className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors ${
+                          isCurrent
+                            ? "bg-[#e8c879] shadow-[0_0_8px_rgba(232,200,121,0.8)]"
+                            : hasPano
+                              ? "bg-white/30 group-hover/row:bg-[#e8c879]/80"
+                              : "bg-white/15"
+                        }`}
+                      />
+                      <span
+                        className={`text-sm tracking-[0.06em] whitespace-nowrap ${
+                          isCurrent ? "font-semibold" : ""
+                        }`}
+                      >
+                        {floorTag(f)}
+                      </span>
+                      <span className="ml-auto shrink-0 pl-2 text-[11px] tracking-[0.04em] text-white/40 tabular-nums">
+                        {panoHeight ?? "soon"}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
 
         <button

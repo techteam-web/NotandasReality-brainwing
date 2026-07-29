@@ -29,19 +29,19 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-82 2xl:top-30 xl:left-53 xl:top-17 lg:left-58 lg:top-10 3xl:left-100 3xl:top-55 4xl:left-115 4xl:top-50 ",
+      "left-80 top-36 2xl:left-80 2xl:top-75 xl:left-43 xl:top-74 lg:left-53 lg:top-46 3xl:left-100 3xl:top-[43%] 4xl:left-115 4xl:top-[37%] ",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58  2xl:w-56 3xl:w-80 4xl:w-90",
     headerSubClass:
-      "lg:-mt-14 lg:text-[5px] xl:text-[-23px]  xl:mt-10 2xl:-mt-5 2xl:text-[8px] 2xl:text-bold 3xl:mt-5 3xl:text-[10px] 4xl:-mt-7 4xl:text-[16px]",
+      "lg:-mt-14 lg:text-[5px] xl:text-[-16px]  xl:mt-5 2xl:-mt-5 2xl:text-[8px] 2xl:text-bold 3xl:mt-5 3xl:text-[10px] 4xl:-mt-7 4xl:text-[16px]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:top-60 lg:-left-23 2xl:left-16 2xl:top-82 3xl:top-110 3xl:left-45 4xl:top-150 4xl:left-90 xl:-left-2 xl:top-63",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl lg:top-60 lg:-right-25 2xl:right-12 2xl:top-82 3xl:top-110 3xl:right-41 4xl:top-150 4xl:right-90 xl:-right-6 xl:top-73",
     amenityListClass:
-      "max-w-lg xl:w-[17rem] lg:w-[15rem] 2xl:w-[20rem] 3xl:w-[26rem] 4xl:w-[33rem]",
+      "max-w-lg xl:w-[15.5rem] lg:w-[15rem] 2xl:w-[20rem] 3xl:w-[26rem] 4xl:w-[33rem]",
     amenityItemClass:
       "lg:text-[10px] xl:text-[12px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
-    asideClass: "xl:top-[18%] xl:left-[67%] lg:top-[18%] lg:left-[67%]",
+    asideClass: "xl:top-[15%] xl:left-[67%] lg:top-[12%] lg:left-[67%] ",
   },
   "notan-edge": {
     viewImg: notanEdgeView,

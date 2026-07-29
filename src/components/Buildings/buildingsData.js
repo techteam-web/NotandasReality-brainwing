@@ -14,12 +14,21 @@ import notanTides from "../../assets/buildings/Notan_tides.png";
  * `width` controls its size, `tooltip: "bottom"` flips the card below the
  * building (use it for buildings near the top edge of the screen).
  * `href` is the future views page route.
+ *
+ * Two separate labels, on purpose:
+ *   `area`     — the small uppercase line inside the map tooltip.
+ *                Keep it short and simple, it sits in a narrow card.
+ *   `subtitle` — the line under the name on the building page.
+ *                Written out in full exactly as it should read (add
+ *                ", Mumbai" yourself if you want it). Falls back to
+ *                `<area>, Mumbai` when left out.
  */
 export const BUILDINGS = [
   {
     id: "notan-crown",
     name: "Notan Crown",
-    area: "S.V.Road,Bandra West",
+    area: "Bandra West",
+    subtitle: "S.V.Road,Bandra West, Mumbai",
     tagline: "A quiet address by the shore.",
     img: notanCrown,
     top: "92%",
@@ -31,6 +40,7 @@ export const BUILDINGS = [
     id: "notan-jewel",
     name: "Notan Jewel",
     area: "Bandra West",
+    // subtitle: "Bandra West, Mumbai",
     tagline: "Ambition. Structure. Permanence.",
     img: notanJewel,
     top: "84%",
@@ -42,7 +52,8 @@ export const BUILDINGS = [
   {
     id: "notan-edge",
     name: "Notan Edge",
-    area: "V.M.Road,Vile Parle",
+    area: "Vile Parle",
+    subtitle: "V.M.Road,Vile Parle, Mumbai",
     tagline: "Where the city meets the sky.",
     img: notanEdge,
     top: "29%",
@@ -55,6 +66,7 @@ export const BUILDINGS = [
     id: "notan-space",
     name: "Notan Spaces",
     area: "Santacruz East",
+    // subtitle: "Santacruz East, Mumbai",
     tagline: "The Architecture of Ambition.",
     img: notanSpace,
     top: "61%",
@@ -65,7 +77,8 @@ export const BUILDINGS = [
   {
     id: "notan-dc",
     name: "Notan DC",
-    area: "N.S.Road No.10,J.V.P.D,Juhu",
+    area: "Juhu",
+    subtitle: "N.S.Road No.10,J.V.P.D,Juhu,Mumbai",
     tagline: "Rooted in legacy. Reimagined for tomorrow.",
     img: notanDc,
     top: "18%",
@@ -77,7 +90,8 @@ export const BUILDINGS = [
   {
     id: "notan-terrace",
     name: "Notan Terraces",
-    area: "N.S.Road No.11,J.V.P.D,Juhu",
+    area: "Juhu",
+    subtitle: "N.S.Road No.11,J.V.P.D,Juhu, Mumbai",
     tagline: "Evenings that open outward.",
     img: notanTerrace,
     top: "25.4%",
@@ -90,6 +104,7 @@ export const BUILDINGS = [
   //   id: "notan-lands-end",
   //   name: "Notan Tides",
   //   area: "Bandra",
+  //   subtitle: "Bandra, Mumbai",
   //   tagline: "Living in rhythm with the sea.",
   //   img: notanTides,
   //   top: "86%",
