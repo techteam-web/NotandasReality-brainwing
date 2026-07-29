@@ -92,14 +92,14 @@ export const BUILDING_VIEWS = {
     headerSubClass:
       "lg:-mt-16 lg:text-[8px] xl:mt-6 2xl:mt-1 3xl:mt-5 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
     asideClass:
-      "left-[25%] top-[20%] md:right-12 md:w-44 2xl:top-[10%] xl:top-[10%]  lg:top-[5%] 3xl:top-[14%] 4xl:top-[10%]",
-    nMarkFill: "white",
+      "left-[25%] top-[20%] md:right-12 md:w-44 2xl:top-[19%] xl:top-[18%]  lg:top-[23%] 3xl:top-[24%] 4xl:top-[25%]",
+    nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-45 lg:left-95 2xl:left-[51%] 2xl:top-94 3xl:top-122 3xl:left-263 4xl:top-178 4xl:left-[59%] xl:left-[43%] xl:top-74",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl md:bottom-15 md:right-15 lg:bottom-48 lg:-right-33 2xl:-right-[1%] 2xl:top-94 3xl:top-122 3xl:right-26 4xl:top-170 4xl:right-[11%] xl:-right-[3%] xl:top-74",
     amenityListClass:
-      "max-w-lg lg:w-[12rem] xl:w-[19rem] 3xl:w-[28rem] 4xl:w-[33rem]",
+      "max-w-lg lg:w-[16rem] xl:w-[19rem] 3xl:w-[28rem] 4xl:w-[33rem]",
     amenityItemClass:
-      "lg:text-[9px] xl:text-[12px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
+      "lg:text-[10px] xl:text-[12px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
   },
   "notan-terrace": {
     viewImg: notanTerraceView,
