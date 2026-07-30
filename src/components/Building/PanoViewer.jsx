@@ -3,6 +3,8 @@ import {
   MARZIPANO_SRC,
   floorKey,
   toDeg,
+  wrapDeg,
+  panoHeadingDeg,
   getFloorPano,
   getFloorPanoHeight,
 } from "./panoData";
@@ -21,6 +23,12 @@ import NotandasNMark from "../SvgAnimations/NotandasNMark";
  * the framing you want, copy, and paste the snippet back into panoData.js —
  * FLOOR_PANO_MAP for a whole floor, or REGION_PANO_MAP when opened from a
  * specific floor-plan room (regionName set).
+ *
+ * The mini compass is calibrated by hand, then runs itself: each pano carries
+ * `northDeg` (the real bearing its yaw 0° faces) and `pinDeg` (where the pin
+ * sits), set per building / floor / room in panoData.js. The compass shows
+ * `northDeg + live yaw`, so it turns as the visitor looks around. Add
+ * `?compass=1` to the URL for the overlay used to dial those numbers in.
  */
 
 // Vertical look range allowed around the configured pitch.
@@ -115,6 +123,20 @@ const PanoViewer = ({
   const [angles, setAngles] = useState({ yaw: 0, pitch: 0, fov: 0 });
   const [copied, setCopied] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  // ?compass=1 opens the compass-aiming panel (an authoring aid, off in normal
+  // visits); the nudges are the trial offsets it applies live.
+  const [calibrating] = useState(
+    () => new URLSearchParams(window.location.search).get("compass") === "1",
+  );
+  const [nudge, setNudge] = useState({ north: 0, pin: 0 });
+
+  // Compass aim for this floor/room — straight from panoData, plus whatever the
+  // calibration panel is trying out (0 / 0 in a normal visit). `northDeg` is the
+  // hand-set calibration; `headingDeg` is that plus the live drag, and is what
+  // the compass actually shows.
+  const northDeg = wrapDeg((pano?.northDeg ?? 0) + nudge.north);
+  const pinDeg = wrapDeg((pano?.pinDeg ?? 0) + nudge.pin);
+  const headingDeg = wrapDeg(panoHeadingDeg(pano, angles.yaw) + nudge.north);
 
   // floors listed high → low, like the plan overlay's aside
   const floorRank = (f) => (f.isTerrace ? 1e9 : f.isGround ? -1 : f.num);
@@ -247,6 +269,28 @@ const PanoViewer = ({
         ? `// REGION_PANO_MAP[${k}]\n` +
           `"${regionName}": { yawDeg: ${yaw}, pitchDeg: ${pitch}, fovDeg: ${fov}, panDeg: ${pan} },`
         : `${key}: { scene: "${pano.id}", yawDeg: ${yaw}, pitchDeg: ${pitch}, fovDeg: ${fov}, panDeg: ${pan} },`;
+
+    navigator.clipboard?.writeText(snippet).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    });
+  };
+
+  // Calibration panel's copy: the compass aim you just dialled in. Paste it on
+  // the building (every floor), this floor's FLOOR_PANO_MAP entry, or this
+  // room's REGION_PANO_MAP entry — whichever scope the direction belongs to.
+  const copyCompass = () => {
+    if (!pano) return;
+    const key = floorKey(floor);
+    const k = typeof key === "string" ? `"${key}"` : String(key);
+    const aim = `northDeg: ${northDeg}, pinDeg: ${pinDeg},`;
+    const scope =
+      regionName != null
+        ? `REGION_PANO_MAP[${k}]["${regionName}"]`
+        : `FLOOR_PANO_MAP[${k}]`;
+    const snippet =
+      `// ${scope} — or drop it in PANO_BUILDINGS["${buildingId}"]\n` +
+      `// for the whole building\n${aim}`;
 
     navigator.clipboard?.writeText(snippet).then(() => {
       setCopied(true);
@@ -392,13 +436,72 @@ const PanoViewer = ({
           {!loading && !failed && (
             <div className="pointer-events-none absolute bottom-5 left-5 z-10 flex items-center gap-3 md:bottom-8 md:left-8 md:gap-4">
               <MiniCompass
-                yaw={toDeg(angles.yaw)}
+                heading={headingDeg}
+                pinDeg={pinDeg}
                 transitionMs={0}
                 className="h-16 w-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-24 md:w-24 lg:w-20 xl:w-22 2xl:w-28"
               />
               
             </div>
           )}
+          {/* compass aiming panel (?compass=1) — face a landmark you know the
+              direction of and nudge northDeg until the compass agrees, park the
+              pin where you want it, then Copy into panoData.js */}
+          {calibrating && !failed && (
+            <div className="absolute bottom-24 left-5 z-20 w-56 rounded-md border border-white/15 bg-[#0e1726]/90 p-3 font-mono text-[11px] text-white/80 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md md:bottom-36 md:left-8">
+              <p className="mb-2 text-[10px] tracking-[0.18em] text-[#e8c879] uppercase">
+                Compass aim
+              </p>
+              <p className="truncate text-white/45">
+                {buildingId} · {String(floorKey(floor))}
+                {regionName ? ` · ${regionName}` : ""}
+              </p>
+              <p className="text-white/45">
+                yaw {Math.round(toDeg(angles.yaw))}° → facing{" "}
+                <span className="text-white/70">{Math.round(headingDeg)}°</span>
+              </p>
+
+              {[
+                { label: "northDeg", value: northDeg, axis: "north" },
+                { label: "pinDeg", value: pinDeg, axis: "pin" },
+              ].map(({ label, value, axis }) => (
+                <div key={axis} className="mt-2">
+                  <p className="text-white">
+                    {label} <span className="text-[#e8c879]">{value}°</span>
+                  </p>
+                  <div className="mt-1 flex items-center gap-1">
+                    {[-15, -5, -1, 1, 5, 15].map((step) => (
+                      <button
+                        key={step}
+                        onClick={() =>
+                          setNudge((n) => ({ ...n, [axis]: n[axis] + step }))
+                        }
+                        className="flex-1 rounded-sm border border-white/20 py-1 text-[10px] transition-colors hover:border-[#e8c879]/70 hover:text-[#e8c879]"
+                      >
+                        {step > 0 ? `+${step}` : step}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              <div className="mt-2 flex items-center gap-1">
+                <button
+                  onClick={() => setNudge({ north: 0, pin: 0 })}
+                  className="flex-1 rounded-sm border border-white/20 py-1 transition-colors hover:border-[#e8c879]/70 hover:text-[#e8c879]"
+                >
+                  Reset
+                </button>
+                <button
+                  onClick={copyCompass}
+                  className="flex-1 rounded-sm border border-white/20 py-1 transition-colors hover:border-[#e8c879]/70 hover:text-[#e8c879]"
+                >
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
+            </div>
+          )}
+
           <NotandasNMark
                 className="relative left-[95%] top-[80%] h-12 w-18 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] md:h-16 md:w-10 lg:h-56 lg:w-25 xl:top-[78%] xl:left-[94%] lg:top-[73%] lg:left-[93%] 2xl:top-[82%] 2xl:left-[94%] 3xl:top-[85%] 3xl:left-[96%] 4xl:top-[88%] 4xl:left-[96%]"
                 aria-label={buildingName || "Notandas Realty"}

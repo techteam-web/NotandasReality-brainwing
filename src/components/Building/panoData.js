@@ -27,12 +27,49 @@
  *   • fovDeg            — zoom / field of view. Omit to use the as-shot zoom.
  *   • panDeg            — how wide a horizontal arc you may look across
  *     (the "restrict to 140°" window). Defaults to 140.
+ *   • northDeg / pinDeg — how the MINI COMPASS is aimed; see below.
+ *
+ * ── Aiming the mini compass ────────────────────────────────────────────────
+ * You set the compass's starting direction by hand; once it's set, it tracks the
+ * live view on its own. Two knobs, in degrees, both defaulting to 0:
+ *
+ *   • northDeg — THE CALIBRATION. The true compass bearing that this capture's
+ *     yaw 0° faces. A pano's yaw is relative to however the camera happened to
+ *     be pointing when the tour was stitched, so this is what ties it to the
+ *     real world and fixes where N / S / E / W start out.
+ *       0 → yaw 0° faces north    90 → faces east    -90 → faces west
+ *     The viewer then shows `northDeg + live yaw`, so the card turns as the
+ *     visitor drags and the direction they're facing reads under the pin.
+ *
+ *   • pinDeg — where the PIN sits on the rim, clockwise from the top of the
+ *     widget. Purely placement; the card re-orients to keep the heading under
+ *     it wherever you park it.
+ *       0 → top (default)    90 → right    180 → bottom    -90 → left
+ *
+ * Set them wherever the direction actually changes:
+ *   • PANO_BUILDINGS — the building's default. northDeg usually lives here, as
+ *     the whole tour is normally stitched from one camera orientation.
+ *   • FLOOR_PANO_MAP entry — one floor, when its capture was shot facing
+ *     differently to the rest.
+ *   • REGION_PANO_MAP entry — one room.
+ * Most specific wins: room > floor > building.
+ *
+ * Not sure of the numbers? Open the pano with `?compass=1` on the URL. A small
+ * panel appears with ± buttons for both knobs and a live heading readout: face
+ * a landmark whose real direction you know (the sea, the Sea Link, a known
+ * road), nudge northDeg until the compass agrees, then Copy and paste it here.
  */
 
 const BASE = import.meta.env.BASE_URL; // usually "/"
 export const MARZIPANO_SRC = `${BASE}panos/marzipano.js`;
 
 export const DEFAULT_PAN_DEG = 140;
+
+/** Wrap a bearing into (-180, 180] — the range the viewer/compass work in. */
+export const wrapDeg = (deg) => {
+  const x = ((deg % 360) + 360) % 360;
+  return x > 180 ? x - 360 : x;
+};
 
 // Notan DC and Notan Edge were both exported with the same cube tiling / face
 // size, so the geometry below is shared by every scene of either building.
@@ -1363,6 +1400,11 @@ const CROWN_REGION_PANO_MAP = {
  * Every building's pano config, keyed by the `/projects/:id` route param used
  * in buildingsData.js / buildingViewsData.js. Add a building by dropping its
  * tiles into /public/panos/<id>/tiles and adding an entry here.
+ *
+ * `northDeg` / `pinDeg` aim the mini compass for the whole building — the real
+ * bearing this tour's yaw 0° faces, and where the pin sits on the rim. Both
+ * default to 0. Override either per floor or per room in the maps above; see
+ * the file header for the full rules.
  */
 const PANO_BUILDINGS = {
   "notan-dc": {
@@ -1370,24 +1412,32 @@ const PANO_BUILDINGS = {
     sceneById: new Map(DC_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: DC_FLOOR_PANO_MAP,
     regionMap: DC_REGION_PANO_MAP,
+    northDeg: 0,
+    pinDeg: 0,
   },
   "notan-edge": {
     tilesBase: `${BASE}panos/notan-edge/tiles`,
     sceneById: new Map(EDGE_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: EDGE_FLOOR_PANO_MAP,
     regionMap: EDGE_REGION_PANO_MAP,
+    northDeg: 236,
+    pinDeg: 0,
   },
   "notan-jewel": {
     tilesBase: `${BASE}panos/notan-jewel/tiles`,
     sceneById: new Map(JEWEL_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: JEWEL_FLOOR_PANO_MAP,
     regionMap: JEWEL_REGION_PANO_MAP,
+    northDeg: 80,
+    pinDeg: 0,
   },
   "notan-space": {
     tilesBase: `${BASE}panos/notan-space/tiles`,
     sceneById: new Map(SPACE_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: SPACE_FLOOR_PANO_MAP,
     regionMap: SPACE_REGION_PANO_MAP,
+    northDeg: 270,
+    pinDeg: 0,
   },
 
   "notan-terrace": {
@@ -1395,6 +1445,8 @@ const PANO_BUILDINGS = {
     sceneById: new Map(TERRACE_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: TERRACE_FLOOR_PANO_MAP,
     regionMap: TERRACE_REGION_PANO_MAP,
+    northDeg: 0,
+    pinDeg: 0,
   },
 
   "notan-crown": {
@@ -1402,6 +1454,8 @@ const PANO_BUILDINGS = {
     sceneById: new Map(CROWN_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: CROWN_FLOOR_PANO_MAP,
     regionMap: CROWN_REGION_PANO_MAP,
+    northDeg: 0,
+    pinDeg: 0,
   },
 };
 
@@ -1417,8 +1471,8 @@ export const floorKey = (floor) =>
  * Turn a `{ scene, yawDeg?, pitchDeg?, fovDeg?, panDeg? }` config into a
  * ready-to-render pano (or null if the scene is missing), resolving the scene
  * against the given building. `center` is the framing the viewer opens at;
- * `panRad` is the total horizontal arc the user may look across. Shared by both
- * floor- and region-level lookups.
+ * `panRad` is the total horizontal arc the user may look across; `northDeg` /
+ * `pinDeg` aim the mini compass. Shared by both floor- and region-level lookups.
  */
 const resolvePano = (building, cfg, isTerrace) => {
   if (!cfg) return null;
@@ -1433,6 +1487,10 @@ const resolvePano = (building, cfg, isTerrace) => {
 
   const panDeg = isTerrace ? 360 : (cfg.panDeg ?? DEFAULT_PAN_DEG);
 
+  // Compass aim, hand-set. Most specific wins: room → floor → building.
+  const northDeg = wrapDeg(cfg.northDeg ?? building.northDeg ?? 0);
+  const pinDeg = wrapDeg(cfg.pinDeg ?? building.pinDeg ?? 0);
+
   return {
     id: scene.id,
     name: scene.name,
@@ -1440,8 +1498,18 @@ const resolvePano = (building, cfg, isTerrace) => {
     ...SCENE_DEFAULTS,
     center,
     panRad: toRad(panDeg),
+    northDeg,
+    pinDeg,
   };
 };
+
+/**
+ * The real-world bearing the visitor is currently facing: the capture's hand-set
+ * `northDeg` plus wherever they've dragged the view to. This is what the mini
+ * compass shows, so it turns live with the pano.
+ */
+export const panoHeadingDeg = (pano, yawRad = 0) =>
+  wrapDeg((pano?.northDeg ?? 0) + toDeg(yawRad));
 
 /**
  * Resolve a floor to a ready-to-render pano config, or null if that building/

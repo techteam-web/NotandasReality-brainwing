@@ -1,16 +1,26 @@
 /**
- * Realtime mini compass — vintage "compass rose" heading indicator.
+ * Mini compass — vintage "compass rose" direction indicator.
  *
  * A small nautical compass for the 360° pano viewer, styled after an old
  * cartographic compass rose: an aged-paper disc, an inked eight-point star,
- * serif cardinal letters, a degree ring with ticks and a dotted rim. A fixed
- * ink marker sits at the very top (the lubber line); the whole card — star,
- * letters, ticks and degree numbers — rotates so the direction you are
- * currently looking always reads under that marker. Pass `yaw` in degrees
- * (the live pano look-direction) and the card spins to match.
+ * serif cardinal letters, a degree ring with ticks and a dotted rim, plus an
+ * ink pin (the lubber line) around the rim.
+ *
+ * Two inputs:
+ *
+ *   • heading — the real compass bearing currently being looked at (0 = N,
+ *     90 = E). LIVE: the pano viewer feeds it the capture's hand-set north plus
+ *     the current drag, so the card turns as the visitor looks around and the
+ *     direction they face always reads under the pin.
+ *
+ *   • pinDeg — where the pin sits on the rim, in degrees clockwise from the top
+ *     of the widget. HAND-SET per building / floor / room in panoData.js:
+ *     0 = top (the default), 90 = right, 180 = bottom, -90 = left. The card
+ *     re-orients to keep the heading under the pin wherever you park it.
+ *
+ * Both default to 0 — N up, pin at the top, nothing turning.
  *
  * Drawn inline (no external SVG asset) so it stays light and crisp at any size.
- * Flip the sign of `yaw` at the call site if the rotation reads backwards.
  */
 
 // Site-aligned blue-gray palette.
@@ -63,8 +73,14 @@ const Arm = ({ apex, half, rotate }) => (
   </g>
 );
 
+// Easing for the card as the heading changes; 0 tracks the view frame-for-frame.
+const spin = (ms) => ({
+  transition: ms ? `transform ${ms}ms ease-out` : "none",
+});
+
 const MiniCompass = ({
-  yaw = 0,
+  heading = 0,
+  pinDeg = 0,
   transitionMs = 0,
   className = "",
   backgroundFill = "#ffffff",
@@ -83,14 +99,10 @@ const MiniCompass = ({
         strokeWidth="0.6"
       />
 
-      {/* rotating card — spins so the current heading reads under the top marker */}
+      {/* the card — turned so the current heading lands right under the pin */}
       <g
-        transform={`rotate(${-yaw} 50 50)`}
-        style={{
-          transition: transitionMs
-            ? `transform ${transitionMs}ms ease-out`
-            : "none",
-        }}
+        transform={`rotate(${pinDeg - heading} 50 50)`}
+        style={spin(transitionMs)}
       >
         {/* dotted outer rim */}
         <circle
@@ -230,9 +242,11 @@ const MiniCompass = ({
         ))}
       </g>
 
-      {/* fixed top marker (lubber line) — the current heading sits right below it */}
+      {/* the pin (lubber line) — parked wherever pinDeg puts it, and stays put */}
       {showMarker && (
-        <polygon points="46,1.5 54,1.5 50,8" fill="#6f7f95" />
+        <g transform={`rotate(${pinDeg} 50 50)`}>
+          <polygon points="46,1.5 54,1.5 50,8" fill="#6f7f95" />
+        </g>
       )}
     </svg>
   </div>
