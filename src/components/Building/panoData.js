@@ -1445,7 +1445,7 @@ const PANO_BUILDINGS = {
     sceneById: new Map(TERRACE_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: TERRACE_FLOOR_PANO_MAP,
     regionMap: TERRACE_REGION_PANO_MAP,
-    northDeg: 0,
+    northDeg: 270,
     pinDeg: 0,
   },
 
