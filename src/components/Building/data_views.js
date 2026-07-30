@@ -569,3 +569,5 @@ var APP_DATA = {
     "viewControlButtons": false
   }
 };
+
+export default APP_DATA;

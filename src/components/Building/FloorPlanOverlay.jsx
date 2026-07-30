@@ -352,13 +352,21 @@ const FloorPlanOverlay = ({
                   : { height: "80vh", maxWidth: "80vw" }),
               }}
             >
-              <img
-                ref={imgRef}
-                src={planImg}
-                alt={`${buildingName} ${floorTitle} plan`}
-                draggable="false"
-                className="block h-full w-full rounded-sm border-2 border-[#1f2a40]/20 object-contain shadow-[0_10px_24px_rgba(31,42,64,0.1)] select-none"
-              />
+              {planImg ? (
+                <img
+                  ref={imgRef}
+                  src={planImg}
+                  alt={`${buildingName} ${floorTitle} plan`}
+                  draggable="false"
+                  className="block h-full w-full rounded-sm border-2 border-[#1f2a40]/20 object-contain shadow-[0_10px_24px_rgba(31,42,64,0.1)] select-none"
+                />
+              ) : (
+                <div
+                  ref={imgRef}
+                  aria-hidden
+                  className="block h-full w-full rounded-sm border-2 border-[#1f2a40]/20 bg-white/60 shadow-[0_10px_24px_rgba(31,42,64,0.06)] select-none"
+                />
+              )}
 
               {viewBox && regions.length > 0 && (
                 <svg

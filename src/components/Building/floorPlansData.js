@@ -90,6 +90,19 @@ const CROWN_SVGS = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_crown/Unit_plan_SVG/**/*.svg",
   { query: "?raw", import: "default", eager: true },
 );
+const VIEWS_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_Views/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
+
+const VIEWS_SVGS = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Notan_Views/SVG/**/*.svg",
+  { query: "?raw", import: "default", eager: true },
+);
 /**
  * Reads the floors a filename covers. Returns one of:
  *   { ground: true } | { basement: true } | { terrace, nums: [...] }
@@ -187,9 +200,12 @@ const buildGroups = (files, marker = "FloorPlan_ImgSvg") => {
   const groups = new Map();
 
   for (const [path, raw] of Object.entries(files)) {
-    const rel = path.split(`${marker}/`)[1] || "";
+    const rel =
+      path.split(`/${marker}/`)[1] || path.split(`${marker}/`)[1] || "";
     const inFolder = rel.includes("/");
-    const groupKey = inFolder ? rel.split("/")[0] : rel.replace(".svg", "");
+    let groupKey = inFolder ? rel.split("/")[0] : rel.replace(".svg", "");
+    // Normalize common misspellings so folder names match plan image keys
+    groupKey = groupKey.replace(/terrece/gi, "terrace");
     const fileName = rel.split("/").pop().replace(".svg", "");
 
     if (!groups.has(groupKey)) {
@@ -237,6 +253,10 @@ const BUILDINGS = {
     images: buildImages(CROWN_IMAGES),
     groups: buildGroups(CROWN_SVGS, "Unit_plan_SVG"),
   },
+  "notan-views": {
+    images: buildImages(VIEWS_IMAGES),
+    groups: buildGroups(VIEWS_SVGS, "SVG"),
+  },
 };
 
 /**
@@ -252,7 +272,10 @@ export const getFloorPlan = (buildingId, floor) => {
   const group = b.groups.find((g) => keyMatches(g.keys, floor));
 
   return {
-    available: !!img,
+    // available when either a photo or overlay group exists — some buildings
+    // provide only the SVG cut-outs without a matching photo; still render
+    // the regions over a neutral background in that case.
+    available: !!img || !!group,
     planImg: img?.url ?? null,
     viewBox: group?.viewBox ?? null,
     regions: group?.regions ?? [],

@@ -46,6 +46,11 @@ const NOTAN_CROWN_FILE = import.meta.glob(
   { query: "?raw", import: "default", eager: true },
 );
 
+const NOTAN_VIEWS_FILES = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Notan_Views/*.svg",
+  { query: "?raw", import: "default", eager: true },
+);
+
 const parseShape = (raw) => {
   const points = raw.match(/points="([^"]+)"/);
   const d = raw.match(/\sd="([^"]+)"/);
@@ -157,3 +162,4 @@ export const NOTAN_TERRACE_FLOORS = buildFloorsFromCombined(
 export const NOTAN_CROWN_FLOORS = buildFloorsFromCombined(
   firstRaw(NOTAN_CROWN_FILE),
 );
+export const NOTAN_VIEWS_FLOORS = buildFloors(NOTAN_VIEWS_FILES);

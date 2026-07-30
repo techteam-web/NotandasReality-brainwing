@@ -5,6 +5,7 @@ import notanSpace from "../../assets/buildings/notan_space.png";
 import notanDc from "../../assets/buildings/notan dc.png";
 import notanTerrace from "../../assets/buildings/notan_terrace.png";
 import notanTides from "../../assets/buildings/Notan_tides.png";
+import notanViews from "../../assets/buildings/notan_views.png";
 
 /**
  * Every building that stands on the map.
@@ -112,4 +113,15 @@ export const BUILDINGS = [
   //   width: "clamp(64px, 6.5vw, 110px)",
   //   href: "/projects/notan-tides",
   // },
+  {
+    id: "notan-views",
+    name: "Notan Views",
+    area: "Bandra West",
+    tagline: "Panoramic living and outlook.",
+    img: notanViews,
+    top: "80%",
+    left: "68%",
+    width: "clamp(42px, 4.2vw, 74px)",
+    href: "/projects/notan-views",
+  },
 ];

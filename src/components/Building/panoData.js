@@ -87,6 +87,43 @@ const FOV = 1.397892632121691; // ≈ 80° — shared "as-shot" zoom (DC / Edge)
 const FOV_140 = 1.4004924010941646;
 const SCENE_DEFAULTS = { levels: LEVELS, faceSize: FACE_SIZE };
 
+// Notan Views: import Marzipano APP_DATA produced by the exporter and turn it
+// into the same scene objects we use for other buildings.
+import VIEWS_APP_DATA from "./data_views";
+
+export const NOTAN_VIEWS_PANO_SCENES = (VIEWS_APP_DATA?.scenes || []).map((s) => ({
+  id: s.id,
+  name: s.name,
+  view: {
+    yaw: s.initialViewParameters?.yaw,
+    pitch: s.initialViewParameters?.pitch,
+    fov: s.initialViewParameters?.fov,
+  },
+}));
+
+// Build a simple floor->scene map: extract numeric floor from the scene name
+// (first number found) or map the terrace scene to `terrace`. Ground remains
+// unset (null) when no matching capture exists.
+export const NOTAN_VIEWS_FLOOR_PANO_MAP = (() => {
+  const map = { ground: null };
+  NOTAN_VIEWS_PANO_SCENES.forEach((s) => {
+    const id = s.id;
+    const name = s.name || "";
+    if (/terrace/i.test(id) || /terrace/i.test(name)) {
+      map.terrace = { scene: id, panDeg: 360 };
+      return;
+    }
+    const m = name.match(/(\d{1,2})/);
+    if (m) {
+      const num = parseInt(m[1], 10);
+      map[num] = { scene: id, panDeg: DEFAULT_PAN_DEG };
+    }
+  });
+  return map;
+})();
+
+export const NOTAN_VIEWS_REGION_PANO_MAP = {};
+
 /* ══════════════════════════════════════════════════════════════════════════
  * NOTAN DC
  * ════════════════════════════════════════════════════════════════════════ */
@@ -1454,6 +1491,14 @@ const PANO_BUILDINGS = {
     sceneById: new Map(CROWN_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: CROWN_FLOOR_PANO_MAP,
     regionMap: CROWN_REGION_PANO_MAP,
+    northDeg: 0,
+    pinDeg: 0,
+  },
+  "notan-views": {
+    tilesBase: `${BASE}panos/notan-views/tiles`,
+    sceneById: new Map(NOTAN_VIEWS_PANO_SCENES.map((s) => [s.id, s])),
+    floorMap: NOTAN_VIEWS_FLOOR_PANO_MAP,
+    regionMap: NOTAN_VIEWS_REGION_PANO_MAP,
     northDeg: 0,
     pinDeg: 0,
   },
