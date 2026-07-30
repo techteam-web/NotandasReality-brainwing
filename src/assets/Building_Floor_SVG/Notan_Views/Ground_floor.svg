@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4615 2597">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffe3bd;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <g id="Ground_floor">
+    <polygon id="Ground_floor-2" data-name="Ground_floor" class="cls-1" points="2053.17 2298.65 2150.22 2322.13 2806.43 2320.96 2802.26 2453.35 2753.22 2456.48 2753.74 2424.13 2728.17 2418.91 2354.61 2426.22 2355.13 2462.74 2217.91 2462.74 2220 2390.74 2157.91 2390.22 2156.35 2421.52 2057.74 2422.57 2053.17 2298.65"/>
+  </g>
+</svg>

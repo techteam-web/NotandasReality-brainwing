@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4615 2597">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffe3bd;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <path id="Duplex_floor" class="cls-1" d="M2066.39,470.11l83.74-225.39s19.83-20.35,57.39-20.35h37.57l500.87,2.09s49.57,0,53.74,34.96-14.61,48-14.61,48l-55.3,80.35-6.26,8.35-.02,32.31-33.9-1.14-242.48-91.04h-252.65s-42,5.87-47.35,22.43l-78.78,202.43-1.96-93Z"/>
+</svg>
