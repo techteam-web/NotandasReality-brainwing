@@ -99,13 +99,29 @@ export const NOTAN_VIEWS_PANO_SCENES = (VIEWS_APP_DATA?.scenes || []).map((s) =>
     pitch: s.initialViewParameters?.pitch,
     fov: s.initialViewParameters?.fov,
   },
+
 }));
 
-// Build a simple floor->scene map: extract numeric floor from the scene name
-// (first number found) or map the terrace scene to `terrace`. Ground remains
-// unset (null) when no matching capture exists.
+/**
+ * Which pano opens for each Notan Views floor.
+ * Map data_views.js scenes to floor numbers. Floors 3–5 use the 6th floor amenity
+ * pano as the closest available capture for amenity floor plans.
+ * 
+ */
+
+
+
 export const NOTAN_VIEWS_FLOOR_PANO_MAP = (() => {
-  const map = { ground: null };
+  const map = {
+    ground: null,
+   
+    1: null,
+    2: null,
+    3: { scene: "10-6th-f_amenity_212m", panDeg: DEFAULT_PAN_DEG },
+    4: { scene: "10-6th-f_amenity_212m", panDeg: DEFAULT_PAN_DEG },
+    5: { scene: "10-6th-f_amenity_212m", panDeg: DEFAULT_PAN_DEG },
+  };
+
   NOTAN_VIEWS_PANO_SCENES.forEach((s) => {
     const id = s.id;
     const name = s.name || "";
@@ -119,10 +135,71 @@ export const NOTAN_VIEWS_FLOOR_PANO_MAP = (() => {
       map[num] = { scene: id, panDeg: DEFAULT_PAN_DEG };
     }
   });
+
   return map;
 })();
 
-export const NOTAN_VIEWS_REGION_PANO_MAP = {};
+export const NOTAN_VIEWS_REGION_PANO_MAP = {
+
+  19 : {
+"Bedroom": { yawDeg: -25, pitchDeg: 4, fovDeg: 54, panDeg: 140 },
+"Family Room": { yawDeg: -86, pitchDeg: -1, fovDeg: 58, panDeg: 140 },
+"Master Bedroom": { yawDeg: -137, pitchDeg: 0, fovDeg: 74, panDeg: 140 },
+"Guest Bedroom": { yawDeg: 170, pitchDeg: -1, fovDeg: 65, panDeg: 140 },
+"Parents Bedroom": { yawDeg: 97, pitchDeg: 2, fovDeg: 48, panDeg: 140 },
+
+  },
+  
+  18 : {
+  
+"Kitchen": { yawDeg: -25, pitchDeg: 4, fovDeg: 54, panDeg: 140  },
+"Deck": { yawDeg: -124, pitchDeg: -1, fovDeg: 38, panDeg: 140 },
+"Living Room": { yawDeg: 171, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+"Guest Room": { yawDeg: 170, pitchDeg: -1, fovDeg: 65, panDeg: 140 },
+"Parents Room": {  yawDeg: 97, pitchDeg: 2, fovDeg: 48, panDeg: 140 },
+
+  },
+
+  17 : {
+ 
+"Bedroom 01": { yawDeg: -25, pitchDeg: 4, fovDeg: 54, panDeg: 140 },
+"Living Room": { yawDeg: -86, pitchDeg: -1, fovDeg: 58, panDeg: 140 },
+"Deck": { yawDeg: -124, pitchDeg: -1, fovDeg: 38, panDeg: 140 },
+"Master Bedroom": { yawDeg: -137, pitchDeg: 0, fovDeg: 74, panDeg: 140 },
+"Guest Bedroom": { yawDeg: 170, pitchDeg: -1, fovDeg: 65, panDeg: 140 },
+"Parents Bedroom": { yawDeg: 97, pitchDeg: 2, fovDeg: 48, panDeg: 140 },
+
+  },
+
+  16 : {
+ 
+"Bedroom 01": { yawDeg: -25, pitchDeg: 4, fovDeg: 54, panDeg: 140 },
+"Living Room": { yawDeg: -86, pitchDeg: -1, fovDeg: 58, panDeg: 140 },
+"Deck": { yawDeg: -124, pitchDeg: -1, fovDeg: 38, panDeg: 140 },
+"Master Bedroom": { yawDeg: -137, pitchDeg: 0, fovDeg: 74, panDeg: 140 },
+"Guest Bedroom": { yawDeg: 170, pitchDeg: -1, fovDeg: 65, panDeg: 140 },
+"Parents Bedroom": { yawDeg: 97, pitchDeg: 2, fovDeg: 48, panDeg: 140 },
+
+  },
+  6 : {
+"Deck": { yawDeg: -91, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+
+  },
+  5 : {
+    "Multipurpose": { yawDeg: -52, pitchDeg: 3, fovDeg: 64, panDeg: 140 },
+  },
+  4 : {
+    "Multipurpose": { yawDeg: -52, pitchDeg: 3, fovDeg: 64, panDeg: 140 },
+  },
+  3 : {
+    "Multipurpose": { yawDeg: -52, pitchDeg: 3, fovDeg: 64, panDeg: 140 },
+  },
+
+
+
+
+
+};
 
 /* ══════════════════════════════════════════════════════════════════════════
  * NOTAN DC
