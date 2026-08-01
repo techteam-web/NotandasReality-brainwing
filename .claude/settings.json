@@ -5,7 +5,9 @@
       "Read(//tmp/**)",
       "Bash(cd \"c:/Users/Hujrgs/Desktop/Notan\" && npx prettier --end-of-line crlf src/components/Building/PanoViewer.jsx > /tmp/pv.jsx && diff -u src/components/Building/PanoViewer.jsx /tmp/pv.jsx | head -60)",
       "PowerShell(npx prettier --check --end-of-line crlf src/components/Building/panoData.js src/components/SvgAnimations/MiniCompass.jsx)",
-      "PowerShell(npx vite build --logLevel error)"
+      "PowerShell(npx vite build --logLevel error)",
+      "Bash(git mv *)",
+      "Bash(mv src/components/Building/floorPlanCompass.js src/components/Building/floorPlanCompassData.js)"
     ]
   }
 }

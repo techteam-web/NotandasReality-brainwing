@@ -4,6 +4,8 @@ import { getFloorPano, getFloorPanoHeight } from "./panoData";
 import notanMap from "../../assets/floorplanoverbg.png";
 import NotandasNMark from "../SvgAnimations/NotandasNMark";
 import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "./buildingLogos";
+import FloorPlanCompass from "./FloorPlanCompass";
+import { getFloorPlanCompass } from "./floorPlanCompassData";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -15,6 +17,10 @@ import { useGSAP } from "@gsap/react";
  * Clicking a unit opens that unit's 360° pano (onOpenPano, framed per region —
  * see REGION_PANO_MAP in panoData.js). A small toolbar zooms the plan in/out
  * and resets it; when zoomed the plan can be dragged to pan around.
+ *
+ * A north compass sits on the plan itself (bottom-left by default), turned to
+ * match how that building's plans are oriented — placement per building lives
+ * in floorPlanCompassData.js, and `?fpcompass=1` opens the panel used to dial it in.
  */
 const MIN_ZOOM = 0.6;
 const MAX_ZOOM = 4;
@@ -65,7 +71,7 @@ const FloorPlanOverlay = ({
   // explicit 80vh height never shrinks back), which made the photo letterbox
   // while the overlay kept filling the full box on narrow/scaled screens.
   const [, , vbW, vbH] = viewBox ? viewBox.split(/\s+/).map(Number) : [];
-  const planAspect = vbW && vbH ? vbW / vbH : null;
+  const viewBoxAspect = vbW && vbH ? vbW / vbH : null;
   // Some floors (e.g. Edge's terrace) have a 360° capture but no detailed plan
   // yet — still let the visitor open the pano from the "plan coming soon" state.
   const hasPano = !!getFloorPano(buildingId, floor);
@@ -75,6 +81,59 @@ const FloorPlanOverlay = ({
   const [hovered, setHovered] = useState(null);
   const [dragging, setDragging] = useState(false);
   const imgRef = useRef();
+
+  // The photo's own ratio, read once it loads. Floors with a plan photo but no
+  // cut-out SVG (Space/Jewel basements) have no viewBox to size the box from —
+  // without this the box keeps the full 80vh, the photo letterboxes inside it,
+  // and anything positioned in the box's coordinates (the compass) drifts off
+  // the paper. Null until the photo loads, and reset whenever it changes.
+  const [imgAspect, setImgAspect] = useState(null);
+  useEffect(() => {
+    // a cached photo can finish loading before onLoad below is wired up, so
+    // read it straight off the element when it's already complete
+    const el = imgRef.current;
+    setImgAspect(
+      el?.complete && el.naturalWidth
+        ? el.naturalWidth / el.naturalHeight
+        : null,
+    );
+  }, [planImg]);
+  const planAspect = viewBoxAspect ?? imgAspect;
+
+  // North compass placement for this building/floor, from floorPlanCompassData.js.
+  const compass = getFloorPlanCompass(buildingId, floor);
+  // ?fpcompass=1 opens the placement panel (an authoring aid, off in normal
+  // visits); `nudge` is the trial offset it applies live on top of the config.
+  const [tuning] = useState(
+    () => new URLSearchParams(window.location.search).get("fpcompass") === "1",
+  );
+  const [nudge, setNudge] = useState({ rotation: 0, size: 0, x: 0, y: 0 });
+  const [copied, setCopied] = useState(false);
+
+  // what actually gets drawn — the config plus whatever the panel is trying out
+  // (all zeroes in a normal visit)
+  const compassAim = {
+    ...compass,
+    rotation: Math.round(compass.rotation + nudge.rotation),
+    size: Math.round((compass.size + nudge.size) * 10) / 10,
+    x: Math.round((compass.x + nudge.x) * 10) / 10,
+    y: Math.round((compass.y + nudge.y) * 10) / 10,
+  };
+
+  // Panel's copy: the placement you just dialled in, ready to paste over this
+  // building's entry in floorPlanCompassData.js (or under its `floors` map when the
+  // one floor is the odd one out).
+  const copyCompass = () => {
+    const snippet =
+      `// FLOOR_PLAN_COMPASS["${buildingId}"] — or nest it under that\n` +
+      `// building's floors: { ${floor ? JSON.stringify(floor.isGround ? "ground" : floor.isTerrace ? "terrace" : floor.num) : "…"}: { … } } for this floor only\n` +
+      `rotation: ${compassAim.rotation}, size: ${compassAim.size}, x: ${compassAim.x}, y: ${compassAim.y},`;
+
+    navigator.clipboard?.writeText(snippet).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    });
+  };
 
   const drag = useRef(null); // { startX, startY, originX, originY }
   const moved = useRef(false); // true once a drag actually pans, to swallow the click
@@ -359,6 +418,10 @@ const FloorPlanOverlay = ({
                   src={planImg}
                   alt={`${buildingName} ${floorTitle} plan`}
                   draggable="false"
+                  onLoad={(e) => {
+                    const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
+                    if (w && h) setImgAspect(w / h);
+                  }}
                   className="block h-full w-full rounded-sm border-2 border-[#1f2a40]/20 object-contain shadow-[0_10px_24px_rgba(31,42,64,0.1)] select-none"
                 />
               ) : (
@@ -405,6 +468,19 @@ const FloorPlanOverlay = ({
                   })}
                 </svg>
               )}
+
+              {/* north compass, drawn on the plan itself — last so it sits over
+                  the hover cut-outs, pointer-events-none so it never eats a
+                  unit click */}
+              {compassAim.visible && (
+                <FloorPlanCompass
+                  rotation={compassAim.rotation}
+                  size={compassAim.size}
+                  x={compassAim.x}
+                  y={compassAim.y}
+                  opacity={compassAim.opacity}
+                />
+              )}
             </div>
           ) : (
             <div className="text-center text-[#1f2a40]">
@@ -435,6 +511,65 @@ const FloorPlanOverlay = ({
             <div className="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2 rounded-full border border-[#b8860b]/25 bg-white px-4 py-1.5 text-sm font-medium tracking-wide text-[#4E5157] shadow-[0_10px_24px_rgba(31,42,64,0.12)]">
               {regions[hovered].name}
               <span className="ml-2 text-[#4E5157]">· click to view pano</span>
+            </div>
+          )}
+
+          {/* compass placement panel (?fpcompass=1) — turn it until north
+              matches the plan, size it, walk it to the corner you want, then
+              Copy into floorPlanCompassData.js */}
+          {available && tuning && (
+            <div className="absolute top-4 left-4 z-30 w-60 rounded-md border border-[#1f2a40]/15 bg-white/95 p-3 font-mono text-[11px] text-[#1f2a40]/80 shadow-[0_18px_40px_rgba(31,42,64,0.22)] backdrop-blur-md">
+              <p className="mb-2 text-[10px] tracking-[0.18em] text-[#b8860b] uppercase">
+                Compass placement
+              </p>
+              <p className="truncate text-[#4E5157]/60">
+                {buildingId} · {floorTitle}
+              </p>
+
+              {[
+                { label: "rotation", axis: "rotation", unit: "°", steps: [-45, -15, -5, 5, 15, 45] },
+                { label: "size", axis: "size", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
+                { label: "x", axis: "x", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
+                { label: "y", axis: "y", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
+              ].map(({ label, axis, unit, steps }) => (
+                <div key={axis} className="mt-2">
+                  <p className="text-[#1f2a40]">
+                    {label}{" "}
+                    <span className="text-[#b8860b]">
+                      {compassAim[axis]}
+                      {unit}
+                    </span>
+                  </p>
+                  <div className="mt-1 flex items-center gap-1">
+                    {steps.map((step) => (
+                      <button
+                        key={step}
+                        onClick={() =>
+                          setNudge((n) => ({ ...n, [axis]: n[axis] + step }))
+                        }
+                        className="flex-1 rounded-sm border border-[#1f2a40]/20 py-1 text-[10px] transition-colors hover:border-[#b8860b]/70 hover:text-[#b8860b]"
+                      >
+                        {step > 0 ? `+${step}` : step}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              <div className="mt-3 flex items-center gap-1">
+                <button
+                  onClick={() => setNudge({ rotation: 0, size: 0, x: 0, y: 0 })}
+                  className="flex-1 rounded-sm border border-[#1f2a40]/20 py-1 transition-colors hover:border-[#b8860b]/70 hover:text-[#b8860b]"
+                >
+                  Reset
+                </button>
+                <button
+                  onClick={copyCompass}
+                  className="flex-1 rounded-sm border border-[#1f2a40]/20 py-1 transition-colors hover:border-[#b8860b]/70 hover:text-[#b8860b]"
+                >
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
             </div>
           )}
 
