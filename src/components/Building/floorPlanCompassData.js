@@ -15,7 +15,7 @@
  *     screen size instead of drifting.
  *   • x / y    — where the compass's CENTRE sits, as a % of the plan photo's
  *     width / height. 0,0 is the plan's top-left corner, 100,100 the
- *     bottom-right. The default parks it in the bottom-left corner.
+ *     bottom-right. The default parks it in the bottom-right corner.
  *   • opacity  — 0–1, for plans whose corner artwork is busy.
  *
  * Coordinates are percentages of the plan box (never pixels) because the box
@@ -26,6 +26,11 @@
  * Open any floor plan with `?fpcompass=1` on the URL. A panel appears with
  * nudges for all four knobs; drag them until the compass sits right, hit Copy
  * and paste the snippet into FLOOR_PLAN_COMPASS below. Nothing else to wire up.
+ *
+ * Dial-ins also save to the browser as you nudge, so the placement already
+ * holds across floor switches and reloads on that device before it's pasted
+ * here. The moment this file's entry for the building changes, that saved
+ * sketch retires itself — what's written here always wins in the end.
  *
  * Scope: a building's entry is the default for all its floors. When one floor's
  * plan is shot differently (a rotated terrace sheet, say), add it under that
@@ -50,25 +55,25 @@ export const DEFAULT_COMPASS = {
  */
 export const FLOOR_PLAN_COMPASS = {
   "notan-dc": {
-    rotation: 0,
+    rotation: 130,
   },
   "notan-edge": {
-    rotation: 0,
+    rotation: -76,
   },
   "notan-jewel": {
-    rotation: 0,
+    rotation: 89,
   },
   "notan-space": {
-    rotation: 0,
+    rotation: 17,
   },
   "notan-terrace": {
-    rotation: 0,
+    rotation: -11,
   },
   "notan-crown": {
-    rotation: 0,
+    rotation: 11,
   },
   "notan-views": {
-    rotation: 0,
+    rotation: 17,
   },
   "notan-lands-end": {
     rotation: 0,

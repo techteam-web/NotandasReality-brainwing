@@ -7,7 +7,8 @@
       "PowerShell(npx prettier --check --end-of-line crlf src/components/Building/panoData.js src/components/SvgAnimations/MiniCompass.jsx)",
       "PowerShell(npx vite build --logLevel error)",
       "Bash(git mv *)",
-      "Bash(mv src/components/Building/floorPlanCompass.js src/components/Building/floorPlanCompassData.js)"
+      "Bash(mv src/components/Building/floorPlanCompass.js src/components/Building/floorPlanCompassData.js)",
+      "Bash(node -e ' *)"
     ]
   }
 }

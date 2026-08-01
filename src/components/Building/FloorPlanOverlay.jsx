@@ -20,7 +20,8 @@ import { useGSAP } from "@gsap/react";
  *
  * A north compass sits on the plan itself (bottom-left by default), turned to
  * match how that building's plans are oriented — placement per building lives
- * in floorPlanCompassData.js, and `?fpcompass=1` opens the panel used to dial it in.
+ * in floorPlanCompassData.js, and `?fpcompass=1` opens the panel used to dial
+ * it in.
  */
 const MIN_ZOOM = 0.6;
 const MAX_ZOOM = 4;
@@ -100,14 +101,36 @@ const FloorPlanOverlay = ({
   }, [planImg]);
   const planAspect = viewBoxAspect ?? imgAspect;
 
-  // North compass placement for this building/floor, from floorPlanCompassData.js.
-  const compass = getFloorPlanCompass(buildingId, floor);
+  // North compass placement for this building/floor — see floorPlanCompassData.
+  //
+  // A placement dialled in with the ?fpcompass=1 panel is saved to this device
+  // as it's nudged (the effect below) and laid back over the file's config
+  // here, so the bearing you set holds across floor switches, closing and
+  // reopening the overlay, and full reloads — it no longer lives only in this
+  // component's state. The save also snapshots the config it was built on:
+  // once floorPlanCompassData.js changes (the values got pasted in, or edited
+  // deliberately), the snapshot no longer matches and the sketch retires
+  // itself, so the file always ends up the single source of truth. Sketches
+  // are per building and sit over any per-floor override while they're live.
+  const storageKey = `fpCompass:${buildingId}`;
+  const baseCfgJson = JSON.stringify(getFloorPlanCompass(buildingId, null));
+  const [savedAim, setSavedAim] = useState(() => {
+    try {
+      const s = JSON.parse(localStorage.getItem(storageKey) ?? "null");
+      return s && JSON.stringify(s.base) === baseCfgJson ? s.aim : null;
+    } catch {
+      return null; // corrupt sketch — fall back to the file's config
+    }
+  });
+  const compass = { ...getFloorPlanCompass(buildingId, floor), ...savedAim };
+
   // ?fpcompass=1 opens the placement panel (an authoring aid, off in normal
   // visits); `nudge` is the trial offset it applies live on top of the config.
   const [tuning] = useState(
     () => new URLSearchParams(window.location.search).get("fpcompass") === "1",
   );
   const [nudge, setNudge] = useState({ rotation: 0, size: 0, x: 0, y: 0 });
+  const dialed = useRef(false); // true once this session has nudged anything
   const [copied, setCopied] = useState(false);
 
   // what actually gets drawn — the config plus whatever the panel is trying out
@@ -120,14 +143,40 @@ const FloorPlanOverlay = ({
     y: Math.round((compass.y + nudge.y) * 10) / 10,
   };
 
+  // Write each dial-in through to this device as it happens — tuning sessions
+  // only; a normal visit never touches storage.
+  useEffect(() => {
+    if (!tuning || !dialed.current) return;
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify({
+        base: JSON.parse(baseCfgJson),
+        aim: {
+          rotation: compassAim.rotation,
+          size: compassAim.size,
+          x: compassAim.x,
+          y: compassAim.y,
+        },
+      }),
+    );
+    // compassAim is derived from nudge — reacting to nudge alone is enough
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nudge]);
+
   // Panel's copy: the placement you just dialled in, ready to paste over this
-  // building's entry in floorPlanCompassData.js (or under its `floors` map when the
-  // one floor is the odd one out).
+  // building's entry in floorPlanCompassData.js — or under that entry's
+  // `floors` map, when only this one floor's plan is shot differently.
   const copyCompass = () => {
+    const key = floor?.isGround
+      ? '"ground"'
+      : floor?.isTerrace
+        ? '"terrace"'
+        : String(floor?.num ?? "…");
     const snippet =
-      `// FLOOR_PLAN_COMPASS["${buildingId}"] — or nest it under that\n` +
-      `// building's floors: { ${floor ? JSON.stringify(floor.isGround ? "ground" : floor.isTerrace ? "terrace" : floor.num) : "…"}: { … } } for this floor only\n` +
-      `rotation: ${compassAim.rotation}, size: ${compassAim.size}, x: ${compassAim.x}, y: ${compassAim.y},`;
+      `// FLOOR_PLAN_COMPASS["${buildingId}"] — or nest it under that entry's\n` +
+      `// floors: { ${key}: { … } } to place it on this floor alone\n` +
+      `rotation: ${compassAim.rotation}, size: ${compassAim.size}, ` +
+      `x: ${compassAim.x}, y: ${compassAim.y},`;
 
     navigator.clipboard?.writeText(snippet).then(() => {
       setCopied(true);
@@ -138,10 +187,11 @@ const FloorPlanOverlay = ({
   const drag = useRef(null); // { startX, startY, originX, originY }
   const moved = useRef(false); // true once a drag actually pans, to swallow the click
   const activeFloorRef = useRef(null); // the open floor's button in the aside
+  const floorListRef = useRef(null); // the aside's scrolling floor list
 
   useGSAP(() => {
     if (!imgRef.current) return;
-    gsap.from(imgRef.current, { 
+    gsap.from(imgRef.current, {
       opacity: 0,
       scale: 0,
       transformOrigin: "center center",
@@ -149,6 +199,24 @@ const FloorPlanOverlay = ({
       ease: "power2.out",
     })
   }, []);
+
+  // The floor list builds itself as the overlay opens — rows slide in from the
+  // rail, ground floor first and up, so the stack reads like the building going
+  // up rather than a list appearing. Runs once per opening; switching floors
+  // afterwards re-renders the same rows and leaves them where they are.
+  useGSAP(
+    () => {
+      gsap.from("button", {
+        x: -18,
+        opacity: 0,
+        duration: 0.65,
+        ease: "power3.out",
+        delay: 0.12,
+        stagger: { each: 0.04, from: "end" },
+      });
+    },
+    { scope: floorListRef },
+  );
 
   // close on Escape
   useEffect(() => {
@@ -280,7 +348,7 @@ const FloorPlanOverlay = ({
 
         {/* floor list — stacked as nodes on a vertical "elevator shaft" rail */}
         <div className="custom-scrollbar relative flex-1 overflow-y-auto px-4 pt-1 pb-4">
-          <div className="relative">
+          <div ref={floorListRef} className="relative">
             {orderedFloors.map((f) => {
               const isCurrent = floor && f.num === floor.num;
               const hasPlan = getFloorPlan(buildingId, f).available;
@@ -419,8 +487,9 @@ const FloorPlanOverlay = ({
                   alt={`${buildingName} ${floorTitle} plan`}
                   draggable="false"
                   onLoad={(e) => {
-                    const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
-                    if (w && h) setImgAspect(w / h);
+                    const { naturalWidth, naturalHeight } = e.currentTarget;
+                    if (naturalWidth && naturalHeight)
+                      setImgAspect(naturalWidth / naturalHeight);
                   }}
                   className="block h-full w-full rounded-sm border-2 border-[#1f2a40]/20 object-contain shadow-[0_10px_24px_rgba(31,42,64,0.1)] select-none"
                 />
@@ -527,14 +596,14 @@ const FloorPlanOverlay = ({
               </p>
 
               {[
-                { label: "rotation", axis: "rotation", unit: "°", steps: [-45, -15, -5, 5, 15, 45] },
-                { label: "size", axis: "size", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
-                { label: "x", axis: "x", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
-                { label: "y", axis: "y", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
-              ].map(({ label, axis, unit, steps }) => (
+                { axis: "rotation", unit: "°", steps: [-45, -15, -5, 5, 15, 45] },
+                { axis: "size", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
+                { axis: "x", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
+                { axis: "y", unit: "%", steps: [-5, -1, -0.5, 0.5, 1, 5] },
+              ].map(({ axis, unit, steps }) => (
                 <div key={axis} className="mt-2">
                   <p className="text-[#1f2a40]">
-                    {label}{" "}
+                    {axis}{" "}
                     <span className="text-[#b8860b]">
                       {compassAim[axis]}
                       {unit}
@@ -544,9 +613,10 @@ const FloorPlanOverlay = ({
                     {steps.map((step) => (
                       <button
                         key={step}
-                        onClick={() =>
-                          setNudge((n) => ({ ...n, [axis]: n[axis] + step }))
-                        }
+                        onClick={() => {
+                          dialed.current = true;
+                          setNudge((n) => ({ ...n, [axis]: n[axis] + step }));
+                        }}
                         className="flex-1 rounded-sm border border-[#1f2a40]/20 py-1 text-[10px] transition-colors hover:border-[#b8860b]/70 hover:text-[#b8860b]"
                       >
                         {step > 0 ? `+${step}` : step}
@@ -558,7 +628,14 @@ const FloorPlanOverlay = ({
 
               <div className="mt-3 flex items-center gap-1">
                 <button
-                  onClick={() => setNudge({ rotation: 0, size: 0, x: 0, y: 0 })}
+                  onClick={() => {
+                    // back to the file's config: drop this session's nudges,
+                    // the saved sketch, and its copy on this device
+                    dialed.current = false;
+                    setNudge({ rotation: 0, size: 0, x: 0, y: 0 });
+                    setSavedAim(null);
+                    localStorage.removeItem(storageKey);
+                  }}
                   className="flex-1 rounded-sm border border-[#1f2a40]/20 py-1 transition-colors hover:border-[#b8860b]/70 hover:text-[#b8860b]"
                 >
                   Reset
@@ -570,6 +647,10 @@ const FloorPlanOverlay = ({
                   {copied ? "Copied!" : "Copy"}
                 </button>
               </div>
+              <p className="mt-2 text-[9px] leading-snug text-[#4E5157]/55">
+                Dial-ins save on this device automatically; Copy to bake them
+                into floorPlanCompassData.js for everyone.
+              </p>
             </div>
           )}
 
