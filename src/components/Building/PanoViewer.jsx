@@ -351,7 +351,7 @@ const PanoViewer = ({
               <div
                 role="listbox"
                 aria-label="Floors"
-                className="no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden absolute top-[calc(100%+10px)] left-0 z-30 max-h-[58vh] w-56 overflow-y-auto rounded-md border border-white/15 bg-[#0e1726]/95 p-1.5 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md md:w-64 "
+                className="no-scrollbar scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden absolute top-[calc(100%+10px)] left-0 z-30 max-h-[58vh] w-56 overflow-y-auto rounded-md border border-white/15 bg-[#0e1726]/95 p-1.5 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md md:w-64 "
               >
                 {orderedFloors.map((f) => {
                   const isCurrent = floor && f.num === floor.num;
