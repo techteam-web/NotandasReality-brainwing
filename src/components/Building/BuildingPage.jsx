@@ -33,6 +33,27 @@ const BUILDING_AMINITIES = {
     4: "3 high-speed elevators ",
     5 :"Refuge Zones & Double-Height Deck",
   },
+  "notan-terrace": {
+    1: "24-Hour Security & Surveillance",
+    2: "Hospitality & Concierge Services",
+    3: "6-Metre-Wide Access Ramp & Basement Parking",
+    4: "High-Speed Passenger Elevators & Dedicated Service Lift ",
+    5: "Outdoor Leisure Decks , Coffee Lounge & Bar",
+    6 : "Fully Equipped Fitness Centre" ,
+    7 : "Spa & Wellness services",
+    8 : "Open to Sky Pool"
+  },
+  "notan-edge": {
+    1: "DOUBLE-HEIGHT ENTRANCE LOBBY",
+    2: "STATE-OF-THE-ART PARKING & CAR LIFT ACCESS",
+    3: "FLEXIBLE WORKSPACES",
+    4: "PREMIUM SECURITY & MANAGEMENT",
+    5: "ENERGY EFFICIENCY",
+    6 : "HIGH-SPEED ELEVATORS" ,
+    7 : "DOUBLE-GLAZED FAÇADE SYSTEM",
+    8 : "CURATED F&B SPACES",
+    9 : "LARGE COLUMNLESS FLOOR PLATE",
+  }
 };
 
 /**

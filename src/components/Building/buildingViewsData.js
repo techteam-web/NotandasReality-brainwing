@@ -111,19 +111,19 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 4615 2597",
     floors: NOTAN_TERRACE_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-70 2xl:top-60 xl:left-45  xl:top-55 lg:left-37 lg:top-25 3xl:left-90 3xl:top-70 4xl:left-120 4xl:top-100 ",
+      "left-80 top-36 md:top-127 2xl:left-70 2xl:top-20 xl:left-45 xl:top-20 lg:left-37 lg:top-8 3xl:left-90 3xl:top-45 4xl:left-115 4xl:top-60 ",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-68 2xl:w-76 4xl:w-130",
+      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90",
        headerSubClass:
-      "lg:-mt-12 lg:text-[8px] xl:text-[-23px]  xl:mt-8 2xl:mt-3 2xl:text-[10px] 2xl:text-bold 3xl:mt-5 3xl:text-[10px] 4xl:mt-7 4xl:text-[16px]",
+      "lg:-mt-12 lg:text-[8px] xl:text-[1rem]  xl:mt-2 2xl:-mt-1 2xl:text-[10px] 2xl:text-bold 3xl:-mt-2 3xl:text-[10px] 4xl:-mt-12 4xl:text-[16px]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-15 2xl:left-55 3xl:left-39 4xl:left-120 xl:left-27",
-    amenityListClass: "max-w-lg",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-22 2xl:left-20 2xl:top-[35%] 3xl:left-39 3xl:top-110 4xl:left-90 4xl:top-140 xl:-left-5 xl:top-63",
+    amenityListClass: "max-w-lg lg:max-w-[18rem] xl:max-w-[23rem] 3xl:max-w-[32rem] 4xl:max-w-[53rem]",
     amenityItemClass:
-      "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
+      "lg:text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[15px] 4xl:text-[23px]",
       asideClass:
-      "left-[65%] top-[30%] xl:top-[24%] 2xl:left-[65%] 2xl:top-[30%] xl:top-[10%]  lg:top-[15%] 3xl:top-[18%] 4xl:top-[25%]",
+      " top-[30%] xl:top-[20%] xl:right-[16%] 2xl:right-[17%] 2xl:top-[20%] xl:top-[10%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
   },
   "notan-crown": {
     viewImg: notanCrownView,
