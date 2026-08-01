@@ -51,17 +51,17 @@ export const BUILDING_VIEWS = {
     viewBox: "-9554435 -6002850 4615 2597",
     floors: NOTAN_EDGE_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-74 2xl:top-60 xl:left-55  xl:top-65 lg:left-45 lg:top-15 3xl:left-102 3xl:top-70 4xl:left-137 4xl:top-110",
+      "left-80 top-36 md:top-127 2xl:left-74 2xl:top-40 xl:left-65  xl:top-35 lg:left-52 lg:top-15  3xl:left-102 3xl:top-70 4xl:left-137 4xl:top-70",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-68 2xl:w-76 4xl:w-130",
+      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-15 2xl:left-55 3xl:left-39 4xl:left-120 xl:left-27",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-35 lg:-left-17 2xl:top-90 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 xl:left-5 xl:top-80",
       headerSubClass:
-      "lg:-mt-14 lg:text-[7px] xl:text-[-23px]  xl:mt-8 2xl:mt-3 2xl:text-[8px] 2xl:text-bold 3xl:mt-5 3xl:text-[10px] 4xl:mt-7 4xl:text-[16px]",
-    amenityListClass: "max-w-lg",
+      "lg:-mt-14 lg:text-[7px] xl:text-[-23px]  xl:mt-1 2xl:mt-3 2xl:text-[8px] 2xl:text-bold 3xl:mt-5 3xl:text-[10px] 4xl:-mt-7 4xl:text-[16px]",
+    amenityListClass: "max-w-lg lg:max-w-[21rem] 2xl:max-w-[32rem] 3xl:max-w-[32rem] 4xl:max-w-[43rem]",
     amenityItemClass:
-      "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
+      "lg:text-[9px] xl:text-[10px] 2xl:text-[14px] 3xl:text-[15px] 4xl:text-[24px]",
   },
   "notan-jewel": {
     viewImg: notanJewelView,
