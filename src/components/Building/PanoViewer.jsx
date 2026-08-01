@@ -351,7 +351,7 @@ const PanoViewer = ({
               <div
                 role="listbox"
                 aria-label="Floors"
-                className="custom-scrollbar absolute top-[calc(100%+10px)] left-0 z-30 max-h-[58vh] w-56 overflow-y-auto rounded-md border border-white/15 bg-[#0e1726]/95 p-1.5 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md md:w-64"
+                className="no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden absolute top-[calc(100%+10px)] left-0 z-30 max-h-[58vh] w-56 overflow-y-auto rounded-md border border-white/15 bg-[#0e1726]/95 p-1.5 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md md:w-64 "
               >
                 {orderedFloors.map((f) => {
                   const isCurrent = floor && f.num === floor.num;
@@ -534,7 +534,7 @@ const PanoViewer = ({
               {/* <span className="mx-1 hidden h-5 w-px bg-white/20 sm:block" /> */}
 
               {/* live angles — read these off to tune FLOOR_PANO_MAP */}
-              {/* <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
+              <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
                 yaw {Math.round(toDeg(angles.yaw))}° · pitch{" "}
                 {Math.round(toDeg(angles.pitch))}° · fov{" "}
                 {Math.round(toDeg(angles.fov))}°
@@ -544,7 +544,7 @@ const PanoViewer = ({
                 className="rounded-full px-3 py-1 text-xs tracking-wider uppercase transition-colors bg-white/15 hover:text-[#e8c879]"
               >
                 {copied ? "Copied!" : "Copy config"}
-              </button> */}
+              </button>
             </div>
           )}
         </>

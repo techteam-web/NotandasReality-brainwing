@@ -116,3 +116,13 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #e8c879;
 }
+
+/* Hide scrollbar for clean, minimal sidebars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
