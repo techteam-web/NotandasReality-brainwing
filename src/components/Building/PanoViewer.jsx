@@ -32,8 +32,9 @@ import NotandasNMark from "../SvgAnimations/NotandasNMark";
  * `?compass=1` to the URL for the overlay used to dial those numbers in.
  */
 
-// Vertical look range allowed around the configured pitch.
-const PITCH_HALF_RANGE = (40 * Math.PI) / 180;
+// Vertical look range allowed around configured pitch (restricted looking down).
+const PITCH_DOWN_LIMIT = (10 * Math.PI) / 180; // max 10° looking down
+const PITCH_UP_LIMIT = (35 * Math.PI) / 180;   // max 35° looking up
 const HFOV_MIN = (25 * Math.PI) / 180;
 
 const TWO_PI = 2 * Math.PI;
@@ -212,10 +213,23 @@ const PanoViewer = ({
         const half = pano.panRad / 2;
         const maxHfov = Math.min(pano.panRad, (110 * Math.PI) / 180);
         const limit = Marzipano.RectilinearView.limit;
+
+        // Pitch locks: extra tight for lower 1st-8th floors, moderately tight for 9th to top floors
+        const floorNum = typeof floor?.num === "number" ? floor.num : (floor?.isGround ? 0 : 999);
+        const isLowerFloor = floorNum <= 8;
+
+        const pitchDownLimit = isLowerFloor ? (4 * Math.PI) / 180 : (6 * Math.PI) / 180;
+        const pitchUpLimit = isLowerFloor ? (12 * Math.PI) / 180 : (20 * Math.PI) / 180;
+        const absoluteMinPitch = isLowerFloor ? -(5 * Math.PI) / 180 : -(8 * Math.PI) / 180;
+        const absoluteMaxPitch = isLowerFloor ? (15 * Math.PI) / 180 : (22 * Math.PI) / 180;
+
+        const minPitch = Math.max(absoluteMinPitch, pitch - pitchDownLimit);
+        const maxPitch = Math.min(absoluteMaxPitch, pitch + pitchUpLimit);
+
         const limiter = Marzipano.util.compose(
           limit.traditional(pano.faceSize, (100 * Math.PI) / 180, maxHfov),
           limitYawArc(yaw, half),
-          limit.pitch(pitch - PITCH_HALF_RANGE, pitch + PITCH_HALF_RANGE),
+          limit.pitch(minPitch, maxPitch),
           limit.hfov(HFOV_MIN, maxHfov),
         );
 
