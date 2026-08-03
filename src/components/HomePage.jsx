@@ -75,7 +75,7 @@ const HomePage = () => {
       <MiniCompass
         backgroundFill="none"
         showMarker={false}
-        className="absolute bottom-4 left-3 h-20 w-20  drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-15 lg:w-15 xl:-bottom-14 xl:w-20 2xl:-bottom-10 2xl:left-7 2xl:w-25"
+        className="absolute bottom-4 left-3 h-20 w-20  drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-15 lg:w-15 xl:-bottom-14 xl:w-20 2xl:-bottom-10 2xl:left-7 2xl:w-35"
       />
     </div>
   );
