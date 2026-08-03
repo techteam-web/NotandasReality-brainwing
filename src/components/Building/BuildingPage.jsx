@@ -34,14 +34,9 @@ const BUILDING_AMINITIES = {
     5 :"Refuge Zones & Double-Height Deck",
   },
   "notan-terrace": {
-    1: "24-Hour Security & Surveillance",
-    2: "Hospitality & Concierge Services",
-    3: "6-Metre-Wide Access Ramp & Basement Parking",
-    4: "High-Speed Passenger Elevators & Dedicated Service Lift ",
-    5: "Outdoor Leisure Decks , Coffee Lounge & Bar",
-    6 : "Fully Equipped Fitness Centre" ,
-    7 : "Spa & Wellness services",
-    8 : "Open to Sky Pool"
+    1: "24-Hour Security & Surveillance , 6-Metre-Wide Access Ramp",
+    2: "Hospitality & Concierge Services  & Basement Parking , High-Speed Passenger Elevators & Dedicated Service Lift",
+    3: "Outdoor Leisure Decks , Coffee Lounge & BarFitness Centre , Spa & Wellness services & Open to Sky Pool",
   },
   "notan-edge": {
     1: "DOUBLE-HEIGHT ENTRANCE LOBBY",
