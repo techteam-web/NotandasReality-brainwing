@@ -426,6 +426,9 @@ const BuildingPage = () => {
             setSelected(num);
             setPano({ floorNum: num, regionName: null });
           }}
+          onSelectRegion={(regionName) => {
+            setPano({ floorNum: panoFloor.num, regionName });
+          }}
           onClose={() => setPano(null)}
         />
       )}

@@ -8,6 +8,7 @@ import {
   getFloorPano,
   getFloorPanoHeight,
 } from "./panoData";
+import { getFloorPlan } from "./floorPlansData";
 import MiniCompass from "../SvgAnimations/MiniCompass";
 import NotandasNMark from "../SvgAnimations/NotandasNMark";
 
@@ -109,6 +110,7 @@ const PanoViewer = ({
   pano,
   regionName,
   onSelectFloor,
+  onSelectRegion,
   onClose,
 }) => {
   const panoRef = useRef(null);
@@ -123,6 +125,13 @@ const PanoViewer = ({
   const [angles, setAngles] = useState({ yaw: 0, pitch: 0, fov: 0 });
   const [copied, setCopied] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [minimapOpen, setMinimapOpen] = useState(true);
+  const [miniHovered, setMiniHovered] = useState(null);
+
+  // Fetch floor plan image & interactive SVG overlay for this floor
+  const floorPlan = getFloorPlan(buildingId, floor);
+  const { available: hasFloorPlan, planImg, viewBox, regions } = floorPlan;
+
   // ?compass=1 opens the compass-aiming panel (an authoring aid, off in normal
   // visits); the nudges are the trial offsets it applies live.
   const [calibrating] = useState(
@@ -432,16 +441,98 @@ const PanoViewer = ({
             </div>
           )}
 
-          {/* realtime mini compass and brand mark in small bottom left corner */}
+          {/* realtime mini compass in bottom-left corner */}
           {!loading && !failed && (
-            <div className="pointer-events-none absolute bottom-5 left-5 z-10 flex items-center gap-3 md:bottom-8 md:left-8 md:gap-4">
+            <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 md:bottom-6 md:left-6">
               <MiniCompass
                 heading={headingDeg}
                 pinDeg={pinDeg}
                 transitionMs={0}
                 className="h-24 w-24 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] absolute left-3 -bottom-10 lg:-bottom-5 xl:left-1 2xl:-bottom-10 lg:-left-10 md:h-32 md:w-32 lg:h-22 lg:w-32 xl:h-26 xl:w-25 2xl:h-44 2xl:w-30"
               />
-              
+            </div>
+          )}
+
+          {/* interactive floor plan minimap in bottom-right corner — compact by default, expands on hover */}
+          {!loading && !failed && hasFloorPlan && (
+            <div className="group absolute bottom-5 right-5 z-20 flex flex-col items-end md:bottom-6 md:right-16">
+              <div className="relative overflow-hidden rounded-2xl border border-white/25 bg-[#070b17]/90 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.75)] backdrop-blur-md transition-all duration-300 ease-out origin-bottom-right opacity-90 hover:opacity-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+                {/* Minimap Header */}
+                <div className="mb-1.5 flex items-center justify-between gap-3 px-1 text-white/90">
+                  <div className="flex items-center gap-1.5 text-[#e8c879]">
+                    <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider md:text-xs">
+                      {floorTitle} Plan
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setMinimapOpen((v) => !v)}
+                    className="rounded bg-white/10 px-2 py-0.5 text-[9px] font-medium text-white/70 hover:bg-white/20 hover:text-white transition-colors"
+                  >
+                    {minimapOpen ? "Hide" : "Show"}
+                  </button>
+                </div>
+
+                {/* Interactive Floor Plan Canvas — increased base scale, expands larger on hover */}
+                {minimapOpen && (
+                  <div className="relative h-32 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-950/90 transition-all duration-300 ease-out group-hover:h-56 group-hover:w-72 md:h-40 md:w-56 md:group-hover:h-72 md:group-hover:w-96 lg:group-hover:h-80 lg:group-hover:w-[420px]">
+                    {planImg && (
+                      <img
+                        src={planImg}
+                        alt={floorTitle}
+                        className="h-full w-full object-contain pointer-events-none select-none opacity-85 transition-opacity duration-300 group-hover:opacity-100"
+                      />
+                    )}
+                    {viewBox && regions.length > 0 && (
+                      <svg
+                        viewBox={viewBox}
+                        preserveAspectRatio="xMidYMid meet"
+                        className="absolute inset-0 h-full w-full"
+                      >
+                        {regions.map((r, i) => {
+                          const isActive = regionName === r.name;
+                          const isHovered = miniHovered === i;
+                          const isOn = isActive || isHovered;
+                          const common = {
+                            pointerEvents: "all",
+                            vectorEffect: "non-scaling-stroke",
+                            style: {
+                              cursor: "pointer",
+                              fill: isOn
+                                ? "rgba(7,11,23,0.55)"
+                                : "rgba(78,81,87,0.26)",
+                              stroke: isOn ? "#070B17" : "rgba(78,81,87,0.82)",
+                              strokeWidth: isOn ? 2.5 : 1.5,
+                              transition: "fill 0.2s ease, stroke 0.2s ease",
+                            },
+                            onMouseEnter: () => setMiniHovered(i),
+                            onMouseLeave: () => setMiniHovered(null),
+                            onClick: () => {
+                              if (onSelectRegion) {
+                                onSelectRegion(r.name);
+                              }
+                            },
+                          };
+                          return r.type === "polygon" ? (
+                            <polygon key={i} points={r.points} {...common} />
+                          ) : (
+                            <path key={i} d={r.d} {...common} />
+                          );
+                        })}
+                      </svg>
+                    )}
+
+                    {/* Room/Region Name Tooltip */}
+                    {miniHovered !== null && regions[miniHovered] && (
+                      <div className="pointer-events-none absolute bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/20 bg-black/90 px-2.5 py-0.5 text-[10px] font-medium text-white shadow-lg backdrop-blur-sm">
+                        {regions[miniHovered].name}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           )}
           {/* compass aiming panel (?compass=1) — face a landmark you know the
@@ -534,7 +625,7 @@ const PanoViewer = ({
               {/* <span className="mx-1 hidden h-5 w-px bg-white/20 sm:block" /> */}
 
               {/* live angles — read these off to tune FLOOR_PANO_MAP */}
-              <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
+              {/* <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
                 yaw {Math.round(toDeg(angles.yaw))}° · pitch{" "}
                 {Math.round(toDeg(angles.pitch))}° · fov{" "}
                 {Math.round(toDeg(angles.fov))}°
@@ -544,7 +635,7 @@ const PanoViewer = ({
                 className="rounded-full px-3 py-1 text-xs tracking-wider uppercase transition-colors bg-white/15 hover:text-[#e8c879]"
               >
                 {copied ? "Copied!" : "Copy config"}
-              </button>
+              </button> */}
             </div>
           )}
         </>
