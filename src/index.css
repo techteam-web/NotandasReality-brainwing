@@ -1,3 +1,5 @@
+/* Serif display face used by the mini compass letters (floorPlan_Compass.svg) */
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 @import "tailwindcss";
 
 body {

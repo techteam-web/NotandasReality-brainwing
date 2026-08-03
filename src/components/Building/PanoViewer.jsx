@@ -439,7 +439,7 @@ const PanoViewer = ({
                 heading={headingDeg}
                 pinDeg={pinDeg}
                 transitionMs={0}
-                className="h-16 w-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] md:h-24 md:w-24 lg:w-20 xl:w-22 2xl:w-28"
+                className="h-24 w-24 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] absolute left-3 -bottom-10 lg:-bottom-5 xl:left-1 2xl:-bottom-10 lg:-left-10 md:h-32 md:w-32 lg:h-22 lg:w-32 xl:h-26 xl:w-25 2xl:h-44 2xl:w-30"
               />
               
             </div>
