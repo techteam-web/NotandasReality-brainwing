@@ -43,7 +43,7 @@ export const BUILDING_VIEWS = {
       "max-w-lg xl:w-[15.5rem] lg:w-[15rem] 2xl:w-[20rem] 3xl:w-[26rem] 4xl:w-[33rem]",
     amenityItemClass:
       "lg:text-[10px] xl:text-[12px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
-    asideClass: "xl:top-[15%] xl:left-[67%] lg:top-[12%] lg:left-[67%] ",
+    asideClass: "lg:top-[10%] lg:right-[21%] xl:right-[22.6%] 2xl:right-[24%] 3xl:top-[14%] 4xl:top-[15%] 4xl:right-[25.4%]",
   },
   "notan-edge": {
     viewImg: notanEdgeView,
