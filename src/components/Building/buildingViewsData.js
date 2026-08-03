@@ -90,7 +90,7 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_SPACE_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-[65%] 2xl:top-44 xl:left-[62%] xl:top-40 lg:left-[65%] lg:top-24 3xl:left-318 3xl:top-60 4xl:left-[63%] 4xl:top-[28%]",
+      "left-80 top-36 md:top-127 2xl:left-[65.6%] 2xl:top-44 xl:left-[62.5%] xl:top-40 lg:left-[65.8%] lg:top-24 3xl:left-316 3xl:top-60 4xl:left-[63.6%] 4xl:top-[28%]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-68 2xl:w-76 4xl:w-130",
     headerSubClass:
