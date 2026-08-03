@@ -189,16 +189,7 @@ const FloorPlanOverlay = ({
   const activeFloorRef = useRef(null); // the open floor's button in the aside
   const floorListRef = useRef(null); // the aside's scrolling floor list
 
-  useGSAP(() => {
-    if (!imgRef.current) return;
-    gsap.from(imgRef.current, {
-      opacity: 0,
-      scale: 0,
-      transformOrigin: "center center",
-      duration: 1,
-      ease: "power2.out",
-    })
-  }, []);
+ 
 
   // The floor list builds itself as the overlay opens — rows slide in from the
   // rail, ground floor first and up, so the stack reads like the building going
