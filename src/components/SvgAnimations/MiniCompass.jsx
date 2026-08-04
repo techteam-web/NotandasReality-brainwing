@@ -9,12 +9,16 @@
  *   • pinDeg — pin location on rim (0 = top, 90 = right, etc.).
  *   • transitionMs — easing duration for heading turns.
  *   • backgroundFill — fill color for the background disc (default "#ffffff").
+ *   • bgBlur — gaussian blur radius on the background disc, 0 = hard edge (default 26).
+ *   • bgOpacity — opacity of the background disc (default 0.85).
  *   • showMarker — boolean to render the top blue-grey pin marker (default true).
  *   • bgRadius — background circle radius (default 602).
  *   • innerScale — scale factor for the inner compass rose (default 1.0).
  *   • innerScaleX / innerScaleY — optional width/height multipliers for inner rose.
  *   • nOffsetY — vertical nudge offset for N letter.
  */
+
+import { useId } from "react";
 
 // Needle/ring pivot taken straight from floorPlan_Compass.svg.
 const ROSE_CX = 605.73;
@@ -39,6 +43,8 @@ const MiniCompass = ({
   transitionMs = 0,
   className = "",
   backgroundFill = "#ffffff",
+  bgBlur = 26,           // soft-edge blur on the background disc (0 = crisp circle)
+  bgOpacity = 0.85,      // translucency of the background disc
   showMarker = true,
   bgRadius = 662,       // background fill circle radius (602 matches 1254 canvas)
   innerScale = 1.25,     // overall scale of inner compass
@@ -51,8 +57,12 @@ const MiniCompass = ({
   const scaleX = innerScale * innerScaleX;
   const scaleY = innerScale * innerScaleY;
 
-  // Calculate dynamic viewBox so large bgRadius / innerScaleY never clip top or bottom
-  const maxRadius = Math.max(bgRadius + 90, scaleY * 550 + 60);
+  // Unique per-instance filter id so multiple compasses never share a blur.
+  const blurId = `mc-bg-blur-${useId().replace(/:/g, "")}`;
+
+  // Calculate dynamic viewBox so large bgRadius / innerScaleY never clip top or bottom.
+  // The blurred disc feathers ~3× stdDeviation past its rim, so pad for that too.
+  const maxRadius = Math.max(bgRadius + 90 + bgBlur * 3, scaleY * 550 + 60);
   const vRadius = Math.max(627, maxRadius);
   const vMin = C - vRadius;
   const vSize = 2 * vRadius;
@@ -65,9 +75,32 @@ const MiniCompass = ({
         height="100%"
         className="overflow-visible"
       >
-        {/* compass background disc */}
+        {/* compass background disc — soft, frosted-looking wash behind the rose */}
         {backgroundFill !== "none" && (
-          <circle cx={C} cy={C} r={bgRadius} fill={backgroundFill} />
+          <>
+            {bgBlur > 0 && (
+              <defs>
+                <filter
+                  id={blurId}
+                  x="-50%"
+                  y="-50%"
+                  width="200%"
+                  height="200%"
+                  filterUnits="objectBoundingBox"
+                >
+                  <feGaussianBlur stdDeviation={bgBlur} />
+                </filter>
+              </defs>
+            )}
+            <circle
+              cx={C}
+              cy={C}
+              r={bgRadius}
+              fill={backgroundFill}
+              opacity={bgOpacity}
+              filter={bgBlur > 0 ? `url(#${blurId})` : undefined}
+            />
+          </>
         )}
 
         {/* the card — turned so the current heading lands right under the pin */}
