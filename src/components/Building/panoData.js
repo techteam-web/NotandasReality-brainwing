@@ -353,18 +353,21 @@ const DC_REGION_PANO_MAP = {
     "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
+    "Balcony": { yawDeg: -97, pitchDeg: 102, fovDeg: 78, panDeg: 140 },
   },
   2: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
     "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
+    "Balcony": { yawDeg: -97, pitchDeg: 92, fovDeg: 78, panDeg: 140 },
   },
   3: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
     "Bedroom 2": { yawDeg: 2, pitchDeg: 0, fovDeg: 63, panDeg: 140 },
     "Bedroom 3": { yawDeg: 42, pitchDeg: 2, fovDeg: 71, panDeg: 120 },
     "Bedroom 4": { yawDeg: 170, pitchDeg: 2, fovDeg: 66, panDeg: 120 },
+    "Balcony": { yawDeg: -94, pitchDeg: 102, fovDeg: 78, panDeg: 140 },
   },
   4: {
     "Bedroom 1": { yawDeg: -113, pitchDeg: -5, fovDeg: 71, panDeg: 140 },
