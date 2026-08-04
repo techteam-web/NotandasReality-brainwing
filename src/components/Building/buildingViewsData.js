@@ -30,20 +30,25 @@ export const BUILDING_VIEWS = {
     // every floor SVG shares this coordinate space
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
-    headerClass:
-      "left-80 top-36 2xl:left-75 2xl:top-75 xl:left-37 xl:top-74 lg:left-53 lg:top-46 3xl:left-90 3xl:top-[43%] 4xl:left-110 4xl:top-[37%] ",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58  2xl:w-56 3xl:w-80 4xl:w-90",
+    "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-44 xl:h-auto 2xl:w-60 2xl:h-13 3xl:w-80 4xl:w-90",
+
     headerSubClass:
-      "lg:-mt-14 lg:text-[5px] xl:text-[-16px]  xl:mt-5 2xl:-mt-5 2xl:text-[8px] 2xl:text-bold 3xl:mt-5 3xl:text-[10px] 4xl:-mt-7 4xl:text-[16px]",
+      "font-bold lg:-mt-14 lg:text-[7px] xl:text-[1px] xl:mt-5 2xl:-mt-5 2xl:text-[10px] 3xl:mt-5 3xl:text-[11px] 4xl:-mt-7 4xl:text-[14px]",
     nMarkFill: "black",
-    amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl lg:top-60 lg:-right-25 2xl:right-12 2xl:top-82 3xl:top-110 3xl:right-35 4xl:top-150 4xl:right-83 xl:-right-6 xl:top-73",
+ 
     amenityListClass:
       "max-w-lg xl:w-[15.5rem] lg:w-[15rem] 2xl:w-[20rem] 3xl:w-[26rem] 4xl:w-[33rem]",
     amenityItemClass:
       "lg:text-[10px] xl:text-[12px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
-    asideClass: "lg:top-[10%] lg:right-[21%] xl:right-[22.6%] 2xl:right-[23.5%] 3xl:top-[14%] 3xl:right-[23.9%] 4xl:top-[15%] 4xl:right-[25.4%]",
+   amenityClass:
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl lg:top-60 lg:-right-40 2xl:-right-17 2xl:top-95 3xl:top-110 3xl:right-13 4xl:top-155 4xl:right-43 xl:-right-28 xl:top-73",
+
+      asideClass:
+      "left-80 top-26 2xl:left-95 2xl:top-65 xl:left-73 xl:top-54 lg:left-53 lg:top-36 3xl:left-120 3xl:top-[35%] 4xl:left-[27%] 4xl:top-[37%] ",
+
+    headerClass: "lg:top-[10%] lg:right-[10%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[13%] 4xl:top-[15%] 4xl:right-[13%]",
+
   },
   "notan-edge": {
     viewImg: notanEdgeView,
@@ -53,7 +58,7 @@ export const BUILDING_VIEWS = {
     headerClass:
       "left-80 top-36 md:top-127 2xl:left-74 2xl:top-40 xl:left-65  xl:top-35 lg:left-52 lg:top-15  3xl:left-102 3xl:top-70 4xl:left-137 4xl:top-70",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
+      "lg:w-36 xl:w-[15rem] 2xl:w-[19rem] 4xl:w-[25rem]",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-35 lg:-left-17 2xl:top-90 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 xl:left-5 xl:top-80",
