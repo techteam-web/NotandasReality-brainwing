@@ -58,7 +58,7 @@ export const BUILDING_VIEWS = {
     headerClass:
       "left-80 top-36 md:top-127 2xl:left-74 2xl:top-40 xl:left-65  xl:top-35 lg:left-52 lg:top-15  3xl:left-102 3xl:top-70 4xl:left-137 4xl:top-70",
     headerLogoClass:
-      "lg:w-36 xl:w-[15rem] 2xl:w-[19rem] 4xl:w-[25rem]",
+       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-35 lg:-left-17 2xl:top-90 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 xl:left-5 xl:top-80",
