@@ -133,15 +133,15 @@ export const BUILDING_VIEWS = {
   "notan-crown": {
     viewImg: notanCrownView,
     // matches the combined Building_Floor_SVG/Nothan_crown/Notan_crown_.svg
-    viewBox: "0 0 1672 941",
+    viewBox: "0 0 460.8 259.2",
     floors: NOTAN_CROWN_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-79 2xl:top-105 xl:left-59 xl:top-90 lg:left-45 lg:top-65 3xl:left-108 3xl:top-127 4xl:left-137 4xl:top-150",
+      "left-80 top-36 md:top-127 2xl:left-27 2xl:top-45 xl:left-14 xl:top-36 lg:left-12 lg:top-35 3xl:left-44 3xl:top-57 4xl:left-70 4xl:top-90",
       headerSubClass:
       "lg:mt-3 lg:text-[8px] ",
-    headerLogoClass: "w-34  lg:w-36 lg:h-[4.2rem] xl:w-47 xl:h-[5.25rem] 2xl:w-56 2xl:h-[6.25rem] 3xl:h-36 3xl:w-59 4xl:w-76 4xl:h-[10.5rem]",
+    headerLogoClass: "w-34  lg:w-36 lg:h-[4.2rem] xl:w-44 xl:h-[5.25rem] 2xl:w-56 2xl:h-[6.25rem] 3xl:h-28 3xl:w-59 4xl:w-76 4xl:h-[9rem]",
     asideClass:
-      "left-[25%] top-[20%] md:right-12 md:w-44 2xl:top-[10%] xl:top-[10%]  lg:top-[5%] 3xl:top-[14%] 4xl:top-[10%]",
+      "right-[15%] top-[20%] 2xl:top-[25%] 2xl:right-33 xl:top-[25%] xl:right-25 lg:top-[19%] lg:right-16 3xl:top-[24%] 3xl:right-[10%] 4xl:top-[35%]",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-15 2xl:left-55 3xl:left-39 4xl:left-120 xl:left-27",

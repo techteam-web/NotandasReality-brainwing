@@ -8,7 +8,9 @@
       "PowerShell(npx vite build --logLevel error)",
       "Bash(git mv *)",
       "Bash(mv src/components/Building/floorPlanCompass.js src/components/Building/floorPlanCompassData.js)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(python -c ' *)",
+      "Bash(node \"C:/Users/Hujrgs/AppData/Local/Temp/claude/c--Users-Hujrgs-Desktop-Notan/58d2516f-9e38-4667-98d1-6994209a2941/scratchpad/add-crown-ids.js\")"
     ]
   }
 }
