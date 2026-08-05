@@ -470,7 +470,7 @@ const PanoViewer = ({
           {/* interactive floor plan minimap in bottom-right corner — compact by default, expands on hover */}
           {!loading && !failed && hasFloorPlan && (
             <div className="group absolute bottom-5 right-5 z-20 flex flex-col items-end md:bottom-6 md:right-16">
-              <div className="relative overflow-hidden rounded-2xl border border-white/25 bg-[#070b17]/90 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.75)] backdrop-blur-md transition-all duration-300 ease-out origin-bottom-right opacity-90 hover:opacity-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+              <div className="relative overflow-hidden rounded-2xl border border-white/25 bg-[#070b17]/90 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.75)] backdrop-blur-md transition-all duration-300 ease-out origin-bottom-right opacity-90 hover:opacity-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85)] 4xl:mr-10 ">
                 {/* Minimap Header */}
                 <div className="mb-1.5 flex items-center justify-between gap-3 px-1 text-white/90">
                   <div className="flex items-center gap-1.5 text-[#e8c879]">
@@ -491,7 +491,7 @@ const PanoViewer = ({
 
                 {/* Interactive Floor Plan Canvas — increased base scale, expands larger on hover */}
                 {minimapOpen && (
-                  <div className="relative h-32 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-950/90 transition-all duration-300 ease-out group-hover:h-56 group-hover:w-72 md:h-40 md:w-56 md:group-hover:h-72 md:group-hover:w-96 lg:group-hover:h-80 lg:group-hover:w-[420px]">
+                  <div className="relative h-32 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-950/90 transition-all duration-300 ease-out group-hover:h-56 group-hover:w-72 md:h-40 md:w-56 md:group-hover:h-72 md:group-hover:w-96 lg:group-hover:h-80 lg:h-33 lg:w-55  lg:group-hover:w-105">
                     {planImg && (
                       <img
                         src={planImg}
@@ -639,7 +639,7 @@ const PanoViewer = ({
               {/* <span className="mx-1 hidden h-5 w-px bg-white/20 sm:block" /> */}
 
               {/* live angles — read these off to tune FLOOR_PANO_MAP */}
-              <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
+              {/* <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
                 yaw {Math.round(toDeg(angles.yaw))}° · pitch{" "}
                 {Math.round(toDeg(angles.pitch))}° · fov{" "}
                 {Math.round(toDeg(angles.fov))}°
@@ -649,7 +649,7 @@ const PanoViewer = ({
                 className="rounded-full px-3 py-1 text-xs tracking-wider uppercase transition-colors bg-white/15 hover:text-[#e8c879]"
               >
                 {copied ? "Copied!" : "Copy config"}
-              </button>
+              </button> */}
             </div>
           )}
         </>
