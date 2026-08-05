@@ -65,11 +65,11 @@ const NuthandasLogoAnimated = ({ className }) => {
       <text
         x="182.5"
         y="342"
-        text-anchor="middle"
-        font-family="Montserrat, Arial, sans-serif"
-        font-weight="700"
-        font-size="35"
-        letter-spacing="2"
+        textAnchor="middle"
+        fontFamily="Montserrat, Arial, sans-serif"
+        fontWeight="700"
+        fontSize="35"
+        letterSpacing="2"
       >
         NOTANDAS REALTY
       </text>

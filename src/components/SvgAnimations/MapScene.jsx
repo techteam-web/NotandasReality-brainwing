@@ -195,27 +195,9 @@ const MapScene = () => {
       });
 
       // 3. Cruise ship steams slowly across the Arabian Sea while bobbing
-      gsap.fromTo(
-        ".ms-ship",
-        { opacity: 0, x: -30 },
-        { opacity: 0.85, x: 0, duration: 2, ease: "power2.out", delay: 1.5 },
-      );
-      gsap.to(".ms-ship", {
-        x: 60,
-        duration: 28,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-        delay: 3.5,
-      });
-      gsap.to(".ms-ship", {
-        y: -5,
-        rotation: 1.2,
-        duration: 3.4,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
+      
+     
+     
 
       // 4. Flock of birds journeys from the land out over the sea, again and again
       const flockTl = gsap.timeline({ repeat: -1, repeatDelay: 5, delay: 2 });
@@ -411,7 +393,7 @@ const MapScene = () => {
           className="h-18 w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[92%] left-[66%] w-16 md:w-20">
+      <div className="ms-grow ms-sway absolute top-[87%] left-[66%] w-16 md:w-20">
         <img
           src={forestImg}
           alt=""
