@@ -300,7 +300,7 @@ const BuildingPage = () => {
         )}
         {building && (
           <p
-            className={`mt-2 text-[10px] tracking-[0.45em] text-[#1f2a40] border-y p-2 uppercase md:text-sm xl:text-[10px] ${
+            className={`mt-2 text-[10px] tracking-[0.45em] text-[#1f2a40]  p-2 uppercase md:text-sm xl:text-[10px] ${
               view.headerSubClass || ""
             }`}
           >
