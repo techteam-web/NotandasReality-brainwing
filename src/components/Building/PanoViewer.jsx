@@ -327,11 +327,17 @@ const PanoViewer = ({
       style={{ fontFamily: '"Times New Roman", Times, serif' }}
     >
       {/* top bar */}
-      <div className="absolute top-0 right-0 left-0 z-10 flex items-center justify-between px-6 py-4 md:px-10">
-        <div className="text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-          <p className="text-[14px] tracking-[3px] text-white uppercase">
-            {buildingName} · Pano view
-          </p>
+      <div className="pointer-events-none absolute top-0 right-0 left-0 z-30 flex items-start justify-between px-6 py-5 md:px-10 md:py-6">
+        <div className="pointer-events-auto flex items-center gap-3.5 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] md:gap-5">
+          <NotandasNMark
+            className="h-14 w-14 shrink-0 select-none opacity-60 transition-opacity duration-300 hover:opacity-85 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-22 lg:w-22"
+            fill="black"
+            aria-label={buildingName || "Notandas Realty"}
+          />
+          <div>
+            <p className="text-[12px] tracking-[3px] text-white/80 uppercase sm:text-[13px] md:text-[14px]">
+              {buildingName} · Pano view
+            </p>
 
           {/* the floor title doubles as the floor picker — open it to step to
               another floor's 360° without going back to the plan */}
@@ -424,11 +430,12 @@ const PanoViewer = ({
             )}
           </div>
         </div>
+      </div>
 
         <button
           onClick={onClose}
           aria-label="Close 360° view"
-          className="group absolute top-4 right-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#767889] hover:bg-[#4E5157] md:top-4 md:right-10"
+          className="pointer-events-auto group inline-flex items-center gap-2 border border-[#212C42] bg-[#212C42] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#767889] hover:bg-[#4E5157]"
         >
           Close
           <span className="text-sm leading-none transition-transform group-hover:rotate-90">
@@ -469,8 +476,8 @@ const PanoViewer = ({
 
           {/* interactive floor plan minimap in bottom-right corner — compact by default, expands on hover */}
           {!loading && !failed && hasFloorPlan && (
-            <div className="group absolute bottom-5 right-5 z-20 flex flex-col items-end md:bottom-6 md:right-16">
-              <div className="relative overflow-hidden rounded-2xl border border-white/25 bg-[#070b17]/90 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.75)] backdrop-blur-md transition-all duration-300 ease-out origin-bottom-right opacity-90 hover:opacity-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85)] 4xl:mr-10 ">
+            <div className="group absolute bottom-3 right-3 z-20 flex flex-col items-end sm:bottom-4 sm:right-4 md:bottom-5 md:right-6 lg:bottom-6 lg:right-6">
+              <div className="relative overflow-hidden rounded-2xl border border-white/25 bg-[#070b17]/90 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.75)] backdrop-blur-md transition-all duration-300 ease-out origin-bottom-right opacity-90 hover:opacity-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
                 {/* Minimap Header */}
                 <div className="mb-1.5 flex items-center justify-between gap-3 px-1 text-white/90">
                   <div className="flex items-center gap-1.5 text-[#e8c879]">
@@ -607,10 +614,7 @@ const PanoViewer = ({
             </div>
           )}
 
-          <NotandasNMark
-                className="relative left-[95%] top-[80%] h-12 w-18 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] md:h-16 md:w-10 lg:h-56 lg:w-25 xl:top-[78%] xl:left-[94%] lg:top-[73%] lg:left-[93%] 2xl:top-[82%] 2xl:left-[94%] 3xl:top-[85%] 3xl:left-[96%] 4xl:top-[88%] 4xl:left-[96%]"
-                aria-label={buildingName || "Notandas Realty"}
-              />
+ 
           {/* bottom toolbar */}
           {!failed && (
             <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 xl:h-13 xl:-bottom-px 2xl:bottom-2 3xl:bottom-3 xl:mb-5">
