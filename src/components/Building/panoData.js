@@ -1648,15 +1648,22 @@ export const getFloorPano = (buildingId, floor) => {
 };
 
 /**
- * The height a floor's pano was captured at, as a display label ("44.6m"), or
+ * The height a floor's pano was captured at, as a display label ("44.60 m"), or
  * null when that floor has no 360°. Every scene name carries its elevation
  * (e.g. "14th Floor · 44.6m"), so the number is read straight off the scene.
+ *
+ * Scene names write the elevation however it was handed over ("4m", "10.2m",
+ * "85.25m"), which stacks raggedly in the floor lists. Normalising here to a
+ * fixed "00.00 m" gives every row the same width, so the column of heights in
+ * the asides lines up on the decimal point.
  */
 export const getFloorPanoHeight = (buildingId, floor) => {
   const match = getFloorPano(buildingId, floor)?.name.match(
     /(\d+(?:\.\d+)?)\s*m\s*$/,
   );
-  return match ? `${match[1]}m` : null;
+  // padStart keeps the two-digit whole part ("4" → "04") without clipping a
+  // three-digit one, should a taller building ever be added
+  return match ? `${Number(match[1]).toFixed(2).padStart(5, "0")} m` : null;
 };
 
 /**
