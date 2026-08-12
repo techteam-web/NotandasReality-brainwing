@@ -48,7 +48,21 @@ const BUILDING_AMINITIES = {
     7 : "DOUBLE-GLAZED FAÇADE SYSTEM",
     8 : "CURATED F&B SPACES",
     9 : "LARGE COLUMNLESS FLOOR PLATE",
-  }
+  },
+  "notan-views": {
+    1: "Grand Arrival Lobby",
+    2: "Multi-Purpose Hall",
+    3: "Banquet Lounge",
+    4: "Secure Podium-Level Parking",
+    5: "24-Hour Security & Surveillance",
+    6: "Hospitality & Concierge Services",
+    7: "High-Speed Passenger Elevators & Dedicated Service Lift",
+    8: "State-of-the-Art Fitness Centre",
+    9: "Landscaped Green Pockets with Water Features",
+    10: "Outdoor Leisure Decks & Gazebos",
+    11: "Dedicated Staff Facilities",
+    12: "Open-to-Sky Rooftop Walking Track",
+  },
 };
 
 /**

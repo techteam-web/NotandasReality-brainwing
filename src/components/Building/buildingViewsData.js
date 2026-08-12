@@ -149,23 +149,27 @@ export const BUILDING_VIEWS = {
     amenityItemClass:
       "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
   },
+
   "notan-views": {
     viewImg: notanViewsView,
     // matches the combined Building_Floor_SVG/Notan_Views/*.svg
     viewBox: "0 0 4615 2597",
     floors: NOTAN_VIEWS_FLOORS,
+    asideClass:
+      "left-80 top-36 md:top-127 2xl:left-94 2xl:top-67 xl:left-87 xl:top-64 lg:left-63 lg:top-28 3xl:left-135 3xl:top-90 4xl:left-188 4xl:top-130",
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-59 2xl:top-80 xl:left-57 xl:top-64 lg:left-53 lg:top-32 3xl:left-95 3xl:top-90 4xl:left-98 4xl:top-130",
-      headerSubClass:
+      "right-[15%] top-[30%] xl:top-[12%] xl:right-60 2xl:right-[17%] 2xl:top-[15%] lg:top-[3%] lg:right-[15.5%] 3xl:top-[18%] 3xl:right-[19.7%] 4xl:top-[15%] 4xl:right-[17%]",
+    headerSubClass:
       "lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36  xl:w-58 2xl:w-76 4xl:w-130",
+      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58 2xl:w-76 4xl:w-130",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-75  lg:bottom-46 lg:-right-25 lg:h-35 2xl:right-13 2xl:top-[40%] 3xl:top-110 3xl:right-35 4xl:top-130 4xl:right-70  xl:-right-[3%] xl:top-[37%] ",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:-right-35 lg:h-35 2xl:right-7 2xl:top-[37%] 3xl:top-110 3xl:right-35 4xl:top-130 4xl:right-70 xl:-right-[3%] xl:top-[37%] ",
     amenityListClass:
-      "max-w-lg lg:w-[17rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[53rem]",
+      "max-w-lg lg:w-[19rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[43rem]",
     amenityItemClass:
-      "lg:text-[11px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[29px]",
+      "lg:text-[7px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[14px] 4xl:text-[20px]",
   },
+
 };
