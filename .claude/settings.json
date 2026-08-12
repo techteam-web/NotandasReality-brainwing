@@ -10,7 +10,16 @@
       "Bash(mv src/components/Building/floorPlanCompass.js src/components/Building/floorPlanCompassData.js)",
       "Bash(node -e ' *)",
       "Bash(python -c ' *)",
-      "Bash(node \"C:/Users/Hujrgs/AppData/Local/Temp/claude/c--Users-Hujrgs-Desktop-Notan/58d2516f-9e38-4667-98d1-6994209a2941/scratchpad/add-crown-ids.js\")"
+      "Bash(node \"C:/Users/Hujrgs/AppData/Local/Temp/claude/c--Users-Hujrgs-Desktop-Notan/58d2516f-9e38-4667-98d1-6994209a2941/scratchpad/add-crown-ids.js\")",
+      "PowerShell(npx vite build --logLevel warn 2>&1)",
+      "PowerShell(npx vite build --logLevel error 2>&1)",
+      "PowerShell(if \\($?\\) { \"BUILD OK\" })",
+      "Bash(grep -o \"hfov[^;]\\\\{0,160\\\\}\" public/panos/marzipano.js)",
+      "Bash(grep -o \"hfov: function \\(n, o\\) {.\\\\{0,220\\\\}\" public/panos/marzipano.js)",
+      "Bash(awk '/hfov: function \\\\\\(n, o\\\\\\) \\\\{/{found=NR} found && NR>=found && NR<=found+14' public/panos/marzipano.js)",
+      "Bash(awk '/htov: *function|vtoh: *function|function htov|function vtoh/{c=8} c&&c--' public/panos/marzipano.js)",
+      "Bash(grep -n -o \"function r\\(t, e, i\\).\\\\{0,200\\\\}\" public/panos/marzipano.js)",
+      "PowerShell(npx eslint src/components/Building/PanoViewer.jsx src/components/Building/FloorPlanRadar.jsx 2>&1)"
     ]
   }
 }
