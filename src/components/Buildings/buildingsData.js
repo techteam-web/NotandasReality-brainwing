@@ -4,7 +4,7 @@ import notanEdge from "../../assets/buildings/notan_edge.png";
 import notanSpace from "../../assets/buildings/notan_space.png";
 import notanDc from "../../assets/buildings/notan dc.png";
 import notanTerrace from "../../assets/buildings/notan_terrace.png";
-import notanTides from "../../assets/buildings/Notan_tides.png";
+import notanLandsEnd from "../../assets/buildings/Notan_Lands-End.png";
 import notanViews from "../../assets/buildings/notan_views.png";
 
 /**
@@ -101,18 +101,18 @@ export const BUILDINGS = [
     width: "clamp(42px, 3.2vw, 74px)",
     href: "/projects/notan-terrace",
   },
-  // {
-  //   id: "notan-lands-end",
-  //   name: "Notan Tides",
-  //   area: "Bandra",
-  //   subtitle: "Bandra, Mumbai",
-  //   tagline: "Living in rhythm with the sea.",
-  //   img: notanTides,
-  //   top: "86%",
-  //   left: "68%",
-  //   width: "clamp(64px, 6.5vw, 110px)",
-  //   href: "/projects/notan-tides",
-  // },
+  {
+    id: "notan-lands-end",
+    name: "Notan Lands End",
+    area: "Bandra West",
+    subtitle: "BZS Road, Bandra West, Mumbai",
+    tagline: "Living in rhythm with the sea.",
+    img: notanLandsEnd,
+    top: "86%",
+    left: "68%",
+    width: "clamp(42px, 4.2vw, 74px)",
+    href: "/projects/notan-lands-end",
+  },
   {
     id: "notan-views",
     name: "Notan Views",

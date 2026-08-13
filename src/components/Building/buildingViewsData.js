@@ -4,6 +4,7 @@ import notanJewelView from "../../assets/ViewsBuildings/Notan_jewel_sketch.webp"
 import notanSpaceView from "../../assets/ViewsBuildings/Notan_space_sketch.webp";
 import notanTerraceView from "../../assets/ViewsBuildings/Notan_terrace_sketch.webp";
 import notanCrownView from "../../assets/ViewsBuildings/Notan_crown_sketch.webp";
+import notanLandsEndView from "../../assets/ViewsBuildings/Notan_Lands-End.webp";
 import notanViewsView from "../../assets/ViewsBuildings/notan_Views.webp";
 import {
   NOTAN_DC_FLOORS,
@@ -12,6 +13,7 @@ import {
   NOTAN_SPACE_FLOORS,
   NOTAN_TERRACE_FLOORS,
   NOTAN_CROWN_FLOORS,
+  NOTAN_LANDS_END_FLOORS,
   NOTAN_VIEWS_FLOORS,
 } from "./floorShapes";
 
@@ -150,6 +152,27 @@ export const BUILDING_VIEWS = {
       "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
   },
 
+  "notan-lands-end": {
+    viewImg: notanLandsEndView,
+    // matches the viewBox baked into Building_Floor_SVG/Notan_Lands-End/Notan_Lands-End_building_Cutout.svg
+    viewBox: "0 0 10000 5886",
+    floors: NOTAN_LANDS_END_FLOORS,
+    asideClass:
+      "left-80 top-36 md:top-127 2xl:left-74 2xl:top-40 xl:left-65 xl:top-35 lg:left-52 lg:top-15 3xl:left-102 3xl:top-70 4xl:left-137 4xl:top-70",
+    headerClass:
+      "right-[15%] top-[30%] xl:top-[12%] xl:right-60 2xl:right-[17%] 2xl:top-[15%] lg:top-[3%] lg:right-[15.5%] 3xl:top-[18%] 3xl:right-[19.7%] 4xl:top-[15%] 4xl:right-[17%]",
+    headerSubClass:
+      "lg:-mt-17 lg:text-[7px] xl:text-[-23px] xl:-mt-1 2xl:mt-2 2xl:text-[10px] 2xl:text-bold 3xl:mt-2 3xl:text-[10px] 4xl:-mt-7 4xl:text-[16px]",
+    headerLogoClass:
+      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
+    nMarkFill: "black",
+    amenityClass:
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:-right-35 lg:h-35 2xl:right-7 2xl:top-[37%] 3xl:top-110 3xl:right-35 4xl:top-130 4xl:right-70 xl:-right-[3%] xl:top-[37%]",
+    amenityListClass:
+      "max-w-lg lg:w-[19rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[43rem]",
+    amenityItemClass:
+      "lg:text-[7px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[14px] 4xl:text-[20px]",
+  },
   "notan-views": {
     viewImg: notanViewsView,
     // matches the combined Building_Floor_SVG/Notan_Views/*.svg

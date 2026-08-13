@@ -63,6 +63,15 @@ const BUILDING_AMINITIES = {
     11: "Dedicated Staff Facilities",
     12: "Open-to-Sky Rooftop Walking Track",
   },
+  "notan-lands-end": {
+    1: "Grand Entrance Lobby & Reception",
+    2: "Multi-Level Secure Podium Parking",
+    3: "High-Speed Elevators & Service Lift",
+    4: "24-Hour Security & CCTV Surveillance",
+    5: "State-of-the-Art Fitness Centre",
+    6: "Landscaped Garden & Leisure Decks",
+    7: "Open-to-Sky Rooftop Amenities",
+  },
 };
 
 /**

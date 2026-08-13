@@ -103,6 +103,21 @@ const VIEWS_SVGS = import.meta.glob(
   "../../assets/Building_Floor_SVG/Notan_Views/SVG/**/*.svg",
   { query: "?raw", import: "default", eager: true },
 );
+
+const LANDS_END_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_lands_end/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
+
+const LANDS_END_SVGS = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Notan_Lands-End/FloorPlan_ImgSvg/**/*.svg",
+  { query: "?raw", import: "default", eager: true },
+);
+
 /**
  * Reads the floors a filename covers. Returns one of:
  *   { ground: true } | { basement: true } | { terrace, nums: [...] }
@@ -117,9 +132,13 @@ const floorKeysFromName = (name) => {
   if (/ground/.test(lower)) return { ground: true };
   if (/basement/.test(lower)) return { basement: true };
   const terrace = /terrace/.test(lower);
+  const podium = /podium/.test(lower);
   const head = lower.split("floor")[0];
   const nums = (head.match(/\d+/g) || []).map(Number);
-  return { terrace, nums };
+  if (podium && nums.length === 0) {
+    nums.push(1, 2, 3, 4, 5, 6, 7, 8, 9);
+  }
+  return { terrace, podium, nums };
 };
 
 const keyMatches = (keys, floor) => {
@@ -256,6 +275,10 @@ const BUILDINGS = {
   "notan-views": {
     images: buildImages(VIEWS_IMAGES),
     groups: buildGroups(VIEWS_SVGS, "SVG"),
+  },
+  "notan-lands-end": {
+    images: buildImages(LANDS_END_IMAGES),
+    groups: buildGroups(LANDS_END_SVGS, "FloorPlan_ImgSvg"),
   },
 };
 

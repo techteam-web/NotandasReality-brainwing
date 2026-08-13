@@ -46,6 +46,11 @@ const NOTAN_CROWN_FILE = import.meta.glob(
   { query: "?raw", import: "default", eager: true },
 );
 
+const NOTAN_LANDS_END_FILE = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Notan_Lands-End/Notan_Lands-End_building_Cutout.svg",
+  { query: "?raw", import: "default", eager: true },
+);
+
 const NOTAN_VIEWS_FILES = import.meta.glob(
   "../../assets/Building_Floor_SVG/Notan_Views/*.svg",
   { query: "?raw", import: "default", eager: true },
@@ -106,7 +111,7 @@ const buildFloors = (files) =>
  * escapes underscores as "_x5F_", so we unescape before reading the number —
  * otherwise "floor_x5F_15" would parse the 5 in "x5F" as the floor.
  */
-const FLOOR_ID_RE = /id="([^"]*(?:floor|ground|terrace)[^"]*)"/gi;
+const FLOOR_ID_RE = /id="([^"]*(?:floor|ground|terrace|podium|amenity|typical|refuge|_\d+|\d+st|\d+nd|\d+rd|\d+th)[^"]*)"/gi;
 
 const buildFloorsFromCombined = (raw) => {
   if (!raw) return [];
@@ -161,5 +166,8 @@ export const NOTAN_TERRACE_FLOORS = buildFloorsFromCombined(
 );
 export const NOTAN_CROWN_FLOORS = buildFloorsFromCombined(
   firstRaw(NOTAN_CROWN_FILE),
+);
+export const NOTAN_LANDS_END_FLOORS = buildFloorsFromCombined(
+  firstRaw(NOTAN_LANDS_END_FILE),
 );
 export const NOTAN_VIEWS_FLOORS = buildFloors(NOTAN_VIEWS_FILES);

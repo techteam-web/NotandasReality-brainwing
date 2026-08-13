@@ -90,6 +90,7 @@ const SCENE_DEFAULTS = { levels: LEVELS, faceSize: FACE_SIZE };
 // Notan Views: import Marzipano APP_DATA produced by the exporter and turn it
 // into the same scene objects we use for other buildings.
 import VIEWS_APP_DATA from "./data_views";
+import LANDS_END_APP_DATA from "./lands-end_panoData";
 
 export const NOTAN_VIEWS_PANO_SCENES = (VIEWS_APP_DATA?.scenes || []).map((s) => ({
   id: s.id,
@@ -99,8 +100,18 @@ export const NOTAN_VIEWS_PANO_SCENES = (VIEWS_APP_DATA?.scenes || []).map((s) =>
     pitch: s.initialViewParameters?.pitch,
     fov: s.initialViewParameters?.fov,
   },
-
 }));
+
+export const NOTAN_LANDS_END_PANO_SCENES = (LANDS_END_APP_DATA?.scenes || []).map((s) => ({
+  id: s.id,
+  name: s.name,
+  view: {
+    yaw: s.initialViewParameters?.yaw,
+    pitch: s.initialViewParameters?.pitch,
+    fov: s.initialViewParameters?.fov,
+  },
+}));
+
 
 /**
  * Which pano opens for each Notan Views floor.
@@ -200,6 +211,47 @@ export const NOTAN_VIEWS_REGION_PANO_MAP = {
 
 
 };
+
+export const NOTAN_LANDS_END_FLOOR_PANO_MAP = {
+  ground: null,
+  1: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  2: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  3: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  4: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  5: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  6: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  7: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  8: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  9: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  10: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  11: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  12: { scene: "16-12th_2nd-f_4045", panDeg: DEFAULT_PAN_DEG },
+  13: { scene: "15-13th_3rd-f_441m", panDeg: DEFAULT_PAN_DEG },
+  14: { scene: "14-14th_4th-f_4775m", panDeg: DEFAULT_PAN_DEG },
+  15: { scene: "13-15th_5th-f_514m", panDeg: DEFAULT_PAN_DEG },
+  16: { scene: "12-16th_6th-f_555m", panDeg: DEFAULT_PAN_DEG },
+  17: { scene: "11-17th_7th-f_587m", panDeg: DEFAULT_PAN_DEG },
+  18: { scene: "10-18th_8th-f_6235m", panDeg: DEFAULT_PAN_DEG },
+  19: { scene: "9-19th_9th-f_66m", panDeg: DEFAULT_PAN_DEG },
+  20: { scene: "8-20th_10th-f_6965m", panDeg: DEFAULT_PAN_DEG },
+  21: { scene: "7-21st_11th-f_733m", panDeg: DEFAULT_PAN_DEG },
+  22: { scene: "6-22nd_12th-f_7695m", panDeg: DEFAULT_PAN_DEG },
+  23: { scene: "5-23rd_13th-f_806m", panDeg: DEFAULT_PAN_DEG },
+  24: { scene: "4-24th_14th-f_8425m", panDeg: DEFAULT_PAN_DEG },
+  25: { scene: "3-25th_15th-f_879m", panDeg: DEFAULT_PAN_DEG },
+  26: { scene: "2-26th_16th-f_9155m", panDeg: DEFAULT_PAN_DEG },
+  27: { scene: "1-17th-f_952m", panDeg: DEFAULT_PAN_DEG },
+  28: { scene: "0-28th_18th-f_9885m", panDeg: DEFAULT_PAN_DEG },
+  29: { scene: "22-29th_19th-f_1025m", panDeg: DEFAULT_PAN_DEG },
+  30: { scene: "21-30th_20th-f_10615m", panDeg: DEFAULT_PAN_DEG },
+  31: { scene: "20-31st_21st-f_10995m", panDeg: DEFAULT_PAN_DEG },
+  32: { scene: "19-32nd_22nd-f_11345m", panDeg: DEFAULT_PAN_DEG },
+  33: { scene: "18-33rd_amenity-f_11695m", panDeg: DEFAULT_PAN_DEG },
+  terrace: { scene: "17-terrace-f_122025m", panDeg: 360 },
+};
+
+export const NOTAN_LANDS_END_REGION_PANO_MAP = {};
+
 
 /* ══════════════════════════════════════════════════════════════════════════
  * NOTAN DC
@@ -1582,6 +1634,15 @@ const PANO_BUILDINGS = {
     northDeg: 0,
     pinDeg: 0,
   },
+  "notan-lands-end": {
+    tilesBase: `${BASE}panos/notan-Lands_End/tiles`,
+    sceneById: new Map(NOTAN_LANDS_END_PANO_SCENES.map((s) => [s.id, s])),
+    floorMap: NOTAN_LANDS_END_FLOOR_PANO_MAP,
+    regionMap: NOTAN_LANDS_END_REGION_PANO_MAP,
+    northDeg: 0,
+    pinDeg: 0,
+  },
+
 };
 
 const DEG = Math.PI / 180;
