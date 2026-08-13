@@ -250,7 +250,134 @@ export const NOTAN_LANDS_END_FLOOR_PANO_MAP = {
   terrace: { scene: "17-terrace-f_122025m", panDeg: 360 },
 };
 
-export const NOTAN_LANDS_END_REGION_PANO_MAP = {};
+export const NOTAN_LANDS_END_REGION_PANO_MAP = {
+
+32 : {
+"Unit 2": { yawDeg: -150, pitchDeg: 4, fovDeg: 53, panDeg: 140 },
+"Unit 1": { yawDeg: 157, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 3": { yawDeg: 20, pitchDeg: -2, fovDeg: 66, panDeg: 140 },
+"Unit 4": { yawDeg: 44, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+},
+31 : {
+"Unit 1": { yawDeg: -162, pitchDeg: 8, fovDeg: 78, panDeg: 140 },
+"Unit 4": { yawDeg: -65, pitchDeg: 4, fovDeg: 65, panDeg: 140 },
+"Unit 2": { yawDeg: 5, pitchDeg: -2, fovDeg: 78, panDeg: 140 },
+"Unit 3": { yawDeg: 59, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+},
+30 : {
+"Unit 1": { yawDeg: -169, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 2": { yawDeg: -112, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 3": { yawDeg: -165, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 4": { yawDeg: 152, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 6": { yawDeg: 0, pitchDeg: -1, fovDeg: 74, panDeg: 140 },
+"Unit 5": { yawDeg: 54, pitchDeg: 5, fovDeg: 70, panDeg: 140 },
+},
+29 : {
+"Unit 1": { yawDeg: -169, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 2": { yawDeg: -112, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 3": { yawDeg: -165, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 4": { yawDeg: 152, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 7": { yawDeg: 0, pitchDeg: -1, fovDeg: 74, panDeg: 140 },
+"Unit 6": { yawDeg: 54, pitchDeg: 5, fovDeg: 70, panDeg: 140 },
+"Unit 5": { yawDeg: 124, pitchDeg: 6, fovDeg: 78, panDeg: 140 },
+},
+28 : {
+"Unit 1": { yawDeg: -169, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 2": { yawDeg: -112, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 3": { yawDeg: -165, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 4": { yawDeg: 152, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 7": { yawDeg: 0, pitchDeg: -1, fovDeg: 74, panDeg: 140 },
+"Unit 6": { yawDeg: 54, pitchDeg: 5, fovDeg: 70, panDeg: 140 },
+"Unit 5": { yawDeg: 124, pitchDeg: 6, fovDeg: 78, panDeg: 140 },
+},
+27 : {
+"Unit 1": { yawDeg: -169, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 2": { yawDeg: -112, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 3": { yawDeg: -165, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 7": { yawDeg: -70, pitchDeg: -3, fovDeg: 74, panDeg: 140 },
+"Unit 6": { yawDeg: 54, pitchDeg: 5, fovDeg: 70, panDeg: 140 },
+"Unit 5": { yawDeg: 124, pitchDeg: 6, fovDeg: 78, panDeg: 140 },
+},
+26 : {
+"Unit 1": { yawDeg: -169, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 2": { yawDeg: -112, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 3": { yawDeg: -165, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 7": { yawDeg: -70, pitchDeg: -3, fovDeg: 74, panDeg: 140 },
+"Unit 6": { yawDeg: 20, pitchDeg: 5, fovDeg: 70, panDeg: 140 },
+"Unit 5": { yawDeg: 124, pitchDeg: 6, fovDeg: 78, panDeg: 140 },
+},
+21 : {
+"Unit 1": { yawDeg: -169, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 2": { yawDeg: -112, pitchDeg: 4, fovDeg: 78, panDeg: 140 },
+"Unit 3": { yawDeg: -165, pitchDeg: 4, fovDeg: 61, panDeg: 140 },
+"Unit 7": { yawDeg: -70, pitchDeg: -3, fovDeg: 74, panDeg: 140 },
+"Unit 6": { yawDeg: 20, pitchDeg: 5, fovDeg: 70, panDeg: 140 },
+"Unit 5": { yawDeg: 124, pitchDeg: 6, fovDeg: 78, panDeg: 140 },
+},
+20 : {
+"Unit 1": { yawDeg: -157, pitchDeg: 1, fovDeg: 56, panDeg: 140 },
+"Unit 6": { yawDeg: -129, pitchDeg: 3, fovDeg: 67, panDeg: 140 },
+"Unit 2": { yawDeg: 132, pitchDeg: 2, fovDeg: 69, panDeg: 140 },
+"Unit 3": { yawDeg: 102, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+"Unit 5": { yawDeg: -55, pitchDeg: 2, fovDeg: 65, panDeg: 140 },
+"Unit 4": { yawDeg: -3, pitchDeg: 0, fovDeg: 68, panDeg: 140 },
+},
+
+19: {
+
+"Unit 1": { yawDeg: -163, pitchDeg: 0, fovDeg: 61, panDeg: 140 },
+"Unit 7": { yawDeg: -117, pitchDeg: 2, fovDeg: 69, panDeg: 140 },
+"Unit 2": { yawDeg: 146, pitchDeg: 2, fovDeg: 63, panDeg: 140 },
+"Unit 3": { yawDeg: 138, pitchDeg: 1, fovDeg: 69, panDeg: 140 },
+"Unit 4": { yawDeg: 83, pitchDeg: 2, fovDeg: 58, panDeg: 140 },
+},
+14 : {
+"Unit 1": { yawDeg: -161, pitchDeg: 4, fovDeg: 63, panDeg: 140 },
+"Unit 7": { yawDeg: -112, pitchDeg: 3, fovDeg: 67, panDeg: 140 },
+"Unit 2": { yawDeg: 157, pitchDeg: 2, fovDeg: 68, panDeg: 140 },
+"Unit 3": { yawDeg: 121, pitchDeg: 2, fovDeg: 70, panDeg: 140 },
+"Unit 6": { yawDeg: -71, pitchDeg: 0, fovDeg: 68, panDeg: 140 },
+"Unit 5": { yawDeg: -14, pitchDeg: -1, fovDeg: 65, panDeg: 140 },
+"Unit 4": { yawDeg: 52, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+},
+13 : {
+"Unit 1": { yawDeg: -161, pitchDeg: 4, fovDeg: 63, panDeg: 140 },
+"Unit 7": { yawDeg: -168, pitchDeg: -1, fovDeg: 67, panDeg: 140 },
+"Unit 2": { yawDeg: 157, pitchDeg: 2, fovDeg: 68, panDeg: 140 },
+"Unit 3": { yawDeg: 102, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+"Unit 6": { yawDeg: -125, pitchDeg: 2, fovDeg: 78, panDeg: 140 },
+"Unit 5": { yawDeg: -72, pitchDeg: -1, fovDeg: 69, panDeg: 140 },
+"Unit 4": { yawDeg: 1, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+},
+12 : {
+"Unit 1": { yawDeg: -166, pitchDeg: 2, fovDeg: 63, panDeg: 140 },
+"Unit 7": { yawDeg: -119, pitchDeg: 0, fovDeg: 69, panDeg: 140 },
+"Unit 6": { yawDeg: -81, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+"Unit 5": { yawDeg: -20, pitchDeg: -1, fovDeg: 74, panDeg: 140 },
+"Unit 2": { yawDeg: 150, pitchDeg: 1, fovDeg: 69, panDeg: 140 },
+"Unit 3": { yawDeg: 136, pitchDeg: -2, fovDeg: 69, panDeg: 140 },
+"Unit 4": { yawDeg: 57, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+},
+11 : {
+"Unit 1": { yawDeg: -166, pitchDeg: 2, fovDeg: 63, panDeg: 140 },
+"Unit 7": { yawDeg: -119, pitchDeg: 0, fovDeg: 69, panDeg: 140 },
+"Unit 6": { yawDeg: -81, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+"Unit 5": { yawDeg: -20, pitchDeg: -1, fovDeg: 74, panDeg: 140 },
+"Unit 2": { yawDeg: 150, pitchDeg: 1, fovDeg: 69, panDeg: 140 },
+"Unit 3": { yawDeg: 136, pitchDeg: -2, fovDeg: 69, panDeg: 140 },
+"Unit 4": { yawDeg: 57, pitchDeg: -1, fovDeg: 78, panDeg: 140 },
+},
+10 : {
+"Unit 2": { yawDeg: -163, pitchDeg: 1, fovDeg: 78, panDeg: 140 },
+"Unit 1": { yawDeg: -99, pitchDeg: 0, fovDeg: 78, panDeg: 140 },
+"Unit 3": { yawDeg: 174, pitchDeg: 1, fovDeg: 70, panDeg: 140 },
+"Unit 3": { yawDeg: 142, pitchDeg: 0, fovDeg: 67, panDeg: 140 },
+},
+
+
+
+
+};
 
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -1639,7 +1766,7 @@ const PANO_BUILDINGS = {
     sceneById: new Map(NOTAN_LANDS_END_PANO_SCENES.map((s) => [s.id, s])),
     floorMap: NOTAN_LANDS_END_FLOOR_PANO_MAP,
     regionMap: NOTAN_LANDS_END_REGION_PANO_MAP,
-    northDeg: 0,
+    northDeg: 60,
     pinDeg: 0,
   },
 
