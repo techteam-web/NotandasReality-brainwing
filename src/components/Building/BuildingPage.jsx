@@ -9,88 +9,8 @@ import NotandasNMark from "../SvgAnimations/NotandasNMark";
 import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "./buildingLogos";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { BUILDING_AMINITIES } from "./AmenitiesData";
 
-const BUILDING_AMINITIES = {
-  "notan-dc": {
-    1: "Lobby & Reception",
-    2: "Rooftop Pool & Jacuzzi",
-    3: "Rooftop Cabana & Sunset Deck",
-    4: "Rooftop Bar | Fully Equipped Fitness Centre | Business Centre",
-  },
-
-  "notan-space": {
-    1: "Grand lobby with reception and lounge",
-    2: " Ground-floor café and lounge",
-    3: "Private pantry and washroom in every unit",
-    4: "3 high-speed elevators",
-    5: "Separate service/fire elevator",
-  },
-
-  "notan-jewel": {
-    1: "Signature Lobby Lounge",
-    2: " Dedicated Reception Desks",
-    3: "Intelligent Car Tower Parking",
-    4: "3 high-speed elevators ",
-    5 :"Refuge Zones & Double-Height Deck",
-  },
-  "notan-terrace": {
-    1: "24-Hour Security & Surveillance , 6-Metre-Wide Access Ramp",
-    2: "Hospitality & Concierge Services  & Basement Parking , High-Speed Passenger Elevators & Dedicated Service Lift",
-    3: "Outdoor Leisure Decks , Coffee Lounge & BarFitness Centre , Spa & Wellness services & Open to Sky Pool",
-  },
-  "notan-edge": {
-    1: "DOUBLE-HEIGHT ENTRANCE LOBBY",
-    2: "STATE-OF-THE-ART PARKING & CAR LIFT ACCESS",
-    3: "FLEXIBLE WORKSPACES",
-    4: "PREMIUM SECURITY & MANAGEMENT",
-    5: "ENERGY EFFICIENCY",
-    6 : "HIGH-SPEED ELEVATORS" ,
-    7 : "DOUBLE-GLAZED FAÇADE SYSTEM",
-    8 : "CURATED F&B SPACES",
-    9 : "LARGE COLUMNLESS FLOOR PLATE",
-  },
-  "notan-views": {
-    1: "Grand Arrival Lobby",
-    2: "Multi-Purpose Hall",
-    3: "Banquet Lounge",
-    4: "Secure Podium-Level Parking",
-    5: "24-Hour Security & Surveillance",
-    6: "Hospitality & Concierge Services",
-    7: "High-Speed Passenger Elevators & Dedicated Service Lift",
-    8: "State-of-the-Art Fitness Centre",
-    9: "Landscaped Green Pockets with Water Features",
-    10: "Outdoor Leisure Decks & Gazebos",
-    11: "Dedicated Staff Facilities",
-    12: "Open-to-Sky Rooftop Walking Track",
-  },
-  "notan-lands-end": {
-    1: "Private Theatre & Lounge",
-    2: "Members’ Bar",
-    3: "Banquet & Private Dining Hall",
-    4: "Rooftop Terrace with Panoramic Views",
-    5: "Rooftop Sky Lounge & Bar",
-    6: "Business Lounge & Conference Suite",
-    7: "Fully Equipped Fitness Centre",
-    8: "Salon & Spa Therapy Rooms",
-    9: "Temperature-Controlled Rooftop Pool & Jacuzzi",
-    10: "Library Café",
-    11: "Pickleball Court",
-    12: "Hospitality-Led Concierge Services",
-  },
-  "notan-beach-house": {
-    1: "Grand Double-Height Lobby & Reception",
-    2: "Landscaped Garden with Beach Access",
-    3: "Open to Sky Pool",
-    4: "Rooftop Leisure Decks",
-    5: "Salon & Wellness Services",
-    6: "Fully Equipped Fitness Centre",
-    7: "24-Hour Security & Surveillance",
-    8: "Hospitality & Concierge Services",
-    9: "High-Speed Passenger Elevators & Dedicated Service Lift",
-    10: "Dedicated Staff Facilities",
-    11: "Car Lift with Basement Parking",
-  },
-};
 
 /**
  * The "View Project" destination.
@@ -257,7 +177,7 @@ const BuildingPage = () => {
       />
 
       {/* floor overlay — slice matches the photo's object-cover crop */}
-      <div className="pointer-events-none absolute inset-0 h-full w-full">
+      <div className="pointer-events-none absolute inset-0 z-20 h-full w-full">
         {view.floors.map((f) => {
           const isActive = f.num === active;
           const common = {
@@ -481,6 +401,8 @@ const BuildingPage = () => {
           className="pointer-events-none fixed top-18 left-3 z-50 w-9 opacity-70 sm:top-20 sm:left-4 sm:w-10 md:top-auto md:right-5 md:bottom-6 md:left-auto md:w-14 md:opacity-80 lg:right-6 lg:w-46 xl:right-7 xl:w-50"
         />
       )} */}
+      
+     
     </div>
   );
 };
