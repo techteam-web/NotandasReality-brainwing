@@ -6,6 +6,7 @@ import notanDc from "../../assets/buildings/notan dc.png";
 import notanTerrace from "../../assets/buildings/notan_terrace.png";
 import notanLandsEnd from "../../assets/buildings/Notan_Lands-End.png";
 import notanViews from "../../assets/buildings/notan_views.png";
+import notanBeachHouse from "../../assets/buildings/notan_Beach-House.png";
 
 /**
  * Every building that stands on the map.
@@ -106,7 +107,7 @@ export const BUILDINGS = [
     name: "Notan Lands End",
     area: "Bandra West",
     subtitle: "BZS Road, Bandra West, Mumbai",
-    tagline: "Living in rhythm with the sea.",
+    tagline: "Purposefully crafted spaces for leisure, wellness, and quiet indulgence.",
     img: notanLandsEnd,
     top: "80%",
     left: "45.5%",
@@ -123,5 +124,20 @@ export const BUILDINGS = [
     left: "45%",
     width: "clamp(42px, 4.2vw, 74px)",
     href: "/projects/notan-views",
+  },
+  {
+    id: "notan-beach-house",
+    name: "Notan Beach House",
+    area: "Juhu",
+    // TODO: confirm the address, tagline and the pin's top/left — parked on the
+    // Juhu seafront (west of DC and Terraces, which sit inland at JVPD) from
+    // the project's name and its render, not from a supplied location.
+    tagline: "Sea beyond the glass, Balconies stretch towards the tide… Beach House breathes in blue…",
+    img: notanBeachHouse,
+    top: "23%",
+    left: "44.8%",
+    tooltip: "bottom",
+    width: "clamp(42px, 4.2vw, 74px)",
+    href: "/projects/notan-beach-house",
   },
 ];

@@ -118,6 +118,27 @@ const LANDS_END_SVGS = import.meta.glob(
   { query: "?raw", import: "default", eager: true },
 );
 
+const BEACH_HOUSE_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_Beach-House/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
+
+const BEACH_HOUSE_SVGS = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Notan_Beach-House/FloorPlan_ImgSvg/**/*.svg",
+  { query: "?raw", import: "default", eager: true },
+);
+
+/**
+ * Some floors are offered in more than one layout and ship one sheet per
+ * choice, tagged "(OPTION-1)" / "(OPTION-2)" in the filename (Beach House's
+ * typical floors and terrace). This lifts that tag out.
+ */
+const OPTION_RE = /[([\s_-]*option[\s_-]*(\d+)[)\]]*/i;
+
 /**
  * Reads the floors a filename covers. Returns one of:
  *   { ground: true } | { basement: true } | { terrace, nums: [...] }
@@ -126,11 +147,19 @@ const LANDS_END_SVGS = import.meta.glob(
  * serve a numbered floor and the terrace at once. Numbers are taken from the
  * part before the word "floor" so a trailing "10th_floor_plan" never bleeds
  * extra digits in.
+ *
+ * `option` is the layout choice this sheet is (null on floors offered only one
+ * way), and `base` the name with that tag removed — read off first so an
+ * "(OPTION-2)" is never mistaken for a floor number, and kept so sibling
+ * sheets can be told apart by what actually differs in their names.
  */
 const floorKeysFromName = (name) => {
-  const lower = name.toLowerCase();
-  if (/ground/.test(lower)) return { ground: true };
-  if (/basement/.test(lower)) return { basement: true };
+  const tag = name.match(OPTION_RE);
+  const option = tag ? Number(tag[1]) : null;
+  const base = tag ? name.replace(OPTION_RE, " ") : name;
+  const lower = base.toLowerCase();
+  if (/ground/.test(lower)) return { ground: true, option, base };
+  if (/basement/.test(lower)) return { basement: true, option, base };
   const terrace = /terrace/.test(lower);
   const podium = /podium/.test(lower);
   const head = lower.split("floor")[0];
@@ -138,7 +167,7 @@ const floorKeysFromName = (name) => {
   if (podium && nums.length === 0) {
     nums.push(1, 2, 3, 4, 5, 6, 7, 8, 9);
   }
-  return { terrace, podium, nums };
+  return { terrace, podium, nums, option, base };
 };
 
 const keyMatches = (keys, floor) => {
@@ -280,19 +309,98 @@ const BUILDINGS = {
     images: buildImages(LANDS_END_IMAGES),
     groups: buildGroups(LANDS_END_SVGS, "FloorPlan_ImgSvg"),
   },
+  "notan-beach-house": {
+    images: buildImages(BEACH_HOUSE_IMAGES),
+    groups: buildGroups(BEACH_HOUSE_SVGS, "FloorPlan_ImgSvg"),
+  },
+};
+
+/* ---- naming a floor's layout options ---- */
+
+const commonPrefixLen = (strs) => {
+  let i = 0;
+  while (i < strs[0].length && strs.every((s) => s[i] === strs[0][i])) i += 1;
+  return i;
+};
+const commonSuffixLen = (strs, cap) => {
+  let i = 0;
+  const room = Math.min(...strs.map((s) => s.length - cap));
+  while (i < room && strs.every((s) => s[s.length - 1 - i] === strs[0][strs[0].length - 1 - i]))
+    i += 1;
+  return i;
+};
+
+/** Trim a name fragment to readable Title Case, or "" if it holds no words. */
+const tidy = (s) => {
+  const t = s
+    .replace(/_+/g, " ")
+    .replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, "")
+    .replace(/\s+/g, " ");
+  return /[A-Za-z0-9]/.test(t)
+    ? t.replace(/[A-Za-z]+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase())
+    : "";
+};
+
+/**
+ * Label the sheets a floor is offered as. The button text is the filename's
+ * own "Option N"; the caption under it is whatever actually DIFFERS between
+ * the sibling names once their shared wording is stripped — so the typical
+ * floors read "4 Bed + Study" / "5 Bed", while the terrace's two sheets (whose
+ * names match apart from the tag) stay uncaptioned instead of repeating one
+ * line twice.
+ */
+const optionsOf = (sheets) => {
+  const names = sheets.map((s) => s.keys.base);
+  const pre = commonPrefixLen(names);
+  const suf = commonSuffixLen(names, pre);
+  const captions = names.map((n) => tidy(n.slice(pre, n.length - suf)));
+  const captioned = captions.every(Boolean);
+  return sheets.map((s, i) => ({
+    label: `Option ${s.keys.option ?? i + 1}`,
+    caption: captioned ? captions[i] : null,
+    url: s.url,
+  }));
 };
 
 /**
  * Resolve the plan photo + hover overlay for a given building floor.
  * `available` is false when no photo exists for that floor yet.
+ *
+ * Floors offered in several layouts return one entry per sheet in `options`
+ * (empty on the usual one-sheet floor) and the photo/overlay for the one
+ * `optionIndex` picks; callers render `options` as a toggle. Sheets are
+ * ordered by their own "Option N" rather than by filename, since the tags are
+ * punctuated inconsistently and alphabetise backwards.
  */
-export const getFloorPlan = (buildingId, floor) => {
+export const getFloorPlan = (buildingId, floor, optionIndex = 0) => {
   const b = BUILDINGS[buildingId];
   if (!b || !floor)
-    return { available: false, planImg: null, viewBox: null, regions: [] };
+    return {
+      available: false,
+      planImg: null,
+      viewBox: null,
+      regions: [],
+      options: [],
+      optionIndex: 0,
+    };
 
-  const img = b.images.find((i) => keyMatches(i.keys, floor));
-  const group = b.groups.find((g) => keyMatches(g.keys, floor));
+  const byOption = (a, z) => (a.keys.option ?? 0) - (z.keys.option ?? 0);
+  const sheets = b.images.filter((i) => keyMatches(i.keys, floor)).sort(byOption);
+  const overlays = b.groups.filter((g) => keyMatches(g.keys, floor)).sort(byOption);
+
+  const options = sheets.length > 1 ? optionsOf(sheets) : [];
+  const idx = options.length
+    ? Math.min(Math.max(optionIndex, 0), options.length - 1)
+    : 0;
+
+  const img = sheets[idx] ?? null;
+  // per-option cut-outs pair up by tag; a floor drawn once for both layouts
+  // keeps using that single overlay
+  const group =
+    overlays.find((g) => g.keys.option === img?.keys.option) ??
+    overlays.find((g) => g.keys.option == null) ??
+    overlays[0] ??
+    null;
 
   return {
     // available when either a photo or overlay group exists — some buildings
@@ -302,5 +410,7 @@ export const getFloorPlan = (buildingId, floor) => {
     planImg: img?.url ?? null,
     viewBox: group?.viewBox ?? null,
     regions: group?.regions ?? [],
+    options,
+    optionIndex: idx,
   };
 };

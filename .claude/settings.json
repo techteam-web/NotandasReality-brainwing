@@ -19,7 +19,16 @@
       "Bash(awk '/hfov: function \\\\\\(n, o\\\\\\) \\\\{/{found=NR} found && NR>=found && NR<=found+14' public/panos/marzipano.js)",
       "Bash(awk '/htov: *function|vtoh: *function|function htov|function vtoh/{c=8} c&&c--' public/panos/marzipano.js)",
       "Bash(grep -n -o \"function r\\(t, e, i\\).\\\\{0,200\\\\}\" public/panos/marzipano.js)",
-      "PowerShell(npx eslint src/components/Building/PanoViewer.jsx src/components/Building/FloorPlanRadar.jsx 2>&1)"
+      "PowerShell(npx eslint src/components/Building/PanoViewer.jsx src/components/Building/FloorPlanRadar.jsx 2>&1)",
+      "Bash(node \"C:/Users/Hujrgs/AppData/Local/Temp/claude/c--Users-Hujrgs-Desktop-Notan/302d75b8-0232-4a2b-b9bf-ff0612d28de5/scratchpad/optcheck.cjs\")",
+      "Bash(node \"C:/Users/Hujrgs/AppData/Local/Temp/claude/c--Users-Hujrgs-Desktop-Notan/302d75b8-0232-4a2b-b9bf-ff0612d28de5/scratchpad/bhcheck.cjs\")",
+      "Bash(echo \"LINT EXIT: $?\")",
+      "Bash(node -e \"console.log\\(JSON.stringify\\(require\\('./package.json'\\).scripts,null,2\\)\\)\")",
+      "Bash(ls \"/c/Program Files/Google/Chrome/Application/chrome.exe\" \"/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe\" \"/c/Program Files/Microsoft/Edge/Application/msedge.exe\" 2>/dev/null; echo \"--- found above ---\")",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Bash(curl -sf -o /dev/null -w \"dev server HTTP %{http_code}\\\\n\" http://localhost:5174/)",
+      "Bash(OUT_DIR=\"C:/Users/Hujrgs/AppData/Local/Temp/claude/c--Users-Hujrgs-Desktop-Notan/302d75b8-0232-4a2b-b9bf-ff0612d28de5/scratchpad/shots\" APP_URL=http://localhost:5174 node \"C:/Users/Hujrgs/AppData/Local/Temp/claude/c--Users-Hujrgs-Desktop-Notan/302d75b8-0232-4a2b-b9bf-ff0612d28de5/scratchpad/drive.mjs\")",
+      "Bash(OUT_DIR=__TRACKED_VAR__/shots1600 APP_URL=http://localhost:5174 VW=1600 VH=1000 node __TRACKED_VAR__/drive.mjs)"
     ]
   }
 }

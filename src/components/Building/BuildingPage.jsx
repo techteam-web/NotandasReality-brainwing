@@ -77,6 +77,19 @@ const BUILDING_AMINITIES = {
     11: "Pickleball Court",
     12: "Hospitality-Led Concierge Services",
   },
+  "notan-beach-house": {
+    1: "Grand Double-Height Lobby & Reception",
+    2: "Landscaped Garden with Beach Access",
+    3: "Open to Sky Pool",
+    4: "Rooftop Leisure Decks",
+    5: "Salon & Wellness Services",
+    6: "Fully Equipped Fitness Centre",
+    7: "24-Hour Security & Surveillance",
+    8: "Hospitality & Concierge Services",
+    9: "High-Speed Passenger Elevators & Dedicated Service Lift",
+    10: "Dedicated Staff Facilities",
+    11: "Car Lift with Basement Parking",
+  },
 };
 
 /**

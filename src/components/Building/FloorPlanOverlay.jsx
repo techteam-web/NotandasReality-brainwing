@@ -61,10 +61,32 @@ const FloorPlanOverlay = ({
 }) => {
   const logoSrc = BUILDING_LOGOS[buildingId] ?? null;
   const logoIsTight = TIGHT_CROPPED_LOGOS.has(buildingId);
-  const { available, planImg, viewBox, regions } = getFloorPlan(
+
+  // Which layout is showing on floors offered more than one way (Beach House's
+  // typical floors and terrace). The pick is stored against the floor it was
+  // made on, so moving to another floor reads back as its first sheet rather
+  // than inheriting the last floor's choice — no reset effect to cascade.
+  const floorId = `${buildingId}:${floor?.num}`;
+  const [picked, setPicked] = useState({ on: null, idx: 0 });
+  const optionIdx = picked.on === floorId ? picked.idx : 0;
+
+  const { available, planImg, viewBox, regions, options } = getFloorPlan(
     buildingId,
     floor,
+    optionIdx,
   );
+
+  // Warm the floor's other sheets so switching is instant: buildings with no
+  // cut-out SVG size the plan box from the photo's own ratio, and a cold image
+  // would leave it briefly without one — a visible jump mid-comparison.
+  useEffect(() => {
+    getFloorPlan(buildingId, floor).options.forEach(({ url }) => {
+      if (!url) return;
+      const img = new Image();
+      img.src = url;
+    });
+  }, [buildingId, floor]);
+
   // Size the plan box to the largest rectangle that matches the SVG viewBox's
   // aspect ratio while fitting inside 80vw × 80vh. The width must be derived
   // with min() — height:80vh + max-width:80vw distorts the box's ratio when
@@ -299,6 +321,15 @@ const FloorPlanOverlay = ({
     onSelectFloor?.(num);
   };
 
+  // swap to the floor's other layout. Zoom and pan deliberately stay put: the
+  // two sheets are the same rooms drawn two ways, so holding the frame lets
+  // them be read against each other instead of re-finding the spot each time.
+  const changeOption = (i) => {
+    if (i === optionIdx) return;
+    setHovered(null);
+    setPicked({ on: floorId, idx: i });
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 flex bg-[#faf6ed] text-[#1f2a40] backdrop-blur-sm"
@@ -427,13 +458,57 @@ const FloorPlanOverlay = ({
         {/* top bar */}
         <div className="flex w-full items-center justify-center px-6 py-5 md:px-10">
           <div className="text-center text-[#1f2a40]">
+            {/* only promise the 360° when this floor actually has one behind
+                its cut-outs — Beach House ships plans with no pano at all */}
             <p className="text-[10px] tracking-[3px] text-[#423e21] uppercase">
-              {buildingName} · Floor plan · click a unit to view pano
+              {buildingName} · Floor plan
+              {regions.length > 0 && hasPano && " · click a unit to view pano"}
             </p>
             <h2 className="mt-2 font-serif text-2xl text-[#212C42] md:text-3xl">
               {floorTitle}
             </h2>
           </div>
+
+          {/* layout switch — floors offered in more than one configuration.
+              Sits opposite Close rather than under the title so it costs the
+              stage no height: the plan box is sized off the viewport, and a
+              taller bar would crop it on short screens. */}
+          {options.length > 1 && (
+            <div
+              role="group"
+              aria-label={`${floorTitle} layout`}
+              className="absolute top-4 left-6 z-20 inline-flex items-stretch gap-1 rounded-full border border-[#d7bf78]/50 bg-white/85 p-1 shadow-[0_10px_24px_rgba(31,42,64,0.12)] backdrop-blur-sm md:left-10"
+            >
+              {options.map((o, i) => {
+                const isOn = i === optionIdx;
+                return (
+                  <button
+                    key={o.label}
+                    onClick={() => changeOption(i)}
+                    aria-pressed={isOn}
+                    className={`rounded-full px-3.5 py-1.5 text-center transition-colors duration-300 ${
+                      isOn
+                        ? "bg-[#212C42] text-white shadow-[0_6px_14px_rgba(33,44,66,0.28)]"
+                        : "text-[#4E5157]/80 hover:text-[#b8860b]"
+                    }`}
+                  >
+                    <span className="block text-[10px] tracking-[0.18em] whitespace-nowrap uppercase">
+                      {o.label}
+                    </span>
+                    {o.caption && (
+                      <span
+                        className={`mt-0.5 block text-[9px] tracking-[0.06em] whitespace-nowrap ${
+                          isOn ? "text-white/70" : "text-[#4E5157]/55"
+                        }`}
+                      >
+                        {o.caption}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           <button
             onClick={onClose}

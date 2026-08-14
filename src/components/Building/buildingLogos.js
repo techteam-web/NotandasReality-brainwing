@@ -6,6 +6,7 @@ import terraceLogo from "../../assets/Buildings_Logo/notan Terraces logo.svg";
 import landsEndLogo from "../../assets/Buildings_Logo/notan Lands End logo.svg";
 import viewsLogo from "../../assets/Buildings_Logo/notan Views logo.svg";
 import crownLogo from "../../assets/Buildings_Logo/notan Crown logo.png";
+import beachHouseLogo from "../../assets/Buildings_Logo/notan beach house logo.svg";
 import finalLogo from "../../assets/Buildings_Logo/Notandas Final Logo.svg";
 
 /**
@@ -22,6 +23,7 @@ export const BUILDING_LOGOS = {
   "notan-lands-end": landsEndLogo,
   "notan-views": viewsLogo,
   "notan-crown": crownLogo,
+  "notan-beach-house": beachHouseLogo,
 };
 
 /**

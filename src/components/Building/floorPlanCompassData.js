@@ -78,6 +78,10 @@ export const FLOOR_PLAN_COMPASS = {
   "notan-lands-end": {
     rotation: 0,
   },
+  // not dialled in yet — open a Beach House plan with ?fpcompass=1 and Copy
+  "notan-beach-house": {
+    rotation: 0,
+  },
 };
 
 /** Same key panoData uses: "ground", "terrace", or the floor number. */

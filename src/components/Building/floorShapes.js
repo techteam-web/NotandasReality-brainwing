@@ -51,6 +51,11 @@ const NOTAN_LANDS_END_FILE = import.meta.glob(
   { query: "?raw", import: "default", eager: true },
 );
 
+const NOTAN_BEACH_HOUSE_FILE = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Notan_Beach-House/NOTAN-BEACH-HOUSE-BUILDINGSVG.svg",
+  { query: "?raw", import: "default", eager: true },
+);
+
 const NOTAN_VIEWS_FILES = import.meta.glob(
   "../../assets/Building_Floor_SVG/Notan_Views/*.svg",
   { query: "?raw", import: "default", eager: true },
@@ -169,5 +174,8 @@ export const NOTAN_CROWN_FLOORS = buildFloorsFromCombined(
 );
 export const NOTAN_LANDS_END_FLOORS = buildFloorsFromCombined(
   firstRaw(NOTAN_LANDS_END_FILE),
+);
+export const NOTAN_BEACH_HOUSE_FLOORS = buildFloorsFromCombined(
+  firstRaw(NOTAN_BEACH_HOUSE_FILE),
 );
 export const NOTAN_VIEWS_FLOORS = buildFloors(NOTAN_VIEWS_FILES);

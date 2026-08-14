@@ -6,6 +6,7 @@ import notanTerraceView from "../../assets/ViewsBuildings/Notan_terrace_sketch.w
 import notanCrownView from "../../assets/ViewsBuildings/Notan_crown_sketch.webp";
 import notanLandsEndView from "../../assets/ViewsBuildings/Notan_Lands-End.webp";
 import notanViewsView from "../../assets/ViewsBuildings/notan_Views.webp";
+import notanBeachHouseView from "../../assets/ViewsBuildings/Notan_Beach-House.webp";
 import {
   NOTAN_DC_FLOORS,
   NOTAN_EDGE_FLOORS,
@@ -15,6 +16,7 @@ import {
   NOTAN_CROWN_FLOORS,
   NOTAN_LANDS_END_FLOORS,
   NOTAN_VIEWS_FLOORS,
+  NOTAN_BEACH_HOUSE_FLOORS,
 } from "./floorShapes";
 
 /**
@@ -195,4 +197,29 @@ export const BUILDING_VIEWS = {
       "lg:text-[7px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[14px] 4xl:text-[20px]",
   },
 
+  "notan-beach-house": {
+    viewImg: notanBeachHouseView,
+    // matches Building_Floor_SVG/Notan_Beach-House/NOTAN-BEACH-HOUSE-BUILDINGSVG.svg,
+    // and the render's own 8000×3636 — the cut-out bands land on the tower as drawn
+    viewBox: "0 0 8000 3636",
+    floors: NOTAN_BEACH_HOUSE_FLOORS,
+    // The tower sits left of centre (34–58% of the frame) with open sea and sky
+    // to its right, so the mark and the floor readout both live over the water.
+    // Starting placement — dial in against the live page like the others.
+    headerClass:
+      "right-[8%] top-[10%] lg:right-[15%] lg:top-[8%] xl:right-[12%] xl:top-[17%] 2xl:right-[15.2%] 2xl:top-[11%] 3xl:right-[18%] 3xl:top-[20%] 4xl:right-[13%] 4xl:top-[13%]",
+    headerLogoClass:
+      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-30 xl:w-37 2xl:w-40 3xl:w-50  4xl:w-80",
+    headerSubClass:
+      "lg:-mt-17 lg:text-[8px] xl:-mt-3 xl:text-[9px] 2xl:-mt-13 2xl:text-[10px] 3xl:-mt-6 3xl:text-[12px] 4xl:-mt-8 4xl:text-[16px]",
+    asideClass:
+      "left-[9%] top-[15%] lg:left-[13%] lg:top-[15%] xl:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:right-[15%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
+    nMarkFill: "black",
+      amenityClass:
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-52 lg:-right-45 lg:h-35 2xl:-right-18 2xl:top-[40%] 3xl:top-115 3xl:right-15 4xl:top-150 4xl:right-27 xl:-right-[13%] xl:top-[42%] ",
+    amenityListClass:
+      "max-w-lg lg:w-[19rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[53rem]",
+    amenityItemClass:
+      "lg:text-[7px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[14px] 4xl:text-[18px]",
+  },
 };
