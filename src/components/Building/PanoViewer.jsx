@@ -643,7 +643,7 @@ const PanoViewer = ({
               {/* <span className="mx-1 hidden h-5 w-px bg-white/20 sm:block" /> */}
 
               {/* live angles — read these off to tune FLOOR_PANO_MAP */}
-              <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
+              {/* <span className="hidden px-2 font-mono text-[11px] tracking-wide text-[#212C42] sm:inline">
                 yaw {Math.round(toDeg(angles.yaw))}° · pitch{" "}
                 {Math.round(toDeg(angles.pitch))}° · fov{" "}
                 {Math.round(toDeg(angles.fov))}°
@@ -653,7 +653,7 @@ const PanoViewer = ({
                 className="rounded-full px-3 py-1 text-xs tracking-wider uppercase transition-colors bg-white/15 hover:text-[#e8c879]"
               >
                 {copied ? "Copied!" : "Copy config"}
-              </button>
+              </button> */}
             </div>
           )}
         </>
