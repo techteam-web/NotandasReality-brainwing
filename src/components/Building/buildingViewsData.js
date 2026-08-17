@@ -7,6 +7,7 @@ import notanCrownView from "../../assets/ViewsBuildings/Notan_crown_sketch.webp"
 import notanLandsEndView from "../../assets/ViewsBuildings/Notan_Lands-End.webp";
 import notanViewsView from "../../assets/ViewsBuildings/notan_Views.webp";
 import notanBeachHouseView from "../../assets/ViewsBuildings/Notan_Beach-House.webp";
+import notanTidesView from "../../assets/ViewsBuildings/Notan_Tides.webp";
 import {
   NOTAN_DC_FLOORS,
   NOTAN_EDGE_FLOORS,
@@ -17,6 +18,7 @@ import {
   NOTAN_LANDS_END_FLOORS,
   NOTAN_VIEWS_FLOORS,
   NOTAN_BEACH_HOUSE_FLOORS,
+  NOTAN_TIDES_FLOORS,
 } from "./floorShapes";
 
 /**
@@ -221,5 +223,31 @@ export const BUILDING_VIEWS = {
       "max-w-lg lg:w-[19rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[53rem]",
     amenityItemClass:
       "lg:text-[7px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[14px] 4xl:text-[18px]",
+  },
+
+  "notan-tides": {
+    viewImg: notanTidesView,
+    // matches Building_Floor_SVG/Notan_Tides/notan-Tides_BuildingSvg.svg, and
+    // the render's own 4627×2603 — the bands land on the tower as drawn
+    viewBox: "0 0 4627 2603",
+    floors: NOTAN_TIDES_FLOORS,
+    // The tower stands centre-right (35–66% of the frame) against open sky to
+    // its left, so the mark and the floor readout both sit over that sky.
+    // Starting placement — dial in against the live page like the others.
+    headerClass:
+      "right-20 top-36  2xl:-left-[54%] 2xl:top-30 xl:-left-[53%] xl:top-30 lg:-left-138 lg:top-5 3xl:-left-[54.5%] 3xl:top-30 4xl:-left-[55%] 4xl:top-35",
+    asideClass:
+      "right-[15%] top-[30%] xl:top-[18%] xl:right-44 2xl:right-[15%] 2xl:top-[20%] lg:top-[13%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[18%] 4xl:top-[20%] 4xl:right-[19%]",
+    headerSubClass:
+      "lg:-mt-20 lg:text-[7px] xl:text-[8px] xl:-mt-4 2xl:-mt-4 2xl:text-[10px] 2xl:text-bold 3xl:-mt-3 3xl:text-[10px] 4xl:-mt-14 4xl:text-[16px]",
+    headerLogoClass:
+      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
+    nMarkFill: "black",
+    amenityClass:
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-60 lg:-left-[18%] lg:h-35 2xl:-left-17 2xl:top-[37%] 3xl:top-95 3xl:left-4 4xl:top-125 4xl:left-37 xl:-left-[10%] xl:top-[38%]",
+    amenityListClass:
+      "max-w-lg lg:w-[19rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[73rem]",
+    amenityItemClass:
+      "lg:text-[7px] xl:text-[8px] 2xl:text-[11px] 3xl:text-[14px] 4xl:text-[18px]",
   },
 };

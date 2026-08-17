@@ -32,7 +32,15 @@
       "PowerShell(npx eslint src/components/Transitions/CustomCursor.jsx src/App.jsx)",
       "PowerShell(npx eslint \"c:\\\\Users\\\\Hujrgs\\\\Desktop\\\\Notan\\\\src\\\\components\\\\Transitions\\\\CustomCursor.jsx\" \"c:\\\\Users\\\\Hujrgs\\\\Desktop\\\\Notan\\\\src\\\\App.jsx\")",
       "PowerShell(Start-Sleep -Seconds 4; try { $r = Invoke-WebRequest -Uri \"http://localhost:5173/src/components/Transitions/CustomCursor.jsx\" -UseBasicParsing -TimeoutSec 20; \"STATUS: $\\($r.StatusCode\\)\"; \\($r.Content -split \"`n\" | Select-Object -First 6\\) -join \"`n\" } catch { \"ERR: $\\($_.Exception.Message\\)\" })",
-      "PowerShell($c = Get-NetTCPConnection -LocalPort 5173 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Select-Object -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }; \"dev server stopped\" } else { \"no listener on 5173\" })"
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 5173 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c.OwningProcess | Select-Object -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }; \"dev server stopped\" } else { \"no listener on 5173\" })",
+      "Bash(node \"C:/Users/Hujrgs/AppData/Local/Temp/claude/c--Users-Hujrgs-Desktop-Notan/302d75b8-0232-4a2b-b9bf-ff0612d28de5/scratchpad/allcheck.cjs\")",
+      "Bash(echo \"lint exit: $?\")",
+      "Bash(grep -n '\":\\\\s*{$\\\\|^  \"' src/components/Building/BuildingPage.jsx)",
+      "Bash(OUT_DIR=__TRACKED_VAR__/tides APP_URL=http://localhost:5176 node __TRACKED_VAR__/drive-tides.mjs)",
+      "Bash(curl -sf -o /dev/null -w \"root HTTP %{http_code}\\\\n\" http://localhost:5176/)",
+      "Bash(OUT_DIR=__TRACKED_VAR__/tides2 APP_URL=http://localhost:5176 node __TRACKED_VAR__/drive-tides.mjs)",
+      "Bash(OUT_DIR=__TRACKED_VAR__/probe APP_URL=http://localhost:5176 ROUTE=/projects/notan-tides node __TRACKED_VAR__/probe.mjs)",
+      "Bash(MSYS_NO_PATHCONV=1 OUT_DIR=__TRACKED_VAR__/probe APP_URL=http://localhost:5176 ROUTE=/projects/notan-tides node __TRACKED_VAR__/probe.mjs)"
     ]
   }
 }

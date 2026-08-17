@@ -51,6 +51,11 @@ const NOTAN_LANDS_END_FILE = import.meta.glob(
   { query: "?raw", import: "default", eager: true },
 );
 
+const NOTAN_TIDES_FILE = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Notan_Tides/notan-Tides_BuildingSvg.svg",
+  { query: "?raw", import: "default", eager: true },
+);
+
 const NOTAN_BEACH_HOUSE_FILE = import.meta.glob(
   "../../assets/Building_Floor_SVG/Notan_Beach-House/NOTAN-BEACH-HOUSE-BUILDINGSVG.svg",
   { query: "?raw", import: "default", eager: true },
@@ -92,15 +97,17 @@ const buildFloors = (files) =>
         : isGround
           ? "Ground Floor"
           : `Floor ${num}`;
+      const shape = parseShape(raw);
       return {
         num,
         isTerrace,
         isGround,
         label,
-        shape: parseShape(raw),
+        // one file = one shape; combined SVGs can hand back several (see below)
+        shapes: shape ? [shape] : [],
       };
     })
-    .filter((f) => f.shape)
+    .filter((f) => f.shapes.length)
     // bottom floor first → top floor last, matching the building top-to-bottom
     .sort((a, b) => a.num - b.num);
 
@@ -115,6 +122,12 @@ const buildFloors = (files) =>
  * first geometry out of it (`points` → polygon, else `d` → path). Illustrator
  * escapes underscores as "_x5F_", so we unescape before reading the number —
  * otherwise "floor_x5F_15" would parse the 5 in "x5F" as the floor.
+ *
+ * A floor drawn in more than one piece arrives as repeated ids — Illustrator
+ * suffixes the clashes, so Tides' L-shaped plan gives "_12th" for the tower
+ * face and "_12th-2" for the return wing. Those are one floor, so shapes are
+ * grouped by floor number and the floor carries all of them: the aside lists
+ * "12th Floor" once, and hovering either piece lights the whole level.
  */
 const FLOOR_ID_RE = /id="([^"]*(?:floor|ground|terrace|podium|amenity|typical|refuge|_\d+|\d+st|\d+nd|\d+rd|\d+th)[^"]*)"/gi;
 
@@ -124,35 +137,45 @@ const buildFloorsFromCombined = (raw) => {
   const viewBox = vb ? vb[1] : null;
 
   const ids = [...raw.matchAll(FLOOR_ID_RE)];
-  return ids
-    .map((m, i) => {
-      const id = m[1].replace(/_x5f_/gi, "_");
-      const seg = raw.slice(m.index, ids[i + 1]?.index ?? raw.length);
-      const points = seg.match(/points="([^"]+)"/);
-      const d = seg.match(/\sd="([^"]+)"/);
-      const shape = points
-        ? { type: "polygon", points: points[1].trim(), viewBox }
-        : d
-          ? { type: "path", d: d[1].trim(), viewBox }
-          : null;
-      if (!shape) return null;
+  const byFloor = new Map();
 
-      const isGround = /ground/i.test(id);
-      const isTerrace = /terrace/i.test(id);
-      const num = isGround
-        ? 0
-        : isTerrace
-          ? 9999
-          : parseInt(id.match(/(\d+)/)?.[1] ?? "0", 10);
-      const label = isTerrace
-        ? "Terrace"
-        : isGround
-          ? "Ground Floor"
-          : `Floor ${num}`;
-      return { num, isTerrace, isGround, label, shape };
-    })
-    .filter(Boolean)
-    .sort((a, b) => a.num - b.num);
+  ids.forEach((m, i) => {
+    const id = m[1].replace(/_x5f_/gi, "_");
+    const seg = raw.slice(m.index, ids[i + 1]?.index ?? raw.length);
+    const points = seg.match(/points="([^"]+)"/);
+    const d = seg.match(/\sd="([^"]+)"/);
+    const shape = points
+      ? { type: "polygon", points: points[1].trim(), viewBox }
+      : d
+        ? { type: "path", d: d[1].trim(), viewBox }
+        : null;
+    if (!shape) return;
+
+    const isGround = /ground/i.test(id);
+    const isTerrace = /terrace/i.test(id);
+    const num = isGround
+      ? 0
+      : isTerrace
+        ? 9999
+        : parseInt(id.match(/(\d+)/)?.[1] ?? "0", 10);
+    const label = isTerrace
+      ? "Terrace"
+      : isGround
+        ? "Ground Floor"
+        : `Floor ${num}`;
+
+    const floor = byFloor.get(num) ?? {
+      num,
+      isTerrace,
+      isGround,
+      label,
+      shapes: [],
+    };
+    floor.shapes.push(shape);
+    byFloor.set(num, floor);
+  });
+
+  return [...byFloor.values()].sort((a, b) => a.num - b.num);
 };
 
 // The glob returns a one-entry map; grab that single combined SVG string.
@@ -177,5 +200,8 @@ export const NOTAN_LANDS_END_FLOORS = buildFloorsFromCombined(
 );
 export const NOTAN_BEACH_HOUSE_FLOORS = buildFloorsFromCombined(
   firstRaw(NOTAN_BEACH_HOUSE_FILE),
+);
+export const NOTAN_TIDES_FLOORS = buildFloorsFromCombined(
+  firstRaw(NOTAN_TIDES_FILE),
 );
 export const NOTAN_VIEWS_FLOORS = buildFloors(NOTAN_VIEWS_FILES);

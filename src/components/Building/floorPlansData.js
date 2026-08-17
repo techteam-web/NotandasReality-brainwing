@@ -118,6 +118,20 @@ const LANDS_END_SVGS = import.meta.glob(
   { query: "?raw", import: "default", eager: true },
 );
 
+const TIDES_IMAGES = import.meta.glob(
+  "/Notan_floor_plans/Notan_Tides/*.{jpg,jpeg}",
+  {
+    query: "?url",
+    import: "default",
+    eager: true,
+  },
+);
+
+const TIDES_SVGS = import.meta.glob(
+  "../../assets/Building_Floor_SVG/Notan_Tides/FloorPlan_ImgSvg/**/*.svg",
+  { query: "?raw", import: "default", eager: true },
+);
+
 const BEACH_HOUSE_IMAGES = import.meta.glob(
   "/Notan_floor_plans/Notan_Beach-House/*.{jpg,jpeg}",
   {
@@ -313,6 +327,10 @@ const BUILDINGS = {
     images: buildImages(BEACH_HOUSE_IMAGES),
     groups: buildGroups(BEACH_HOUSE_SVGS, "FloorPlan_ImgSvg"),
   },
+  "notan-tides": {
+    images: buildImages(TIDES_IMAGES),
+    groups: buildGroups(TIDES_SVGS, "FloorPlan_ImgSvg"),
+  },
 };
 
 /* ---- naming a floor's layout options ---- */
@@ -388,7 +406,13 @@ export const getFloorPlan = (buildingId, floor, optionIndex = 0) => {
   const sheets = b.images.filter((i) => keyMatches(i.keys, floor)).sort(byOption);
   const overlays = b.groups.filter((g) => keyMatches(g.keys, floor)).sort(byOption);
 
-  const options = sheets.length > 1 ? optionsOf(sheets) : [];
+  // Only sheets that actually carry an "(OPTION-N)" tag are a choice the
+  // visitor gets to make. Some buildings have two sheets covering one floor
+  // just from overlapping legacy names (Terraces' floor 5 is in both
+  // "1,3,5,9_floor" and "5th_floor"); those are not options, so the first
+  // still wins silently rather than sprouting a toggle.
+  const tagged = sheets.length > 1 && sheets.every((s) => s.keys.option != null);
+  const options = tagged ? optionsOf(sheets) : [];
   const idx = options.length
     ? Math.min(Math.max(optionIndex, 0), options.length - 1)
     : 0;

@@ -201,14 +201,18 @@ const BuildingPage = () => {
           return (
             <svg
               key={f.num}
-              viewBox={f.shape.viewBox || view.viewBox}
+              viewBox={f.shapes[0].viewBox || view.viewBox}
               preserveAspectRatio="xMidYMid slice"
               className="absolute inset-0 h-full w-full"
             >
-              {f.shape.type === "polygon" ? (
-                <polygon points={f.shape.points} {...common} />
-              ) : (
-                <path d={f.shape.d} {...common} />
+              {/* a floor drawn in several pieces (Tides' L-shaped plan) shares
+                  one hover state, so all of it lights at once */}
+              {f.shapes.map((s, i) =>
+                s.type === "polygon" ? (
+                  <polygon key={i} points={s.points} {...common} />
+                ) : (
+                  <path key={i} d={s.d} {...common} />
+                ),
               )}
             </svg>
           );

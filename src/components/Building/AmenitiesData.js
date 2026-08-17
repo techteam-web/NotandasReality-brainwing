@@ -78,4 +78,14 @@ export const BUILDING_AMINITIES = {
     10: "Dedicated Staff Facilities",
     11: "Car Lift with Basement Parking",
   },
+  "notan-tides": {
+    1: "Owner’s Lounge",
+    2: "Rooftop 25-meter, half-Olympic infinity pool with panoramic Arabian Sea views",
+    3: "Jogging Track encircling the skyline",
+    4: "Bespoke Fitness Centre and Wellness Deck",
+    5: "Private Concierge & Valet Services",
+    6: "Grand Double-Height Lobby",
+    7: "2-way Ramp Parking Access",
+    8: "Sea-facing sit-outs & landscaped terraces",
+  }
 };

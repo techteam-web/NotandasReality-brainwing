@@ -7,6 +7,7 @@ import notanTerrace from "../../assets/buildings/notan_terrace.png";
 import notanLandsEnd from "../../assets/buildings/Notan_Lands-End.png";
 import notanViews from "../../assets/buildings/notan_views.png";
 import notanBeachHouse from "../../assets/buildings/notan_Beach-House.png";
+import notanTides from "../../assets/buildings/Notan_tides.png";
 
 /**
  * Every building that stands on the map.
@@ -139,5 +140,19 @@ export const BUILDINGS = [
     tooltip: "bottom",
     width: "clamp(42px, 4.2vw, 74px)",
     href: "/projects/notan-beach-house",
+  },
+  {
+    id: "notan-tides",
+    name: "Notan Tides",
+    area: "Juhu",
+    // TODO: confirm the exact address and the pin's top/left. The 8th-floor
+    // plan sheet is annotated "Facing Juhu-Tara Road", so Juhu is right; the
+    // pin itself is still only placed to clear the neighbouring markers.
+    tagline: "FOR THOSEWHO BELIEVE LUXURY IS NOT LOUD BUT LASTING",
+    img: notanTides,
+    top: "37%",
+    left: "48%",
+    width: "clamp(42px, 4.2vw, 74px)",
+    href: "/projects/notan-tides",
   },
 ];
