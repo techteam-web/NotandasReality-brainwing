@@ -152,6 +152,7 @@ export const BUILDINGS = [
     img: notanTides,
     top: "37%",
     left: "48%",
+     tooltip: "bottom",
     width: "clamp(42px, 4.2vw, 74px)",
     href: "/projects/notan-tides",
   },
