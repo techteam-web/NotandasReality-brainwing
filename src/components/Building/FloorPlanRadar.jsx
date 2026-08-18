@@ -7,8 +7,8 @@ import { useId } from "react";
  * visitor is standing, and which way they're looking on that paper. Angles are
  * PLAN angles — degrees clockwise from straight up the sheet — so the caller
  * turns the pano's real-world bearing into plan space once (the plan's compass
- * `rotation`, i.e. where north sits on that sheet, plus the pano's own
- * `radarDeg` alignment nudge) and everything here lines up with the drawing.
+ * `rotation`, i.e. where north sits on that sheet, plus the `facing` correction
+ * from floorPlanRadarData) and everything here lines up with the drawing.
  *
  * Props (degrees, clockwise from up):
  *   • heading      — where the view faces. Drives the cone.
@@ -39,7 +39,13 @@ const LABEL = 118; // N letter, just inside the canvas edge
 // full sheet so the N never sits on the paper's edge.
 const FIT = 0.9;
 
-const GOLD = "#e8c879";
+// The viewer's navy chrome: #212C42 is the deep tone its buttons are cut from,
+// #6f7f95 the blue-grey that MiniCompass's pin uses, #070B17 the panel ink.
+// Navy over a white plan sheet reads cleanly without the gold shouting over the
+// drawing underneath it.
+const NAVY = "#212C42";
+const NAVY_SOFT = "#6f7f95";
+const INK = "#070B17";
 
 // Strokes are given in screen pixels (non-scaling), so the dial reads the same
 // whether the minimap is compact or hover-expanded.
@@ -110,9 +116,9 @@ const FloorPlanRadar = ({
           cy={C}
           r={CONE}
         >
-          <stop offset="0%" stopColor={GOLD} stopOpacity="0.55" />
-          <stop offset="55%" stopColor={GOLD} stopOpacity="0.26" />
-          <stop offset="100%" stopColor={GOLD} stopOpacity="0.04" />
+          <stop offset="0%" stopColor={NAVY_SOFT} stopOpacity="0.58" />
+          <stop offset="55%" stopColor={NAVY} stopOpacity="0.30" />
+          <stop offset="100%" stopColor={NAVY} stopOpacity="0.05" />
         </radialGradient>
         <radialGradient
           id={edgeId}
@@ -121,8 +127,8 @@ const FloorPlanRadar = ({
           cy={C}
           r={CONE}
         >
-          <stop offset="0%" stopColor={GOLD} stopOpacity="0.95" />
-          <stop offset="100%" stopColor={GOLD} stopOpacity="0.45" />
+          <stop offset="0%" stopColor={NAVY} stopOpacity="0.95" />
+          <stop offset="100%" stopColor={NAVY_SOFT} stopOpacity="0.55" />
         </radialGradient>
       </defs>
 
@@ -133,7 +139,7 @@ const FloorPlanRadar = ({
           cy={C}
           r={RIM}
           fill="none"
-          stroke="rgba(255,255,255,0.14)"
+          stroke="rgba(33,44,66,0.20)"
           strokeWidth="1"
           strokeDasharray="3 7"
           {...CRISP}
@@ -146,7 +152,7 @@ const FloorPlanRadar = ({
             cy={C}
             r={RIM}
             fill="none"
-            stroke="rgba(232,200,121,0.35)"
+            stroke="rgba(33,44,66,0.38)"
             strokeWidth="1.5"
             {...CRISP}
           />
@@ -159,7 +165,7 @@ const FloorPlanRadar = ({
                 RIM,
               )}
               fill="none"
-              stroke="rgba(232,200,121,0.35)"
+              stroke="rgba(33,44,66,0.38)"
               strokeWidth="1.5"
               strokeLinecap="round"
               {...CRISP}
@@ -173,7 +179,7 @@ const FloorPlanRadar = ({
           y1={tickY}
           x2={tickEndX}
           y2={tickEndY}
-          stroke={GOLD}
+          stroke={NAVY_SOFT}
           strokeWidth="1.5"
           strokeLinecap="round"
           opacity="0.6"
@@ -185,7 +191,7 @@ const FloorPlanRadar = ({
           textAnchor="middle"
           dominantBaseline="central"
           fontSize="20"
-          fill={GOLD}
+          fill={NAVY}
           opacity="0.6"
         >
           N
@@ -199,7 +205,7 @@ const FloorPlanRadar = ({
             stroke={`url(#${edgeId})`}
             strokeWidth="1.5"
             strokeLinejoin="round"
-            style={{ filter: "drop-shadow(0 0 4px rgba(232,200,121,0.45))" }}
+            style={{ filter: "drop-shadow(0 0 4px rgba(33,44,66,0.45))" }}
             {...CRISP}
           />
           <line
@@ -207,7 +213,7 @@ const FloorPlanRadar = ({
             y1={C}
             x2={C}
             y2={C - CONE}
-            stroke="rgba(232,200,121,0.55)"
+            stroke="rgba(33,44,66,0.55)"
             strokeWidth="1"
             strokeDasharray="4 6"
             {...CRISP}
@@ -219,13 +225,13 @@ const FloorPlanRadar = ({
           cx={C}
           cy={C}
           r="11"
-          fill="#070B17"
-          stroke={GOLD}
+          fill={INK}
+          stroke={NAVY_SOFT}
           strokeWidth="2"
-          style={{ filter: "drop-shadow(0 0 5px rgba(232,200,121,0.5))" }}
+          style={{ filter: "drop-shadow(0 0 5px rgba(33,44,66,0.55))" }}
           {...CRISP}
         />
-        <circle cx={C} cy={C} r="4.2" fill={GOLD} />
+        <circle cx={C} cy={C} r="4.2" fill={NAVY_SOFT} />
       </g>
     </svg>
   );
