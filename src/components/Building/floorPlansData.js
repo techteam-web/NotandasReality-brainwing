@@ -335,6 +335,18 @@ const BUILDINGS = {
 
 /* ---- naming a floor's layout options ---- */
 
+/**
+ * Per-building names for the layout toggle, keyed by the "Option N" tag in the
+ * filename. A floor offered two ways normally reads "Option 1 / Option 2", but
+ * Tides' floors 7–12 aren't two different homes — they're the same home on
+ * either face of the tower: OPTION-1 is the West elevation facing Juhu-Tara
+ * Road, OPTION-2 the East elevation facing Pawan Hans. Naming those "Front
+ * View" / "Back View" says what the visitor is actually switching between.
+ */
+const OPTION_LABELS = {
+  "notan-tides": { 1: "Front View", 2: "Back View" },
+};
+
 const commonPrefixLen = (strs) => {
   let i = 0;
   while (i < strs[0].length && strs.every((s) => s[i] === strs[0][i])) i += 1;
@@ -361,23 +373,28 @@ const tidy = (s) => {
 
 /**
  * Label the sheets a floor is offered as. The button text is the filename's
- * own "Option N"; the caption under it is whatever actually DIFFERS between
- * the sibling names once their shared wording is stripped — so the typical
- * floors read "4 Bed + Study" / "5 Bed", while the terrace's two sheets (whose
- * names match apart from the tag) stay uncaptioned instead of repeating one
- * line twice.
+ * own "Option N" — unless the building names its options in OPTION_LABELS, as
+ * Tides does. The caption under it is whatever actually DIFFERS between the
+ * sibling names once their shared wording is stripped — so the typical floors
+ * read "4 Bed + Study" / "5 Bed", while the terrace's two sheets (whose names
+ * match apart from the tag) stay uncaptioned instead of repeating one line
+ * twice.
  */
-const optionsOf = (sheets) => {
+const optionsOf = (sheets, buildingId) => {
   const names = sheets.map((s) => s.keys.base);
   const pre = commonPrefixLen(names);
   const suf = commonSuffixLen(names, pre);
   const captions = names.map((n) => tidy(n.slice(pre, n.length - suf)));
   const captioned = captions.every(Boolean);
-  return sheets.map((s, i) => ({
-    label: `Option ${s.keys.option ?? i + 1}`,
-    caption: captioned ? captions[i] : null,
-    url: s.url,
-  }));
+  const named = OPTION_LABELS[buildingId];
+  return sheets.map((s, i) => {
+    const num = s.keys.option ?? i + 1;
+    return {
+      label: named?.[num] ?? `Option ${num}`,
+      caption: captioned ? captions[i] : null,
+      url: s.url,
+    };
+  });
 };
 
 /**
@@ -412,7 +429,7 @@ export const getFloorPlan = (buildingId, floor, optionIndex = 0) => {
   // "1,3,5,9_floor" and "5th_floor"); those are not options, so the first
   // still wins silently rather than sprouting a toggle.
   const tagged = sheets.length > 1 && sheets.every((s) => s.keys.option != null);
-  const options = tagged ? optionsOf(sheets) : [];
+  const options = tagged ? optionsOf(sheets, buildingId) : [];
   const idx = options.length
     ? Math.min(Math.max(optionIndex, 0), options.length - 1)
     : 0;
