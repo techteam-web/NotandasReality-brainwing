@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { DESIGN_WIDTH } from "../../lib/coverBox";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import shipSvg from "../../assets/svgs/ship-cruiser-passenger-svgrepo-com.svg";
@@ -157,7 +158,10 @@ const Wave = ({ className }) => (
 
 /* ------------------------------- The scene ------------------------------ */
 
-const MapScene = () => {
+/** The map artwork's own proportions — MapScene is drawn against them. */
+const MAP_ASPECT = 1920 / 1080;
+
+const MapScene = ({ box, u }) => {
   const rootRef = useRef(null);
 
   useGSAP(
@@ -195,9 +199,6 @@ const MapScene = () => {
       });
 
       // 3. Cruise ship steams slowly across the Arabian Sea while bobbing
-      
-     
-     
 
       // 4. Flock of birds journeys from the land out over the sea, again and again
       const flockTl = gsap.timeline({ repeat: -1, repeatDelay: 5, delay: 2 });
@@ -275,20 +276,36 @@ const MapScene = () => {
   );
 
   return (
+    /*
+     * Laid out at the map artwork's own 1920×1080 and then scaled onto wherever
+     * the map actually landed. Every `top-[10%] left-[20%] w-28` below is
+     * therefore a position and a size on the DRAWING, not on the window — so a
+     * boat keeps its stretch of sea and stays the same size relative to the
+     * coastline, instead of ballooning on a laptop and shrinking on a 5xl.
+     * That is also why the width utilities carry no breakpoint variants: the
+     * box they sit in is always 1920 wide.
+     */
     <div
       ref={rootRef}
-      className="pointer-events-none absolute inset-0 overflow-hidden select-none"
+      className="pointer-events-none absolute overflow-hidden select-none"
+      style={{
+        left: box.x,
+        top: box.y,
+        width: DESIGN_WIDTH,
+        height: DESIGN_WIDTH / MAP_ASPECT,
+        transform: `scale(${u})`,
+        transformOrigin: "0 0",
+      }}
       aria-hidden="true"
     >
       {/* ---------------- Sea side (Arabian Sea, left of the coastline) ---------------- */}
 
-      <div className="ms-boat absolute top-[10%] left-[20%] w-20 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)] md:w-28">
+      <div className="ms-boat absolute top-[10%] left-[20%] w-28 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)]">
         <SailBoat className="h-auto w-full" />
       </div>
-      <div className="ms-boat absolute top-[70%] left-[7%] w-20 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)] md:w-28">
-         <img src={shipSvg} alt="" className="h-auto w-full opacity-80" />
+      <div className="ms-boat absolute top-[70%] left-[7%] w-28 text-[#41526e] opacity-90 drop-shadow-[0_2px_4px_rgba(59,83,130,0.25)]">
+        <img src={shipSvg} alt="" className="h-auto w-full opacity-80" />
       </div>
-
 
       {/* drifting hand-drawn swells scattered over the open water */}
       <div className="ms-wave absolute top-[26%] left-[24%] w-20 text-[#5b77a8] opacity-60">
@@ -318,43 +335,41 @@ const MapScene = () => {
 
       {/* ---------------- Sky ---------------- */}
 
-      <div className="ms-flock absolute top-[6%] left-[52%] w-14 text-[#4E5157] opacity-0 md:w-20">
+      <div className="ms-flock absolute top-[6%] left-[52%] w-20 text-[#4E5157] opacity-0">
         <Flock className="h-auto w-full" />
       </div>
-      <div className="ms-flock absolute top-[88%] left-[22%] w-14 text-[#4E5157] opacity-0 md:w-20">
+      <div className="ms-flock absolute top-[88%] left-[22%] w-20 text-[#4E5157] opacity-0">
         <Flock className="h-auto w-full" />
       </div>
 
-      <div className="ms-gulls absolute top-[30%] left-[28%] w-10 text-[#41526e] opacity-0 md:w-14">
+      <div className="ms-gulls absolute top-[30%] left-[28%] w-14 text-[#41526e] opacity-0">
         <Gulls className="h-auto w-full" />
       </div>
-      <div className="ms-gulls absolute top-[50%] left-[28%] w-10 text-[#41526e] opacity-0 md:w-14">
+      <div className="ms-gulls absolute top-[50%] left-[28%] w-14 text-[#41526e] opacity-0">
         <Gulls className="h-auto w-full" />
       </div>
-      <div className="ms-gulls absolute top-[10%] left-[15%] w-10 text-[#41526e] opacity-0 md:w-14">
+      <div className="ms-gulls absolute top-[10%] left-[15%] w-14 text-[#41526e] opacity-0">
         <Gulls className="h-auto w-full" />
       </div>
 
       {/* ---------------- Land side (right of the coastline) ---------------- */}
 
-     
-
       {/* coastal palms further down the shoreline */}
-      <div className="ms-grow ms-sway absolute top-[5%] left-[73%] w-12 md:w-16">
+      <div className="ms-grow ms-sway absolute top-[5%] left-[73%] w-16">
         <img
           src={palmTreeImg}
           alt=""
           className="h-auto w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[6%] left-[41%] w-12 md:w-16">
+      <div className="ms-grow ms-sway absolute top-[6%] left-[41%] w-16">
         <img
           src={palmTreeImg}
           alt=""
           className="h-auto w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[60%] left-[43%] w-12 md:w-16">
+      <div className="ms-grow ms-sway absolute top-[60%] left-[43%] w-16">
         <img
           src={palmTreeImg}
           alt=""
@@ -363,21 +378,21 @@ const MapScene = () => {
       </div>
 
       {/* inland green pocket below Vile Parle */}
-      <div className="ms-grow ms-sway absolute top-[11%] left-[86%] w-20 md:w-25">
+      <div className="ms-grow ms-sway absolute top-[11%] left-[86%] w-25">
         <img
           src={forestImg}
           alt=""
           className="h-22 w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-20 md:w-25">
+      <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-25">
         <img
           src={forestImg}
           alt=""
           className="h-20 w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[71%] left-[73%] w-20 md:w-30 ">
+      <div className="ms-grow ms-sway absolute top-[71%] left-[73%] w-30">
         <img
           src={forestImg}
           alt=""
@@ -386,14 +401,14 @@ const MapScene = () => {
       </div>
 
       {/* Bandra greens near the southern coast */}
-      <div className="ms-grow ms-sway absolute top-[82%] left-[56%] w-16 md:w-20">
+      <div className="ms-grow ms-sway absolute top-[82%] left-[56%] w-20">
         <img
           src={forestImg}
           alt=""
           className="h-18 w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[87%] left-[66%] w-16 md:w-20">
+      <div className="ms-grow ms-sway absolute top-[87%] left-[66%] w-20">
         <img
           src={forestImg}
           alt=""
@@ -402,7 +417,7 @@ const MapScene = () => {
       </div>
 
       {/* Bandra–Worli Sea Link reaching out over the water */}
-      <div className="ms-grow absolute top-[80%] left-[36%] w-40 md:w-56 lg:w-32 2xl:w-45">
+      <div className="ms-grow absolute top-[80%] left-[36%] w-45">
         <img
           src={seaLinkImg}
           alt=""

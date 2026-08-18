@@ -85,10 +85,7 @@ const AnimatedPlane = ({ className }) => {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className={`relative ${className} lg:top-15 lg:left-10`}
-    >
+    <div ref={containerRef} className={`relative h-full w-full ${className}`}>
       {/* Decorative Flight Trail */}
       <svg
         className="pointer-events-none absolute top-1/2 left-0 -z-10 h-50 w-75 translate-x-[-110%] -translate-y-1/2"

@@ -42,15 +42,16 @@ const MiniCompass = ({
   pinDeg = 0,
   transitionMs = 0,
   className = "",
+  style,
   backgroundFill = "#ffffff",
-  bgBlur = 26,           // soft-edge blur on the background disc (0 = crisp circle)
-  bgOpacity = 0.85,      // translucency of the background disc
+  bgBlur = 26, // soft-edge blur on the background disc (0 = crisp circle)
+  bgOpacity = 0.85, // translucency of the background disc
   showMarker = true,
-  bgRadius = 662,       // background fill circle radius (602 matches 1254 canvas)
-  innerScale = 1.25,     // overall scale of inner compass
-  innerScaleX = 1.0,     // width multiplier for inner compass
-  innerScaleY = 1.0,     // height multiplier for inner compass
-  nOffsetY = 0,          // N letter vertical nudge offset
+  bgRadius = 662, // background fill circle radius (602 matches 1254 canvas)
+  innerScale = 1.25, // overall scale of inner compass
+  innerScaleX = 1.0, // width multiplier for inner compass
+  innerScaleY = 1.0, // height multiplier for inner compass
+  nOffsetY = 0, // N letter vertical nudge offset
 }) => {
   const pinTipY = C - bgRadius;
   const pinBaseY = Math.max(10, pinTipY - 75);
@@ -68,7 +69,7 @@ const MiniCompass = ({
   const vSize = 2 * vRadius;
 
   return (
-    <div className={`overflow-visible ${className}`}>
+    <div className={`overflow-visible ${className}`} style={style}>
       <svg
         viewBox={`${vMin} ${vMin} ${vSize} ${vSize}`}
         width="100%"

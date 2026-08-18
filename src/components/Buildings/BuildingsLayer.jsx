@@ -8,8 +8,12 @@ import BuildingMarker from "./BuildingMarker";
  * Places a glowing pointer for every building from buildingsData.js
  * onto the map and pops them in one by one; hovering a pointer pops
  * up its building (see BuildingMarker).
+ *
+ * `box` is where the map artwork actually landed and `u` how big it was drawn
+ * (see lib/coverBox) — both are handed down so every pointer sits on its own
+ * corner of the map and is sized against the map, not against the window.
  */
-const BuildingsLayer = () => {
+const BuildingsLayer = ({ box, u }) => {
   const layerRef = useRef(null);
 
   useGSAP(
@@ -47,7 +51,7 @@ const BuildingsLayer = () => {
   return (
     <div ref={layerRef} className="pointer-events-none absolute inset-0">
       {BUILDINGS.map((building) => (
-        <BuildingMarker key={building.id} building={building} />
+        <BuildingMarker key={building.id} building={building} box={box} u={u} />
       ))}
     </div>
   );

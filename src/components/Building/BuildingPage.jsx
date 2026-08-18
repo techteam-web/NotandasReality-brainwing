@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link, useParams } from "react-router";
 import { BUILDINGS } from "../Buildings/buildingsData";
 import { BUILDING_VIEWS } from "./buildingViewsData";
@@ -6,11 +6,9 @@ import FloorPlanOverlay from "./FloorPlanOverlay";
 import PanoViewer from "./PanoViewer";
 import { getRegionPano } from "./panoData";
 import NotandasNMark from "../SvgAnimations/NotandasNMark";
-import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "./buildingLogos";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import ProjectPlate from "./ProjectPlate";
+import { aspectFromViewBox, uiScaleFor, useCoverBox } from "../../lib/coverBox";
 import { BUILDING_AMINITIES } from "./AmenitiesData";
-
 
 /**
  * The "View Project" destination.
@@ -33,19 +31,18 @@ const BuildingPage = () => {
   const { id } = useParams();
   const building = BUILDINGS.find((b) => b.id === id);
   const view = BUILDING_VIEWS[id];
-  const projectLogo = BUILDING_LOGOS[id] ?? null;
-  const logoIsTight = TIGHT_CROPPED_LOGOS.has(id);
   const amenities = Object.values(BUILDING_AMINITIES[id] || {})
     .flatMap((item) => item.split("|"))
     .map((item) => item.trim())
     .filter(Boolean);
-  const amenityRef = useRef(null);
-  const hasAmenities = amenities.length > 0;
   const [active, setActive] = useState(null);
   const [selected, setSelected] = useState(null); // floor whose plan overlay is open
   const [pano, setPano] = useState(null); // { floorNum, regionName } open in 360°
 
-  const headerRef = useRef(null);
+  // the project plate hangs off the photo's own crop, not off the viewport —
+  // measured here so the hook order stays stable for the "coming soon" branch
+  const coverBox = useCoverBox(aspectFromViewBox(view?.viewBox));
+  const plateScale = uiScaleFor(coverBox);
 
   const activeFloor = view?.floors.find((f) => f.num === active) ?? null;
   const selectedFloor = view?.floors.find((f) => f.num === selected) ?? null;
@@ -84,47 +81,6 @@ const BuildingPage = () => {
           ? "Ground Floor"
           : getOrdinalFloor(f.num)
       : "";
-
-  useGSAP(
-    () => {
-      gsap.from("p, h1", {
-        x: 50,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power4.out",
-        delay: 1.6, // wait for the page transition "ink" wave to recede
-      });
-    },
-    { scope: headerRef },
-     
-    
-  );
-
-  useGSAP(
-   
-    () => {
-      const tl = gsap.timeline();
-      tl.from(amenityRef.current, {
-        y: 20,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power4.out",
-        delay: 1.6, // wait for the page transition "ink" wave to recede
-      })
-       .from("li", {
-        y: 20,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power4.out",
-     
-      });
-      return () =>  tl.kill();
-
-    },
-    { scope: amenityRef },
-  );
 
   /* ----- building art not added yet ----- */
   if (!view) {
@@ -185,9 +141,7 @@ const BuildingPage = () => {
             vectorEffect: "non-scaling-stroke",
             style: {
               cursor: "pointer",
-              fill: isActive
-                ? "rgba(7,11,23,0.55)"
-                : "rgba(59,83,130,0.001)",
+              fill: isActive ? "rgba(7,11,23,0.55)" : "rgba(59,83,130,0.001)",
               stroke: isActive ? "#070B17" : "rgba(255,255,255,0.001)",
               strokeWidth: isActive ? 2.5 : 1,
               transition: "fill 0.25s ease, stroke 0.25s ease",
@@ -230,83 +184,67 @@ const BuildingPage = () => {
         Back
       </Link>
 
-      {/* big centered project logo (name as text when no dedicated mark) */}
-      <header
-        ref={headerRef}
-        className={`pointer-events-none absolute z-20 flex flex-col items-center text-center ${view.headerClass || "top-36 left-80 md:top-127 lg:top-70 lg:left-36 xl:top-90 xl:left-40 2xl:top-90 2xl:left-64 3xl:top-127 3xl:left-80 4xl:top-150 4xl:left-137"}`}
-      >
-        {projectLogo ? (
-          <h1 className="mt-1">
-            {/* Square marks sit in the middle ~40% of their canvas — the
-               negative margins swallow the transparent padding so the logo
-               occupies the same slot the text title did. Tight-cropped marks
-               (Crown's landscape PNG) have no padding, so they render at a
-               smaller box with normal margins. */}
-            <img
-              src={projectLogo}
-              alt={building ? building.name : "Building"}
-              draggable="false"
-              className={`h-auto xl:h-50 lg:h-70 2xl:h-75 4xl:h-120 max-w-[80vw] select-none ${
-                view.headerLogoClass ||
-                (logoIsTight
-                  ? "w-44 sm:w-52 md:w-72 lg:w-56 xl:w-48 2xl:w-56 4xl:w-96"
-                  : "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-76 xl:w-68 2xl:w-76 4xl:w-130")
-              }`}
-            />
-          </h1>
-        ) : (
-          <h1
-            className={`mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-4xl xl:text-[30px] 2xl:text-[35px] 4xl:text-[66px] ${
-              view.headerTitleClass || ""
-            }`}
-          >
-            {building ? building.name : "Building"}
-          </h1>
-        )}
-        {building && (
-          <p
-            className={`mt-2 text-[10px] tracking-[0.45em] text-[#1f2a40]  p-2 uppercase md:text-sm xl:text-[10px] ${
-              view.headerSubClass || ""
-            }`}
-          >
-            {building.subtitle || `${building.area}, Mumbai`}
-          </p>
-        )}
-      </header>
+      {/* project mark, address and amenities — one centred plate anchored to
+          the photo itself, so they stay together at every size (ProjectPlate) */}
+      <ProjectPlate
+        id={id}
+        name={building ? building.name : "Building"}
+        subtitle={
+          building ? building.subtitle || `${building.area}, Mumbai` : null
+        }
+        amenities={amenities}
+        plate={view.plate}
+        box={coverBox}
+      />
 
       {/* brand mark, top-right */}
       <NotandasNMark
         className={
           view.nMarkClass ||
-          "absolute top-4 right-5 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 xl:-top-7 xl:-right-2 xl:h-48 xl:w-28 2xl:-top-8 2xl:-right-5 2xl:h-56 2xl:w-32 3xl:-top-8 3xl:-right-3 "
+          "absolute top-4 right-5 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 xl:-top-7 xl:-right-2 xl:h-48 xl:w-28 2xl:-top-8 2xl:-right-5 2xl:h-56 2xl:w-32 3xl:-top-8 3xl:-right-3 3xl:h-64 3xl:w-36 4xl:-top-10 4xl:-right-6 4xl:h-80 4xl:w-46 5xl:-top-14 5xl:-right-8 5xl:h-112 5xl:w-64"
         }
         fill={view.nMarkFill || "white"}
         aria-label={building ? building.name : "Notandas Realty"}
       />
 
-      {/* right-side floor readout */}
+      {/* right-side floor readout — its placement is still per-project, but it
+          takes the plate's type scale so the two stay in proportion once the
+          screen runs past 1920 */}
       <aside
-        className={`absolute z-20 w-36 ${view.asideClass || "top-1/2 left-[65%] -translate-y-1/2 md:right-12 md:w-44"}`}
+        className={`absolute z-20 ${view.asideClass || "top-1/2 left-[65%] -translate-y-1/2 md:right-12"}`}
+        style={{ fontSize: `${plateScale * 16}px`, width: "11em" }}
       >
-        <div className="rounded-sm px-5 py-6 text-center">
-          <p className="text-[20px] tracking-[3px] text-[#1f2a40] uppercase">
-            {activeFloor ? "Now viewing Floor:": "Pick a floor"}
+        <div
+          className="rounded-sm text-center"
+          style={{ padding: "1.5em 1.25em" }}
+        >
+          <p
+            className="text-[#1f2a40] uppercase"
+            style={{ fontSize: "1.25em", letterSpacing: "0.15em" }}
+          >
+            {activeFloor ? "Now viewing Floor:" : "Pick a floor"}
           </p>
 
-          <div className="mt-3 flex min-h-22 flex-col items-center justify-center">
+          <div
+            className="flex flex-col items-center justify-center"
+            style={{ marginTop: "0.75em", minHeight: "5.5em" }}
+          >
             {activeFloor ? (
-              <>
-                <span className="font-serif text-6xl leading-none text-[#4E5157] italic">
-                  {activeFloor.isTerrace
-                    ? "T"
-                    : activeFloor.isGround
-                      ? "G"
-                      : String(activeFloor.num).padStart(2, "0")}
-                </span>
-                
-              </>
+              <span
+                className="font-serif leading-none text-[#4E5157] italic"
+                style={{ fontSize: "3.75em" }}
+              >
+                {activeFloor.isTerrace
+                  ? "T"
+                  : activeFloor.isGround
+                    ? "G"
+                    : String(activeFloor.num).padStart(2, "0")}
+              </span>
             ) : (
-              <span className="font-serif text-5xl leading-none text-[#1f2a40]/25 italic">
+              <span
+                className="font-serif leading-none text-[#1f2a40]/25 italic"
+                style={{ fontSize: "3em" }}
+              >
                 —
               </span>
             )}
@@ -321,42 +259,6 @@ const BuildingPage = () => {
           </p> */}
         </div>
       </aside>
-
-      {hasAmenities && (
-        <div
-          ref={amenityRef}
-          className={`pointer-events-none absolute z-20 ${
-            view.amenityClass ||
-            "bottom-55 left-75 w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl"
-          }`}
-        >
-          <section className="px-5 py-3 text-center">
-            <div className="inline-flex flex-col items-center">
-              <p className="text-[11px] tracking-[0.42em] text-[#3a3935] uppercase">
-                Amenities
-              </p>
-              <div className="mt-2 h-px w-10 bg-[#595753]" />
-              <ul
-                className={`mt-2.5 flex flex-wrap items-center justify-center gap-y-1 text-base leading-snug text-black sm:text-lg ${
-                  view.amenityListClass || "max-w-lg"
-                }`}
-              >
-                {amenities.map((amenity) => (
-                  <li
-                    key={amenity}
-                    className={` after:mx-2 after:text-black/40 after:content-['|'] last:after:content-none mix-blend-multiply ${
-                      view.amenityItemClass ||
-                      "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
-                    }`}
-                  >
-                    {amenity}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        </div>
-      )}
 
       {/* floor-plan overlay — opens when a floor is clicked */}
       {selectedFloor && (
@@ -405,8 +307,6 @@ const BuildingPage = () => {
           className="pointer-events-none fixed top-18 left-3 z-50 w-9 opacity-70 sm:top-20 sm:left-4 sm:w-10 md:top-auto md:right-5 md:bottom-6 md:left-auto md:w-14 md:opacity-80 lg:right-6 lg:w-46 xl:right-7 xl:w-50"
         />
       )} */}
-      
-     
     </div>
   );
 };

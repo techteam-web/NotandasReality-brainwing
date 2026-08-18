@@ -12,11 +12,15 @@ import notanTides from "../../assets/buildings/Notan_tides.png";
 /**
  * Every building that stands on the map.
  *
- * To move a building, change `top` / `left` — they are percentages of the
- * map and mark the point where the building's BASE touches the ground.
- * `width` controls its size, `tooltip: "bottom"` flips the card below the
- * building (use it for buildings near the top edge of the screen).
- * `href` is the future views page route.
+ * To move a building, change `top` / `left` — they are percentages of the MAP
+ * ARTWORK (1920×1080) and mark the point where the building's BASE touches the
+ * ground, so a pointer holds its street corner however the map is cropped.
+ * `width` is the popped-up building's width in those same artwork pixels; it is
+ * scaled to whatever size the map is actually drawn at. It used to be a
+ * `clamp(42px, 4.2vw, 74px)` string, which capped out and left the buildings
+ * shrinking against the map on large screens.
+ * `tooltip: "bottom"` flips the card below the building (use it for buildings
+ * near the top edge of the map). `href` is the views page route.
  *
  * Two separate labels, on purpose:
  *   `area`     — the small uppercase line inside the map tooltip.
@@ -36,7 +40,7 @@ export const BUILDINGS = [
     img: notanCrown,
     top: "92%",
     left: "52.7%",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: 74,
     href: "/projects/notan-crown",
   },
   {
@@ -48,7 +52,7 @@ export const BUILDINGS = [
     img: notanJewel,
     top: "84%",
     left: "50.3%",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: 74,
     // tooltip: "bottom",
     href: "/projects/notan-jewel",
   },
@@ -62,7 +66,7 @@ export const BUILDINGS = [
     top: "29%",
     left: "56.2%",
     tooltip: "bottom",
-    width: "clamp(42px, 3.8vw, 74px)",
+    width: 73,
     href: "/projects/notan-edge",
   },
   {
@@ -74,7 +78,7 @@ export const BUILDINGS = [
     img: notanSpace,
     top: "61%",
     left: "64.3%",
-    width: "clamp(42px, 4.3vw, 74px)",
+    width: 74,
     href: "/projects/notan-space",
   },
   {
@@ -87,7 +91,7 @@ export const BUILDINGS = [
     top: "18%",
     left: "51.5%",
     tooltip: "bottom",
-    width: "clamp(42px, 3.2vw, 74px)",
+    width: 61,
     href: "/projects/notan-dc",
   },
   {
@@ -100,7 +104,7 @@ export const BUILDINGS = [
     top: "25.4%",
     left: "50.3%",
     tooltip: "bottom",
-    width: "clamp(42px, 3.2vw, 74px)",
+    width: 61,
     href: "/projects/notan-terrace",
   },
   {
@@ -108,11 +112,12 @@ export const BUILDINGS = [
     name: "Notan Lands End",
     area: "Bandra West",
     subtitle: "BZS Road, Bandra West, Mumbai",
-    tagline: "Purposefully crafted spaces for leisure, wellness, and quiet indulgence.",
+    tagline:
+      "Purposefully crafted spaces for leisure, wellness, and quiet indulgence.",
     img: notanLandsEnd,
     top: "80%",
     left: "45.5%",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: 74,
     href: "/projects/notan-lands-end",
   },
   {
@@ -123,7 +128,7 @@ export const BUILDINGS = [
     img: notanViews,
     top: "75%",
     left: "45%",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: 74,
     href: "/projects/notan-views",
   },
   {
@@ -133,12 +138,13 @@ export const BUILDINGS = [
     // TODO: confirm the address, tagline and the pin's top/left — parked on the
     // Juhu seafront (west of DC and Terraces, which sit inland at JVPD) from
     // the project's name and its render, not from a supplied location.
-    tagline: "Sea beyond the glass, Balconies stretch towards the tide… Beach House breathes in blue…",
+    tagline:
+      "Sea beyond the glass, Balconies stretch towards the tide… Beach House breathes in blue…",
     img: notanBeachHouse,
     top: "23%",
     left: "44.8%",
     tooltip: "bottom",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: 74,
     href: "/projects/notan-beach-house",
   },
   {
@@ -152,8 +158,8 @@ export const BUILDINGS = [
     img: notanTides,
     top: "37%",
     left: "48%",
-     tooltip: "bottom",
-    width: "clamp(42px, 4.2vw, 74px)",
+    tooltip: "bottom",
+    width: 74,
     href: "/projects/notan-tides",
   },
 ];

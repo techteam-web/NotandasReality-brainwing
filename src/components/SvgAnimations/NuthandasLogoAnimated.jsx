@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
-const NuthandasLogoAnimated = ({ className }) => {
+const NuthandasLogoAnimated = ({ className, style }) => {
   const svgRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -55,6 +55,7 @@ const NuthandasLogoAnimated = ({ className }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 400 390"
       className={className} // Allows Hover effects from HomePage
+      style={style}
     >
       <g
         transform="translate(31.500000,320.000000) scale(0.100000,-0.095000)"

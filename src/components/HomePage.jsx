@@ -1,18 +1,39 @@
 import notanMap from "../assets/notan_map.png";
 import NuthandasLogoAnimated from "./SvgAnimations/NuthandasLogoAnimated";
 import AnimatedPlane from "./SvgAnimations/AnimatedPlane";
-import Compass from "./SvgAnimations/Compass";
 import MapScene from "./SvgAnimations/MapScene";
 import BuildingsLayer from "./Buildings/BuildingsLayer";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import MiniCompass from "./SvgAnimations/MiniCompass";
+import { uiScaleFor, useCoverBox } from "../lib/coverBox";
 
 gsap.registerPlugin(useGSAP);
 
+/** notan_map.png is 1920×1080, so a 1920-wide window draws it 1:1. */
+const MAP_ASPECT = 1920 / 1080;
+
+const serif = { fontFamily: "'Times New Roman', Times, serif" };
+
 const HomePage = () => {
   const seaWordRef = useRef();
+
+  // The map is bg-cover, so it crops as the window's ratio changes. Everything
+  // printed on top of it — pointers, place names — hangs off this box and this
+  // scale instead of off the window, so the whole map reads as one drawing at
+  // any size. The stepped classes it replaced (`lg:text-[12px] lg:w-15 …`) left
+  // the labels and pins swelling against the coastline on smaller screens.
+  const box = useCoverBox(MAP_ASPECT);
+  const u = uiScaleFor(box);
+  const s = (px) => px * u; // artwork pixels → screen pixels
+
+  /** Pin a map annotation to a point on the artwork. */
+  const at = (xPct, yPct, anchor = "translate(-50%, -50%)") => ({
+    left: box.x + (xPct / 100) * box.w,
+    top: box.y + (yPct / 100) * box.h,
+    transform: anchor,
+  });
 
   useGSAP(() => {
     gsap.fromTo(
@@ -27,24 +48,44 @@ const HomePage = () => {
       className="relative h-screen w-full overflow-hidden bg-black bg-cover bg-no-repeat text-white"
       style={{
         backgroundImage: `url(${notanMap})`,
-        backgroundPosition: `center calc(100% + 0px)`, // Adjust the 50px or 0% (top) / 100% (bottom) to your exact needs
+        backgroundPosition: "center",
       }}
     >
-      <MapScene />
-      <BuildingsLayer />
+      <MapScene box={box} u={u} />
+      <BuildingsLayer box={box} u={u} />
 
-      <div className="relative">
-        <NuthandasLogoAnimated className="relative h-50 w-48 transition-all duration-500  md:w-74 lg:left-10 lg:w-30 xl:left-10 xl:w-30 pointer-events-none" />
+      {/* brand mark — page chrome, so it stays in the window's corner, but it
+          takes the map's scale like everything else */}
+      <div
+        className="pointer-events-none absolute top-0"
+        style={{ left: s(40) }}
+      >
+        <NuthandasLogoAnimated
+          className="transition-all duration-500"
+          style={{ width: s(120), height: s(200) }}
+        />
       </div>
 
-      <div className="absolute right-27 bottom-[50%]">
-        <div className="mb-15 ml-15 h-16 w-36 opacity-70 pointer-events-none">
+      {/* the airport, off the east edge of the drawing */}
+      <div
+        className="pointer-events-none absolute"
+        style={at(94.4, 50, "translate(-100%, -100%)")}
+      >
+        <div
+          style={{
+            height: s(64),
+            width: s(144),
+            marginLeft: s(60),
+            marginBottom: s(60),
+            opacity: 0.7,
+          }}
+        >
           <AnimatedPlane />
         </div>
 
         <h1
-          className="text-sm font-semibold text-[#A7B0BE] uppercase tracking-widest lg:text-[12px] pointer-events-none"
-          style={{ fontFamily: "'Times New Roman', Times, serif" }}
+          className="font-semibold tracking-widest text-[#A7B0BE] uppercase"
+          style={{ ...serif, fontSize: s(12) }}
         >
           chhatrapati <br />
           shivaji maharaj <br />
@@ -52,30 +93,40 @@ const HomePage = () => {
         </h1>
       </div>
 
+      {/* the sea link, where it meets the bottom of the drawing */}
       <h1
-        className="absolute top-[95%] left-[43%] text-sm font-semibold text-[#A7B0BE] uppercase lg:text-[11px] opacity-75 pointer-events-none"
-        style={{ fontFamily: "'Times New Roman', Times, serif" }}
+        className="pointer-events-none absolute font-semibold text-[#A7B0BE] uppercase opacity-75"
+        style={{ ...at(43, 95, "none"), ...serif, fontSize: s(11) }}
       >
         bandra worli <br />
         sea link
       </h1>
 
-      <div className="absolute top-[50%] left-[8%] -rotate-90 xl:left-15 2xl:left-15 3xl:left-40">
+      {/* the sea itself, set down the western margin like a chart legend */}
+      <div
+        className="pointer-events-none absolute"
+        style={at(19.5, 51.5, "translate(-50%, -50%) rotate(-90deg)")}
+      >
         <h1
-          className="font-Times-Roman text-2xl font-semibold tracking-[28px] text-[#3b5382] capitalize lg:hidden xl:block pointer-events-none"
+          className="font-Times-Roman font-semibold text-[#3b5382] capitalize"
+          style={{ fontSize: s(24), letterSpacing: s(28) }}
           ref={seaWordRef}
         >
           Arabian Sea
         </h1>
       </div>
 
-      {/* static compass rose — map decoration */}
-      {/* <Compass className="absolute bottom-4 left-3 h-20 w-20 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-25 lg:w-23 xl:-bottom-17 xl:w-30 2xl:-bottom-8 2xl:left-3 2xl:w-40" /> */}
-
+      {/* compass rose — chrome again, pinned to the window's corner */}
       <MiniCompass
         backgroundFill="none"
         showMarker={false}
-        className="absolute bottom-4 left-3 h-20 w-20  drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-15 lg:w-15 xl:-bottom-14 xl:w-20 2xl:-bottom-10 2xl:left-7 2xl:w-35"
+        className="pointer-events-none absolute drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
+        style={{
+          left: s(28),
+          bottom: -s(40),
+          width: s(140),
+          height: s(216),
+        }}
       />
     </div>
   );
