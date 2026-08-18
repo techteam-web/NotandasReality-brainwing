@@ -1877,3 +1877,21 @@ export const getRegionPano = (buildingId, floor, regionName) => {
   // Room values win; anything omitted (incl. the scene) inherits the floor's.
   return resolvePano(building, { ...floorCfg, ...override }, isTerrace);
 };
+
+/**
+ * The yaw a room was EXPLICITLY framed at in REGION_PANO_MAP, or null when that
+ * room has no entry of its own (it just inherits the floor's framing, so it says
+ * nothing about where the room is).
+ *
+ * These hand-set yaws are the tour's own record of "this is the direction that
+ * room lies in", which is why the minimap radar reads them: paired with where
+ * the room sits on the floor plan, they tell it how the capture is turned
+ * relative to the sheet, with no separate calibration to keep in step. See
+ * floorPlanRadarData.js.
+ */
+export const getRegionYawDeg = (buildingId, floor, regionName) => {
+  if (regionName == null) return null;
+  const cfg =
+    PANO_BUILDINGS[buildingId]?.regionMap[floorKey(floor)]?.[regionName];
+  return cfg?.yawDeg ?? null;
+};

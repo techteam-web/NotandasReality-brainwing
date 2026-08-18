@@ -9,6 +9,17 @@ import {
   getFloorPanoHeight,
 } from "./panoData";
 import { getFloorPlan } from "./floorPlansData";
+import { getFloorPlanCompass } from "./floorPlanCompassData";
+import {
+  getFloorPlanRadar,
+  radarFacingFor,
+  resolveRadarTune,
+  radarTuneKey,
+  buildRadarSnippet,
+} from "./floorPlanRadarData";
+import useRadarAutoFacing from "./useRadarAutoFacing";
+import FloorPlanRadar from "./FloorPlanRadar";
+import PanoRadarTuner from "./PanoRadarTuner";
 import MiniCompass from "../SvgAnimations/MiniCompass";
 import NotandasNMark from "../SvgAnimations/NotandasNMark";
 
@@ -30,6 +41,13 @@ import NotandasNMark from "../SvgAnimations/NotandasNMark";
  * sits), set per building / floor / room in panoData.js. The compass shows
  * `northDeg + live yaw`, so it turns as the visitor looks around. Add
  * `?compass=1` to the URL for the overlay used to dial those numbers in.
+ *
+ * The minimap carries a radar (FloorPlanRadar): a hub at the centre of the
+ * floor plan with a cone showing where the visitor is looking ON THAT SHEET.
+ * It reads plan north from floorPlanCompassData — the same bearing the big
+ * plan's compass uses — so it aims itself. Where a capture sits off-axis from
+ * its sheet, floorPlanRadarData.js holds the hand correction per building,
+ * floor and room; `?radar=1` opens the panel that dials those in.
  */
 
 // Vertical look range allowed around configured pitch (restricted looking down).
@@ -59,6 +77,19 @@ const limitYawArc = (center, half) => (params) => {
   const delta = Math.min(Math.max(wrapPi(params.yaw - center), -half), half);
   params.yaw = wrapPi(center + delta);
   return params;
+};
+
+/**
+ * "minX minY w h" → `{ x, y, w, h }`, or null if the plan has no overlay frame.
+ * The floor-plan cut-outs share their viewBox with the plan photo, so this is
+ * the paper's own coordinate space — what the minimap radar is drawn into.
+ */
+const parseViewBox = (viewBox) => {
+  if (!viewBox) return null;
+  const [x, y, w, h] = viewBox.trim().split(/[\s,]+/).map(Number);
+  return [x, y, w, h].every(Number.isFinite) && w > 0 && h > 0
+    ? { x, y, w, h }
+    : null;
 };
 
 const getOrdinalFloor = (num) => {
@@ -120,10 +151,14 @@ const PanoViewer = ({
   const rafRef = useRef(0);
   const menuRef = useRef(null); // dropdown wrapper, for outside-click detection
   const menuItemRef = useRef(null); // the open floor's row in the dropdown
+  // the minimap's room shapes, by index — measured to aim the radar
+  const regionShapes = useRef(new Map());
 
   const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
-  const [angles, setAngles] = useState({ yaw: 0, pitch: 0, fov: 0 });
+  // `fov` is Marzipano's own (vertical) field of view; `hfov` is the horizontal
+  // one the minimap radar's cone spans — see the sync() below.
+  const [angles, setAngles] = useState({ yaw: 0, pitch: 0, fov: 0, hfov: 0 });
   const [copied, setCopied] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [minimapOpen, setMinimapOpen] = useState(true);
@@ -140,6 +175,16 @@ const PanoViewer = ({
   );
   const [nudge, setNudge] = useState({ north: 0, pin: 0 });
 
+  // ?radar=1 opens the radar-aiming panel — its own tool, since a session there
+  // walks floors and rooms collecting dial-ins rather than tuning one number.
+  const [aimingRadar] = useState(
+    () => new URLSearchParams(window.location.search).get("radar") === "1",
+  );
+  // key → facing, one entry per scope dialled in this session. Only consulted
+  // while the panel is open, so a normal visit always renders the data file.
+  const [radarTune, setRadarTune] = useState({});
+  const [radarScope, setRadarScope] = useState("floor");
+
   // Compass aim for this floor/room — straight from panoData, plus whatever the
   // calibration panel is trying out (0 / 0 in a normal visit). `northDeg` is the
   // hand-set calibration; `headingDeg` is that plus the live drag, and is what
@@ -147,6 +192,71 @@ const PanoViewer = ({
   const northDeg = wrapDeg((pano?.northDeg ?? 0) + nudge.north);
   const pinDeg = wrapDeg((pano?.pinDeg ?? 0) + nudge.pin);
   const headingDeg = wrapDeg(panoHeadingDeg(pano, angles.yaw) + nudge.north);
+
+  // ── Minimap radar ────────────────────────────────────────────────────────
+  // The radar is drawn on the PLAN, so every bearing is turned into plan space
+  // first. The plan's own compass says where north points on that sheet
+  // (`rotation`, clockwise from up), so a real bearing B sits at rotation + B —
+  // one shared number keeps the radar, the plan compass and the mini compass
+  // telling the same story. The correction on top of that comes from the room
+  // yaws themselves — useRadarAutoFacing measures where each room sits on the
+  // paper against the yaw it's framed at — with floorPlanRadarData.js able to
+  // overrule it per building / floor / room. Everything else is derived from
+  // `angles`, which the Marzipano "change" listener refreshes each frame, so
+  // the cone follows a drag live and a floor / room switch repaints it already
+  // facing the right way.
+  const planFrame = parseViewBox(viewBox);
+  const planNorthDeg = getFloorPlanCompass(buildingId, floor).rotation ?? 0;
+  const radarCfg = getFloorPlanRadar(buildingId, floor, regionName);
+  const autoFacing = useRadarAutoFacing({
+    buildingId,
+    floor,
+    pano,
+    regions,
+    planFrame,
+    planNorthDeg,
+    shapes: regionShapes,
+    ready: !loading && !failed && hasFloorPlan && minimapOpen,
+  });
+  const fileFacing = radarFacingFor(radarCfg, autoFacing, regionName);
+  const radarDeg = wrapDeg(
+    aimingRadar
+      ? resolveRadarTune(radarTune, buildingId, floor, regionName, fileFacing)
+      : fileFacing,
+  );
+  const radarHeadingDeg = wrapDeg(planNorthDeg + headingDeg + radarDeg);
+  // cone width = the live zoom, so it narrows exactly as the view narrows
+  const radarFovDeg = Math.min(150, Math.max(20, toDeg(angles.hfov) || 60));
+  // the swing this capture allows, centred on the framing it opens at
+  const radarArcDeg = Math.min(360, toDeg(pano?.panRad ?? 0));
+  const radarArcCenterDeg = wrapDeg(
+    planNorthDeg +
+      panoHeadingDeg(pano, pano?.center?.yaw ?? 0) +
+      nudge.north +
+      radarDeg,
+  );
+
+  // Write one dial-in at the scope the panel is set to, then Copy takes the
+  // whole session's worth away as a paste-ready block.
+  const nudgeRadar = (step) =>
+    setRadarTune((t) => {
+      const key = radarTuneKey(radarScope, buildingId, floor, regionName);
+      return { ...t, [key]: wrapDeg((t[key] ?? radarDeg) + step) };
+    });
+  const resetRadar = () =>
+    setRadarTune((t) => {
+      const key = radarTuneKey(radarScope, buildingId, floor, regionName);
+      if (!(key in t)) return t;
+      const next = { ...t };
+      delete next[key];
+      return next;
+    });
+  const copyRadar = () => {
+    navigator.clipboard?.writeText(buildRadarSnippet(radarTune)).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    });
+  };
 
   // floors listed high → low, like the plan overlay's aside
   const floorRank = (f) => (f.isTerrace ? 1e9 : f.isGround ? -1 : f.num);
@@ -246,7 +356,23 @@ const PanoViewer = ({
 
         const sync = () => {
           rafRef.current = 0;
-          setAngles({ yaw: view.yaw(), pitch: view.pitch(), fov: view.fov() });
+          // Marzipano's fov() is the VERTICAL field of view (limit.vfov clamps
+          // it directly, limit.hfov converts first). The minimap radar spans the
+          // HORIZONTAL one, so derive that from the stage's aspect ratio — the
+          // same conversion Marzipano's convertFov does. `fov` itself is left
+          // alone: it's what the toolbar reads out and what fovDeg round-trips.
+          const w = view.width();
+          const h = view.height();
+          const hfov =
+            w > 0 && h > 0
+              ? 2 * Math.atan((w / h) * Math.tan(view.fov() / 2))
+              : view.fov();
+          setAngles({
+            yaw: view.yaw(),
+            pitch: view.pitch(),
+            fov: view.fov(),
+            hfov,
+          });
         };
         sync();
         view.addEventListener("change", () => {
@@ -299,9 +425,11 @@ const PanoViewer = ({
     });
   };
 
-  // Calibration panel's copy: the compass aim you just dialled in. Paste it on
-  // the building (every floor), this floor's FLOOR_PANO_MAP entry, or this
-  // room's REGION_PANO_MAP entry — whichever scope the direction belongs to.
+  // Calibration panel's copy: the compass aim and radar alignment you just
+  // dialled in. Paste it on the building (every floor), this floor's
+  // FLOOR_PANO_MAP entry, or this room's REGION_PANO_MAP entry — whichever
+  // scope the direction belongs to. radarDeg is usually the narrowest of the
+  // three: one capture, one plan.
   const copyCompass = () => {
     if (!pano) return;
     const key = floorKey(floor);
@@ -536,13 +664,40 @@ const PanoViewer = ({
                               }
                             },
                           };
+                          // the shape doubles as the radar's ruler: its bbox
+                          // centre is where this room sits on the plan
+                          const hold = (el) => {
+                            if (el) regionShapes.current.set(i, el);
+                            else regionShapes.current.delete(i);
+                          };
                           return r.type === "polygon" ? (
-                            <polygon key={i} points={r.points} {...common} />
+                            <polygon
+                              key={i}
+                              ref={hold}
+                              points={r.points}
+                              {...common}
+                            />
                           ) : (
-                            <path key={i} d={r.d} {...common} />
+                            <path key={i} ref={hold} d={r.d} {...common} />
                           );
                         })}
                       </svg>
+                    )}
+
+                    {/* View-direction radar — its hub sits dead centre of the
+                        plan (the image is object-contain, so the box centre is
+                        the plan's centre) and the cone turns with the live yaw.
+                        pointer-events-none, so room hover/click still works. */}
+                    {radarCfg.visible && (
+                      <FloorPlanRadar
+                        heading={radarHeadingDeg}
+                        fov={radarFovDeg}
+                        north={planNorthDeg}
+                        arcDeg={radarArcDeg}
+                        arcCenterDeg={radarArcCenterDeg}
+                        frame={planFrame}
+                        className="absolute inset-0 h-full w-full"
+                      />
                     )}
 
                     {/* Room/Region Name Tooltip */}
@@ -556,11 +711,40 @@ const PanoViewer = ({
               </div>
             </div>
           )}
+          {/* radar aiming panel (?radar=1) — look at a room you can point to on
+              the plan, nudge until the cone covers it, pick the scope the
+              correction belongs to, then Copy the session's dial-ins into
+              floorPlanRadarData.js */}
+          {aimingRadar && !failed && (
+            <PanoRadarTuner
+              scope={radarScope}
+              onScope={setRadarScope}
+              facing={radarDeg}
+              fileFacing={fileFacing}
+              derived={autoFacing}
+              headingDeg={radarHeadingDeg}
+              buildingId={buildingId}
+              floorLabel={String(floorKey(floor))}
+              regionName={regionName}
+              count={Object.keys(radarTune).length}
+              copied={copied}
+              onNudge={nudgeRadar}
+              onReset={resetRadar}
+              onClear={() => setRadarTune({})}
+              onCopy={copyRadar}
+            />
+          )}
+
           {/* compass aiming panel (?compass=1) — face a landmark you know the
               direction of and nudge northDeg until the compass agrees, park the
               pin where you want it, then Copy into panoData.js */}
           {calibrating && !failed && (
-            <div className="absolute bottom-24 left-5 z-20 w-56 rounded-md border border-white/15 bg-[#0e1726]/90 p-3 font-mono text-[11px] text-white/80 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md md:bottom-36 md:left-8">
+            <div
+              className={`absolute bottom-24 z-20 w-56 rounded-md border border-white/15 bg-[#0e1726]/90 p-3 font-mono text-[11px] text-white/80 shadow-[0_18px_40px_rgba(0,0,0,0.55)] backdrop-blur-md md:bottom-36 ${
+                // step aside when the radar panel has the corner
+                aimingRadar ? "left-68 md:left-72" : "left-5 md:left-8"
+              }`}
+            >
               <p className="mb-2 text-[10px] tracking-[0.18em] text-[#e8c879] uppercase">
                 Compass aim
               </p>
