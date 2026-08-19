@@ -74,15 +74,7 @@ const Overlay = ({ onEnter }) => (
     {/* Deep atmospheric wash that keeps the page in the requested blue-gray
         family even if the backdrop image is unavailable. */}
     <div
-      className="absolute inset-0 bg-[#070B17]"
-      style={{
-        background:
-          "radial-gradient(120% 90% at 88% 8%, rgba(84,101,126,0.32), transparent 42%)," +
-          "radial-gradient(90% 80% at 6% 78%, rgba(48,63,87,0.38), transparent 46%)," +
-          "radial-gradient(70% 60% at 50% 110%, rgba(78,81,87,0.22), transparent 55%)," +
-          "linear-gradient(180deg, #070B17 0%, #0A1020 52%, #11192B 100%)",
-      }}
-    />
+      className="absolute inset-0 bg-[#070B17]"/>
 
     {/* The backdrop image sits under the wash and quietly falls away if the
         asset is missing. */}
@@ -101,8 +93,7 @@ const Overlay = ({ onEnter }) => (
     <div
       className="pointer-events-none absolute inset-0"
       style={{
-        background:
-          "radial-gradient(circle at 50% 46%, rgba(246,241,231,0.55), transparent 60%), radial-gradient(circle at 50% 50%, transparent 62%, rgba(70,60,35,0.12))",
+       
       }}
     />
 
