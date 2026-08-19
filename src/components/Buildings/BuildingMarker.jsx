@@ -54,25 +54,36 @@ const BuildingMarker = ({ building }) => {
 
         {/* ── the popup: building rises out of the pointer on hover ── */}
         <div
-          className={`pointer-events-none absolute left-1/2 flex -translate-x-1/2 scale-75 items-center opacity-0 transition-all duration-500 ease-out group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100 ${
+          className={`pointer-events-none absolute left-1/2 flex -translate-x-1/2 items-center opacity-0 transition-[opacity,translate] duration-500 ease-out group-hover:pointer-events-auto group-hover:opacity-100 ${
             popsUp
-              ? "bottom-full origin-bottom translate-y-2 flex-col group-hover:translate-y-0"
-              : "top-full origin-top -translate-y-2 flex-col-reverse group-hover:translate-y-0"
+              ? "bottom-full translate-y-2 flex-col group-hover:translate-y-0"
+              : "top-full -translate-y-2 flex-col-reverse group-hover:translate-y-0"
           }`}
           style={{ width: `calc(${width} * 2)` }}
         >
           <div className="relative w-full">
-            {/* cool blue glow breathing behind the popped-up building */}
-            <div className="bldg-glow pointer-events-none absolute inset-[-25%] rounded-full bg-[radial-gradient(circle,rgba(94,109,133,0.46)_0%,rgba(94,109,133,0)_70%)]" />
+            {/* Only the building grows out of the pointer. The scale lives here,
+                not on the popup wrapper, so the box the tooltip is anchored to
+                keeps its final size the whole time — otherwise the tooltip
+                rides the growing transform and drifts into place, more so on
+                the taller buildings that sit further from the scale origin. */}
+            <div
+              className={`relative w-full scale-75 transition-transform duration-500 ease-out group-hover:scale-100 ${
+                popsUp ? "origin-bottom" : "origin-top"
+              }`}
+            >
+              {/* cool blue glow breathing behind the popped-up building */}
+              <div className="bldg-glow pointer-events-none absolute inset-[-25%] rounded-full bg-[radial-gradient(circle,rgba(94,109,133,0.46)_0%,rgba(94,109,133,0)_70%)]" />
 
-            <Link to={href} tabIndex={-1} className="block cursor-pointer">
-              <img
-                src={img}
-                alt={name}
-                draggable="false"
-                className="relative h-auto w-full drop-shadow-[0_14px_20px_rgba(78,81,87,0.34)] select-none"
-              />
-            </Link>
+              <Link to={href} tabIndex={-1} className="block cursor-pointer">
+                <img
+                  src={img}
+                  alt={name}
+                  draggable="false"
+                  className="relative h-auto w-full drop-shadow-[0_14px_20px_rgba(78,81,87,0.34)] select-none"
+                />
+              </Link>
+            </div>
 
             <BuildingTooltip
               name={name}

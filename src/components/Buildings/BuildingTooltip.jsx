@@ -5,13 +5,17 @@ import { Link } from "react-router";
  * Looks like a small paper label pinned onto the map: cool paper,
  * slate hairline borders, serif italic name and a hand-dashed divider.
  * Renders above the building by default; pass position="bottom" to flip it.
+ *
+ * The card itself never scales or rotates while it opens — only opacity and
+ * a small slide are animated. Anything else re-rasterises the 1px hairlines
+ * mid-transition, which reads as the whole card wobbling into place.
  */
 const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
   const onTop = position === "top";
 
   return (
     <div
-      className={`pointer-events-none absolute left-1/2 z-50 w-52 -translate-x-1/2 scale-95 opacity-0 transition-all duration-300 ease-out group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100 ${
+      className={`pointer-events-none absolute left-1/2 z-50 w-52 -translate-x-1/2 opacity-0 transition-[opacity,translate] duration-300 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:delay-200 ${
         onTop
           ? "bottom-full translate-y-2 pb-4 group-hover:translate-y-0"
           : "top-full -translate-y-2 pt-4 group-hover:translate-y-0"
@@ -22,7 +26,7 @@ const BuildingTooltip = ({ name, area, tagline, href, position = "top" }) => {
         <div className="mx-auto -mb-1.5 h-3 w-3 rotate-45 border-t border-l border-[#4E5157]/35 bg-[#f5f7fb]" />
       )}
 
-      <div className="relative -rotate-1 rounded-sm border border-[#4E5157]/35 bg-[#f5f7fb]/95 px-4 py-3 shadow-[0_12px_30px_rgba(78,81,87,0.25)] backdrop-blur-[2px] transition-transform duration-300 group-hover:rotate-0">
+      <div className="relative rounded-sm border border-[#4E5157]/35 bg-[#f5f7fb]/95 px-4 py-3 shadow-[0_12px_30px_rgba(78,81,87,0.25)]">
         {/* inner hairline frame, like an old map legend box */}
         <div className="pointer-events-none absolute inset-1 rounded-[1px] border border-[#4E5157]/15" />
 
