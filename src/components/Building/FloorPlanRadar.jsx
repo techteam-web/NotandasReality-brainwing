@@ -39,13 +39,8 @@ const LABEL = 118; // N letter, just inside the canvas edge
 // full sheet so the N never sits on the paper's edge.
 const FIT = 0.9;
 
-// The viewer's navy chrome: #212C42 is the deep tone its buttons are cut from,
-// #6f7f95 the blue-grey that MiniCompass's pin uses, #070B17 the panel ink.
-// Navy over a white plan sheet reads cleanly without the gold shouting over the
-// drawing underneath it.
-const NAVY = "#212C42";
-const NAVY_SOFT = "#6f7f95";
-const INK = "#070B17";
+// The gold the viewer accents everything with.
+const GOLD = "#e8c879";
 
 // Strokes are given in screen pixels (non-scaling), so the dial reads the same
 // whether the minimap is compact or hover-expanded.
@@ -116,9 +111,9 @@ const FloorPlanRadar = ({
           cy={C}
           r={CONE}
         >
-          <stop offset="0%" stopColor={NAVY_SOFT} stopOpacity="0.58" />
-          <stop offset="55%" stopColor={NAVY} stopOpacity="0.30" />
-          <stop offset="100%" stopColor={NAVY} stopOpacity="0.05" />
+          <stop offset="0%" stopColor={GOLD} stopOpacity="0.55" />
+          <stop offset="55%" stopColor={GOLD} stopOpacity="0.26" />
+          <stop offset="100%" stopColor={GOLD} stopOpacity="0.04" />
         </radialGradient>
         <radialGradient
           id={edgeId}
@@ -127,8 +122,8 @@ const FloorPlanRadar = ({
           cy={C}
           r={CONE}
         >
-          <stop offset="0%" stopColor={NAVY} stopOpacity="0.95" />
-          <stop offset="100%" stopColor={NAVY_SOFT} stopOpacity="0.55" />
+          <stop offset="0%" stopColor={GOLD} stopOpacity="0.95" />
+          <stop offset="100%" stopColor={GOLD} stopOpacity="0.45" />
         </radialGradient>
       </defs>
 
@@ -139,7 +134,7 @@ const FloorPlanRadar = ({
           cy={C}
           r={RIM}
           fill="none"
-          stroke="rgba(33,44,66,0.20)"
+          stroke="rgba(255,255,255,0.14)"
           strokeWidth="1"
           strokeDasharray="3 7"
           {...CRISP}
@@ -152,7 +147,7 @@ const FloorPlanRadar = ({
             cy={C}
             r={RIM}
             fill="none"
-            stroke="rgba(33,44,66,0.38)"
+            stroke="rgba(232,200,121,0.35)"
             strokeWidth="1.5"
             {...CRISP}
           />
@@ -165,7 +160,7 @@ const FloorPlanRadar = ({
                 RIM,
               )}
               fill="none"
-              stroke="rgba(33,44,66,0.38)"
+              stroke="rgba(232,200,121,0.35)"
               strokeWidth="1.5"
               strokeLinecap="round"
               {...CRISP}
@@ -179,7 +174,7 @@ const FloorPlanRadar = ({
           y1={tickY}
           x2={tickEndX}
           y2={tickEndY}
-          stroke={NAVY_SOFT}
+          stroke={GOLD}
           strokeWidth="1.5"
           strokeLinecap="round"
           opacity="0.6"
@@ -191,7 +186,7 @@ const FloorPlanRadar = ({
           textAnchor="middle"
           dominantBaseline="central"
           fontSize="20"
-          fill={NAVY}
+          fill={GOLD}
           opacity="0.6"
         >
           N
@@ -205,7 +200,7 @@ const FloorPlanRadar = ({
             stroke={`url(#${edgeId})`}
             strokeWidth="1.5"
             strokeLinejoin="round"
-            style={{ filter: "drop-shadow(0 0 4px rgba(33,44,66,0.45))" }}
+            style={{ filter: "drop-shadow(0 0 4px rgba(232,200,121,0.45))" }}
             {...CRISP}
           />
           <line
@@ -213,7 +208,7 @@ const FloorPlanRadar = ({
             y1={C}
             x2={C}
             y2={C - CONE}
-            stroke="rgba(33,44,66,0.55)"
+            stroke="rgba(232,200,121,0.55)"
             strokeWidth="1"
             strokeDasharray="4 6"
             {...CRISP}
@@ -225,13 +220,13 @@ const FloorPlanRadar = ({
           cx={C}
           cy={C}
           r="11"
-          fill={INK}
-          stroke={NAVY_SOFT}
+          fill="#070B17"
+          stroke={GOLD}
           strokeWidth="2"
-          style={{ filter: "drop-shadow(0 0 5px rgba(33,44,66,0.55))" }}
+          style={{ filter: "drop-shadow(0 0 5px rgba(232,200,121,0.5))" }}
           {...CRISP}
         />
-        <circle cx={C} cy={C} r="4.2" fill={NAVY_SOFT} />
+        <circle cx={C} cy={C} r="4.2" fill={GOLD} />
       </g>
     </svg>
   );
