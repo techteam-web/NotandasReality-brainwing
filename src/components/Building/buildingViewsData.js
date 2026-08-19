@@ -37,10 +37,10 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
     headerLogoClass:
-    "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-44 xl:h-auto 2xl:w-60 2xl:h-13 3xl:w-80 4xl:w-90",
+    "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-44 xl:h-auto 2xl:w-60 3xl:w-80 4xl:w-90",
 
     headerSubClass:
-      "font-bold lg:-mt-17 lg:text-[6px] xl:text-[2px] xl:mt-2 2xl:-mt-5 2xl:text-[10px] 3xl:mt-3 3xl:text-[11px] 4xl:-mt-7 4xl:text-[14px]",
+      "font-bold lg:-mt-17 lg:text-[6px] xl:mt-2 2xl:-mt-5 3xl:mt-3 3xl:text-[11px] 4xl:-mt-7 4xl:text-[14px]",
     nMarkFill: "black",
  
     amenityListClass:
@@ -53,7 +53,7 @@ export const BUILDING_VIEWS = {
       asideClass:
       "left-80 top-26 2xl:left-95 2xl:top-65 xl:left-73 xl:top-54 lg:left-53 lg:top-36 3xl:left-120 3xl:top-[35%] 4xl:left-[27%] 4xl:top-[37%] ",
 
-    headerClass: "lg:top-[10%] lg:right-[12%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[13%] 4xl:top-[15%] 4xl:right-[13%]",
+    headerClass: "lg:top-[10%] lg:right-[12%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[13%] 4xl:top-[15%]",
 
   },
   "notan-edge": {
@@ -62,15 +62,15 @@ export const BUILDING_VIEWS = {
     viewBox: "-9554435 -6002850 4615 2597",
     floors: NOTAN_EDGE_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-74 2xl:top-40 xl:left-65  xl:top-35 lg:left-52 lg:top-15  3xl:left-102 3xl:top-70 4xl:left-137 4xl:top-70",
+      "left-80 top-36 md:top-127 2xl:left-74 2xl:top-40 xl:left-65  xl:top-35 lg:left-52 lg:top-15  3xl:left-102 3xl:top-70 4xl:left-137",
     headerLogoClass:
        "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-35 lg:-left-17 2xl:top-90 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 xl:left-5 xl:top-80",
       headerSubClass:
-      "lg:-mt-17 lg:text-[7px] xl:text-[-23px]  xl:-mt-1 2xl:mt-2 2xl:text-[10px] 2xl:text-bold 3xl:mt-2 3xl:text-[10px] 4xl:-mt-7 4xl:text-[16px]",
-    amenityListClass: "max-w-lg lg:max-w-[21rem] 2xl:max-w-[32rem] 3xl:max-w-[32rem] 4xl:max-w-[43rem]",
+      "lg:-mt-17 lg:text-[7px]  xl:-mt-1 2xl:mt-2 4xl:-mt-7 4xl:text-[16px]",
+    amenityListClass: "max-w-lg lg:max-w-[21rem] 2xl:max-w-[32rem] 4xl:max-w-[43rem]",
     amenityItemClass:
       "lg:text-[9px] xl:text-[10px] 2xl:text-[14px] 3xl:text-[15px] 4xl:text-[24px]",
   },
@@ -82,7 +82,7 @@ export const BUILDING_VIEWS = {
     asideClass:
       "left-80 top-36 md:top-127 2xl:left-99 2xl:top-60 xl:left-57 xl:top-46 lg:left-53 lg:top-32 3xl:left-115 3xl:top-85 4xl:left-178 4xl:top-120",
     headerSubClass:
-      "lg:-mt-18 lg:text-[7px] xl:text-[-23px]  xl:mt-2 2xl:mt-1 2xl:text-[10px] 2xl:text-bold 3xl:mt-1 3xl:text-[13px] 4xl:-mt-3 4xl:text-[16px]",
+      "lg:-mt-18 lg:text-[7px]  xl:mt-2 2xl:mt-1 3xl:text-[13px] 4xl:-mt-3 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36  xl:w-58 2xl:w-76 4xl:w-110",
       headerClass:
@@ -105,9 +105,9 @@ export const BUILDING_VIEWS = {
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-68 2xl:w-76 4xl:w-130",
     headerSubClass:
-      "lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:-mt-1 3xl:-mt-1 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px] 5xl:mt-1 5xl:text-[20px]",
+      "lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:-mt-1 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px] 5xl:mt-1 5xl:text-[20px]",
     asideClass:
-      "left-[25%] top-[20%] md:right-12 md:w-44 2xl:top-[19%] xl:top-[18%]  lg:top-[23%] 3xl:top-[24%] 4xl:top-[25%]",
+      "left-[25%] top-[20%] md:w-44 2xl:top-[19%] xl:top-[18%]  lg:top-[23%] 3xl:top-[24%] 4xl:top-[25%]",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl md:bottom-15 md:right-15 lg:bottom-48 lg:-right-33 2xl:-right-[1%] 2xl:top-94 3xl:top-122 3xl:right-26 4xl:top-170 4xl:right-[11%] xl:-right-[3%] xl:top-74 5xl:top-[50%] 5xl:right-[15%]",
@@ -122,11 +122,11 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 4615 2597",
     floors: NOTAN_TERRACE_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-70 2xl:top-20 xl:left-45 xl:top-20 lg:left-37 lg:top-8 3xl:left-90 3xl:top-45 4xl:left-115 4xl:top-60 ",
+      "left-80 top-36 md:top-127 2xl:left-70 xl:left-45 xl:top-20 lg:left-37 lg:top-8 3xl:left-90 3xl:top-45 4xl:left-115 4xl:top-60 ",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90",
        headerSubClass:
-      "font-bold lg:-mt-12 lg:text-[8px] xl:text-[1rem]  xl:mt-1 2xl:-mt-4 2xl:text-[10px] 2xl:text-bold 3xl:-mt-4 3xl:text-[10px] 4xl:-mt-12 4xl:text-[16px]",
+      "font-bold lg:-mt-12 lg:text-[8px]  xl:mt-1 2xl:-mt-4 4xl:-mt-12 4xl:text-[16px]",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-22 2xl:left-20 2xl:top-[35%] 3xl:left-39 3xl:top-110 4xl:left-90 4xl:top-140 xl:-left-5 xl:top-63",
@@ -134,7 +134,7 @@ export const BUILDING_VIEWS = {
     amenityItemClass:
       "lg:text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[15px] 4xl:text-[23px]",
       asideClass:
-      " top-[30%] xl:top-[20%] xl:right-[16%] 2xl:right-[17%] 2xl:top-[20%] xl:top-[10%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
+      " top-[30%] xl:top-[20%] 2xl:right-[17%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
   },
   "notan-crown": {
     viewImg: notanCrownView,
@@ -144,13 +144,13 @@ export const BUILDING_VIEWS = {
     headerClass:
       "left-80 top-36 md:top-127 2xl:left-27 2xl:top-45 xl:left-14 xl:top-36 lg:left-12 lg:top-35 3xl:left-44 3xl:top-57 4xl:left-70 4xl:top-90",
       headerSubClass:
-      "lg:-mt-1 lg:text-[8px] xl:mt-1 2xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
+      "lg:-mt-1 lg:text-[8px] xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
     headerLogoClass: "w-34  lg:w-36 lg:h-[4.2rem] xl:w-44 xl:h-[5.25rem] 2xl:w-56 2xl:h-[6.25rem] 3xl:h-28 3xl:w-59 4xl:w-76 4xl:h-[9rem]",
     asideClass:
-      "right-[15%] top-[20%] 2xl:top-[25%] 2xl:right-33 xl:top-[25%] xl:right-25 lg:top-[19%] lg:right-16 3xl:top-[24%] 3xl:right-[10%] 4xl:top-[35%]",
+      "right-[15%] top-[20%] 2xl:right-33 xl:top-[25%] xl:right-25 lg:top-[19%] lg:right-16 3xl:top-[24%] 3xl:right-[10%] 4xl:top-[35%]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-15 lg:left-15 2xl:left-55 3xl:left-39 4xl:left-120 xl:left-27",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 2xl:left-55 3xl:left-39 4xl:left-120 xl:left-27",
     amenityListClass: "max-w-lg",
     amenityItemClass:
       "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
@@ -162,11 +162,11 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 10000 5886",
     floors: NOTAN_LANDS_END_FLOORS,
     headerClass:
-      "right-20 top-36  2xl:-left-[42%] 2xl:top-30 xl:-left-[40%] xl:top-30 lg:-left-92 lg:top-5 3xl:-left-[45%] 3xl:top-34 4xl:-left-[45%] 4xl:top-43",
+      "right-20 top-36  2xl:-left-[42%] xl:-left-[40%] xl:top-30 lg:-left-92 lg:top-5 3xl:-left-[45%] 3xl:top-34 4xl:top-43",
     asideClass:
-      "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] 2xl:top-[25%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%] 4xl:top-[23%] 4xl:right-[22%]",
+      "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%]",
     headerSubClass:
-      "lg:-mt-20 lg:text-[7px] xl:text-[8px] xl:-mt-4 2xl:-mt-4 2xl:text-[10px] 2xl:text-bold 3xl:-mt-3 3xl:text-[10px] 4xl:-mt-14 4xl:text-[16px]",
+      "lg:-mt-20 lg:text-[7px] xl:-mt-4 3xl:-mt-3 4xl:-mt-14 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
@@ -192,7 +192,7 @@ export const BUILDING_VIEWS = {
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58 2xl:w-76 4xl:w-130",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:-right-35 lg:h-35 2xl:right-7 2xl:top-[37%] 3xl:top-110 3xl:right-35 4xl:top-130 4xl:right-70 xl:-right-[3%] xl:top-[37%] ",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:-right-35 lg:h-35 2xl:right-7 3xl:top-110 3xl:right-35 4xl:top-130 4xl:right-70 xl:-right-[3%] xl:top-[37%] ",
     amenityListClass:
       "max-w-lg lg:w-[19rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[43rem]",
     amenityItemClass:
@@ -213,9 +213,9 @@ export const BUILDING_VIEWS = {
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-30 xl:w-37 2xl:w-40 3xl:w-50  4xl:w-80",
     headerSubClass:
-      "lg:-mt-17 lg:text-[8px] xl:-mt-3 xl:text-[9px] 2xl:-mt-13 2xl:text-[10px] 3xl:-mt-6 3xl:text-[12px] 4xl:-mt-8 4xl:text-[16px]",
+      "lg:-mt-17 lg:text-[8px] xl:-mt-3 2xl:-mt-13 3xl:-mt-6 3xl:text-[12px] 4xl:-mt-8 4xl:text-[16px]",
     asideClass:
-      "left-[9%] top-[15%] lg:left-[13%] lg:top-[15%] xl:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:right-[15%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
+      "left-[9%] top-[15%] lg:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
     nMarkFill: "black",
       amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-52 lg:-right-45 lg:h-35 2xl:-right-18 2xl:top-[40%] 3xl:top-115 3xl:right-15 4xl:top-150 4xl:right-27 xl:-right-[13%] xl:top-[42%] ",
@@ -235,11 +235,11 @@ export const BUILDING_VIEWS = {
     // its left, so the mark and the floor readout both sit over that sky.
     // Starting placement — dial in against the live page like the others.
     headerClass:
-      "right-20 top-36  2xl:-left-[54%] 2xl:top-30 xl:-left-[53%] xl:top-30 lg:-left-138 lg:top-5 3xl:-left-[54.5%] 3xl:top-30 4xl:-left-[55%] 4xl:top-35",
+      "right-20 top-36  2xl:-left-[54%] xl:-left-[53%] xl:top-30 lg:-left-138 lg:top-5 3xl:-left-[54.5%] 4xl:-left-[55%] 4xl:top-35",
     asideClass:
       "right-[15%] top-[30%] xl:top-[18%] xl:right-44 2xl:right-[15%] 2xl:top-[20%] lg:top-[13%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[18%] 4xl:top-[20%] 4xl:right-[19%]",
     headerSubClass:
-      "lg:-mt-20 lg:text-[7px] xl:text-[8px] xl:-mt-4 2xl:-mt-4 2xl:text-[10px] 2xl:text-bold 3xl:-mt-3 3xl:text-[10px] 4xl:-mt-14 4xl:text-[16px]",
+      "lg:-mt-20 lg:text-[7px] xl:-mt-4 3xl:-mt-3 4xl:-mt-14 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
