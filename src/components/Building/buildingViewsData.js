@@ -101,18 +101,18 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_SPACE_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-[65.6%] 2xl:top-44 xl:left-[62.5%] xl:top-40 lg:left-[65.8%] lg:top-24 3xl:left-316 3xl:top-60 4xl:left-[63.6%] 4xl:top-[28%]",
+      " top-36 md:top-127 2xl:right-[14.6%] 2xl:top-44 xl:right-[16.5%] xl:top-40 lg:right-[14.9%] lg:top-24 3xl:right-[17.6%] 3xl:top-60 4xl:right-[16.5%] 4xl:top-[19%] 5xl:right-[19%] 5xl:top-[29%]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-68 2xl:w-76 4xl:w-130",
     headerSubClass:
-      "lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:-mt-1 3xl:-mt-1 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
+      "lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:-mt-1 3xl:-mt-1 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px] 5xl:mt-1 5xl:text-[20px]",
     asideClass:
       "left-[25%] top-[20%] md:right-12 md:w-44 2xl:top-[19%] xl:top-[18%]  lg:top-[23%] 3xl:top-[24%] 4xl:top-[25%]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl md:bottom-15 md:right-15 lg:bottom-48 lg:-right-33 2xl:-right-[1%] 2xl:top-94 3xl:top-122 3xl:right-26 4xl:top-170 4xl:right-[11%] xl:-right-[3%] xl:top-74",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl md:bottom-15 md:right-15 lg:bottom-48 lg:-right-33 2xl:-right-[1%] 2xl:top-94 3xl:top-122 3xl:right-26 4xl:top-170 4xl:right-[11%] xl:-right-[3%] xl:top-74 5xl:top-[50%] 5xl:right-[15%]",
     amenityListClass:
-      "max-w-lg lg:w-[16rem] xl:w-[19rem] 3xl:w-[28rem] 4xl:w-[33rem]",
+      "max-w-lg lg:w-[16rem] xl:w-[19rem] 3xl:w-[28rem] 4xl:w-[33rem] ",
     amenityItemClass:
       "lg:text-[10px] xl:text-[12px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
   },
@@ -162,7 +162,7 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 10000 5886",
     floors: NOTAN_LANDS_END_FLOORS,
     headerClass:
-      "right-20 top-36  2xl:-left-[42%] 2xl:top-30 xl:-left-[40%] xl:top-30 lg:-left-92 lg:top-5 3xl:-left-[45%] 3xl:top-30 4xl:-left-[45%] 4xl:top-40",
+      "right-20 top-36  2xl:-left-[42%] 2xl:top-30 xl:-left-[40%] xl:top-30 lg:-left-92 lg:top-5 3xl:-left-[45%] 3xl:top-34 4xl:-left-[45%] 4xl:top-43",
     asideClass:
       "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] 2xl:top-[25%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%] 4xl:top-[23%] 4xl:right-[22%]",
     headerSubClass:
