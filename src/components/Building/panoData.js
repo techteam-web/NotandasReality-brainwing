@@ -1334,6 +1334,12 @@ const SPACE_REGION_PANO_MAP = {
   13: {
     "Commercial 01": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
   },
+  12: {
+    "Commercial 01": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
+  },
+  11: {
+    "Commercial 01": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
+  },
 
   10: {
     "Commercial 01": { yawDeg: 178, pitchDeg: 7, fovDeg: 78, panDeg: 140 },
@@ -1350,6 +1356,21 @@ const SPACE_REGION_PANO_MAP = {
   },
 
   7: {
+    "Commercial 01": { yawDeg: -171, pitchDeg: -8, fovDeg: 78, panDeg: 140 },
+  },
+  6: {
+    "Commercial 01": { yawDeg: -171, pitchDeg: -8, fovDeg: 78, panDeg: 140 },
+  },
+  5: {
+    "Commercial 01": { yawDeg: -171, pitchDeg: -8, fovDeg: 78, panDeg: 140 },
+  },
+  4: {
+    "Commercial 01": { yawDeg: -171, pitchDeg: -8, fovDeg: 78, panDeg: 140 },
+  },
+  3: {
+    "Commercial 01": { yawDeg: -171, pitchDeg: -8, fovDeg: 78, panDeg: 140 },
+  },
+  2: {
     "Commercial 01": { yawDeg: -171, pitchDeg: -8, fovDeg: 78, panDeg: 140 },
   },
 
