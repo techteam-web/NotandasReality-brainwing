@@ -104,6 +104,7 @@ const FloorPlanOverlay = ({
   const [hovered, setHovered] = useState(null);
   const [dragging, setDragging] = useState(false);
   const imgRef = useRef();
+  const stageRef = useRef();
 
   // The photo's own ratio, read once it loads. Floors with a plan photo but no
   // cut-out SVG (Space/Jewel basements) have no viewBox to size the box from —
@@ -217,19 +218,31 @@ const FloorPlanOverlay = ({
   // rail, ground floor first and up, so the stack reads like the building going
   // up rather than a list appearing. Runs once per opening; switching floors
   // afterwards re-renders the same rows and leaves them where they are.
+  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
   useGSAP(
+    
     () => {
-      gsap.from("button", {
+      tl.from("button", {
         x: -18,
         opacity: 0,
-        duration: 0.65,
+        duration: 0.62,
         ease: "power3.out",
-        delay: 0.12,
+        delay: 0.1,
         stagger: { each: 0.04, from: "end" },
       });
     },
     { scope: floorListRef },
   );
+
+  useGSAP( () => {
+    tl.from(stageRef.current, {
+      scale: 0,
+      opacity: 0,
+      transformOrigin: "top left",
+      duration: 1.7,
+      ease: "power3.out",
+    });
+  }, { scope: stageRef  });
 
   // close on Escape
   useEffect(() => {
@@ -524,6 +537,7 @@ const FloorPlanOverlay = ({
 
         {/* stage */}
         <div
+        ref={stageRef}
           className="relative flex flex-1 items-center justify-center  overflow-hidden px-4 pb-14"
           onWheel={available ? onWheel : undefined}
         >
