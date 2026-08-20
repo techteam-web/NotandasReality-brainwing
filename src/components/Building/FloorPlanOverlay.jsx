@@ -235,6 +235,8 @@ const FloorPlanOverlay = ({
   );
 
   useGSAP( () => {
+    if (!stageRef.current) return;
+    if(!available) return;
     tl.from(stageRef.current, {
       scale: 0,
       opacity: 0,
