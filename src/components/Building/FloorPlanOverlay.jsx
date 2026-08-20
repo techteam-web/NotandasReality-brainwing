@@ -225,7 +225,7 @@ const FloorPlanOverlay = ({
       tl.from("button", {
         x: -18,
         opacity: 0,
-        duration: 0.62,
+        duration: 0.42,
         ease: "power3.out",
         delay: 0.1,
         stagger: { each: 0.04, from: "end" },
