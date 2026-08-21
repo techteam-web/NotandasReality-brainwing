@@ -810,6 +810,9 @@ const EDGE_REGION_PANO_MAP = {
   5: {
     Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
+  12: {
+    Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
+  },
   4: {
     Commercial: { yawDeg: 94, pitchDeg: -3, fovDeg: 78, panDeg: 140 },
   },
