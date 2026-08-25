@@ -852,6 +852,13 @@ const pad = (s, n) => String(s).padEnd(n);
 const run = () => {
   const args = process.argv.slice(2);
   const wantSweep = args.includes("--sweep");
+  /* --viewport 1728x1117 — check one specific screen on top of the matrix,
+     for when someone asks "what does MY window do". Repeatable. */
+  const extra = args
+    .filter((a) => a.startsWith("--viewport="))
+    .map((a) => a.slice(11).split(/[x×]/).map(Number))
+    .filter(([w, h]) => w > 0 && h > 0);
+  const matrix = [...MATRIX, ...extra];
   const only = args.filter((a) => !a.startsWith("--"));
 
   const views = readViews();
@@ -898,7 +905,7 @@ const run = () => {
     console.log(
       `  ${pad("viewport", 12)}${pad("stage px", 14)}${pad("x visible", 20)}y visible`,
     );
-    for (const [vw, vh] of MATRIX) {
+    for (const [vw, vh] of matrix) {
       const s = stageFor(vw, vh, ar);
       console.log(
         `  ${pad(`${vw}×${vh}`, 12)}${pad(`${Math.round(s.stageW)}×${Math.round(s.stageH)}`, 14)}${pad(`${pct(s.visible.left)} → ${pct(s.visible.right)}`, 20)}${pct(s.visible.top)} → ${pct(s.visible.bottom)}`,
@@ -1024,7 +1031,7 @@ const run = () => {
       `\n  ${pad("block", 9)}${pad("viewport", 12)}${pad("box x", 20)}${pad("box y", 20)}result`,
     );
     for (const name of Object.keys(describe)) {
-      for (const [vw, vh] of MATRIX) {
+      for (const [vw, vh] of matrix) {
         const s = stageFor(vw, vh, ar);
         const boxes = blockBoxes(view, building, amenities, logo, {
           stageW: s.stageW,
