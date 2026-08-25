@@ -46,7 +46,7 @@ export const BUILDING_VIEWS = {
     amenityListClass:
       "max-w-lg xl:w-[27rem] lg:w-[15rem] 2xl:w-[20rem] 3xl:w-[26rem] 4xl:w-[33rem]",
     amenityItemClass:
-      "lg:text-[10px] xl:text-[15px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]",
+      "lg:text-[11px] xl:text-[15px] 2xl:text-[16px] 3xl:text-[20px] 4xl:text-[26px]",
    amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl lg:top-60 lg:-right-40 2xl:-right-17 2xl:top-95 3xl:top-110 3xl:right-10 4xl:top-155 4xl:right-43 xl:-right-28 xl:top-73",
 
@@ -72,7 +72,7 @@ export const BUILDING_VIEWS = {
       "lg:-mt-17 lg:text-[7px]  xl:-mt-1 2xl:mt-2 4xl:-mt-7 4xl:text-[16px]",
     amenityListClass: "max-w-lg lg:max-w-[21rem] 2xl:max-w-[32rem] 4xl:max-w-[43rem]",
     amenityItemClass:
-      "lg:text-[9px] xl:text-[10px] 2xl:text-[14px] 3xl:text-[15px] 4xl:text-[24px]",
+      "lg:text-[9px] xl:text-[11px] 2xl:text-[14px] 3xl:text-[15px] 4xl:text-[24px]",
   },
   "notan-jewel": {
     viewImg: notanJewelView,
@@ -132,7 +132,7 @@ export const BUILDING_VIEWS = {
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-22 2xl:left-20 2xl:top-[35%] 3xl:left-39 3xl:top-110 4xl:left-90 4xl:top-140 xl:-left-5 xl:top-63",
     amenityListClass: "max-w-lg lg:max-w-[18rem] xl:max-w-[23rem] 3xl:max-w-[32rem] 4xl:max-w-[53rem]",
     amenityItemClass:
-      "lg:text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[15px] 4xl:text-[23px]",
+      "lg:text-[9px] xl:text-[13px] 2xl:text-[13px] 3xl:text-[17px] 4xl:text-[23px]",
       asideClass:
       " top-[30%] xl:top-[20%] 2xl:right-[17%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
   },
@@ -175,7 +175,7 @@ export const BUILDING_VIEWS = {
     amenityListClass:
       "max-w-lg lg:w-[19rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[73rem]",
     amenityItemClass:
-      "lg:text-[9px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[14px] 4xl:text-[19px]",
+      "lg:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[17px] 4xl:text-[23px]",
   },
   "notan-views": {
     viewImg: notanViewsView,
@@ -196,7 +196,7 @@ export const BUILDING_VIEWS = {
     amenityListClass:
       "max-w-lg lg:w-[19rem] xl:w-[23rem] 2xl:w-[26rem] 3xl:w-[32rem] 4xl:w-[43rem]",
     amenityItemClass:
-      "lg:text-[7px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[14px] 4xl:text-[20px]",
+      "lg:text-[9px] xl:text-[11px] 2xl:text-[13px] 3xl:text-[15px] 4xl:text-[22px]",
   },
 
   "notan-beach-house": {
