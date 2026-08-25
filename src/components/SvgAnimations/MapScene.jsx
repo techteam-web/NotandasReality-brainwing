@@ -2,7 +2,6 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import shipSvg from "../../assets/svgs/ship-cruiser-passenger-svgrepo-com.svg";
-import beachImg from "../../assets/beach_1.png";
 import palmTreeImg from "../../assets/tree_1.png";
 import forestImg from "../../assets/tree_2.png";
 import seaLinkImg from "../../assets/Bandra_sea_link_.png";
