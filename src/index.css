@@ -93,6 +93,39 @@ body {
   --breakpoint-5xl: 240rem; /* 3840px */
 }
 
+/*
+  When the building page gives up on laying text over the photo (see
+  ImageStage) and stacks it above and below instead.
+
+  Three separate failures, none of them a width on its own:
+
+    max-aspect-ratio  the viewport is too narrow a shape, so object-cover
+                      crops the sides away and takes the text with them.
+                      1280×1100 is ratio 1.16 — far wider than `md`, and
+                      still clipped.
+    min-aspect-ratio  the viewport is too WIDE a shape, so the crop moves to
+                      the top and bottom. A maximised window on a 5120×1440
+                      dual-wide is ratio 3.56 and loses the header.
+    max-width+height  the photo itself is rendering too small to read at.
+                      Type is sized in cqw, so what governs it is the STAGE
+                      width — max(100vw, 100vh × ar) — not the viewport
+                      width. The two-condition arm is that inequality: a
+                      landscape phone at 844×390 fails it, and 1024×768,
+                      which is narrower still, does not.
+
+  EVERY NUMBER HERE IS DERIVED, NOT CHOSEN. Regenerate with
+    node scripts/stage-constraints.mjs
+  which prints this exact line, computed from each staged building's block
+  boxes and type sizes and taken at its strictest across all of them. It
+  tightens as more buildings move onto the stage — paste it again each time.
+
+  Currently derived from: notan-space (ratio 1.171 → 2.593, stage ≥ 1177px).
+*/
+/* Written as ONE `or` group, not a comma-separated media list: Tailwind's
+   @custom-variant keeps only the first condition of a comma list and drops the
+   rest silently, which would leave two of the three arms doing nothing. */
+@custom-variant flow (@media ((max-aspect-ratio: 1171/1000) or (min-aspect-ratio: 2593/1000) or ((max-width: 1176px) and (max-height: 662px))));
+
 /* Custom Scrollbar styled for the brand theme */
 .custom-scrollbar {
   scrollbar-width: thin;
@@ -127,4 +160,3 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-

@@ -12,6 +12,11 @@
  * states itself instead of fighting the baked-in blue.
  */
 
+import {
+  buildFloors,
+  buildFloorsFromCombined,
+} from "./floorGeometry";
+
 // Loaded eagerly as raw strings at build time — no runtime fetch.
 const NOTAN_DC_FILES = import.meta.glob(
   "../../assets/Building_Floor_SVG/Nothan_DC/*.svg",
@@ -65,118 +70,6 @@ const NOTAN_VIEWS_FILES = import.meta.glob(
   "../../assets/Building_Floor_SVG/Notan_Views/*.svg",
   { query: "?raw", import: "default", eager: true },
 );
-
-const parseShape = (raw) => {
-  const points = raw.match(/points="([^"]+)"/);
-  const d = raw.match(/\sd="([^"]+)"/);
-  const viewBoxMatch = raw.match(/viewBox="([^"]+)"/);
-  const viewBox = viewBoxMatch ? viewBoxMatch[1] : null;
-
-  if (points) return { type: "polygon", points: points[1].trim(), viewBox };
-  if (d) return { type: "path", d: d[1].trim(), viewBox };
-
-  return null;
-};
-
-const buildFloors = (files) =>
-  Object.entries(files)
-    .map(([path, raw]) => {
-      const file = path.split("/").pop().replace(".svg", "");
-      const isTerrace = /terrace/i.test(file);
-      const isGround = /ground/i.test(file);
-      // ground floor → 0 (the base); terrace → a sentinel above every real
-      // floor so it always sorts last and never collides with ground when its
-      // filename carries no digit (e.g. Terrace_Floor.svg).
-      const num = isGround
-        ? 0
-        : isTerrace
-          ? 9999
-          : parseInt(file.match(/(\d+)/)?.[1] ?? "0", 10);
-      const label = isTerrace
-        ? "Terrace"
-        : isGround
-          ? "Ground Floor"
-          : `Floor ${num}`;
-      const shape = parseShape(raw);
-      return {
-        num,
-        isTerrace,
-        isGround,
-        label,
-        // one file = one shape; combined SVGs can hand back several (see below)
-        shapes: shape ? [shape] : [],
-      };
-    })
-    .filter((f) => f.shapes.length)
-    // bottom floor first → top floor last, matching the building top-to-bottom
-    .sort((a, b) => a.num - b.num);
-
-/**
- * Split ONE combined elevation SVG into the same floor objects buildFloors
- * produces. Every floor is an element carrying an `id` that names it —
- * "Ground_floor", "floor_7", "terrace" — set either on the shape itself
- * (Jewel: <polygon id="floor_7" points=…>) or on a wrapping <g> with the
- * shape just inside it (Space: <g id="floor_x5F_7"><polyline points=…></g>).
- *
- * For each id we take the slice of markup up to the next floor id and pull the
- * first geometry out of it (`points` → polygon, else `d` → path). Illustrator
- * escapes underscores as "_x5F_", so we unescape before reading the number —
- * otherwise "floor_x5F_15" would parse the 5 in "x5F" as the floor.
- *
- * A floor drawn in more than one piece arrives as repeated ids — Illustrator
- * suffixes the clashes, so Tides' L-shaped plan gives "_12th" for the tower
- * face and "_12th-2" for the return wing. Those are one floor, so shapes are
- * grouped by floor number and the floor carries all of them: the aside lists
- * "12th Floor" once, and hovering either piece lights the whole level.
- */
-const FLOOR_ID_RE = /id="([^"]*(?:floor|ground|terrace|podium|amenity|typical|refuge|_\d+|\d+st|\d+nd|\d+rd|\d+th)[^"]*)"/gi;
-
-const buildFloorsFromCombined = (raw) => {
-  if (!raw) return [];
-  const vb = raw.match(/viewBox="([^"]+)"/);
-  const viewBox = vb ? vb[1] : null;
-
-  const ids = [...raw.matchAll(FLOOR_ID_RE)];
-  const byFloor = new Map();
-
-  ids.forEach((m, i) => {
-    const id = m[1].replace(/_x5f_/gi, "_");
-    const seg = raw.slice(m.index, ids[i + 1]?.index ?? raw.length);
-    const points = seg.match(/points="([^"]+)"/);
-    const d = seg.match(/\sd="([^"]+)"/);
-    const shape = points
-      ? { type: "polygon", points: points[1].trim(), viewBox }
-      : d
-        ? { type: "path", d: d[1].trim(), viewBox }
-        : null;
-    if (!shape) return;
-
-    const isGround = /ground/i.test(id);
-    const isTerrace = /terrace/i.test(id);
-    const num = isGround
-      ? 0
-      : isTerrace
-        ? 9999
-        : parseInt(id.match(/(\d+)/)?.[1] ?? "0", 10);
-    const label = isTerrace
-      ? "Terrace"
-      : isGround
-        ? "Ground Floor"
-        : `Floor ${num}`;
-
-    const floor = byFloor.get(num) ?? {
-      num,
-      isTerrace,
-      isGround,
-      label,
-      shapes: [],
-    };
-    floor.shapes.push(shape);
-    byFloor.set(num, floor);
-  });
-
-  return [...byFloor.values()].sort((a, b) => a.num - b.num);
-};
 
 // The glob returns a one-entry map; grab that single combined SVG string.
 const firstRaw = (files) => Object.values(files)[0];
