@@ -89,6 +89,7 @@ body {
 @theme {
   --breakpoint-mob: 25rem; /* 400px */
   --breakpoint-mp: 90rem; /* 1440px × 900px */
+  --breakpoint-mac: 108rem; /* 1728px × 1117px */
   --breakpoint-3xl: 120rem; /* 1920px */
   --breakpoint-4xl: 160rem; /* 2560px */
   --breakpoint-5xl: 240rem; /* 3840px */

@@ -212,11 +212,11 @@ export const BUILDING_VIEWS = {
     // to its right, so the mark and the floor readout both live over the water.
     // Starting placement — dial in against the live page like the others.
     headerClass:
-      "right-[8%] top-[10%] lg:right-[11%] lg:top-[2%] xl:right-[11%] xl:top-[10%] 2xl:right-[12%] 2xl:top-[11%] 3xl:right-[12%] 3xl:top-[15%] 4xl:right-[13%] 4xl:top-[13%]",
+      "right-[8%] mac:right-[10.5%] top-[10%] lg:right-[11%] lg:top-[2%] xl:right-[11%] xl:top-[10%] 2xl:right-[12%] 2xl:top-[11%] 3xl:right-[12%] 3xl:top-[15%] 4xl:right-[13%] 4xl:top-[13%]",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-22 xl:w-28 2xl:w-35 3xl:w-40  4xl:w-55 mp:w-35",
+      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-22 xl:w-28 2xl:w-35 3xl:w-40  4xl:w-55 mp:w-35 mac:w-45 ",
     headerSubClass:
-      "lg:-mt-22 lg:text-[8px] xl:-mt-7 2xl:-mt-15 3xl:-mt-12 3xl:text-[12px] 4xl:-mt-24 4xl:text-[16px] mp:-mt-3 mp:text-[12px]",
+      "lg:-mt-22 lg:text-[8px] xl:-mt-7 2xl:-mt-15 3xl:-mt-12 3xl:text-[12px] 4xl:-mt-24 4xl:text-[16px] mp:-mt-3 mp:text-[12px] mac:-mt-10 mac:text-[14px]",
     asideClass:
       "left-[9%] top-[15%] lg:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
     nMarkFill: "black",
