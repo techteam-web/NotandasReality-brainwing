@@ -340,11 +340,12 @@ const BUILDINGS = {
  * filename. A floor offered two ways normally reads "Option 1 / Option 2", but
  * Tides' floors 7–12 aren't two different homes — they're the same home on
  * either face of the tower: OPTION-1 is the West elevation facing Juhu-Tara
- * Road, OPTION-2 the East elevation facing Pawan Hans. Naming those "Front
- * View" / "Back View" says what the visitor is actually switching between.
+ * Road (Sea View), OPTION-2 the East elevation facing Pawan Hans (Pawan Hans View).
+ * Naming those "Sea View" / "Pawan Hans View" says what the visitor is actually
+ * switching between.
  */
 const OPTION_LABELS = {
-  "notan-tides": { 1: "Front View", 2: "Back View" },
+  "notan-tides": { 1: "Sea View", 2: "Pawan Hans View" },
 };
 
 const commonPrefixLen = (strs) => {
