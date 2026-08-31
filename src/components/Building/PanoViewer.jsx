@@ -236,6 +236,74 @@ const PanoViewer = ({
       radarDeg,
   );
 
+  // Center of the active region (room/balcony) on the floor plan SVG, so the radar hub
+  // (yellow dot marker) sits directly on the active room instead of the middle of the plan.
+  const activeRegionIndex = regions?.findIndex((r) => r.name === regionName) ?? -1;
+  const getRegionCenter = (index) => {
+    if (index < 0 || !regions || index >= regions.length) return null;
+    const el = regionShapes.current?.get(index);
+    if (el) {
+      try {
+        const b = el.getBBox();
+        if (b && b.width > 0 && b.height > 0) {
+          return { x: b.x + b.width / 2, y: b.y + b.height / 2 };
+        }
+      } catch {
+        // ignore
+      }
+    }
+    const r = regions[index];
+    if (!r) return null;
+    if (r.type === "polygon" && r.points) {
+      const pts = r.points.trim().split(/[\s,]+/).map(Number);
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      for (let j = 0; j < pts.length - 1; j += 2) {
+        const px = pts[j], py = pts[j + 1];
+        if (!isNaN(px) && !isNaN(py)) {
+          minX = Math.min(minX, px);
+          maxX = Math.max(maxX, px);
+          minY = Math.min(minY, py);
+          maxY = Math.max(maxY, py);
+        }
+      }
+      if (isFinite(minX) && isFinite(maxX) && isFinite(minY) && isFinite(maxY)) {
+        return { x: (minX + maxX) / 2, y: (minY + maxY) / 2 };
+      }
+    }
+    if (r.type === "path" && r.d && typeof document !== "undefined") {
+      try {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.style.position = "fixed";
+        svg.style.top = "-99999px";
+        svg.style.left = "-99999px";
+        svg.style.visibility = "hidden";
+        svg.style.pointerEvents = "none";
+        const pathEl = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        pathEl.setAttribute("d", r.d);
+        svg.appendChild(pathEl);
+        document.body.appendChild(svg);
+        const b = pathEl.getBBox();
+        document.body.removeChild(svg);
+        if (b && b.width > 0 && b.height > 0) {
+          return { x: b.x + b.width / 2, y: b.y + b.height / 2 };
+        }
+      } catch {
+        // ignore
+      }
+    }
+    return null;
+  };
+
+  const [activeRegionCenter, setActiveRegionCenter] = useState(() =>
+    getRegionCenter(activeRegionIndex),
+  );
+
+  useEffect(() => {
+    setActiveRegionCenter(getRegionCenter(activeRegionIndex));
+  }, [activeRegionIndex, regions, regionName, minimapOpen]);
+
+  const radarCenter = activeRegionCenter ?? getRegionCenter(activeRegionIndex);
+
   // Write one dial-in at the scope the panel is set to, then Copy takes the
   // whole session's worth away as a paste-ready block.
   const nudgeRadar = (step) =>
@@ -696,6 +764,7 @@ const PanoViewer = ({
                         arcDeg={radarArcDeg}
                         arcCenterDeg={radarArcCenterDeg}
                         frame={planFrame}
+                        center={radarCenter}
                         className="absolute inset-0 h-full w-full"
                       />
                     )}

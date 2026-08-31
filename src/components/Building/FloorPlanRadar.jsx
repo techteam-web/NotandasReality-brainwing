@@ -76,6 +76,7 @@ const FloorPlanRadar = ({
   arcDeg = 0,
   arcCenterDeg = 0,
   frame = null,
+  center = null,
   className = "",
 }) => {
   // Unique per-instance gradient ids, so two radars never share a paint.
@@ -87,8 +88,10 @@ const FloorPlanRadar = ({
   // FIT shrink then applies against the widget box.
   const box = frame ?? { x: 0, y: 0, w: 2 * C, h: 2 * C };
   const scale = (Math.min(box.w, box.h) * FIT) / (2 * C);
-  const originX = box.x + box.w / 2 - C * scale;
-  const originY = box.y + box.h / 2 - C * scale;
+  const targetX = center?.x ?? (box.x + box.w / 2);
+  const targetY = center?.y ?? (box.y + box.h / 2);
+  const originX = targetX - C * scale;
+  const originY = targetY - C * scale;
 
   const half = Math.min(179, Math.max(6, fov / 2));
   const [tickX, tickY] = polar(north, RIM + 6);
@@ -127,7 +130,10 @@ const FloorPlanRadar = ({
         </radialGradient>
       </defs>
 
-      <g transform={`translate(${originX} ${originY}) scale(${scale})`}>
+      <g
+        transform={`translate(${originX} ${originY}) scale(${scale})`}
+        style={{ transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)" }}
+      >
         {/* faint compass ring the cone sweeps inside */}
         <circle
           cx={C}
