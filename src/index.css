@@ -87,12 +87,32 @@ body {
 }
 
 @theme {
-  --breakpoint-mob: 25rem; /* 400px */
-  --breakpoint-mp: 90rem; /* 1440px × 900px */
-  --breakpoint-mac: 108rem; /* 1728px × 1117px */
-  --breakpoint-3xl: 120rem; /* 1920px */
-  --breakpoint-4xl: 160rem; /* 2560px */
-  --breakpoint-5xl: 240rem; /* 3840px */
+  /* Mobile & Tablet devices */
+  --breakpoint-xs: 23.5rem; /* 376px × 667px / 375px × 812px - Modern Mobile (iPhone 13/14/15/16) */
+  --breakpoint-mob: 25rem; /* 400px × 800px - Standard Android & Large Mobile */
+  --breakpoint-tab: 52rem; /* 834px × 1194px - iPad Air & 11" iPad Pro (Portrait) */
+
+  /* Modern Laptops & MacBooks */
+  --breakpoint-laptop-sm: 75rem; /* 1200px × 800px - Compact 11"-12" Laptops & Chromebooks */
+  --breakpoint-mac-air: 80rem; /* 1280px × 800px / 1280px × 720px - MacBook Air 13" & 1080p @ 150% scale */
+  --breakpoint-laptop: 85.375rem; /* 1366px × 768px - Mainstream 14"/15.6" Windows Laptops (HD) */
+  --breakpoint-mp: 90rem; /* 1440px × 900px / 1440px × 960px - MacBook Pro 13"/15" & Surface Pro */
+  --breakpoint-mac-14: 94.5rem; /* 1512px × 982px / 1536px × 864px - MacBook Pro 14" (Retina) & 1080p @ 125% scale */
+  --breakpoint-laptop-lg: 100rem; /* 1600px × 900px - 15.6"/17.3" Widescreen HD+ Laptops */
+  --breakpoint-mac-15: 105rem; /* 1680px × 1050px - MacBook Air 15" (M2/M3) & 15" Retina scaling */
+  --breakpoint-mac: 108rem; /* 1728px × 1117px - MacBook Pro 16" Liquid Retina XDR */
+  --breakpoint-mac-16: 108rem; /* 1728px × 1117px - Alias for MacBook Pro 16" */
+
+  /* Desktops, Monitors & Ultra-High Resolution Displays */
+  --breakpoint-3xl: 120rem; /* 1920px × 1080px - Full HD (FHD 1080p) Monitors & Laptops @ 100% */
+  --breakpoint-fhd: 120rem; /* 1920px × 1080px - 1080p FHD Monitor Alias */
+  --breakpoint-imac-24: 140rem; /* 2240px × 1260px - iMac 24" (4.5K Retina viewport) */
+  --breakpoint-4xl: 160rem; /* 2560px × 1440px / 2560px × 1600px - 2K QHD Monitors & iMac 27" 5K */
+  --breakpoint-qhd: 160rem; /* 2560px × 1440px - QHD 1440p Monitor Alias */
+  --breakpoint-ultrawide: 215rem; /* 3440px × 1440px - 21:9 WQHD Ultrawide Monitors */
+  --breakpoint-5xl: 240rem; /* 3840px × 2160px - 4K UHD Monitors & Displays */
+  --breakpoint-4k: 240rem; /* 3840px × 2160px - 4K UHD Display Alias */
+  --breakpoint-5k: 320rem; /* 5120px × 2880px / 5120px × 1440px - Apple Studio Display 5K & 32:9 Super Ultrawide */
 }
 
 /*
