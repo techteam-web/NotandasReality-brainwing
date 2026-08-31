@@ -56,12 +56,16 @@ const BuildingPage = () => {
   const view = BUILDING_VIEWS[id];
   const projectLogo = BUILDING_LOGOS[id] ?? null;
   const logoIsTight = TIGHT_CROPPED_LOGOS.has(id);
-  const amenities = Object.values(BUILDING_AMINITIES[id] || {})
-    .flatMap((item) => item.split("|"))
-    .map((item) => item.trim())
-    .filter(Boolean);
+  const rawAmenityEntries = Object.values(BUILDING_AMINITIES[id] || {}).filter(Boolean);
+  const amenityLines = rawAmenityEntries.map((line) =>
+    line
+      .split("|")
+      .map((item) => item.trim())
+      .filter(Boolean),
+  );
+  const amenities = amenityLines.flat();
   const amenityRef = useRef(null);
-  const hasAmenities = amenities.length > 0;
+  const hasAmenities = amenityLines.length > 0;
   const [active, setActive] = useState(null);
   const [selected, setSelected] = useState(null); // floor whose plan overlay is open
   const [pano, setPano] = useState(null); // { floorNum, regionName } open in 360°
@@ -156,11 +160,11 @@ const BuildingPage = () => {
         duration: 1.2,
         ease: "power4.out",
         delay: 1.6, // wait for the page transition "ink" wave to recede
-      }).from("li", {
-        y: 20,
+      }).from(".amenity-line", {
+        y: 15,
         opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
+        duration: 1.0,
+        stagger: 0.12,
         ease: "power4.out",
       });
       return () => tl.kill();
@@ -364,31 +368,38 @@ const BuildingPage = () => {
                 staged ? STAGE_TYPE.amenityRule : "mt-2 h-px w-10"
               }`}
             />
-            <ul
+            <div
               className={
                 staged
-                  ? `flex flex-wrap items-center justify-center text-black ${STAGE_TYPE.amenityList} ${view.amenityListClass}`
-                  : `mt-2.5 flex flex-wrap items-center justify-center gap-y-1 text-base leading-snug text-black sm:text-lg ${
-                      view.amenityListClass || "max-w-lg"
+                  ? `flex flex-col items-center justify-center text-black ${STAGE_TYPE.amenityList} ${view.amenityListClass}`
+                  : `mt-2.5 flex flex-col items-center justify-center gap-y-1 text-center leading-snug text-black sm:gap-y-1.5 ${
+                      view.amenityListClass || "max-w-2xl"
                     }`
               }
             >
-              {amenities.map((amenity) => (
-                <li
-                  key={amenity}
-                  className={`mix-blend-multiply after:text-black/40 after:content-['|'] last:after:content-none ${
-                    staged
-                      ? view.amenityItemClass
-                      : `after:mx-2 ${
-                          view.amenityItemClass ||
-                          "lg:text-[16px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
-                        }`
-                  }`}
+              {amenityLines.map((lineItems, lineIdx) => (
+                <div
+                  key={lineIdx}
+                  className="amenity-line flex flex-wrap items-center justify-center text-center"
                 >
-                  {amenity}
-                </li>
+                  {lineItems.map((amenity, itemIdx) => (
+                    <span
+                      key={itemIdx}
+                      className={`inline-flex items-center mix-blend-multiply whitespace-nowrap after:text-black/40 after:content-['|'] last:after:hidden ${
+                        staged
+                          ? view.amenityItemClass
+                          : `after:mx-2 md:after:mx-2.5 ${
+                              view.amenityItemClass ||
+                              "lg:text-[14.5px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
+                            }`
+                      }`}
+                    >
+                      {amenity}
+                    </span>
+                  ))}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
       </div>
