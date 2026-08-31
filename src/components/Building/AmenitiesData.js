@@ -8,7 +8,7 @@ export const BUILDING_AMINITIES = {
 
   "notan-space": {
     1: "Grand lobby with reception and lounge",
-    2: " Ground-floor café and lounge",
+    2: "Ground-floor café and lounge",
     3: "Private pantry and washroom in every unit",
     4: "3 high-speed elevators",
     5: "Separate service/fire elevator",
@@ -16,15 +16,15 @@ export const BUILDING_AMINITIES = {
 
   "notan-jewel": {
     1: "Signature Lobby Lounge",
-    2: " Dedicated Reception Desks",
+    2: "Dedicated Reception Desks",
     3: "Intelligent Car Tower Parking",
-    4: "3 high-speed elevators ",
-    5 :"Refuge Zones & Double-Height Deck",
+    4: "3 high-speed elevators",
+    5: "Refuge Zones & Double-Height Deck",
   },
   "notan-terrace": {
-    1: "24-Hour Security & Surveillance , 6-Metre-Wide Access Ramp",
-    2: "Hospitality & Concierge Services  & Basement Parking , High-Speed Passenger Elevators & Dedicated Service Lift",
-    3: "Outdoor Leisure Decks , Coffee Lounge & BarFitness Centre , Spa & Wellness services & Open to Sky Pool",
+    1: "24-Hour Security & Surveillance | 6-Metre-Wide Access Ramp",
+    2: "Hospitality & Concierge Services | Basement Parking | High-Speed Passenger Elevators & Dedicated Service Lift",
+    3: "Outdoor Leisure Decks | Coffee Lounge & Bar | Fitness Centre | Spa & Wellness Services | Open to Sky Pool",
   },
   "notan-edge": {
     1: "DOUBLE-HEIGHT ENTRANCE LOBBY",
@@ -32,10 +32,10 @@ export const BUILDING_AMINITIES = {
     3: "FLEXIBLE WORKSPACES",
     4: "PREMIUM SECURITY & MANAGEMENT",
     5: "ENERGY EFFICIENCY",
-    6 : "HIGH-SPEED ELEVATORS" ,
-    7 : "DOUBLE-GLAZED FAÇADE SYSTEM",
-    8 : "CURATED F&B SPACES",
-    9 : "LARGE COLUMNLESS FLOOR PLATE",
+    6: "HIGH-SPEED ELEVATORS",
+    7: "DOUBLE-GLAZED FAÇADE SYSTEM",
+    8: "CURATED F&B SPACES",
+    9: "LARGE COLUMNLESS FLOOR PLATE",
   },
   "notan-views": {
     1: "Grand Arrival Lobby",
@@ -80,7 +80,7 @@ export const BUILDING_AMINITIES = {
   },
   "notan-tides": {
     1: "Owner’s Lounge",
-    2: "Rooftop 25-meter, half-Olympic infinity pool with panoramic Arabian Sea views",
+    2: "Rooftop 25-meter half-Olympic infinity pool with panoramic Arabian Sea views",
     3: "Jogging Track encircling the skyline",
     4: "Bespoke Fitness Centre and Wellness Deck",
     5: "Private Concierge & Valet Services",

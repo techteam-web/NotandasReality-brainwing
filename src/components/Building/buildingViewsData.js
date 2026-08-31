@@ -64,12 +64,12 @@ export const BUILDING_VIEWS = {
     headerClass:
       "left-80 top-36 mp:left-[17%] md:top-127 2xl:left-74 2xl:top-40 xl:left-65  xl:top-35 lg:left-52 lg:top-15  3xl:left-102 3xl:top-70 4xl:left-137",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
+      "my-[-30%]  w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-35 lg:-left-17 2xl:top-[40%] 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 xl:left-5 xl:top-80",
     headerSubClass:
-      "lg:-mt-17 lg:text-[7px]  xl:-mt-1 2xl:mt-2 4xl:-mt-7 4xl:text-[16px]",
+      " font-bold lg:-mt-17 lg:text-[7px]  xl:-mt-1 2xl:mt-2 4xl:-mt-7 4xl:text-[16px]",
     amenityListClass:
       "max-w-lg lg:max-w-[21rem] 2xl:max-w-[32rem] 4xl:max-w-[43rem]",
     amenityItemClass:
@@ -83,7 +83,7 @@ export const BUILDING_VIEWS = {
     asideClass:
       "left-80 top-36 md:top-127 2xl:left-99 2xl:top-60 xl:left-57 xl:top-46 lg:left-53 lg:top-32 3xl:left-115 3xl:top-85 4xl:left-178 4xl:top-120",
     headerSubClass:
-      "lg:-mt-18 lg:text-[7px]  xl:mt-2 2xl:mt-1 3xl:text-[13px] 4xl:-mt-3 4xl:text-[16px]",
+      " font-bold lg:-mt-18 lg:text-[7px]  xl:mt-2 2xl:mt-1 3xl:text-[13px] 4xl:-mt-3 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36  xl:w-58 2xl:w-76 4xl:w-110",
     headerClass:
@@ -110,7 +110,7 @@ export const BUILDING_VIEWS = {
     stage: true,
     headerClass: "left-[74%] top-[24%]",
     headerLogoClass: "w-[20cqw] mt-[-6.82cqw] mb-[-6.62cqw] mp:w-[16cqw] ",
-    headerSubClass: "mt-[0.8cqw] text-[0.68cqw] tracking-[0.45em] mp:mt-[1.6cqw]",
+    headerSubClass: " font-bold mt-[0.8cqw] text-[0.68cqw] tracking-[0.45em] mp:mt-[1.6cqw]",
     asideClass: "left-[26%] top-[30%] w-[11cqw]",
     nMarkFill: "black",
     amenityClass: "left-[74.6%] top-[52%]",
@@ -127,7 +127,7 @@ export const BUILDING_VIEWS = {
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90",
     headerSubClass:
-      "font-bold lg:-mt-12 lg:text-[8px]  xl:mt-1 2xl:-mt-4 4xl:-mt-12 4xl:text-[16px]",
+      " font-bold lg:-mt-12 lg:text-[8px]  xl:mt-1 2xl:-mt-4 4xl:-mt-12 4xl:text-[16px]",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[42%] mp:-left-3 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-22 2xl:left-20 2xl:top-[43%] 3xl:left-39 3xl:top-110 4xl:left-90 4xl:top-140 xl:-left-5 xl:top-63",
@@ -146,7 +146,7 @@ export const BUILDING_VIEWS = {
     headerClass:
       "left-80 top-36 md:top-127 2xl:left-27 2xl:top-45 xl:left-14 xl:top-36 lg:left-12 lg:top-35 3xl:left-44 3xl:top-57 4xl:left-70 4xl:top-90",
     headerSubClass:
-      "lg:-mt-1 lg:text-[8px] xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
+      " font-bold lg:-mt-1 lg:text-[8px] xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
     headerLogoClass:
       "w-34  lg:w-36 lg:h-[4.2rem] xl:w-44 xl:h-[5.25rem] 2xl:w-56 2xl:h-[6.25rem] 3xl:h-28 3xl:w-59 4xl:w-76 4xl:h-[9rem]",
     asideClass:
@@ -169,7 +169,7 @@ export const BUILDING_VIEWS = {
     asideClass:
       "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%]",
     headerSubClass:
-      "lg:-mt-20 lg:text-[7px] xl:-mt-4 3xl:-mt-3 4xl:-mt-14 4xl:text-[16px]",
+      " font-bold lg:-mt-20 lg:text-[7px] xl:-mt-4 3xl:-mt-3 4xl:-mt-14 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
@@ -190,7 +190,7 @@ export const BUILDING_VIEWS = {
     headerClass:
       "right-[15%] top-[30%] mp:right-[17%] xl:top-[12%] xl:right-60 2xl:right-[16%] 2xl:top-[15%] lg:top-[3%] lg:right-[15.5%] 3xl:top-[18%] 3xl:right-[19.7%] 4xl:top-[15%] 4xl:right-[17%]",
     headerSubClass:
-      "lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
+      " font-bold lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58 2xl:w-76 4xl:w-130",
     nMarkFill: "black",
@@ -216,7 +216,7 @@ export const BUILDING_VIEWS = {
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-22 xl:w-28 2xl:w-35 3xl:w-40  4xl:w-55 mp:w-35 mac:w-45 ",
     headerSubClass:
-      "lg:-mt-22 lg:text-[8px] xl:-mt-7 2xl:-mt-15 3xl:-mt-12 3xl:text-[12px] 4xl:-mt-24 4xl:text-[16px] mp:-mt-3 mp:text-[12px] mac:-mt-10 mac:text-[14px]",
+      " font-bold lg:-mt-22 lg:text-[8px] xl:-mt-7 2xl:-mt-15 3xl:-mt-12 3xl:text-[12px] 4xl:-mt-24 4xl:text-[16px] mp:-mt-3 mp:text-[12px] mac:-mt-10 mac:text-[14px]",
     asideClass:
       "left-[9%] top-[15%] lg:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
     nMarkFill: "black",
@@ -242,7 +242,7 @@ export const BUILDING_VIEWS = {
     asideClass:
       "right-[15%] top-[30%] xl:top-[18%] xl:right-44 2xl:right-[15%] 2xl:top-[20%] lg:top-[13%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[18%] 4xl:top-[20%] 4xl:right-[19%]",
     headerSubClass:
-      "lg:-mt-20 lg:text-[7px] xl:-mt-4 3xl:-mt-3 4xl:-mt-14 4xl:text-[16px]",
+      " font-bold lg:-mt-20 lg:text-[7px] xl:-mt-4 3xl:-mt-3 4xl:-mt-14 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
