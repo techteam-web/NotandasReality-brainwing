@@ -135,8 +135,8 @@ export const BUILDINGS = [
     // the project's name and its render, not from a supplied location.
     tagline: "Sea beyond the glass, Balconies stretch towards the tide… Beach House breathes in blue…",
     img: notanBeachHouse,
-    top: "23%",
-    left: "44.8%",
+    top: "45%",
+    left: "48%",
     tooltip: "bottom",
     width: "clamp(42px, 4.2vw, 74px)",
     href: "/projects/notan-beach-house",
