@@ -123,18 +123,18 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 4615 2597",
     floors: NOTAN_TERRACE_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 mp:top-35 2xl:left-70 xl:left-45 xl:top-20 lg:left-37 lg:top-8 2xl:top-[20%] 3xl:left-90 3xl:top-45 4xl:left-115 4xl:top-60 ",
+      "laptop-sm:left-[11.1%] laptop-sm:top-[13%] mac-14:left-[11.3%] md:top-127 mp:top-35 2xl:left-70 xl:left-40 xl:top-20 lg:left-31 lg:top-8 2xl:top-[20%] 3xl:left-90 3xl:top-45 4xl:left-115 4xl:top-60 5xl:left-[17%] 5xl:top-[20%]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90",
     headerSubClass:
       " font-bold lg:-mt-12 lg:text-[8px]  xl:mt-1 2xl:-mt-4 4xl:-mt-12 4xl:text-[16px]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[42%] mp:-left-3 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-22 2xl:left-20 2xl:top-[43%] 3xl:left-39 3xl:top-110 4xl:left-90 4xl:top-140 xl:-left-5 xl:top-63",
+      "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[37%]  w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[38%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-20 2xl:top-[43%] 3xl:left-39 3xl:top-110 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-63 5xl:left-[15%] 5xl:top-[38%]",
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
     amenityItemClass:
-      "lg:text-[9.5px] xl:text-[12.5px] 2xl:text-[13px] 3xl:text-[17px] 4xl:text-[23px]",
+      "lg:text-[12px] lg:-tracking-[.2px] xl:text-[15px] 2xl:text-[13px] 3xl:text-[17px] 4xl:text-[22px] 4xl:leading-[1.8rem] mac:text-[20px] mac:leading-[1.5rem] laptop-sm:text-[14px] laptop-sm:leading-[1.2rem] mac-14:text-[20px] mac-14:leading-[1.5rem] mp:text-[17px] mp:leading-[1.3rem] 5xl:text-[34px] 5xl:leading-[3.2rem]",
     asideClass:
       " top-[30%] xl:top-[20%] 2xl:right-[17%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
   },

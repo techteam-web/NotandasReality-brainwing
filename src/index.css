@@ -102,6 +102,7 @@ body {
   --breakpoint-mac-15: 105rem; /* 1680px × 1050px - MacBook Air 15" (M2/M3) & 15" Retina scaling */
   --breakpoint-mac: 108rem; /* 1728px × 1117px - MacBook Pro 16" Liquid Retina XDR */
   --breakpoint-mac-16: 108rem; /* 1728px × 1117px - Alias for MacBook Pro 16" */
+  
 
   /* Desktops, Monitors & Ultra-High Resolution Displays */
   --breakpoint-3xl: 120rem; /* 1920px × 1080px - Full HD (FHD 1080p) Monitors & Laptops @ 100% */
