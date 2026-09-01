@@ -44,17 +44,17 @@ export const BUILDING_VIEWS = {
     nMarkFill: "black",
 
     amenityListClass:
-      "max-w-lg lg:w-[24rem] xl:w-[28rem] 2xl:w-[32rem] 3xl:w-[40rem] 4xl:w-[50rem]",
+      "max-w-lg lg:w-[24rem] xl:w-[28rem] 2xl:w-[32rem] 3xl:w-[40rem] 4xl:w-[50rem] ",
     amenityItemClass:
-      "lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[19px] 4xl:text-[25px]",
+      "lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[19px] 4xl:text-[25px] 5xl:text-[30px]",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl mp:top-[40%] mp:-right-[8.6%] lg:top-60 lg:-right-40 2xl:-right-17 2xl:top-[40%] 3xl:top-110 3xl:right-10 4xl:top-155 4xl:right-43 xl:-right-28 xl:top-73",
+      "laptop-sm:top-[40%] laptop-sm:right-[-12%] mac-14:-right-[7%] imac-24:right-[3.3%] imac-24:top-[40%] ultrawide:right-[7.8%] 5xl:top-[40%] 5xl:right-[12%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl mp:top-[40%] mp:-right-[8.6%] lg:top-60 lg:-right-40 2xl:-right-17 2xl:top-[40%] 3xl:top-110 3xl:right-[1.8%] 4xl:top-155 4xl:right-43 xl:-right-28 xl:top-73",
 
     asideClass:
       "left-80 top-26 2xl:left-95 2xl:top-65 xl:left-73 xl:top-54 lg:left-53 lg:top-36 3xl:left-120 3xl:top-[35%] 4xl:left-[27%] 4xl:top-[37%] ",
 
     headerClass:
-      "lg:top-[10%] lg:right-[12%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[13%] 4xl:top-[15%]",
+      "lg:top-[10%] lg:right-[12%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[13%] 4xl:top-[15%] 5xl:right-[16.6%] 5xl:top-[15%] ",
   },
   "notan-edge": {
     viewImg: notanEdgeView,
