@@ -18,8 +18,8 @@ export const BUILDING_AMINITIES = {
   },
 
   "notan-terrace": {
-    1: "24-Hour Security & Surveillance | 6-Metre-Wide Access Ramp",
-    2: "Hospitality & Concierge Services | Basement Parking | High-Speed Elevators & Service Lift",
+    1: "24-Hour Security & Surveillance | 6-Metre-Wide Access Ramp |",
+    2: "Hospitality & Concierge Services | Basement Parking | High-Speed Elevators & Service Lift|",
     3: "Outdoor Leisure Decks | Coffee Lounge & Bar | Fitness Centre | Spa & Wellness | Open to Sky Pool",
   },
 

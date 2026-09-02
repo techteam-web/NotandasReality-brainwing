@@ -57,13 +57,15 @@ const BuildingPage = () => {
   const projectLogo = BUILDING_LOGOS[id] ?? null;
   const logoIsTight = TIGHT_CROPPED_LOGOS.has(id);
   const rawAmenityEntries = Object.values(BUILDING_AMINITIES[id] || {}).filter(Boolean);
-  const amenityLines = rawAmenityEntries.map((line) =>
-    line
+  const amenityLines = rawAmenityEntries.map((line) => {
+    const hasTrailingPipe = line.trim().endsWith("|");
+    const items = line
       .split("|")
       .map((item) => item.trim())
-      .filter(Boolean),
-  );
-  const amenities = amenityLines.flat();
+      .filter(Boolean);
+    return { items, hasTrailingPipe };
+  });
+  const amenities = amenityLines.flatMap((line) => line.items);
   const amenityRef = useRef(null);
   const hasAmenities = amenityLines.length > 0;
   const [active, setActive] = useState(null);
@@ -377,26 +379,32 @@ const BuildingPage = () => {
                     }`
               }
             >
-              {amenityLines.map((lineItems, lineIdx) => (
+              {amenityLines.map(({ items, hasTrailingPipe }, lineIdx) => (
                 <div
                   key={lineIdx}
                   className="amenity-line flex flex-wrap items-center justify-center text-center"
                 >
-                  {lineItems.map((amenity, itemIdx) => (
-                    <span
-                      key={itemIdx}
-                      className={`inline-flex items-center mix-blend-multiply whitespace-nowrap after:text-black/40 after:content-['|'] last:after:hidden ${
-                        staged
-                          ? view.amenityItemClass
-                          : `after:mx-2 md:after:mx-2.5 ${
-                              view.amenityItemClass ||
-                              "lg:text-[14.5px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
-                            }`
-                      }`}
-                    >
-                      {amenity}
-                    </span>
-                  ))}
+                  {items.map((amenity, itemIdx) => {
+                    const isLast = itemIdx === items.length - 1;
+                    const hidePipe = isLast && !hasTrailingPipe;
+                    return (
+                      <span
+                        key={itemIdx}
+                        className={`inline-flex items-center mix-blend-multiply whitespace-nowrap after:text-black/40 after:content-['|'] ${
+                          hidePipe ? "after:hidden" : ""
+                        } ${
+                          staged
+                            ? view.amenityItemClass
+                            : `after:mx-2 md:after:mx-2.5 ${
+                                view.amenityItemClass ||
+                                "lg:text-[14.5px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
+                              }`
+                        }`}
+                      >
+                        {amenity}
+                      </span>
+                    );
+                  })}
                 </div>
               ))}
             </div>
