@@ -37,24 +37,24 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-44 xl:h-auto 2xl:w-60 3xl:w-80 4xl:w-90",
+      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-44 xl:h-auto 2xl:w-60 3xl:w-80 4xl:w-90 laptop-sm:w-47",
 
     headerSubClass:
-      "font-bold lg:-mt-17 lg:text-[6px] xl:mt-2 2xl:-mt-5 3xl:mt-3 3xl:text-[11px] 4xl:-mt-7 4xl:text-[14px]",
+      "font-bold lg:-mt-17 lg:text-[6px] xl:mt-2 2xl:-mt-5 3xl:mt-3 3xl:text-[11px] 4xl:-mt-7 4xl:text-[14px] laptop-sm:-mt-11 laptop-sm:text-[8px]",
     nMarkFill: "black",
 
     amenityListClass:
       "max-w-lg lg:w-[24rem] xl:w-[28rem] 2xl:w-[32rem] 3xl:w-[40rem] 4xl:w-[50rem] ",
     amenityItemClass:
-      "lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[21px] 4xl:text-[25px] 5xl:text-[30px] mac:text-[20px] mac:leading-[1.5rem] laptop-sm:text-[14px] laptop-sm:leading-[1.2rem] mac-14:text-[20px] mac-14:leading-[1.5rem] mp:text-[17px] mp:leading-[1.3rem] 5xl:text-[34px] 5xl:leading-[3.2rem]",
+      "lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[21px] 4xl:text-[25px] 5xl:text-[30px] mac:text-[20px] mac:leading-[1.5rem] laptop-sm:text-[14px] laptop-sm:leading-[1.2rem] mac-14:text-[20px] mac-14:leading-[1.5rem] mp:text-[17px] mp:leading-[1.3rem] 5xl:text-[34px] 4xl:leading-[2.2rem] 5xl:leading-[3.2rem]",
     amenityClass:
-      "laptop-sm:top-[34%] laptop-sm:right-[-12%] mac-14:-right-[7%] imac-24:right-[3.3%] imac-24:top-[40%] ultrawide:right-[7.8%] 5xl:top-[40%] 5xl:right-[12%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl mp:top-[35%] mp:-right-[8%] lg:top-60 lg:-right-40 2xl:-right-17 2xl:top-[40%] 3xl:top-[38%] 3xl:right-[1.8%] 4xl:top-[38%] 4xl:right-43 xl:-right-28 xl:top-63",
+      "laptop-sm:top-[34%] laptop-sm:right-[-12%] mac-14:-right-[5.6%] mac:-right-[1.8%] imac-24:right-[3.3%] imac-24:top-[40%] ultrawide:right-[7.8%] 5xl:top-[40%] 5xl:right-[12%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl mp:top-[35%] mp:-right-[7%] lg:top-56 lg:-right-38 2xl:-right-17 2xl:top-[40%] 3xl:top-[38%] 3xl:right-[0.3%] 4xl:top-[40%] 4xl:right-[3.4%] xl:-right-28 xl:top-63",
 
     asideClass:
       "left-80 top-26 2xl:left-95 2xl:top-65 xl:left-73 xl:top-54 lg:left-53 lg:top-36 3xl:left-120 3xl:top-[35%] 4xl:left-[27%] 4xl:top-[37%] ",
 
     headerClass:
-      "lg:top-[10%] lg:right-[12%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[13%] 4xl:top-[15%] 5xl:right-[16.6%] 5xl:top-[15%] ",
+      "laptop-sm:top-[10%] laptop-sm:right-[8%] lg:top-[10%] lg:right-[12%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[10%] 4xl:right-[9%] 4xl:top-[15%] 5xl:right-[16.6%] 5xl:top-[15%] ultrawide:right-[12%] ",
   },
   "notan-edge": {
     viewImg: notanEdgeView,
@@ -73,7 +73,7 @@ export const BUILDING_VIEWS = {
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
     amenityItemClass:
-      "lg:text-[9.5px] xl:text-[11.5px] 2xl:text-[13.5px] 3xl:text-[16px] 4xl:text-[23px]",
+      "lg:text-[9.5px] xl:text-[11.5px] 2xl:text-[13.5px] 3xl:text-[16px] 4xl:text-[23px] ",
   },
   "notan-jewel": {
     viewImg: notanJewelView,
