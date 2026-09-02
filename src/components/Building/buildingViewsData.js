@@ -238,7 +238,7 @@ export const BUILDING_VIEWS = {
     // its left, so the mark and the floor readout both sit over that sky.
     // Starting placement — dial in against the live page like the others.
     headerClass:
-      " top-36 mp:top-16 mp:left-[9%] 2xl:-left-[54%] xl:left-[12.3%] xl:top-14 lg:left-38 lg:-top-2 2xl:left-[9%] 2xl:top-[12%] 3xl:left-[13%] 3xl:top-[11%] 4xl:left-[13%] 4xl:top-25",
+      " top-36 mp:top-[12%] mp:left-[12.5%] 2xl:-left-[54%] xl:left-[12.3%] xl:top-14 lg:left-38 lg:-top-2 2xl:left-[9%] 2xl:top-[12%] 3xl:left-[12%] 3xl:top-[11%] 4xl:left-[13%] 4xl:top-25 laptop-sm:top-[6%] 5xl:left-[14.6%] 5xl:top-[10%]",
     asideClass:
       "right-[15%] top-[30%] xl:top-[18%] xl:right-44 2xl:right-[15%] 2xl:top-[20%] lg:top-[13%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[18%] 4xl:top-[20%] 4xl:right-[19%]",
     headerSubClass:
@@ -247,10 +247,10 @@ export const BUILDING_VIEWS = {
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55  lg:bottom-63 lg:-left-[15.6%]  2xl:-left-17 2xl:top-[37%] 3xl:top-85 3xl:left-4 4xl:top-100 4xl:left-37 xl:-left-[10%] xl:top-[28%]",
+      "w-[calc(100%-2.5rem)] max-w-xl mac:top-[32%] mac:-left-[4%] mp:top-[31%] mp:-left-[7%] mac-14:-left-[6%] sm:max-w-2xl lg:max-w-3xl bottom-55  lg:bottom-63 lg:-left-[15.6%]  2xl:-left-20 2xl:top-[36%] 3xl:top-85 3xl:left-4 4xl:top-100 4xl:left-37 xl:-left-[10%] xl:top-[28%] laptop-sm:top-[25%] laptop-sm:-left-[12%] 5xl:top-[30%] 5xl:left-[10%]",
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[54rem]",
     amenityItemClass:
-      "lg:text-[9.5px] xl:text-[12px] 2xl:text-[12.5px] 3xl:text-[17px] 4xl:text-[24px]",
+      "lg:text-[11px] xl:text-[12px] 2xl:text-[12.5px] 3xl:text-[17px] laptop-sm:text-[14px] 4xl:text-[24px] mac:text-[16px] mp:text-[15px] 5xl:text-[35px]",
   },
 };
