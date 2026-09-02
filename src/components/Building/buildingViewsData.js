@@ -134,7 +134,7 @@ export const BUILDING_VIEWS = {
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
     amenityItemClass:
-      "lg:text-[12px] lg:-tracking-[.2px] xl:text-[15px] 2xl:text-[17px] 3xl:leading-[1.7rem] 3xl:text-[20px] 4xl:text-[29px] 4xl:leading-[2rem] mac:text-[20px] mac:leading-[1.5rem] laptop-sm:text-[14px] laptop-sm:leading-[1.2rem] mac-14:text-[20px] mac-14:leading-[1.5rem] mp:text-[17px] mp:leading-[1.3rem] 5xl:text-[34px] 5xl:leading-[3.2rem]",
+      "lg:text-[12px] lg:-tracking-[.2px] xl:text-[14px] 2xl:text-[17px] 3xl:leading-[1.7rem] 3xl:text-[20px] 4xl:text-[29px] 4xl:leading-[2rem] mac:text-[20px] mac:leading-[1.5rem] laptop-sm:text-[14px] laptop-sm:leading-[1.2rem] mac-14:text-[20px] mac-14:leading-[1.5rem] mp:text-[17px] mp:leading-[1.3rem] 5xl:text-[34px] 5xl:leading-[3.2rem]",
     asideClass:
       " top-[30%] xl:top-[20%] 2xl:right-[17%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
   },
