@@ -31,9 +31,9 @@ export const BUILDING_AMINITIES = {
   },
 
   "notan-views": {
-    1: "Grand Arrival Lobby | Multi-Purpose Hall | Banquet Lounge | Secure Podium-Level Parking",
-    2: "24-Hour Security & Surveillance | Hospitality & Concierge Services | High-Speed Elevators & Service Lift",
-    3: "State-of-the-Art Fitness Centre | Landscaped Green Pockets with Water Features",
+    1: "Grand Arrival Lobby | Multi-Purpose Hall | Banquet Lounge | Secure Podium-Level Parking|",
+    2: "24-Hour Security & Surveillance | Hospitality & Concierge Services | High-Speed Elevators & Service Lift|",
+    3: "State-of-the-Art Fitness Centre | Landscaped Green Pockets with Water Features|",
     4: "Outdoor Leisure Decks & Gazebos | Dedicated Staff Facilities | Open-to-Sky Rooftop Walking Track",
   },
 
