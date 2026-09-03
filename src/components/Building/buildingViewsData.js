@@ -87,14 +87,14 @@ export const BUILDING_VIEWS = {
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36  xl:w-58 2xl:w-76 4xl:w-110",
     headerClass:
-      "laptop-sm:right-[18%] ] mp:right-[17%] xl:top-[12%] xl:right-62 2xl:right-[17%] 2xl:top-[15%]  lg:top-[8%] lg:right-[21%] 3xl:top-[18%] 3xl:right-[19.7%] 4xl:top-[15%] 4xl:right-[17%]",
+      "imac-24:right-[16%] laptop-sm:right-[18%] ] mp:right-[17%] xl:top-[12%] xl:right-62 2xl:right-[17%] 2xl:top-[15%]  lg:top-[8%] lg:right-[21%] 3xl:top-[20%] 3xl:right-[14.7%] 4xl:top-[15%] 4xl:right-[17%] mac:right-[14%] mac:top-[19%] mac-14:right-[16.7%] mac-14:top-[18%] 5xl:right-[18%] 5xl:top-[15%] mp:top-[19%] ",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[37%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-75 mp:-right-10 lg:bottom-46 lg:-right-25 lg:h-35 2xl:right-6 2xl:top-[40%] 3xl:top-110 3xl:right-35 4xl:top-140 4xl:right-65  xl:-right-[3%] xl:top-[37%] 5xl:right-123 5xl:top-180",
+      "imac-24:right-[5%] laptop-sm:top-[37%] w-[calc(100%-2.5rem)] mac:-right-[1%] mac:top-[45%]  max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-75 mp:-right-10 mp:top-[42%] lg:bottom-46 lg:-right-25 lg:h-35 2xl:right-6 2xl:top-[40%] 3xl:top-[45%] 3xl:right-[2%] 4xl:top-140 4xl:right-65  xl:-right-[3%] xl:top-[37%] 5xl:right-123 5xl:top-180",
     amenityListClass:
       "max-w-lg lg:w-[24rem] xl:w-[28rem] 2xl:w-[32rem] 3xl:w-[40rem] 4xl:w-[50rem]",
     amenityItemClass:
-      "lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] 4xl:text-[22px] 5xl:text-[30px]",
+      "lg:text-[11px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] 4xl:text-[22px] 5xl:text-[30px] mac:text-[20px] mac-14:text-[18px] mac-15:text-[20px] ",
   },
   "notan-space": {
     viewImg: notanSpaceView,
