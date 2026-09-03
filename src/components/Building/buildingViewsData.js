@@ -188,18 +188,18 @@ export const BUILDING_VIEWS = {
     asideClass:
       "left-80 top-36 md:top-127 2xl:left-94 2xl:top-67 xl:left-87 xl:top-64 lg:left-63 lg:top-28 3xl:left-135 3xl:top-90 4xl:left-188 4xl:top-130",
     headerClass:
-      "right-[15%] top-[30%] mp:right-[17%] xl:top-[12%] xl:right-50 2xl:right-[16%] 2xl:top-[15%] lg:top-[3%] lg:right-[15.5%] 3xl:top-[18%] 3xl:right-[19.7%] 4xl:top-[15%] 4xl:right-[17%]",
+      "laptop-sm:top-[13%] right-[15%] top-[30%] mp:top-[18%] mp:right-[13%] mac:top-[15%] mac:right-[12%] xl:top-[12%] xl:right-50 2xl:right-[16%] 2xl:top-[15%] lg:top-[3%] lg:right-[15.5%] 3xl:top-[18%] 3xl:right-[14%] 4xl:top-[15%] 4xl:right-[17%]",
     headerSubClass:
       " font-bold lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58 2xl:w-76 4xl:w-130",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-12 lg:bottom-56 lg:-right-35 lg:h-35 2xl:right-1 3xl:top-110 3xl:right-32 4xl:top-130 4xl:right-70 xl:-right-[7.7%] xl:top-[37%] 5xl:right-123 5xl:top-180",
+      "laptop-sm:top-[40%] w-[calc(100%-2.5rem)] max-w-xl mac:-right-[2%] mac:top-[40%] sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-26 lg:bottom-56 lg:-right-35 lg:h-35 2xl:right-1 3xl:top-110 3xl:right-[1%] 4xl:top-130 4xl:right-70 xl:-right-[7.7%] xl:top-[37%] 5xl:right-123 5xl:top-180",
     amenityListClass:
       "max-w-lg lg:w-[21rem] xl:w-[26rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[54rem]",
     amenityItemClass:
-      "lg:text-[9px] xl:text-[11.5px] 2xl:text-[13px] 3xl:text-[15.5px] 4xl:text-[22px]",
+      "lg:text-[9px] xl:text-[11.5px] 2xl:text-[13px] 3xl:text-[15.5px] 4xl:text-[22px] mp:leading-[1.3rem]",
   },
 
   "notan-beach-house": {
@@ -212,7 +212,7 @@ export const BUILDING_VIEWS = {
     // to its right, so the mark and the floor readout both live over the water.
     // Starting placement — dial in against the live page like the others.
     headerClass:
-      "mp:top-[15%] mp:right-[11%] laptop-sm:right-[9%] mac:top-[15%] mac:right-[10.5%] mac-14:top-[15%] mac-15:top-[13%]  top-[10%] lg:right-[11%] lg:top-[2%] xl:right-[11%] xl:top-[10%] 2xl:right-[12%] 2xl:top-[11%] 3xl:right-[11.1%] 3xl:top-[15%] 4xl:right-[13%] 4xl:top-[13%] 5xl:right-[14%] 5xl:top-[12%]",
+      "mp:top-[15%] mp:right-[11%] laptop-sm:right-[9%] mac:top-[15%] mac:right-[10.5%] mac-14:top-[15%] mac-15:top-[13%]  top-[10%] lg:right-[11%] lg:top-[2%] xl:right-[11%] xl:top-[10%] 2xl:right-[12%] 2xl:top-[11%] 3xl:right-[13%] 3xl:top-[15%] 4xl:right-[13%] 4xl:top-[13%] 5xl:right-[14%] 5xl:top-[12%]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-22 xl:w-28 2xl:w-35 3xl:w-50  4xl:w-55 mp:w-35 mac:w-45 ",
     headerSubClass:
@@ -221,7 +221,7 @@ export const BUILDING_VIEWS = {
       "left-[9%] top-[15%] lg:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[35%]  w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-40 lg:bottom-54 lg:-right-54 lg:h-35 2xl:-right-32 2xl:top-[40%] 3xl:top-110 3xl:-right-22 4xl:top-150 4xl:right-13 xl:-right-[14%] xl:top-[38%] 5xl:right-[6%] 5xl:top-[35%]",
+      "laptop-sm:top-[35%]  w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-40 lg:bottom-54 lg:-right-54 lg:h-35 2xl:-right-32 2xl:top-[40%] 3xl:top-110 3xl:-right-13 4xl:top-150 4xl:right-13 xl:-right-[14%] xl:top-[38%] 5xl:right-[6%] 5xl:top-[35%]",
     amenityListClass:
       "max-w-lg lg:w-[20rem] xl:w-[25rem] 2xl:w-[28rem] 3xl:w-[44rem] 4xl:w-[54rem]",
     amenityItemClass:
