@@ -188,14 +188,14 @@ export const BUILDING_VIEWS = {
     asideClass:
       "left-80 top-36 md:top-127 2xl:left-94 2xl:top-67 xl:left-87 xl:top-64 lg:left-63 lg:top-28 3xl:left-135 3xl:top-90 4xl:left-188 4xl:top-130",
     headerClass:
-      "laptop-sm:top-[13%] right-[15%] top-[30%] mp:top-[18%] mp:right-[13%] mac:top-[15%] mac:right-[12%] xl:top-[12%] xl:right-50 2xl:right-[16%] 2xl:top-[15%] lg:top-[3%] lg:right-[15.5%] 3xl:top-[18%] 3xl:right-[14%] 4xl:top-[15%] 4xl:right-[17%]",
+      "laptop-sm:top-[13%] right-[15%] top-[30%] mp:top-[18%] mp:right-[13%] mac:top-[15%] mac:right-[12%] xl:top-[12%] xl:right-50 2xl:right-[16%] 2xl:top-[15%] lg:top-[3%] lg:right-[15.5%] 3xl:top-[18%] 3xl:right-[12%] 4xl:top-[15%] 4xl:right-[17%]",
     headerSubClass:
       " font-bold lg:-mt-18 lg:text-[8px] xl:mt-4 2xl:mt-1 3xl:mt-2 3xl:text-[13px] 4xl:mt-4 4xl:text-[16px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58 2xl:w-76 4xl:w-130",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[40%] w-[calc(100%-2.5rem)] max-w-xl mac:-right-[2%] mac:top-[40%] sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-26 lg:bottom-56 lg:-right-35 lg:h-35 2xl:right-1 3xl:top-110 3xl:right-[1%] 4xl:top-130 4xl:right-70 xl:-right-[7.7%] xl:top-[37%] 5xl:right-123 5xl:top-180",
+      "laptop-sm:top-[40%] w-[calc(100%-2.5rem)] max-w-xl mac:-right-[2%] mac:top-[40%] sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-26 lg:bottom-56 lg:-right-35 lg:h-35 2xl:right-1 3xl:top-110 3xl:-right-[1%] 4xl:top-130 4xl:right-70 xl:-right-[7.7%] xl:top-[37%] 5xl:right-123 5xl:top-180",
     amenityListClass:
       "max-w-lg lg:w-[21rem] xl:w-[26rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[54rem]",
     amenityItemClass:
