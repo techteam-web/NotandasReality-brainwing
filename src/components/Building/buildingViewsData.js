@@ -130,7 +130,7 @@ export const BUILDING_VIEWS = {
       " font-bold lg:-mt-12 lg:text-[8px]  xl:mt-1 2xl:-mt-4 3xl:mt-1 4xl:-mt-12 4xl:text-[16px]",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[33%] mac:top-[35%] mac:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[34%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-15 2xl:top-[40%] 3xl:left-[9%] 3xl:top-95 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-63 5xl:left-[15%] 5xl:top-[38%]",
+      "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[33%] mac:top-[35%] mac:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[34%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-15 2xl:top-[40%] 3xl:left-[9%] 3xl:top-[42%] 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-63 5xl:left-[15%] 5xl:top-[38%]",
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
     amenityItemClass:
