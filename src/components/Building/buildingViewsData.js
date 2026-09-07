@@ -158,7 +158,7 @@ export const BUILDING_VIEWS = {
       "top-36 mp:left-[9.3%]  2xl:left-[13%] xl:left-[11.6%] xl:top-30 lg:left-42 lg:top-5 3xl:left-[16%] 3xl:top-34 4xl:top-43 4xl:left-[17%] mac-14:left-[9%] 5xl:left-[16%] 5xl:top-[13%]",
     asideClass:
       "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%]",
-    headerSubClass: "font-bold lg:-mt-20 xl:-mt-4 3xl:-mt-3 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+    headerSubClass:"font-bold lg:-mt-20 xl:-mt-4 3xl:-mt-1 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mac:-mt-6",
     headerLogoClass:
        "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90 3xl:w-80",
     nMarkFill: "black",
