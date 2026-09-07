@@ -46,8 +46,8 @@ export const BUILDING_AMINITIES = {
 
   "notan-beach-house": {
     1: "Grand Double-Height Lobby & Reception | Landscaped Garden with Beach Access | Open to Sky Pool|",
-    2: "Rooftop Leisure Decks | Salon & Wellness Services | Fully Equipped Fitness Centre",
-    3: "24-Hour Security & Surveillance | Hospitality & Concierge Services | Car Lift with Basement Parking",
+    2: "Rooftop Leisure Decks | Salon & Wellness Services | Fully Equipped Fitness Centre|",
+    3: "24-Hour Security & Surveillance | Hospitality & Concierge Services | Car Lift with Basement Parking|",
     4: "High-Speed Passenger Elevators & Dedicated Service Lift | Dedicated Staff Facilities",
   },
 

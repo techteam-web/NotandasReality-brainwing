@@ -130,11 +130,11 @@ export const BUILDING_VIEWS = {
       " font-bold lg:-mt-12 lg:text-[8px]  xl:mt-1 2xl:-mt-4 3xl:mt-1 4xl:-mt-12 4xl:text-[16px]",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[33%] mac:top-[35%] mac:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[34%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-15 2xl:top-[40%] 3xl:left-[9%] 3xl:top-[42%] 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-63 5xl:left-[15%] 5xl:top-[38%]",
+      "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[33%] mac:top-[35%] mac:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[34%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-15 2xl:top-[40%] 3xl:left-[9%] 3xl:top-[40%] 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-63 5xl:left-[15%] 5xl:top-[38%]",
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
     amenityItemClass:
-      "lg:text-[12px] lg:-tracking-[.2px] xl:text-[14px] 2xl:text-[17px] 3xl:leading-[1.7rem] 3xl:text-[20px] 4xl:text-[29px] 4xl:leading-[2rem] mac:text-[20px] mac:leading-[1.5rem] laptop-sm:text-[14px] laptop-sm:leading-[1.2rem] mac-14:text-[20px] mac-14:leading-[1.5rem] mp:text-[17px] mp:leading-[1.3rem] 5xl:text-[34px] 5xl:leading-[3.2rem]",
+      "lg:text-[12px] lg:-tracking-[.2px] xl:text-[14px] 2xl:text-[17px] 3xl:leading-[1.7rem] 3xl:text-[18px] 4xl:text-[29px] 4xl:leading-[2rem] mac:text-[20px] mac:leading-[1.5rem] laptop-sm:text-[14px] laptop-sm:leading-[1.2rem] mac-14:text-[20px] mac-14:leading-[1.5rem] mp:text-[17px] mp:leading-[1.3rem] 5xl:text-[34px] 5xl:leading-[3.2rem]",
     asideClass:
       " top-[30%] xl:top-[20%] 2xl:right-[17%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
   },
@@ -223,7 +223,7 @@ export const BUILDING_VIEWS = {
     amenityClass:
       "laptop-sm:top-[41%] laptop-sm:-right-[14%] laptop:-right-[9%] imac-24:top-[42%] imac-24:right-[4%] laptop-sm:top-[35%] mac:-right-[3%] mac-14:-right-[6%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-40 lg:bottom-54 lg:-right-54 lg:h-35 2xl:-right-32 2xl:top-[40%] 3xl:top-110 3xl:-right-3 4xl:top-150 4xl:right-13 xl:-right-[14%] xl:top-[38%] 5xl:right-[6%] 5xl:top-[35%]",
     amenityListClass:
-      "max-w-lg lg:w-[20rem] xl:w-[25rem] 2xl:w-[28rem] 3xl:w-[44rem] 4xl:w-[54rem]",
+      "max-w-lg lg:w-[20rem] xl:w-[25rem] 2xl:w-[28rem] 3xl:w-[54rem] 4xl:w-[54rem]",
     amenityItemClass:
       "lg:text-[10px]  xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
   },
