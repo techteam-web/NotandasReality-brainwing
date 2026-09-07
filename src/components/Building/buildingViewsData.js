@@ -103,8 +103,8 @@ export const BUILDING_VIEWS = {
        Checked by: node scripts/stage-constraints.mjs notan-space --sweep */
     stage: true,
     headerClass: "left-[74%] top-[24%]",
-    headerLogoClass: "w-[20cqw] mt-[-6.82cqw] mb-[-6.62cqw] mp:w-[16cqw] ",
-    headerSubClass: "font-bold mt-[0.8cqw] tracking-[0.45em] mp:mt-[1.6cqw] lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+    headerLogoClass: "w-[17cqw] mt-[-6.82cqw] mb-[-6.62cqw]",
+    headerSubClass: "font-bold mt-[2cqw] tracking-[0.45em] mp:mt-[1.2cqw] lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     asideClass: "left-[26%] top-[30%] w-[11cqw]",
     nMarkFill: "black",
     amenityClass: "left-[74.6%] top-[47%]",
