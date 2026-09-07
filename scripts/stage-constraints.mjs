@@ -564,7 +564,9 @@ const STAGE_TYPE = {
   asideGap: 0.9,
   asideNumRow: 4.4,
   asideNumSize: 4,
-  amenityLabelSize: 0.75,
+  // a token, not a cqw number: this one caption is pinned to the px the
+  // unstaged buildings use, so it does not scale with the stage
+  amenityLabel: "11px",
   amenityLabelTracking: 0.42,
   amenityRuleGap: 0.6,
   amenityListGap: 0.7,
@@ -705,7 +707,7 @@ const blockBoxes = (view, building, amenities, logo, ctx) => {
       } else cur += item.w;
     }
 
-    const labelH = T.amenityLead * T.amenityLabelSize;
+    const labelH = T.amenityLead * toCqw(T.amenityLabel, ctx);
     // the rows sit in normal flow now, so leading alone spaces them
     const listH = rows * T.amenityLead * size;
     const height = labelH + T.amenityRuleGap + T.amenityListGap + listH;
@@ -756,7 +758,7 @@ const typeScale = (view) => [
   {
     name: "amenity caption",
     role: "label",
-    token: `${STAGE_TYPE.amenityLabelSize}cqw`,
+    token: STAGE_TYPE.amenityLabel,
   },
 ];
 
@@ -779,9 +781,13 @@ const flooredAt = (token, stageW) =>
  */
 const minStageWidth = (view) =>
   Math.max(
-    ...typeScale(view).map(
-      (t) => (MIN_TYPE_PX[t.role] / toCqw(t.token, { stageW: 1e7 })) * 100,
-    ),
+    ...typeScale(view)
+      // no cqw arm means the size never shrinks with the stage, so it can
+      // never fall under its minimum and sets no floor of its own
+      .filter((t) => t.token.includes("cqw"))
+      .map(
+        (t) => (MIN_TYPE_PX[t.role] / toCqw(t.token, { stageW: 1e7 })) * 100,
+      ),
   );
 
 /** A ratio as the integer fraction a media query wants. */

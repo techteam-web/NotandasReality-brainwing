@@ -28,7 +28,10 @@ const STAGE_TYPE = {
   asideGap: "mt-[0.9cqw]",
   asideNumRow: "min-h-[4.4cqw]",
   asideNum: "text-[4cqw] leading-none",
-  amenityLabel: "text-[0.75cqw] leading-[1.2] tracking-[0.42em]",
+  /* The one size here that is not cqw. This caption is the same word on every
+     building, so it holds the same 11px the unstaged ones set below rather
+     than growing with the photo and reading larger than all of them. */
+  amenityLabel: "text-[11px] leading-[1.2] tracking-[0.42em]",
   amenityRule: "mt-[0.6cqw] h-px w-[2.6cqw]",
   amenityList: "mt-[0.7cqw] leading-[1.35]",
 };
