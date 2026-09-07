@@ -568,7 +568,6 @@ const STAGE_TYPE = {
   amenityLabelTracking: 0.42,
   amenityRuleGap: 0.6,
   amenityListGap: 0.7,
-  amenityRowGap: 0.25,
   amenityLead: 1.35,
   subLead: 1.2,
 };
@@ -707,7 +706,8 @@ const blockBoxes = (view, building, amenities, logo, ctx) => {
     }
 
     const labelH = T.amenityLead * T.amenityLabelSize;
-    const listH = rows * T.amenityLead * size + (rows - 1) * T.amenityRowGap;
+    // the rows sit in normal flow now, so leading alone spaces them
+    const listH = rows * T.amenityLead * size;
     const height = labelH + T.amenityRuleGap + T.amenityListGap + listH;
 
     boxes.amenity = {

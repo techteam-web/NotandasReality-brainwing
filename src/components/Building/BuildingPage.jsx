@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { Fragment, useState, useRef } from "react";
 import { Link, useParams } from "react-router";
 import { BUILDINGS } from "../Buildings/buildingsData";
 import { BUILDING_VIEWS } from "./buildingViewsData";
@@ -30,7 +30,7 @@ const STAGE_TYPE = {
   asideNum: "text-[4cqw] leading-none",
   amenityLabel: "text-[0.75cqw] leading-[1.2] tracking-[0.42em]",
   amenityRule: "mt-[0.6cqw] h-px w-[2.6cqw]",
-  amenityList: "mt-[0.7cqw] gap-y-[0.25cqw] leading-[1.35]",
+  amenityList: "mt-[0.7cqw] leading-[1.35]",
 };
 
 /**
@@ -56,7 +56,9 @@ const BuildingPage = () => {
   const view = BUILDING_VIEWS[id];
   const projectLogo = BUILDING_LOGOS[id] ?? null;
   const logoIsTight = TIGHT_CROPPED_LOGOS.has(id);
-  const rawAmenityEntries = Object.values(BUILDING_AMINITIES[id] || {}).filter(Boolean);
+  const rawAmenityEntries = Object.values(BUILDING_AMINITIES[id] || {}).filter(
+    Boolean,
+  );
   const amenityLines = rawAmenityEntries.map((line) => {
     const hasTrailingPipe = line.trim().endsWith("|");
     const items = line
@@ -374,35 +376,36 @@ const BuildingPage = () => {
               className={
                 staged
                   ? `flex flex-col items-center justify-center text-black ${STAGE_TYPE.amenityList} ${view.amenityListClass}`
-                  : `mt-2.5 flex flex-col items-center justify-center gap-y-1 text-center leading-snug text-black sm:gap-y-1.5 ${
+                  : `mt-2.5 flex flex-col items-center justify-center text-center leading-snug text-black ${
                       view.amenityListClass || "max-w-2xl"
                     }`
               }
             >
               {amenityLines.map(({ items, hasTrailingPipe }, lineIdx) => (
-                <div
-                  key={lineIdx}
-                  className="amenity-line flex flex-wrap items-center justify-center text-center"
-                >
+                <div key={lineIdx} className="amenity-line text-center">
                   {items.map((amenity, itemIdx) => {
                     const isLast = itemIdx === items.length - 1;
                     const hidePipe = isLast && !hasTrailingPipe;
                     return (
-                      <span
-                        key={itemIdx}
-                        className={`inline-flex items-center mix-blend-multiply whitespace-nowrap after:text-black/40 after:content-['|'] ${
-                          hidePipe ? "after:hidden" : ""
-                        } ${
-                          staged
-                            ? view.amenityItemClass
-                            : `after:mx-2 md:after:mx-2.5 ${
-                                view.amenityItemClass ||
-                                "lg:text-[14.5px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
-                              }`
-                        }`}
-                      >
-                        {amenity}
-                      </span>
+                      <Fragment key={itemIdx}>
+                        <span
+                          className={`whitespace-nowrap mix-blend-multiply after:text-black/40 after:content-['|'] ${
+                            hidePipe ? "after:hidden" : ""
+                          } ${
+                            staged
+                              ? view.amenityItemClass
+                              : `after:mx-2 md:after:mx-2.5 ${
+                                  view.amenityItemClass ||
+                                  "lg:text-[14.5px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
+                                }`
+                          }`}
+                        >
+                          {amenity}
+                        </span>
+                        {/* the items never break internally, so this zero-width
+                          opportunity is where a long line is allowed to wrap */}
+                        {!isLast && <wbr />}
+                      </Fragment>
                     );
                   })}
                 </div>
