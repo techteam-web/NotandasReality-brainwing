@@ -160,7 +160,7 @@ export const BUILDING_VIEWS = {
       "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%]",
     headerSubClass: "font-bold lg:-mt-20 xl:-mt-4 3xl:-mt-3 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100",
+       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90 3xl:w-80",
     nMarkFill: "black",
     amenityClass:
       "mac-14:top-[35%] mac-14:-left-[3%] mac:left-[3%] mac:top-[35%] mac-15:left-[2%] mp:top-[35%] mp:-left-[3%] laptop-sm:top-[30%] laptop-sm:-left-[7%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:-left-[10%] lg:h-35 2xl:-left-[1%] 2xl:top-[42%] 3xl:top-[35%] 3xl:left-26 4xl:top-150 4xl:left-70 xl:-left-[5%] xl:top-[40%] 5xl:top-[35%] 5xl:left-[13%]  imac-24:left-[7%]",
