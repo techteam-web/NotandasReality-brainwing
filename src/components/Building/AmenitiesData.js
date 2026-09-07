@@ -24,10 +24,10 @@ export const BUILDING_AMINITIES = {
   },
 
   "notan-edge": {
-    1: "DOUBLE-HEIGHT ENTRANCE LOBBY | STATE-OF-THE-ART PARKING & CAR LIFT ACCESS |",
-    2: "FLEXIBLE WORKSPACES | PREMIUM SECURITY & MANAGEMENT | ENERGY EFFICIENCY |",
-    3: "HIGH-SPEED ELEVATORS | DOUBLE-GLAZED FAÇADE SYSTEM | CURATED F&B SPACES |",
-    4: "LARGE COLUMNLESS FLOOR PLATE",
+    1: "Double-Height Entrance Lobby | State-of-the-Art Parking & Car Lift Access |",
+    2: "Flexible Workspaces | Premium Security & Management | Energy Efficiency |",
+    3: "High-Speed Elevators | Double-Glazed Façade System | Curated F&B Spaces |",
+    4: "Large Columnless Floor Plate",
   },
 
   "notan-views": {
