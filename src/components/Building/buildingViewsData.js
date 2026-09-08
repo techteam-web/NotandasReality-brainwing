@@ -155,15 +155,15 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 10000 5886",
     floors: NOTAN_LANDS_END_FLOORS,
     headerClass:
-      "top-36 mp:left-[9.3%]  2xl:left-[13%] xl:left-[11.6%] xl:top-30 lg:left-42 lg:top-5 3xl:left-[16%] 3xl:top-34 4xl:top-43 4xl:left-[17%] mac-14:left-[9%] 5xl:left-[16%] 5xl:top-[13%]",
+      "top-36 mp:left-[9.3%] laptop-lg:left-[10%] 2xl:left-[13%] xl:left-[11.6%] xl:top-30 lg:left-35 lg:top-5 3xl:left-[16%] 3xl:top-34 4xl:top-43 4xl:left-[17%] mac-14:left-[9%] 5xl:left-[16%] 5xl:top-[13%]",
     asideClass:
       "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%]",
-    headerSubClass:"font-bold lg:-mt-20 xl:-mt-4 3xl:-mt-1 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mac:-mt-6",
+    headerSubClass:"font-bold lg:-mt-15 xl:-mt-4 3xl:-mt-1 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mac:-mt-6",
     headerLogoClass:
        "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90 3xl:w-80",
     nMarkFill: "black",
     amenityClass:
-      "mac-14:top-[35%] mac-14:-left-[3%] mac:left-[3%] mac:top-[35%] mac-15:left-[2%] mp:top-[35%] mp:-left-[3%] laptop-sm:top-[30%] laptop-sm:-left-[7%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:-left-[10%] lg:h-35 2xl:-left-[1%] 2xl:top-[42%] 3xl:top-[38%] 3xl:left-26 4xl:top-150 4xl:left-70 xl:-left-[5%] xl:top-[40%] 5xl:top-[35%] 5xl:left-[13%]  imac-24:left-[7%]",
+      " mac-14:top-[35%] mac-14:-left-[3%] mac:left-[3%] mac:top-[35%] mac-15:left-[2%] mp:top-[35%] mp:-left-[3%] laptop-sm:top-[30%] laptop-sm:-left-[7%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:-left-[10%] lg:h-35 2xl:-left-[1%] 2xl:top-[42%] 3xl:top-[38%] 3xl:left-26 4xl:top-150 4xl:left-70 xl:-left-[5%] xl:top-[40%] 5xl:top-[35%] 5xl:left-[13%]  imac-24:left-[7%]",
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[52rem] 4xl:w-[54rem]",
     amenityItemClass: "lg:text-[10px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
