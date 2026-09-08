@@ -52,7 +52,7 @@ export const BUILDING_VIEWS = {
       "left-80 top-26 2xl:left-95 2xl:top-65 xl:left-73 xl:top-54 lg:left-53 lg:top-36 3xl:left-120 3xl:top-[35%] 4xl:left-[27%] 4xl:top-[37%] ",
 
     headerClass:
-      "laptop-sm:top-[10%] laptop-sm:right-[8%] lg:top-[10%] lg:right-[12%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[10%] 4xl:right-[9%] 4xl:top-[15%] 5xl:right-[16.6%] 5xl:top-[15%] ultrawide:right-[12%] mac:right-[6%] mac-15:right-[8.3%] mp:right-[7%] ",
+      "laptop-sm:top-[10%] laptop-sm:right-[8%] lg:top-[10%] lg:right-[10%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[10%] 4xl:right-[9%] 4xl:top-[15%] 5xl:right-[16.6%] 5xl:top-[15%] ultrawide:right-[12%] mac:right-[6%] mac-15:right-[8.3%] mp:right-[7%] ",
   },
   "notan-edge": {
     viewImg: notanEdgeView,
