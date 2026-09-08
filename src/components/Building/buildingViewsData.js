@@ -66,7 +66,7 @@ export const BUILDING_VIEWS = {
     nMarkFill: "black",
     amenityClass:
       "laptop-sm:top-[35%] laptop-sm:-left-[6%]  laptop-lg:left-[1%]  w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-52 lg:-left-29 2xl:top-[40%] 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 5xl:top-[35%] 5xl:left-[18%]  xl:-left-14 xl:top-68 imac-24:left-[11%] mp:-left-[3%] mp:top-[42%]  mac-14:-left-[0%]  mac-14:top-[45%]",
-    headerSubClass: "font-bold lg:-mt-17 xl:-mt-1 2xl:mt-2 4xl:-mt-7 5xl:mt-10 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+    headerSubClass: "font-bold lg:-mt-17 xl:-mt-1 2xl:mt-2 3xl:mt-3 4xl:-mt-7 5xl:mt-10 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
     amenityItemClass: "lg:text-[9px] xl:text-[11px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px] ", 
@@ -104,7 +104,7 @@ export const BUILDING_VIEWS = {
     stage: true,
     headerClass: "left-[74%] top-[24%]",
     headerLogoClass: "w-[17cqw] mt-[-6.82cqw] mb-[-6.62cqw]",
-    headerSubClass: "font-bold mt-[2cqw] tracking-[0.45em] mp:mt-[1.2cqw] lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+    headerSubClass: "font-bold mt-[2cqw] tracking-[0.45em] mp:mt-[1.2cqw] lg:text-[8px] 3xl:text-[12px] 3xl:mt-9 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     asideClass: "left-[26%] top-[30%] w-[11cqw]",
     nMarkFill: "black",
     amenityClass: "left-[74.6%] top-[49%]",
@@ -120,7 +120,7 @@ export const BUILDING_VIEWS = {
       "laptop-sm:left-[11.1%] laptop-sm:top-[13%] mac-14:left-[9.2%] mac:left-[10.5%] mac-15:left-[12%]  md:top-127 mp:top-35 mp:left-[9%] 2xl:left-[17%] 2xl:top-[16%] xl:left-40 xl:top-20 lg:left-31 lg:top-8  3xl:left-85 3xl:top-45 4xl:left-115 4xl:top-60 5xl:left-[17%] 5xl:top-[20%]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90 3xl:w-80",
-    headerSubClass: "font-bold lg:-mt-12 xl:mt-1 2xl:-mt-4 3xl:mt-1 4xl:-mt-12 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+    headerSubClass: "font-bold lg:-mt-12 xl:mt-1 2xl:-mt-4 3xl:mt-3 4xl:-mt-12 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     nMarkFill: "black",
     amenityClass:
       "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[33%] mac:top-[35%] mac:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[34%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-15 2xl:top-[40%] 3xl:left-[9%] 3xl:top-[40%] 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-57 5xl:left-[15%] 5xl:top-[38%]",
@@ -137,7 +137,7 @@ export const BUILDING_VIEWS = {
     floors: NOTAN_CROWN_FLOORS,
     headerClass:
       "left-80 top-36 md:top-127 2xl:left-27 2xl:top-45 xl:left-14 xl:top-36 lg:left-12 lg:top-35 3xl:left-44 3xl:top-57 4xl:left-70 4xl:top-90",
-    headerSubClass: "font-bold lg:-mt-1 xl:mt-1 3xl:mt-2 4xl:mt-4 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+    headerSubClass: "font-bold lg:-mt-1 xl:mt-1 3xl:mt-3 4xl:mt-4 lg:text-[8px] 3xl:text-[12px]  4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     headerLogoClass:
       "w-34  lg:w-36 lg:h-[4.2rem] xl:w-44 xl:h-[5.25rem] 2xl:w-56 2xl:h-[6.25rem] 3xl:h-28 3xl:w-59 4xl:w-76 4xl:h-[9rem]",
     asideClass:
@@ -158,7 +158,7 @@ export const BUILDING_VIEWS = {
       "top-36 mp:left-[9.3%] laptop-lg:left-[10%] 2xl:left-[13%] xl:left-[11.6%] xl:top-30 lg:left-35 lg:top-5 3xl:left-[16%] 3xl:top-34 4xl:top-43 4xl:left-[17%] mac-14:left-[9%] 5xl:left-[16%] 5xl:top-[13%]",
     asideClass:
       "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%]",
-    headerSubClass:"font-bold lg:-mt-15 xl:-mt-4 3xl:-mt-1 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mac:-mt-6",
+    headerSubClass:"font-bold lg:-mt-15 xl:-mt-4 3xl:mt-2 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mac:-mt-6",
     headerLogoClass:
        "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90 3xl:w-80",
     nMarkFill: "black",
@@ -177,7 +177,7 @@ export const BUILDING_VIEWS = {
       "left-80 top-36 md:top-127 2xl:left-94 2xl:top-67 xl:left-87 xl:top-64 lg:left-63 lg:top-28 3xl:left-135 3xl:top-90 4xl:left-188 4xl:top-130",
     headerClass:
       "mac-14:right-[11%] mac-14:top-[] laptop-sm:top-[13%] right-[15%] top-[30%] mp:top-[18%] mp:right-[13%] mac:top-[15%] mac:right-[12%] xl:top-[11%] xl:right-50 2xl:right-[16%] 2xl:top-[15%] lg:top-[0%] lg:right-[15.5%] 3xl:top-[14%] 3xl:right-[12%] 4xl:top-[15%] 4xl:right-[17%]",
-    headerSubClass: "font-bold lg:-mt-18 xl:mt-4 2xl:mt-1 3xl:mt-2 4xl:mt-4 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+    headerSubClass: "font-bold lg:-mt-18 xl:mt-4 2xl:mt-1 3xl:mt-4 4xl:mt-4 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58 2xl:w-76 4xl:w-130",
     nMarkFill: "black",
@@ -201,7 +201,7 @@ export const BUILDING_VIEWS = {
       "laptop:top-[13%] laptop:right-[15%] laptop-sm:top-[13%] laptop-sm:right-[15%] imac-24:top-[20%] imac-24:right-[17%] mp:top-[15%] mp:right-[11%] laptop-sm:right-[9%] mac:top-[15%] mac:right-[14%] mac-14:top-[18%] mac-14:right-[15%] mac-15:top-[13%]  top-[10%] lg:right-[11%] lg:top-[2%] xl:right-[11%] xl:top-[10%] 2xl:right-[12%] 2xl:top-[11%] 3xl:right-[15%] 3xl:top-[14%] 4xl:right-[13%] 4xl:top-[13%] 5xl:right-[14%] 5xl:top-[12%]",
     headerLogoClass:
       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-22 xl:w-28 2xl:w-35 3xl:w-55  4xl:w-55 mp:w-35 mac:w-45 ",
-    headerSubClass: "font-bold lg:-mt-22 xl:-mt-7 2xl:-mt-15 3xl:-mt-2 4xl:-mt-24 mp:-mt-3 mac:-mt-10 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+    headerSubClass: "font-bold lg:-mt-22 xl:-mt-7 2xl:-mt-15 3xl:-mt-1 4xl:-mt-24 mp:-mt-3 mac:-mt-10 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     asideClass:
       "left-[9%] top-[15%] lg:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
     nMarkFill: "black",
@@ -225,7 +225,7 @@ export const BUILDING_VIEWS = {
       " laptop:left-[11%] imac-24:left-[12%] top-36 mp:top-[12%] mp:left-[12.5%] 2xl:-left-[54%] xl:left-[12.3%] xl:top-14 lg:left-38 lg:-top-2 2xl:left-[9%] 2xl:top-[12%] 3xl:left-[14%] 3xl:top-[6%] 4xl:left-[13.3%] 4xl:top-25 laptop-sm:top-[6%] 5xl:left-[14.6%] 5xl:top-[10%]",
     asideClass:
       "right-[15%] top-[30%] xl:top-[18%] xl:right-44 2xl:right-[15%] 2xl:top-[20%] lg:top-[13%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[18%] 4xl:top-[20%] 4xl:right-[19%]",
-    headerSubClass: "font-bold lg:-mt-12 xl:mt-1 3xl:-mt-5 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mp:mt-1 laptop-sm:-mt-11",
+    headerSubClass: "font-bold lg:-mt-12 xl:mt-1 3xl:-mt-3 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mp:mt-1 laptop-sm:-mt-11",
      headerLogoClass:
       "my-[-30%] lg:w-20 w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66  4xl:w-90 3xl:w-60",
     nMarkFill: "black",
