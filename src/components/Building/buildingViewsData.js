@@ -206,7 +206,7 @@ export const BUILDING_VIEWS = {
       "left-[9%] top-[15%] lg:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[37%] laptop-sm:-right-[14%] laptop:-right-[9%] imac-24:top-[42%] imac-24:right-[4%] laptop-sm:top-[35%] mac:-right-[3%] mac-14:-right-[6%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-40 lg:bottom-36 lg:-right-54  2xl:-right-32 2xl:top-[40%] 3xl:top-120 3xl:-right-3 4xl:top-150 4xl:right-13 xl:-right-[14%] xl:top-[38%] 5xl:right-[6%] 5xl:top-[35%]",
+      "laptop-sm:top-[37%] laptop-sm:-right-[14%] laptop:-right-[9%] imac-24:top-[42%] imac-24:right-[4%] laptop-sm:top-[35%] mac:-right-[3%] mac-14:-right-[6%] w-[calc(100%-2.5rem)]  max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-40 lg:bottom-36 lg:-right-54  2xl:-right-32 2xl:top-[40%] 3xl:top-120 3xl:-right-3 4xl:top-150 4xl:right-13 xl:-right-[14%] xl:top-[38%] 5xl:right-[6%] 5xl:top-[35%]",
     amenityListClass:
       "max-w-lg lg:w-[20rem] xl:w-[25rem] 2xl:w-[28rem] 3xl:w-[54rem] 4xl:w-[54rem]",
     amenityItemClass: "lg:text-[9px] lg:-leading-[2rem] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
