@@ -60,12 +60,12 @@ export const BUILDING_VIEWS = {
     viewBox: "-9554435 -6002850 4615 2597",
     floors: NOTAN_EDGE_FLOORS,
     headerClass:
-      "left-80 top-36 mp:left-[14%] md:top-127 2xl:left-74 2xl:top-40 xl:left-55  xl:top-25 lg:left-35 lg:top-4  3xl:left-[20%] 3xl:top-58 4xl:left-137 5xl:left-[20.3%] laptop-sm:left-[14%] mac-14:left-[13%] mac-15:left-[16%] mac:left-[14%]  ",
+      "left-80 top-36 mp:left-[10%] mp:top-[15%] laptop-lg:left-[14%] md:top-127 2xl:left-74 2xl:top-40 xl:left-40  xl:top-25 lg:left-35 lg:top-4  3xl:left-[20%] 3xl:top-58 4xl:left-137 5xl:left-[20.3%] laptop-sm:left-[14%] mac-14:left-[12.3%] mac-15:left-[16%] mac:left-[14%]  mac-14:top-[20%] ",
     headerLogoClass:
       "my-[-30%]  w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100 5xl:w-145 ",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[35%] laptop-sm:-left-[6%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-52 lg:-left-29 2xl:top-[40%] 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 5xl:top-[35%] 5xl:left-[18%]  xl:left-1 xl:top-68 imac-24:left-[11%] mp:left-[1%] ",
+      "laptop-sm:top-[35%] laptop-sm:-left-[6%]  laptop-lg:left-[1%]  w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-52 lg:-left-29 2xl:top-[40%] 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 5xl:top-[35%] 5xl:left-[18%]  xl:-left-14 xl:top-68 imac-24:left-[11%] mp:-left-[3%] mp:top-[42%]  mac-14:-left-[0%]  mac-14:top-[45%]",
     headerSubClass: "font-bold lg:-mt-17 xl:-mt-1 2xl:mt-2 4xl:-mt-7 5xl:mt-10 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
@@ -123,10 +123,10 @@ export const BUILDING_VIEWS = {
     headerSubClass: "font-bold lg:-mt-12 xl:mt-1 2xl:-mt-4 3xl:mt-1 4xl:-mt-12 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[33%] mac:top-[35%] mac:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[34%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-15 2xl:top-[40%] 3xl:left-[9%] 3xl:top-[40%] 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-63 5xl:left-[15%] 5xl:top-[38%]",
+      "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[33%] mac:top-[35%] mac:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[34%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-15 2xl:top-[40%] 3xl:left-[9%] 3xl:top-[40%] 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-57 5xl:left-[15%] 5xl:top-[38%]",
     amenityListClass:
       "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
-    amenityItemClass: "lg:text-[10px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+    amenityItemClass: "lg:text-[10px] xl:text-[14px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
     asideClass:
       " top-[30%] xl:top-[20%] 2xl:right-[17%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
   },
