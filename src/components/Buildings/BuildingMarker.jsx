@@ -27,7 +27,7 @@ const BuildingMarker = ({ building }) => {
       style={{ top, left, transform: "translate(-50%, -50%)" }}
     >
       {/* gsap pops this in on load and floats it gently (see BuildingsLayer) */}
-      <div className="bldg-pop relative h-5 w-5">
+      <div className="bldg-pop relative h-5 w-5 portrait:h-11! portrait:w-11!">
         {/* ── the pointer: a small blue-gray beacon ── */}
         <Link
           to={href}
@@ -47,7 +47,7 @@ const BuildingMarker = ({ building }) => {
 
         {/* building name inked beneath the pointer, like a place label on an old map */}
         <p
-          className={`pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 font-serif text-xs leading-none tracking-wide whitespace-nowrap text-[#4E5157] italic transition-opacity duration-300 select-none [text-shadow:0_1px_0_rgba(245,247,251,0.9),0_0_6px_rgba(245,247,251,0.8)] ${popsUp ? "" : "group-hover:opacity-0"}`}
+          className={`pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 font-serif text-xs leading-none tracking-wide whitespace-nowrap portrait:mt-5! portrait:text-[30px]! text-[#4E5157] italic transition-opacity duration-300 select-none [text-shadow:0_1px_0_rgba(245,247,251,0.9),0_0_6px_rgba(245,247,251,0.8)] ${popsUp ? "" : "group-hover:opacity-0"}`}
         >
           {name}
         </p>

@@ -88,7 +88,14 @@ const FloorPlanOverlay = ({
   }, [buildingId, floor]);
 
   // Size the plan box to the largest rectangle that matches the SVG viewBox's
-  // aspect ratio while fitting inside 80vw × 80vh. The width must be derived
+  // aspect ratio while fitting inside 80% × 80% of the screen — `--dvw`/`--dvh`
+  // are 1% of it (see components/DesignStage.jsx). Plain `vw`/`vh` would be
+  // wrong here: the overlay is portalled into a layer that is SCALED, so a
+  // viewport unit is measured against the real window and then multiplied by
+  // that scale — a third too big on a 2560-wide screen. The 80 matters as much
+  // as the units: the 20% it leaves over is the margin the zoom control stands
+  // in, and sizing the sheet to the full room instead put the two on top of
+  // each other. The width must be derived
   // with min() — height:80vh + max-width:80vw distorts the box's ratio when
   // the clamp kicks in (aspect-ratio only resolves the *auto* axis, so the
   // explicit 80vh height never shrinks back), which made the photo letterbox
@@ -540,7 +547,10 @@ const FloorPlanOverlay = ({
         {/* stage */}
         <div
         ref={stageRef}
-          className="relative flex flex-1 items-center justify-center  overflow-hidden px-4 pb-14"
+          /* pb clears the zoom control, which stands `bottom-6` up from this box
+             and is 52px tall — 76px of furniture against 56px of padding was
+             what let the sheet run under it. */
+          className="relative flex flex-1 items-center justify-center overflow-hidden px-4 pb-20"
           onWheel={available ? onWheel : undefined}
         >
           {available ? (
@@ -556,10 +566,10 @@ const FloorPlanOverlay = ({
                 cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
                 ...(planAspect
                   ? {
-                      width: `min(80vw, ${80 * planAspect}vh)`,
+                      width: `min(calc(80 * var(--dvw)), calc(${80 * planAspect} * var(--dvh)))`,
                       aspectRatio: planAspect,
                     }
-                  : { height: "80vh", maxWidth: "80vw" }),
+                  : { height: "calc(80 * var(--dvh))", maxWidth: "calc(80 * var(--dvw))" }),
               }}
             >
               {planImg ? (

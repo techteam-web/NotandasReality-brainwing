@@ -6,11 +6,12 @@ import FloorPlanOverlay from "./FloorPlanOverlay";
 import PanoViewer from "./PanoViewer";
 import { getRegionPano } from "./panoData";
 import NotandasNMark from "../SvgAnimations/NotandasNMark";
-import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "./buildingLogos";
+import { BUILDING_LOGOS } from "./buildingLogos";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { BUILDING_AMINITIES } from "./AmenitiesData";
 import ImageStage from "./ImageStage";
+import { Chrome } from "../DesignStage";
 import { ratioFromViewBox } from "./floorGeometry";
 
 /**
@@ -23,6 +24,33 @@ import { ratioFromViewBox } from "./floorGeometry";
  * scripts/stage-constraints.mjs re-measures the blocks from these numbers —
  * change one here and change it there, then re-run the script.
  */
+/* How far the mark's ink sits above the "AMENITIES" caption, per breakpoint.
+   Taken from Notan Terraces at 1920 — the composition the project signed off —
+   and held proportional to the mark at every other width, so the spacing stops
+   jumping between breakpoints the way the hand-tuned ladders did (Terraces
+   itself ran 93px at 1280 and 244px at 1024 for the same relationship).
+   Shared by every project; what differs per project is only how much subtitle
+   sits inside that gap, which headerGapClass trims off. */
+/* How far the address sits under the mark's ink. Shared, and proportional to
+   the mark like the gap below it. Each project used to carry its own margin
+   here (-mt-15 on Beach House, -mt-12 on Terraces) purely to cancel the
+   transparent padding its artboard happened to have; the mark is trimmed to
+   its ink now, so those numbers cancel nothing and only pull the address into
+   the mark. Stripping them left every project's headerSubClass identical,
+   which is the tell that they were never design values. */
+const SUB_GAP =
+  "mt-[9px] sm:mt-[11px] md:mt-[19px] lg:mt-[12px]";
+
+const HEADER_GAP =
+  "mb-[115px] sm:mb-[133px] md:mb-[194px] lg:mb-[140px]";
+
+/* Notan Space is the one project already laid out on the stage, and its
+   amenities panel carries none of the padding the other nine put above their
+   caption — so the same margin would sit it 17px closer. Its own ladder makes
+   up the difference; it is not a different design, just a different box. */
+const HEADER_GAP_STAGED =
+  "mb-[132px] sm:mb-[150px] md:mb-[211px] lg:mb-[157px]";
+
 const STAGE_TYPE = {
   asideLabel: "text-[0.95cqw] leading-[1.2] tracking-[0.16em]",
   asideGap: "mt-[0.9cqw]",
@@ -58,7 +86,6 @@ const BuildingPage = () => {
   const building = BUILDINGS.find((b) => b.id === id);
   const view = BUILDING_VIEWS[id];
   const projectLogo = BUILDING_LOGOS[id] ?? null;
-  const logoIsTight = TIGHT_CROPPED_LOGOS.has(id);
   const rawAmenityEntries = Object.values(BUILDING_AMINITIES[id] || {}).filter(
     Boolean,
   );
@@ -182,7 +209,7 @@ const BuildingPage = () => {
   /* ----- building art not added yet ----- */
   if (!view) {
     return (
-      <div className="relative min-h-screen w-full overflow-hidden bg-[#f3ede0] text-[#3b5382]">
+      <div className="relative min-h-stage w-full overflow-hidden bg-[#f3ede0] text-[#3b5382]">
         <Link
           to="/"
           className="group absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-xl font-medium tracking-wide text-[#3b5382] transition-colors hover:text-[#b8860b] md:top-8 md:left-12"
@@ -193,7 +220,7 @@ const BuildingPage = () => {
           Back to map
         </Link>
 
-        <div className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
+        <div className="flex min-h-stage flex-col items-center justify-center px-6 text-center">
           <p className="text-[11px] tracking-[4px] text-[#4E5157]/70 uppercase">
             Views coming soon
           </p>
@@ -223,12 +250,7 @@ const BuildingPage = () => {
   const headerBlock = (
     <header
       ref={headerRef}
-      className={`pointer-events-none absolute z-20 flex flex-col items-center text-center ${
-        staged
-          ? `-translate-x-1/2 -translate-y-1/2 ${view.headerClass}`
-          : view.headerClass ||
-            "top-36 left-80 md:top-127 lg:top-70 lg:left-36 xl:top-90 xl:left-40 2xl:top-90 2xl:left-64 3xl:top-127 3xl:left-80 4xl:top-150 4xl:left-137"
-      }`}
+      className="pointer-events-none relative flex flex-col items-center text-center"
     >
       {projectLogo ? (
         <h1 className={staged ? "" : "mt-1"}>
@@ -241,36 +263,25 @@ const BuildingPage = () => {
             src={projectLogo}
             alt={building ? building.name : "Building"}
             draggable="false"
-            className={
-              staged
-                ? `block h-auto select-none ${view.headerLogoClass}`
-                : `h-auto max-w-[80vw] select-none lg:h-70 xl:h-50 2xl:h-75 4xl:h-120 ${
-                    view.headerLogoClass ||
-                    (logoIsTight
-                      ? "w-44 sm:w-52 md:w-72 lg:w-56 xl:w-48 2xl:w-56 4xl:w-96"
-                      : "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-76 xl:w-68 2xl:w-76 4xl:w-130")
-                  }`
-            }
+            className={`block h-auto max-w-[calc(80*var(--dvw))] select-none ${view.headerLogoClass} ${view.headerLogoTrim ?? ""} ${view.headerLogoNudge ?? ""}`}
           />
         </h1>
       ) : (
         <h1
-          className={`mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-4xl xl:text-[30px] 2xl:text-[35px] 4xl:text-[66px] ${
-            view.headerTitleClass || ""
-          }`}
+          className={`mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-[35px] ${ view.headerTitleClass || "" }`}
         >
           {building ? building.name : "Building"}
         </h1>
       )}
       {building && (
         <p
-          className={
-            staged
-              ? `text-[#1f2a40] uppercase ${view.headerSubClass}`
-              : `mt-2 p-2 text-[10px] tracking-[0.45em] text-[#1f2a40] uppercase md:text-sm xl:text-[10px] ${
-                  view.headerSubClass || ""
-                }`
-          }
+          /* Out of flow on purpose. The header's height is then the mark's
+             ink and nothing else, so the gap down to the amenities is exactly
+             the wrapper's margin — the same on every project — instead of
+             each project's own address line silently setting it. The address
+             keeps its own per-project size and offset and lands where it
+             always did, inside that gap. */
+          className={`absolute top-full left-1/2 w-max -translate-x-1/2 p-2 text-[10px] tracking-[0.45em] text-[#1f2a40] uppercase md:text-sm lg:text-[10px] portrait:static! portrait:mx-auto! portrait:translate-x-0! portrait:text-[10px]! ${SUB_GAP} ${ view.headerSubClass || "" }`}
         >
           {building.subtitle || `${building.area}, Mumbai`}
         </p>
@@ -294,7 +305,9 @@ const BuildingPage = () => {
       >
         <p
           className={`text-[#1f2a40] uppercase ${
-            staged ? STAGE_TYPE.asideLabel : "text-[20px] tracking-[3px]"
+            staged
+              ? STAGE_TYPE.asideLabel
+              : "text-[20px] tracking-[3px] portrait:text-[13px]! portrait:tracking-[2px]!"
           }`}
         >
           {activeFloor ? "Now viewing Floor:" : "Pick a floor"}
@@ -310,7 +323,9 @@ const BuildingPage = () => {
           {activeFloor ? (
             <span
               className={`font-serif text-[#4E5157] italic ${
-                staged ? STAGE_TYPE.asideNum : "text-6xl leading-none"
+                staged
+                  ? STAGE_TYPE.asideNum
+                  : "text-6xl leading-none portrait:text-[38px]!"
               }`}
             >
               {activeFloor.isTerrace
@@ -322,7 +337,9 @@ const BuildingPage = () => {
           ) : (
             <span
               className={`font-serif text-[#1f2a40]/25 italic ${
-                staged ? STAGE_TYPE.asideNum : "text-5xl leading-none"
+                staged
+                  ? STAGE_TYPE.asideNum
+                  : "text-5xl leading-none portrait:text-[32px]!"
               }`}
             >
               —
@@ -342,12 +359,35 @@ const BuildingPage = () => {
       className={
         staged
           ? `pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 ${view.amenityClass}`
-          : `pointer-events-none absolute z-20 ${
+          : /* Upright the per-project placement is dropped wholesale — it
+               places this block against a 1920×1080 picture that is not on
+               screen any more. `!` because those values arrive at `lg:`, and a
+               plain utility would lose to them on an iPad Pro's 1024px.
+
+               `h-auto` is in there for a specific reason: several projects
+               carry a fixed `lg:h-35` from the per-breakpoint days. Absolutely
+               positioned that is harmless — the text simply overflows the box
+               and still draws. In this column the block is a real flex item,
+               so a 140px height had its `my-auto` margins centre a box less
+               than a third of the content's height and pushed the last rows
+               clean off the bottom of the screen on Views and Lands End. */
+            `pointer-events-none absolute z-20 portrait:static! portrait:mx-auto! portrait:my-auto! portrait:h-auto! portrait:w-full! portrait:max-w-none! portrait:translate-x-0! portrait:translate-y-0! ${
               view.amenityClass ||
               "bottom-55 left-75 w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl"
             }`
       }
     >
+      {/* The mark sits a fixed distance ABOVE the amenities, anchored to them
+          rather than positioned on its own. The amenities are the fixed point
+          on every one of these pages, and their placement is hand-tuned per
+          project and per breakpoint; hanging the mark off `bottom-full` means
+          it inherits all of that for free and the gap stays put at every
+          width, without a single amenity class being touched. */}
+      <div
+        className={`absolute bottom-full left-1/2 w-max -translate-x-1/2 portrait:static! portrait:mx-auto! portrait:mb-[54px]! portrait:translate-x-0! ${staged ? HEADER_GAP_STAGED : HEADER_GAP}`}
+      >
+        {headerBlock}
+      </div>
       <div ref={amenityRef}>
         <section
           className={
@@ -388,23 +428,40 @@ const BuildingPage = () => {
                 <div key={lineIdx} className="amenity-line text-center">
                   {items.map((amenity, itemIdx) => {
                     const isLast = itemIdx === items.length - 1;
-                    const hidePipe = isLast && !hasTrailingPipe;
+                    /* A separator that lands at the end of a ROW is
+                       punctuation hanging off it, not content. Left in the
+                       flow it made that row ~23px wider on the right, so
+                       `text-center` set its words 11.7px left of every other
+                       row's — which is what made the mark above them read as
+                       off-centre, on every project.
+
+                       So the separator is its own element whose whole width is
+                       ONE REAL SPACE, widened with word-spacing, with the bar
+                       drawn over it out of flow. A space is the one thing a
+                       browser drops at the end of a row, so mid-row it is the
+                       gap between two items and at a row's end it is nothing
+                       at all — every row then centres on its words. Whether
+                       the last item carries one is the data's call: a line
+                       written ending in "|" means it. */
+                    const showSep = !isLast || hasTrailingPipe;
+                    const sizeClass = staged
+                      ? view.amenityItemClass
+                      : view.amenityItemClass || "lg:text-[18px]";
                     return (
                       <Fragment key={itemIdx}>
                         <span
-                          className={`whitespace-nowrap mix-blend-multiply after:text-black/40 after:content-['|'] ${
-                            hidePipe ? "after:hidden" : ""
-                          } ${
-                            staged
-                              ? view.amenityItemClass
-                              : `after:mx-2 md:after:mx-2.5 ${
-                                  view.amenityItemClass ||
-                                  "lg:text-[14.5px] xl:text-[15.5px] 2xl:text-[15.2px] 3xl:text-[18px] 4xl:text-[25px]"
-                                }`
-                          }`}
+                          className={`whitespace-nowrap mix-blend-multiply portrait:text-[17px]! portrait:leading-relaxed! ${sizeClass}`}
                         >
                           {amenity}
                         </span>
+                        {showSep && (
+                          <span
+                            aria-hidden="true"
+                            className={`amenity-sep portrait:text-[17px]! ${sizeClass}`}
+                          >
+                            {" "}
+                          </span>
+                        )}
                         {/* the items never break internally, so this zero-width
                           opportunity is where a long line is allowed to wrap */}
                         {!isLast && <wbr />}
@@ -508,7 +565,7 @@ const BuildingPage = () => {
            floors either way. Only staged buildings get this: the other nine
            still position their text against the viewport, and reshaping the
            photo under them would make that worse, not better. */
-        className={`relative h-screen w-full overflow-hidden bg-[#dfe7ee] text-[#1f2a40] ${
+        className={`relative h-stage w-full overflow-hidden bg-[#dfe7ee] text-[#1f2a40] portrait:flex portrait:flex-col ${
           staged
             ? "flow:aspect-[var(--photo-ar)] flow:h-auto flow:min-h-[55vh]"
             : ""
@@ -518,6 +575,23 @@ const BuildingPage = () => {
           "--photo-ar": String(ar),
         }}
       >
+        {/* The picture: the photo, the floor cut-outs laid over it, and the
+            floor readout that stands in its sky. One box, because those three
+            only make sense together — across, it fills the frame and the photo
+            covers; upright, it keeps the photo's own ratio at the top of the
+            column so the whole building shows and there is a sky to put the
+            readout in. `cover` and `slice` agree at either shape, so the
+            cut-outs stay on their floors.
+
+            Upright it may also SHRINK, which is what `min-h-0` and the absence
+            of `shrink-0` buy: flex only shrinks a row when the column would
+            otherwise overflow, so projects whose text fits are untouched, and
+            the one with the tallest mark and the longest list — Views, 308px of
+            mark over eight rows — gives back the difference from the photo
+            instead of pushing its last two rows off the bottom of the screen.
+            The photo's width is fixed at full, so shrinking crops a little off
+            its top and bottom rather than leaving gaps at its sides. */}
+        <div className="absolute inset-0 portrait:relative portrait:aspect-[var(--photo-ar)] portrait:h-auto portrait:w-full portrait:min-h-0">
         {/* full-bleed building photo */}
         <img
           src={view.viewImg}
@@ -567,31 +641,50 @@ const BuildingPage = () => {
             );
           })}
         </div>
+        {!staged && asideBlock}
+        </div>
 
-        {/* back to map */}
+        {/* back to map — pinned to the window's corner, not the photo's, so it
+            is never cropped away with the picture (see DesignStage) */}
+        <Chrome>
         <Link
           to="/"
-          className="group absolute top-6 left-6 inline-flex items-center gap-2 border border-[#212C42] bg-[#3a3d43] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#767889] hover:bg-[#4E5157] md:top-8 md:left-12"
+          className="group pointer-events-auto absolute top-6 left-6 z-50 inline-flex items-center gap-2 border border-[#212C42] bg-[#3a3d43] px-4 py-2 text-xs tracking-[0.2em] text-white uppercase shadow-[0_10px_24px_rgba(184,134,11,0.22)] transition-colors hover:border-[#767889] hover:bg-[#4E5157] md:top-8 md:left-12"
         >
           <span className="transition-transform duration-300 group-hover:-translate-x-1">
             ←
           </span>
           Back
         </Link>
+        </Chrome>
 
-        {/* Not staged yet: the header keeps its old place in the paint order,
-          just under the brand mark. */}
-        {!staged && headerBlock}
+        {/* No amenities to hang the mark on, so it stands on its own
+            placement — `headerClass`, in the same design pixels and the same
+            centre-anchoring the amenities use, and released into the column
+            upright exactly as the group would be. A project's mark therefore
+            keeps its spot whether its list is written yet or not: put the list
+            in and it appears underneath, and nothing above it moves. */}
+        {!hasAmenities && (
+          <div
+            className={`pointer-events-none absolute z-20 portrait:static! portrait:mx-auto! portrait:my-auto! portrait:translate-x-0! portrait:translate-y-0! ${
+              view.headerClass || "top-[18%] left-1/2 -translate-x-1/2"
+            }`}
+          >
+            {headerBlock}
+          </div>
+        )}
 
-        {/* brand mark, top-right */}
+        {/* brand mark, top-right — a corner of the SCREEN, so chrome */}
+        <Chrome>
         <NotandasNMark
           className={
             view.nMarkClass ||
-            "absolute top-4 right-5 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 xl:-top-7 xl:-right-2 xl:h-48 xl:w-28 2xl:-top-8 2xl:-right-5 2xl:h-56 2xl:w-32 3xl:-top-8 3xl:-right-3"
+            "absolute top-4 right-5 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 lg:h-56 lg:w-32 lg:-top-8 lg:-right-3"
           }
           fill={view.nMarkFill || "white"}
           aria-label={building ? building.name : "Notandas Realty"}
         />
+        </Chrome>
 
         {/* The hero text.
 
@@ -612,21 +705,18 @@ const BuildingPage = () => {
             style={{ containerType: "size" }}
           >
             <ImageStage ar={ar}>
-              {headerBlock}
               {asideBlock}
               {amenityBlock}
             </ImageStage>
           </div>
         ) : (
-          <>
-            {asideBlock}
-            {amenityBlock}
-          </>
+          amenityBlock
         )}
 
-        {/* floor-plan overlay — opens when a floor is clicked */}
+        {/* floor-plan overlay — opens when a floor is clicked. Chrome: it
+            covers the WINDOW, and its controls sit on the window's edges. */}
         {selectedFloor && (
-          <FloorPlanOverlay
+          <Chrome><FloorPlanOverlay
             buildingId={id}
             buildingName={building ? building.name : "Building"}
             floor={selectedFloor}
@@ -636,12 +726,12 @@ const BuildingPage = () => {
               setPano({ floorNum: selected, regionName })
             }
             onClose={() => setSelected(null)}
-          />
+          /></Chrome>
         )}
 
         {/* 360° pano overlay — stacks on top of the plan when a room is clicked */}
         {panoFloor && (
-          <PanoViewer
+          <Chrome><PanoViewer
             key={`${pano.floorNum}-${pano.regionName ?? "floor"}`}
             buildingId={id}
             buildingName={building ? building.name : "Building"}
@@ -661,14 +751,14 @@ const BuildingPage = () => {
               setPano({ floorNum: panoFloor.num, regionName });
             }}
             onClose={() => setPano(null)}
-          />
+          /></Chrome>
         )}
 
         {/* {!selectedFloor && !panoFloor && (
         <img
           src="/Brainwing-logo.webp"
           alt="Brainwing logo"
-          className="pointer-events-none fixed top-18 left-3 z-50 w-9 opacity-70 sm:top-20 sm:left-4 sm:w-10 md:top-auto md:right-5 md:bottom-6 md:left-auto md:w-14 md:opacity-80 lg:right-6 lg:w-46 xl:right-7 xl:w-50"
+          className="pointer-events-none fixed top-18 left-3 z-50 w-9 opacity-70 sm:top-20 sm:left-4 sm:w-10 md:top-auto md:right-5 md:bottom-6 md:left-auto md:w-14 md:opacity-80 lg:right-7 lg:w-50"
         />
       )} */}
       </div>

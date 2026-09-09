@@ -153,7 +153,25 @@ const ChromeContext = createContext(null);
 export const Chrome = ({ children }) => {
   const node = useContext(ChromeContext);
   if (!node) return children;
-  return createPortal(children, node);
+  return createPortal(
+    /* The layer itself is transparent to the pointer, so hovering a floor
+       still reaches the picture underneath it. But `pointer-events` INHERITS:
+       without this, everything portalled in inherits `none` and paints
+       perfectly while receiving not one event. That is what killed the 360
+       viewer — Marzipano's stage came out `pointer-events: none`, so the
+       panorama drew and could not be dragged — while the floor plan survived
+       only because it happens to set `pointer-events-auto` on its own root.
+
+       So the wrapper hands every child back exactly what it had as an
+       ordinary child of the page: `auto`, on its own box alone, with the layer
+       around it still transparent. `display: contents` so it adds no box and
+       changes no layout. Verified against main with the pointer-events chain
+       of both overlays. */
+    <div style={{ display: "contents", pointerEvents: "auto" }}>
+      {children}
+    </div>,
+    node,
+  );
 };
 
 const DesignStage = ({ children }) => {

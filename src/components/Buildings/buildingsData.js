@@ -36,7 +36,7 @@ export const BUILDINGS = [
     img: notanCrown,
     top: "92%",
     left: "52.7%",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: "clamp(42px, calc(4.2 * var(--dvw)), 74px)",
     href: "/projects/notan-crown",
   },
   {
@@ -48,7 +48,7 @@ export const BUILDINGS = [
     img: notanJewel,
     top: "84%",
     left: "50.3%",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: "clamp(42px, calc(4.2 * var(--dvw)), 74px)",
     // tooltip: "bottom",
     href: "/projects/notan-jewel",
   },
@@ -62,7 +62,7 @@ export const BUILDINGS = [
     top: "29%",
     left: "56.2%",
     tooltip: "bottom",
-    width: "clamp(42px, 3.8vw, 74px)",
+    width: "clamp(42px, calc(3.8 * var(--dvw)), 74px)",
     href: "/projects/notan-edge",
   },
   {
@@ -74,7 +74,7 @@ export const BUILDINGS = [
     img: notanSpace,
     top: "61%",
     left: "64.3%",
-    width: "clamp(42px, 4.3vw, 74px)",
+    width: "clamp(42px, calc(4.3 * var(--dvw)), 74px)",
     href: "/projects/notan-space",
   },
   {
@@ -87,7 +87,7 @@ export const BUILDINGS = [
     top: "18%",
     left: "51.5%",
     tooltip: "bottom",
-    width: "clamp(42px, 3.2vw, 74px)",
+    width: "clamp(42px, calc(3.2 * var(--dvw)), 74px)",
     href: "/projects/notan-dc",
   },
   {
@@ -100,7 +100,7 @@ export const BUILDINGS = [
     top: "25.4%",
     left: "50.3%",
     tooltip: "bottom",
-    width: "clamp(42px, 3.2vw, 74px)",
+    width: "clamp(42px, calc(3.2 * var(--dvw)), 74px)",
     href: "/projects/notan-terrace",
   },
   {
@@ -112,7 +112,7 @@ export const BUILDINGS = [
     img: notanLandsEnd,
     top: "80%",
     left: "45.5%",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: "clamp(42px, calc(4.2 * var(--dvw)), 74px)",
     href: "/projects/notan-lands-end",
   },
   {
@@ -123,7 +123,7 @@ export const BUILDINGS = [
     img: notanViews,
     top: "75%",
     left: "45%",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: "clamp(42px, calc(4.2 * var(--dvw)), 74px)",
     href: "/projects/notan-views",
   },
   {
@@ -138,7 +138,7 @@ export const BUILDINGS = [
     top: "45%",
     left: "48%",
     tooltip: "bottom",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: "clamp(42px, calc(4.2 * var(--dvw)), 74px)",
     href: "/projects/notan-beach-house",
   },
   {
@@ -153,7 +153,7 @@ export const BUILDINGS = [
     top: "37%",
     left: "48%",
      tooltip: "bottom",
-    width: "clamp(42px, 4.2vw, 74px)",
+    width: "clamp(42px, calc(4.2 * var(--dvw)), 74px)",
     href: "/projects/notan-tides",
   },
 ];

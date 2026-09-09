@@ -37,22 +37,27 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-44 xl:h-auto 2xl:w-60 3xl:w-80 4xl:w-90 laptop-sm:w-47",
+      "w-[245.6px] sm:w-[276.3px] md:w-[383.8px] lg:w-[287.9px]",
+    headerLogoTrim: "mt-[-31.17%] mb-[-31.58%]",
 
-    headerSubClass: "font-bold lg:-mt-17 xl:mt-2 2xl:-mt-5 3xl:mt-3 4xl:-mt-7 laptop-sm:-mt-11 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] ",
+    headerSubClass: "font-bold lg:text-[12px]",
     nMarkFill: "black",
 
     amenityListClass:
-      "max-w-lg lg:w-[24rem] xl:w-[28rem] 2xl:w-[32rem] 3xl:w-[40rem] 4xl:w-[50rem] ",
-    amenityItemClass: "lg:text-[10px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+      "max-w-lg lg:w-[40rem]",
+    amenityItemClass: "lg:text-[17px]",
     amenityClass:
-      "laptop-sm:top-[34%] laptop-sm:right-[-12%] mac-14:-right-[5.6%] mac:-right-[4.1%] imac-24:right-[.3%] imac-24:top-[40%] ultrawide:right-[7.8%] 5xl:top-[40%] 5xl:right-[12%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl mp:top-[35%] mp:-right-[7%] lg:top-56 lg:-right-38 2xl:-right-17 2xl:top-[40%] 3xl:top-[42%] 3xl:right-[0.3%] 4xl:top-[40%] 4xl:right-[3.4%] xl:-right-28 xl:top-63 ",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl lg:top-[42%] lg:right-[0.3%]",
 
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-80 top-26 2xl:left-95 2xl:top-65 xl:left-73 xl:top-54 lg:left-53 lg:top-36 3xl:left-120 3xl:top-[35%] 4xl:left-[27%] 4xl:top-[37%] ",
+      "left-80 top-26 lg:left-[28.75%] lg:top-[35.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[28.75%]! portrait:top-[35.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
 
     headerClass:
-      "laptop-sm:top-[10%] laptop-sm:right-[8%] lg:top-[10%] lg:right-[10%] xl:top-[15%] xl:right-[8%] 2xl:right-[10%] 3xl:top-[17%] 3xl:right-[10%] 4xl:right-[9%] 4xl:top-[15%] 5xl:right-[16.6%] 5xl:top-[15%] ultrawide:right-[12%] mac:right-[6%] mac-15:right-[8.3%] mp:right-[7%] ",
+      "lg:top-[17%] lg:right-[10%]",
   },
   "notan-edge": {
     viewImg: notanEdgeView,
@@ -60,56 +65,83 @@ export const BUILDING_VIEWS = {
     viewBox: "-9554435 -6002850 4615 2597",
     floors: NOTAN_EDGE_FLOORS,
     headerClass:
-      "left-80 top-36 mp:left-[10%] mp:top-[15%] laptop-lg:left-[14%] md:top-127 2xl:left-74 2xl:top-40 xl:left-40  xl:top-25 lg:left-35 lg:top-4  3xl:left-[20%] 3xl:top-58 4xl:left-137 5xl:left-[20.3%] laptop-sm:left-[14%] mac-14:left-[12.3%] mac-15:left-[16%] mac:left-[14%]  mac-14:top-[20%] ",
+      "left-80 top-36 md:top-127 lg:left-[20%] lg:top-58",
     headerLogoClass:
-      "my-[-30%]  w-64 sm:w-72 md:w-100 lg:w-36 xl:w-48 2xl:w-76 4xl:w-100 5xl:w-145 ",
+      "w-[253.3px] sm:w-[285px] md:w-[395.8px] lg:w-[296.9px]",
+    headerLogoTrim: "mt-[-31.83%] mb-[-32%]",
+    /* the wordmark sits 0.67% left of its artboard's centre, so the mark's INK — not its box — is what lines up with
+       the amenities below it. Measured: node scripts/measure-page.mjs notan-edge */
+    headerLogoNudge: "translate-x-[0.67%]",
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs. Edge had no placement of
+       its own at all and was falling through to the component's default. */
+    asideClass:
+      "left-[65%] top-1/2 lg:left-[69.58%] lg:top-[40.37%] lg:right-auto lg:bottom-auto lg:translate-y-0 lg:-translate-x-1/2 portrait:left-[69.58%]! portrait:top-[40.37%]! portrait:right-auto! portrait:bottom-auto! portrait:translate-y-0! portrait:-translate-x-1/2!",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[35%] laptop-sm:-left-[6%]  laptop-lg:left-[1%]  w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-52 lg:-left-29 2xl:top-[40%] 2xl:left-17 3xl:top-130 3xl:left-45 4xl:left-100 4xl:top-150 5xl:top-[35%] 5xl:left-[18%]  xl:-left-14 xl:top-68 imac-24:left-[11%] mp:-left-[3%] mp:top-[42%]  mac-14:-left-[0%]  mac-14:top-[45%]",
-    headerSubClass: "font-bold lg:-mt-17 xl:-mt-1 2xl:mt-2 3xl:mt-3 4xl:-mt-7 5xl:mt-10 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-52 lg:top-130 lg:left-45",
+    headerSubClass: "font-bold lg:text-[12px]",
     amenityListClass:
-      "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
-    amenityItemClass: "lg:text-[9px] xl:text-[11px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px] ", 
+      "max-w-lg lg:w-[42rem]",
+    amenityItemClass: "lg:text-[17px]", 
   },
   "notan-jewel": {
     viewImg: notanJewelView,
     // matches the combined Building_Floor_SVG/Nothan_jewel/nothan_jewel-2.8x.svg
     viewBox: "0 0 4615 2597",
     floors: NOTAN_JEWEL_FLOORS,
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-80 top-36 md:top-127 2xl:left-99 2xl:top-60 xl:left-57 xl:top-46 lg:left-53 lg:top-32 3xl:left-115 3xl:top-85 4xl:left-178 4xl:top-120",
-    headerSubClass: "font-bold lg:-mt-18 xl:mt-2 2xl:mt-1 4xl:-mt-3 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+      "left-80 top-36 md:top-127 lg:left-[27.71%] lg:top-[31.48%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[27.71%]! portrait:top-[31.48%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+    headerSubClass: "font-bold lg:text-[12px]",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36  xl:w-58 2xl:w-76 4xl:w-110",
+      "w-[265.5px] sm:w-[298.7px] md:w-[414.9px] lg:w-[311.2px]",
+    headerLogoTrim: "mt-[-32.67%] mb-[-32.83%]",
     headerClass:
-      "imac-24:right-[16%] laptop-sm:right-[18%] ] mp:right-[17%] xl:top-[12%] xl:right-62 2xl:right-[17%] 2xl:top-[15%]  lg:top-[8%] lg:right-[21%] 3xl:top-[20%] 3xl:right-[14.7%] 4xl:top-[15%] 4xl:right-[17%] mac:right-[14%] mac:top-[19%] mac-14:right-[16.7%] mac-14:top-[18%] 5xl:right-[18%] 5xl:top-[15%] mp:top-[19%] ",
+      "] lg:top-[20%] lg:right-[14.7%]",
     nMarkFill: "black",
     amenityClass:
-      "imac-24:right-[5%] laptop-sm:top-[37%] w-[calc(100%-2.5rem)] mac:-right-[1%] mac:top-[45%]  max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-75 mp:-right-10 mp:top-[42%] lg:bottom-46 lg:-right-25 lg:h-35 2xl:right-6 2xl:top-[40%] 3xl:top-[47%] 3xl:right-[2%] 4xl:top-140 4xl:right-65  xl:-right-[3%] xl:top-[37%] 5xl:right-123 5xl:top-180",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-75 lg:bottom-46 lg:h-35 lg:top-[47%] lg:right-[2%]",
     amenityListClass:
-      "max-w-lg lg:w-[24rem] xl:w-[28rem] 2xl:w-[32rem] 3xl:w-[40rem] 4xl:w-[50rem]",
-    amenityItemClass: "lg:text-[10px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+      "max-w-lg lg:w-[40rem]",
+    amenityItemClass: "lg:text-[17px]",
   },
   "notan-space": {
     viewImg: notanSpaceView,
     // matches the combined Building_Floor_SVG/Nothan_space/Notan_space_.svg
     viewBox: "0 0 1672 941",
     floors: NOTAN_SPACE_FLOORS,
-    /* On the stage: every number below is a percentage of the PHOTO, not the
-       window, and cqw is one percent of the photo's width. The tower stands at
-       x 40.4% → 60.9%, full height, so the text lives in the sky either side of
-       it — and the narrowest crop in the test matrix (1280×1024) only shows
-       x 14.8% → 85.2%, which is what sets the widths.
-       Checked by: node scripts/stage-constraints.mjs notan-space --sweep */
-    stage: true,
+    /* The tower stands at x 40.4% → 60.9% of the photo, full height, so the
+       text lives in the sky either side of it. This was the one project laid
+       out on ImageStage — a second coordinate system, in container units,
+       measured against a box of its own. The picture layer is that same
+       1920×1080 now (see components/DesignStage.jsx), so the percentages carry
+       over untouched; what they needed was the centre anchoring the stage used
+       to apply for them, and widths in px, since container units have no
+       container once the stage is gone. */
     headerClass: "left-[74%] top-[24%]",
-    headerLogoClass: "w-[17cqw] mt-[-6.82cqw] mb-[-6.62cqw]",
-    headerSubClass: "font-bold mt-[2cqw] tracking-[0.45em] mp:mt-[1.2cqw] lg:text-[8px] 3xl:text-[12px] 3xl:mt-9 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
-    asideClass: "left-[26%] top-[30%] w-[11cqw]",
+    headerLogoClass: "w-[289.9px] sm:w-[326.2px] md:w-[453px] lg:w-[339.8px]",
+    headerLogoTrim: "mt-[-34.08%] mb-[-34.33%]",
+    headerSubClass: "font-bold tracking-[0.45em] lg:text-[12px]",
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
+    asideClass:
+      "left-[26%] top-[30%] w-[211.2px] -translate-x-1/2 -translate-y-1/2 lg:translate-y-0 portrait:translate-y-0! lg:left-[26.00%] lg:top-[21.76%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[26.00%]! portrait:top-[21.76%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
-    amenityClass: "left-[74.6%] top-[49%]",
-    amenityListClass: "w-[24cqw]",
-    amenityItemClass: "lg:text-[10px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+    amenityClass: "left-[74.6%] top-[49%] -translate-x-1/2 -translate-y-1/2",
+    amenityListClass: "w-[460.8px]",
+    amenityItemClass: "lg:text-[17px]",
   },
   "notan-terrace": {
     viewImg: notanTerraceView,
@@ -117,18 +149,23 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 4615 2597",
     floors: NOTAN_TERRACE_FLOORS,
     headerClass:
-      "laptop-sm:left-[11.1%] laptop-sm:top-[13%] mac-14:left-[9.2%] mac:left-[10.5%] mac-15:left-[12%]  md:top-127 mp:top-35 mp:left-[9%] 2xl:left-[17%] 2xl:top-[16%] xl:left-40 xl:top-20 lg:left-31 lg:top-8  3xl:left-85 3xl:top-45 4xl:left-115 4xl:top-60 5xl:left-[17%] 5xl:top-[20%]",
+      "md:top-127 lg:left-85 lg:top-45",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90 3xl:w-80",
-    headerSubClass: "font-bold lg:-mt-12 xl:mt-1 2xl:-mt-4 3xl:mt-3 4xl:-mt-12 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+      "w-[256px] sm:w-[288px] md:w-[400px] lg:w-[300px]",
+    headerLogoTrim: "mt-[-31.67%] mb-[-32%]",
+    headerSubClass: "font-bold lg:text-[12px]",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[40%] laptop-sm:-left-[7%] mac-14:-left-[1%] mac-14:top-[33%] mac:top-[35%] mac:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 mp:top-[34%] mp:-left-6 md:bottom-15 md:left-15 lg:bottom-55 lg:-left-25 2xl:left-15 2xl:top-[40%] 3xl:left-[9%] 3xl:top-[40%] 4xl:left-90 4xl:top-140 xl:-left-7 xl:top-57 5xl:left-[15%] 5xl:top-[38%]",
+      "lg:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-55 lg:left-[9%] lg:top-[40%]",
     amenityListClass:
-      "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[52rem]",
-    amenityItemClass: "lg:text-[10px] xl:text-[14px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+      "max-w-lg lg:w-[42rem]",
+    amenityItemClass: "lg:text-[17px]",
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
     asideClass:
-      " top-[30%] xl:top-[20%] 2xl:right-[17%] lg:top-[15%] lg:right-[16%] 3xl:top-[30%] 3xl:right-[20%] 4xl:top-[25%]",
+      "top-[30%] lg:left-[76.25%] lg:top-[30.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[76.25%]! portrait:top-[30.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
   },
   "notan-crown": {
     viewImg: notanCrownView,
@@ -136,17 +173,22 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 460.8 259.2",
     floors: NOTAN_CROWN_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 2xl:left-27 2xl:top-45 xl:left-14 xl:top-36 lg:left-12 lg:top-35 3xl:left-44 3xl:top-57 4xl:left-70 4xl:top-90",
-    headerSubClass: "font-bold lg:-mt-1 xl:mt-1 3xl:mt-3 4xl:mt-4 lg:text-[8px] 3xl:text-[12px]  4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+      "left-80 top-36 md:top-127 lg:top-[106px] lg:left-[386px] lg:-translate-x-1/2",
+    headerSubClass: "font-bold lg:text-[12px]",
     headerLogoClass:
-      "w-34  lg:w-36 lg:h-[4.2rem] xl:w-44 xl:h-[5.25rem] 2xl:w-56 2xl:h-[6.25rem] 3xl:h-28 3xl:w-59 4xl:w-76 4xl:h-[9rem]",
+      "w-[203.4px] sm:w-[228.9px] md:w-[317.9px] lg:w-[238.4px]",
+    headerLogoTrim: "mt-[-0%] mb-[-0%]",
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
     asideClass:
-      "right-[15%] top-[20%] 2xl:right-33 xl:top-[25%] xl:right-25 lg:top-[19%] lg:right-16 3xl:top-[24%] 3xl:right-[10%] 4xl:top-[35%]",
+      "right-[15%] top-[20%] lg:left-[86.25%] lg:top-[24.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[86.25%]! portrait:top-[24.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 2xl:left-55 3xl:left-39 4xl:left-120 xl:left-27",
-    amenityListClass: "max-w-lg lg:w-[24rem] xl:w-[28rem] 2xl:w-[32rem] 3xl:w-[40rem] 4xl:w-[50rem]",
-    amenityItemClass: "lg:text-[10px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:top-[357px] lg:bottom-auto lg:left-[386px] lg:-translate-x-1/2",
+    amenityListClass: "max-w-lg lg:w-[40rem]",
+    amenityItemClass: "lg:text-[17px]",
   },
 
   "notan-lands-end": {
@@ -155,37 +197,50 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 10000 5886",
     floors: NOTAN_LANDS_END_FLOORS,
     headerClass:
-      "top-36 mp:left-[9.3%] laptop-lg:left-[10%] 2xl:left-[13%] xl:left-[11.6%] xl:top-30 lg:left-35 lg:top-5 3xl:left-[16%] 3xl:top-34 4xl:top-43 4xl:left-[17%] mac-14:left-[9%] 5xl:left-[16%] 5xl:top-[13%]",
+      "top-36 lg:left-[16%] lg:top-34",
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
     asideClass:
-      "right-[15%] top-[30%] xl:top-[25%] xl:right-60 2xl:right-[19%] lg:top-[23%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[22%]",
-    headerSubClass:"font-bold lg:-mt-15 xl:-mt-4 3xl:mt-2 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mac:-mt-6",
+      "right-[15%] top-[30%] lg:left-[74.25%] lg:top-[23.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[74.25%]! portrait:top-[23.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+    headerSubClass:"font-bold lg:text-[12px]",
     headerLogoClass:
-       "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66 4xl:w-90 3xl:w-80",
+       "w-[304.5px] sm:w-[342.6px] md:w-[475.8px] lg:w-[356.8px]",
+    headerLogoTrim: "mt-[-5.58%] mb-[-8.75%]",
+    /* 10.8% of padding on the left against 4% on the right, so the mark's INK — not its box — is what lines up with
+       the amenities below it. Measured: node scripts/measure-page.mjs notan-lands-end */
+    headerLogoNudge: "translate-x-[-3.42%]",
     nMarkFill: "black",
     amenityClass:
-      " mac-14:top-[35%] mac-14:-left-[3%] mac:left-[3%] mac:top-[35%] mac-15:left-[2%] mp:top-[35%] mp:-left-[3%] laptop-sm:top-[30%] laptop-sm:-left-[7%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:-left-[10%] lg:h-35 2xl:-left-[1%] 2xl:top-[42%] 3xl:top-[38%] 3xl:left-26 4xl:top-150 4xl:left-70 xl:-left-[5%] xl:top-[40%] 5xl:top-[35%] 5xl:left-[13%]  imac-24:left-[7%]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:h-35 lg:top-[38%] lg:left-26",
     amenityListClass:
-      "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[52rem] 4xl:w-[54rem]",
-    amenityItemClass: "lg:text-[10px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+      "max-w-lg lg:w-[52rem]",
+    amenityItemClass: "lg:text-[17px]",
   },
   "notan-views": {
     viewImg: notanViewsView,
     // matches the combined Building_Floor_SVG/Notan_Views/*.svg
     viewBox: "0 0 4615 2597",
     floors: NOTAN_VIEWS_FLOORS,
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-80 top-36 md:top-127 2xl:left-94 2xl:top-67 xl:left-87 xl:top-64 lg:left-63 lg:top-28 3xl:left-135 3xl:top-90 4xl:left-188 4xl:top-130",
+      "left-80 top-36 md:top-127 lg:left-[31.87%] lg:top-[33.33%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[31.87%]! portrait:top-[33.33%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     headerClass:
-      "mac-14:right-[11%] mac-14:top-[] laptop-sm:top-[13%] right-[15%] top-[30%] mp:top-[18%] mp:right-[13%] mac:top-[15%] mac:right-[12%] xl:top-[11%] xl:right-50 2xl:right-[16%] 2xl:top-[15%] lg:top-[0%] lg:right-[15.5%] 3xl:top-[14%] 3xl:right-[12%] 4xl:top-[15%] 4xl:right-[17%]",
-    headerSubClass: "font-bold lg:-mt-18 xl:mt-4 2xl:mt-1 3xl:mt-4 4xl:mt-4 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+      "right-[15%] top-[30%] lg:top-[14%] lg:right-[12%]",
+    headerSubClass: "font-bold lg:text-[12px]",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-36 xl:w-58 2xl:w-76 4xl:w-130",
+      "w-[262.9px] sm:w-[295.8px] md:w-[410.8px] lg:w-[308.1px]",
+    headerLogoTrim: "mt-[-35%] mb-[-30.17%]",
     nMarkFill: "black",
     amenityClass:
-      "imac-24:right-[1%] laptop-sm:top-[40%]  w-[calc(100%-2.5rem)] max-w-xl mac:-right-[2%] mac:top-[40%] sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-26 lg:bottom-66 lg:-right-35 lg:h-35 2xl:right-1 3xl:top-110 3xl:-right-[1%] 4xl:top-130 4xl:right-70 xl:-right-[7.7%] xl:top-[33%] 5xl:right-123 5xl:top-180",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-66 lg:h-35 lg:top-110 lg:-right-[1%]",
     amenityListClass:
-      "max-w-lg lg:w-[21rem] xl:w-[26rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[54rem]",
-    amenityItemClass: "lg:text-[9px] lg:leading-[.2rem] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px] 4xl:leading-[2rem]",
+      "max-w-lg lg:w-[42rem]",
+    amenityItemClass: "lg:text-[17px]",
   },
 
   "notan-beach-house": {
@@ -198,41 +253,56 @@ export const BUILDING_VIEWS = {
     // to its right, so the mark and the floor readout both live over the water.
     // Starting placement — dial in against the live page like the others.
     headerClass:
-      "laptop:top-[13%] laptop:right-[15%] laptop-sm:top-[13%] laptop-sm:right-[15%] imac-24:top-[20%] imac-24:right-[17%] mp:top-[15%] mp:right-[11%] laptop-sm:right-[9%] mac:top-[15%] mac:right-[14%] mac-14:top-[18%] mac-14:right-[15%] mac-15:top-[13%]  top-[10%] lg:right-[11%] lg:top-[2%] xl:right-[11%] xl:top-[10%] 2xl:right-[12%] 2xl:top-[11%] 3xl:right-[15%] 3xl:top-[14%] 4xl:right-[13%] 4xl:top-[13%] 5xl:right-[14%] 5xl:top-[12%]",
+      "top-[10%] lg:right-[15%] lg:top-[14%]",
     headerLogoClass:
-      "my-[-30%] w-64 sm:w-72 md:w-100 lg:w-22 xl:w-28 2xl:w-35 3xl:w-55  4xl:w-55 mp:w-35 mac:w-45 ",
-    headerSubClass: "font-bold lg:-mt-22 xl:-mt-7 2xl:-mt-15 3xl:-mt-1 4xl:-mt-24 mp:-mt-3 mac:-mt-10 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px]",
+      "w-[207.8px] sm:w-[233.8px] md:w-[324.7px] lg:w-[243.5px]",
+    headerLogoTrim: "mt-[-7.58%] mb-[-4.5%]",
+    /* the wordmark sits 0.83% left of its artboard's centre, so the mark's INK — not its box — is what lines up with
+       the amenities below it. Measured: node scripts/measure-page.mjs notan-beach-house */
+    headerLogoNudge: "translate-x-[0.83%]",
+    headerSubClass: "font-bold lg:text-[12px]",
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-[9%] top-[15%] lg:left-[13%] xl:top-[20%] 2xl:left-[15%] 2xl:top-[21%] 3xl:top-[25%] 4xl:left-[16%] 4xl:top-[24%]",
+      "left-[9%] top-[15%] lg:left-[18.75%] lg:top-[25.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[18.75%]! portrait:top-[25.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
     amenityClass:
-      "laptop-sm:top-[37%] laptop-sm:-right-[14%] laptop:-right-[9%] imac-24:top-[42%] imac-24:right-[4%] laptop-sm:top-[35%] mac:-right-[3%] mac-14:-right-[6%] w-[calc(100%-2.5rem)]  max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 mp:-right-40 lg:bottom-36 lg:-right-54  2xl:-right-32 2xl:top-[40%] 3xl:top-120 3xl:-right-3 4xl:top-150 4xl:right-13 xl:-right-[14%] xl:top-[38%] 5xl:right-[6%] 5xl:top-[35%]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-36 lg:top-120 lg:-right-3",
     amenityListClass:
-      "max-w-lg lg:w-[20rem] xl:w-[25rem] 2xl:w-[28rem] 3xl:w-[54rem] 4xl:w-[54rem]",
-    amenityItemClass: "lg:text-[9px] lg:-leading-[2rem] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+      "max-w-lg lg:w-[54rem]",
+    amenityItemClass: "lg:text-[17px]",
   },
 
   "notan-tides": {
     viewImg: notanTidesView,
-    // matches Building_Floor_SVG/Notan_Tides/notan-Tides_BuildingSvg.svg, and
-    // the render's own 4627×2603 — the bands land on the tower as drawn
+    // matches Building_Floor_SVG/Notan_Tides/notan-Tides_BuildingSvg.svg — the
+    // cut-out's own space. The photo is 1672×941 (ratio 1.7768) against the
+    // viewBox's 1.7776, a 0.05% difference, so cover and slice crop as one and
+    // the bands land on the tower as drawn.
     viewBox: "0 0 4627 2603",
     floors: NOTAN_TIDES_FLOORS,
     // The tower stands centre-right (35–66% of the frame) against open sky to
     // its left, so the mark and the floor readout both sit over that sky.
     // Starting placement — dial in against the live page like the others.
     headerClass:
-      " laptop:left-[11%] imac-24:left-[12%] top-36 mp:top-[12%] mp:left-[12.5%] 2xl:-left-[54%] xl:left-[12.3%] xl:top-14 lg:left-38 lg:-top-2 2xl:left-[9%] 2xl:top-[12%] 3xl:left-[14%] 3xl:top-[6%] 4xl:left-[13.3%] 4xl:top-25 laptop-sm:top-[6%] 5xl:left-[14.6%] 5xl:top-[10%]",
+      "top-36 lg:left-[14%] lg:top-[6%]",
+    /* The floor readout, anchored on its CENTRE as a share of the picture —
+       %, not px, and centre, not corner, so the same one spot serves a
+       1920-wide picture layer and an 820-wide portrait canvas. Measured off
+       the live page: node scripts/measure-page.mjs */
     asideClass:
-      "right-[15%] top-[30%] xl:top-[18%] xl:right-44 2xl:right-[15%] 2xl:top-[20%] lg:top-[13%] lg:right-[15.5%] 3xl:top-[23%] 3xl:right-[18%] 4xl:top-[20%] 4xl:right-[19%]",
-    headerSubClass: "font-bold lg:-mt-12 xl:mt-1 3xl:-mt-3 4xl:-mt-14 lg:text-[8px] 3xl:text-[12px] 4xl:text-[16px] mp:text-[12px] mac:text-[14px] mp:mt-1 laptop-sm:-mt-11",
+      "right-[15%] top-[30%] lg:left-[82.92%] lg:top-[23.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[82.92%]! portrait:top-[23.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+    headerSubClass: "font-bold lg:text-[12px]",
      headerLogoClass:
-      "my-[-30%] lg:w-20 w-64 sm:w-72 md:w-100 lg:w-46 xl:w-50 2xl:w-66  4xl:w-90 3xl:w-60",
+      "w-[222.4px] sm:w-[250.3px] md:w-[347.6px] lg:w-[260.7px]",
+    headerLogoTrim: "mt-[-5.75%] mb-[-6.84%]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl mac:top-[32%] mac:-left-[4%] mp:top-[31%] mp:-left-[7%] mac-14:-left-[6%] sm:max-w-2xl lg:max-w-3xl bottom-55  lg:bottom-63 lg:-left-[15.6%]  2xl:-left-20 2xl:top-[36%] 3xl:top-92 3xl:left-4 4xl:top-100 4xl:left-37 xl:-left-[10%] xl:top-[28%] laptop-sm:top-[25%] laptop-sm:-left-[12%] 5xl:top-[30%] 5xl:left-[10%] laptop-sm:top-[32%] laptop-sm:-left-[8%]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 lg:bottom-63 lg:top-92 lg:left-4",
     amenityListClass:
-      "max-w-lg lg:w-[26rem] xl:w-[30rem] 2xl:w-[34rem] 3xl:w-[42rem] 4xl:w-[54rem]",
-    amenityItemClass: "lg:text-[10px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[17px] 4xl:text-[21px] 5xl:text-[30px] mac:text-[16px] mp:text-[14px]",
+      "max-w-lg lg:w-[42rem]",
+    amenityItemClass: "lg:text-[17px]",
   },
 };

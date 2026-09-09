@@ -201,11 +201,11 @@ const MapScene = () => {
       // 4. Flock of birds journeys from the land out over the sea, again and again
       const flockTl = gsap.timeline({ repeat: -1, repeatDelay: 5, delay: 2 });
       flockTl
-        .set(".ms-flock", { x: "10vw", y: 0 })
+        .set(".ms-flock", { x: 192, y: 0 })
         .to(".ms-flock", { opacity: 0.75, duration: 2, ease: "none" }, 0)
         .to(
           ".ms-flock",
-          { x: "-30vw", y: "3vh", duration: 24, ease: "none" },
+          { x: -576, y: 32.4, duration: 24, ease: "none" },
           0,
         )
         .to(".ms-flock", { opacity: 0, duration: 2.5 }, 21);
@@ -401,7 +401,7 @@ const MapScene = () => {
       </div>
 
       {/* Bandra–Worli Sea Link reaching out over the water */}
-      <div className="ms-grow absolute top-[80%] left-[36%] w-40 md:w-56 lg:w-32 2xl:w-45">
+      <div className="ms-grow absolute top-[80%] left-[36%] w-40 md:w-56 lg:w-45">
         <img
           src={seaLinkImg}
           alt=""
