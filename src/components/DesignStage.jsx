@@ -235,6 +235,13 @@ const DesignStage = ({ children }) => {
           transformOrigin: portrait ? "top left" : "center",
           "--dvw": `${boxW / 100}px`,
           "--dvh": `${boxH / 100}px`,
+          /* How much of the picture the window crops away on EACH side, in
+             design pixels. Zero at 16:9 and wider, and it grows as the window
+             gets squarer — the picture covers, so the overflow is trimmed
+             symmetrically. A block standing in the sky beside the tower reads
+             this to centre itself in what is ON SCREEN rather than in the 1920
+             the design was drawn at, so it cannot be cropped into. */
+          "--crop-x": `${Math.max(0, (boxW - viewW) / 2)}px`,
         }}
       >
         {/* Upright there is nothing to escape: the canvas and the window are

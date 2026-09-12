@@ -237,7 +237,7 @@ export const BUILDING_VIEWS = {
     headerLogoTrim: "mt-[-35%] mb-[-30.17%]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-66 lg:h-35 lg:top-110 lg:-right-[1%]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-66 lg:h-35 lg:top-110 lg:right-[max(calc(-1%_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))]",
     amenityListClass:
       "max-w-lg lg:w-[42rem]",
     amenityItemClass: "lg:text-[17px]",
@@ -269,7 +269,7 @@ export const BUILDING_VIEWS = {
       "left-[9%] top-[15%] lg:left-[18.75%] lg:top-[25.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[18.75%]! portrait:top-[25.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-36 lg:top-120 lg:-right-3",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-36 lg:top-120 lg:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))]",
     amenityListClass:
       "max-w-lg lg:w-[54rem]",
     amenityItemClass: "lg:text-[17px]",
@@ -300,7 +300,7 @@ export const BUILDING_VIEWS = {
     headerLogoTrim: "mt-[-5.75%] mb-[-6.84%]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 lg:bottom-63 lg:top-92 lg:-left-12",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 lg:bottom-63 lg:top-112 lg:left-[max(calc(-48px_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))]",
     amenityListClass:
       "max-w-lg lg:w-[42rem]",
     amenityItemClass: "lg:text-[17px]",
