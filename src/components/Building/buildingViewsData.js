@@ -300,7 +300,7 @@ export const BUILDING_VIEWS = {
     headerLogoTrim: "mt-[-5.75%] mb-[-6.84%]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 lg:bottom-63 lg:top-92 lg:left-4",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 lg:bottom-63 lg:top-92 lg:-left-12",
     amenityListClass:
       "max-w-lg lg:w-[42rem]",
     amenityItemClass: "lg:text-[17px]",
