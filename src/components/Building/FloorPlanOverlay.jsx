@@ -112,6 +112,7 @@ const FloorPlanOverlay = ({
   const [dragging, setDragging] = useState(false);
   const imgRef = useRef();
   const stageRef = useRef();
+  const btnRef = useRef();
 
   // The photo's own ratio, read once it loads. Floors with a plan photo but no
   // cut-out SVG (Space/Jewel basements) have no viewBox to size the box from —
@@ -252,6 +253,17 @@ const FloorPlanOverlay = ({
       ease: "power3.out",
     });
   }, { scope: stageRef  });
+
+  useGSAP( () => {
+    if (!btnRef.current) return;
+    if(!available) return;
+    tl.from(btnRef.current, {
+      y : 12,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+  }, { scope: btnRef  });
 
   // close on Escape
   useEffect(() => {
@@ -547,10 +559,10 @@ const FloorPlanOverlay = ({
         {/* stage */}
         <div
         ref={stageRef}
-          /* pb clears the zoom control, which stands `bottom-6` up from this box
-             and is 52px tall — 76px of furniture against 56px of padding was
-             what let the sheet run under it. */
-          className="relative flex flex-1 items-center justify-center overflow-hidden px-4 pb-20"
+          /* no bottom padding to reserve any more: the zoom control is a sibling
+             below this box, not an overlay on top of it, so the sheet centres in
+             the whole remaining height instead of in an 80px-short slice. */
+          className="relative flex flex-1 items-center justify-center overflow-hidden px-4"
           onWheel={available ? onWheel : undefined}
         >
           {available ? (
@@ -746,32 +758,40 @@ const FloorPlanOverlay = ({
             </div>
           )}
 
-          {/* zoom toolbar */}
-          {available && (
-            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 xl:h-13 xl:-bottom-px 2xl:bottom-2 3xl:bottom-3">
-              <button
-                onClick={zoomOut}
-                aria-label="Zoom out"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#3d3b37]"
-              >
-                −
-              </button>
-              <button
-                onClick={reset}
-                className="rounded-full px-3 text-xs tracking-wider text-[#1f2a40] uppercase transition-colors hover:text-[#b8860b]"
-              >
-                {Math.round(zoom * 100)}% · Reset
-              </button>
-              <button
-                onClick={zoomIn}
-                aria-label="Zoom in"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#413f3c]"
-              >
-                +
-              </button>
-            </div>
-          )}
+        
         </div>
+
+        {/* zoom toolbar — a flow item of the main column, straight under the
+            stage, so `self-center` lands it on the same centre line as the plan
+            sheet. `left-1/2` measured that centre against the whole *viewport*
+            instead, which hangs it half the aside's width off to the left. The
+            symmetric `my-*` holds an equal gap above and below at every size,
+            replacing the per-breakpoint `bottom-*` nudges that pinned it to the
+            floor on wide screens. */}
+        {available && (
+          <div ref={btnRef} className="my-3 flex shrink-0 items-center gap-1 self-center rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 md:my-4 2xl:my-5">
+            <button
+              onClick={zoomOut}
+              aria-label="Zoom out"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#3d3b37]"
+            >
+              −
+            </button>
+            <button
+              onClick={reset}
+              className="rounded-full px-3 text-xs tracking-wider text-[#1f2a40] uppercase transition-colors hover:text-[#b8860b]"
+            >
+              {Math.round(zoom * 100)}% · Reset
+            </button>
+            <button
+              onClick={zoomIn}
+              aria-label="Zoom in"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#413f3c]"
+            >
+              +
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
