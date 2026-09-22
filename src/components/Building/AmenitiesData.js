@@ -68,3 +68,25 @@ export const BUILDING_AMINITIES = {
     // 3: "Podium & Basement Parking | Landscaped Sit-Outs |",
   },
 };
+
+/* Rows set by hand for an iPad held across (the `ipad` variant in index.css,
+   2752×2064), for projects whose rows above cannot fit the sky that crop
+   leaves. Same items, same "|" convention; BuildingPage shows these instead
+   of the rows above at that shape only, and never lets one of them wrap.
+
+   Beach House: the sky right of the tower is 1156–1680, and each row above
+   is 590–715px wide, so they wrapped into nine rows of 172–408px — one item
+   on some, two on others. In the original order no grouping comes out even
+   (the long elevators item always strands "Dedicated Staff Facilities" on a
+   row of its own), so two items trade places: Pool with Garden, and Staff
+   with the elevators. Six rows of 351–418px at 15px. */
+export const BUILDING_AMINITIES_IPAD = {
+  "notan-beach-house": {
+    1: "Grand Double-Height Lobby & Reception | Open to Sky Pool |",
+    2: "Landscaped Garden with Beach Access | Rooftop Leisure Decks |",
+    3: "Salon & Wellness Services | Fully Equipped Fitness Centre |",
+    4: "24-Hour Security & Surveillance | Hospitality & Concierge Services |",
+    5: "Car Lift with Basement Parking | Dedicated Staff Facilities |",
+    6: "High-Speed Passenger Elevators & Dedicated Service Lift",
+  },
+};

@@ -290,14 +290,16 @@ export const BUILDING_VIEWS = {
     asideClass:
       "left-[9%] top-[15%] lg:left-[18.75%] lg:top-[25.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[18.75%]! portrait:top-[25.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
-    /* iPad across only x 240–1680 is on screen. The sky right of the tower is 1184–1680, and the
-       widest row (481px) filled all of it, from the balconies to the edge. A
-       narrower list breaks that row in two, and the group is centred in the sky. */
+    /* iPad across only x 240–1680 is on screen, and the sky right of the tower is 1156–1680 —
+       narrower than any of the rows above, which wrapped into nine ragged
+       ones. So this shape gets rows set by hand (BUILDING_AMINITIES_IPAD in
+       AmenitiesData.js), six of 351–418px at 15px, like Tides', inside a
+       432px list centred in the sky. */
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-36 lg:top-120 lg:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:left-[1432px]! ipad:right-auto! ipad:-translate-x-1/2!",
     amenityListClass:
       "max-w-lg lg:w-[54rem] ipad:w-[27rem]!",
-    amenityItemClass: "lg:text-[17px]",
+    amenityItemClass: "lg:text-[17px] ipad:text-[15px]!",
   },
 
   "notan-tides": {
