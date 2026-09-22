@@ -136,7 +136,7 @@ export const BUILDINGS = [
     tagline: "Sea beyond the glass, Balconies stretch towards the tide… Beach House breathes in blue…",
     img: notanBeachHouse,
     top: "45%",
-    left: "48%",
+    left: "46.4%",
     tooltip: "bottom",
     width: "clamp(42px, calc(4.2 * var(--dvw)), 74px)",
     href: "/projects/notan-beach-house",
