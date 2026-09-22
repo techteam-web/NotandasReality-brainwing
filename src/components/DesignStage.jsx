@@ -85,6 +85,12 @@ const MIN_RATIO = 0.999;
 export const PORTRAIT_W = 820;
 const PORTRAIT_MIN_WIDTH = 640;
 
+/* iPad across (4:3): the window shape where the cover crop takes 240 design px
+   off each side of the picture. For `<source media>`, which cannot read a
+   Tailwind variant — the `ipad` variant in index.css has to agree with it. */
+export const IPAD_MEDIA =
+  "(min-width: 1024px) and (min-aspect-ratio: 13/10) and (max-aspect-ratio: 67/50)";
+
 /*
   The picture COVERS the window. Always, at every shape — full width and full
   height, no ground showing at the top, bottom or sides. That is a requirement

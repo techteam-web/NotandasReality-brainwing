@@ -8,6 +8,15 @@ import notanLandsEndView from "../../assets/ViewsBuildings/Notan_Lands-End.webp"
 import notanViewsView from "../../assets/ViewsBuildings/notan_Views.webp";
 import notanBeachHouseView from "../../assets/ViewsBuildings/Notan_Beach-House.webp";
 import notanTidesView from "../../assets/ViewsBuildings/Notan_Tides.webp";
+/* 2752×2064 iPad cuts: exactly the 1440×1080 band of each photo a 4:3 window
+   leaves on screen (see the `ipad` variant in index.css). BuildingPage swaps
+   them in at that shape; every other shape keeps the full photo. */
+import notanDcIpad from "../../assets/ViewsBuildings/Notan-DC-ipad.webp";
+import notanJewelIpad from "../../assets/ViewsBuildings/Notan_jewel_sketch-ipad.webp";
+import notanCrownIpad from "../../assets/ViewsBuildings/Notan_crown_sketch-ipad.webp";
+import notanLandsEndIpad from "../../assets/ViewsBuildings/Notan_Lands-End-ipad.webp";
+import notanBeachHouseIpad from "../../assets/ViewsBuildings/Notan_Beach-House-ipad.webp";
+import notanTidesIpad from "../../assets/ViewsBuildings/Notan_Tides-ipad.webp";
 import {
   NOTAN_DC_FLOORS,
   NOTAN_EDGE_FLOORS,
@@ -33,6 +42,7 @@ import {
 export const BUILDING_VIEWS = {
   "notan-dc": {
     viewImg: notanDcView,
+    viewImgIpad: notanDcIpad,
     // every floor SVG shares this coordinate space
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
@@ -46,8 +56,10 @@ export const BUILDING_VIEWS = {
     amenityListClass:
       "max-w-lg lg:w-[40rem]",
     amenityItemClass: "lg:text-[17px]",
+    /* iPad across only x 240–1680 is on screen. The group is centred in the sky between the tower (1175) and
+       that edge, where the 16:9 placement ran the address and the list off it. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl lg:top-[42%] lg:right-[0.3%]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl lg:top-[42%] lg:right-[0.3%] ipad:left-[1427px]! ipad:right-auto! ipad:-translate-x-1/2!",
 
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
@@ -89,6 +101,7 @@ export const BUILDING_VIEWS = {
   },
   "notan-jewel": {
     viewImg: notanJewelView,
+    viewImgIpad: notanJewelIpad,
     // matches the combined Building_Floor_SVG/Nothan_jewel/nothan_jewel-2.8x.svg
     viewBox: "0 0 4615 2597",
     floors: NOTAN_JEWEL_FLOORS,
@@ -109,8 +122,9 @@ export const BUILDING_VIEWS = {
     headerClass:
       "] lg:top-[20%] lg:right-[14.7%]",
     nMarkFill: "black",
+    /* iPad across only x 240–1680 is on screen. The group is centred in the sky right of the tower (1058–1680). */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-75 lg:bottom-46 lg:h-35 lg:top-[47%] lg:right-[2%]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-75 lg:bottom-46 lg:h-35 lg:top-[47%] lg:right-[2%] ipad:left-[1369px]! ipad:right-auto! ipad:-translate-x-1/2!",
     amenityListClass:
       "max-w-lg lg:w-[40rem]",
     amenityItemClass: "lg:text-[17px]",
@@ -169,11 +183,15 @@ export const BUILDING_VIEWS = {
   },
   "notan-crown": {
     viewImg: notanCrownView,
+    viewImgIpad: notanCrownIpad,
     // matches the combined Building_Floor_SVG/Nothan_crown/Notan_crown_.svg
     viewBox: "0 0 460.8 259.2",
     floors: NOTAN_CROWN_FLOORS,
+    /* iPad across only x 240–1680 is on screen. The mark moves right, into the sky left of the tower's
+       upper block (which starts near 790 at this height) — at 386 its address
+       began at 208. The readout is centred in the sky right of it, 1451–1680. */
     headerClass:
-      "left-80 top-36 md:top-127 lg:top-[106px] lg:left-[386px] lg:-translate-x-1/2",
+      "left-80 top-36 md:top-127 lg:top-[106px] lg:left-[386px] lg:-translate-x-1/2 ipad:left-[500px]!",
     headerSubClass: "font-bold lg:text-[12px]",
     headerLogoClass:
       "w-[203.4px] sm:w-[228.9px] md:w-[317.9px] lg:w-[238.4px]",
@@ -183,7 +201,7 @@ export const BUILDING_VIEWS = {
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "right-[15%] top-[20%] lg:left-[86.25%] lg:top-[24.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[86.25%]! portrait:top-[24.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+      "right-[15%] top-[20%] lg:left-[86.25%] lg:top-[24.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[86.25%]! portrait:top-[24.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2! ipad:left-[81.6%]!",
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:top-[357px] lg:bottom-auto lg:left-[386px] lg:-translate-x-1/2",
@@ -193,6 +211,7 @@ export const BUILDING_VIEWS = {
 
   "notan-lands-end": {
     viewImg: notanLandsEndView,
+    viewImgIpad: notanLandsEndIpad,
     // matches the viewBox baked into Building_Floor_SVG/Notan_Lands-End/Notan_Lands-End_building_Cutout.svg
     viewBox: "0 0 10000 5886",
     floors: NOTAN_LANDS_END_FLOORS,
@@ -212,8 +231,10 @@ export const BUILDING_VIEWS = {
        the amenities below it. Measured: node scripts/measure-page.mjs notan-lands-end */
     headerLogoNudge: "translate-x-[-3.42%]",
     nMarkFill: "black",
+    /* iPad across only x 240–1680 is on screen. The group is centred in the sky left of the tower (240–901);
+       at 16:9's placement the list sat 9px off the screen's edge. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:h-35 lg:top-[38%] lg:left-26",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:h-35 lg:top-[38%] lg:left-26 ipad:left-[570px]! ipad:right-auto! ipad:-translate-x-1/2!",
     amenityListClass:
       "max-w-lg lg:w-[52rem]",
     amenityItemClass: "lg:text-[17px]",
@@ -245,6 +266,7 @@ export const BUILDING_VIEWS = {
 
   "notan-beach-house": {
     viewImg: notanBeachHouseView,
+    viewImgIpad: notanBeachHouseIpad,
     // matches Building_Floor_SVG/Notan_Beach-House/NOTAN-BEACH-HOUSE-BUILDINGSVG.svg,
     // and the render's own 8000×3636 — the cut-out bands land on the tower as drawn
     viewBox: "0 0 8000 3636",
@@ -268,15 +290,19 @@ export const BUILDING_VIEWS = {
     asideClass:
       "left-[9%] top-[15%] lg:left-[18.75%] lg:top-[25.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[18.75%]! portrait:top-[25.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
+    /* iPad across only x 240–1680 is on screen. The sky right of the tower is 1184–1680, and the
+       widest row (481px) filled all of it, from the balconies to the edge. A
+       narrower list breaks that row in two, and the group is centred in the sky. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-36 lg:top-120 lg:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-36 lg:top-120 lg:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:left-[1432px]! ipad:right-auto! ipad:-translate-x-1/2!",
     amenityListClass:
-      "max-w-lg lg:w-[54rem]",
+      "max-w-lg lg:w-[54rem] ipad:w-[27rem]!",
     amenityItemClass: "lg:text-[17px]",
   },
 
   "notan-tides": {
     viewImg: notanTidesView,
+    viewImgIpad: notanTidesIpad,
     // matches Building_Floor_SVG/Notan_Tides/notan-Tides_BuildingSvg.svg — the
     // cut-out's own space. The photo is 1672×941 (ratio 1.7768) against the
     // viewBox's 1.7776, a 0.05% difference, so cover and slice crop as one and
@@ -293,16 +319,20 @@ export const BUILDING_VIEWS = {
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "right-[15%] top-[30%] lg:left-[82.92%] lg:top-[23.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[82.92%]! portrait:top-[23.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+      "right-[15%] top-[30%] lg:left-[82.92%] lg:top-[23.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[82.92%]! portrait:top-[23.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2! ipad:left-[77.5%]!",
     headerSubClass: "font-bold lg:text-[12px]",
      headerLogoClass:
       "w-[222.4px] sm:w-[250.3px] md:w-[347.6px] lg:w-[260.7px]",
     headerLogoTrim: "mt-[-5.75%] mb-[-6.84%]",
     nMarkFill: "black",
+    /* iPad across only x 240–1680 is on screen. The sky left of the tower is only 240–670 at the
+       list's height, less than its longest item (471px at 17px), so the list
+       ran into the tower. It is set at 15px, and the group moves up 80px to
+       where the roof's slope leaves more sky, centred in it. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 lg:bottom-63 lg:top-112 lg:left-[max(calc(-48px_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 lg:bottom-63 lg:top-112 lg:left-[max(calc(-48px_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:top-[368px]! ipad:left-[484px]! ipad:-translate-x-1/2!",
     amenityListClass:
-      "max-w-lg lg:w-[42rem]",
-    amenityItemClass: "lg:text-[17px]",
+      "max-w-lg lg:w-[42rem] ipad:w-[26.5rem]!",
+    amenityItemClass: "lg:text-[17px] ipad:text-[15px]!",
   },
 };

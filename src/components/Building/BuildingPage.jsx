@@ -11,7 +11,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { BUILDING_AMINITIES } from "./AmenitiesData";
 import ImageStage from "./ImageStage";
-import { Chrome } from "../DesignStage";
+import { Chrome, IPAD_MEDIA } from "../DesignStage";
 import { ratioFromViewBox } from "./floorGeometry";
 
 /**
@@ -117,8 +117,15 @@ const BuildingPage = () => {
   const staged = Boolean(view?.stage);
 
   const readNaturalRatio = (e) => {
-    const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
+    const { naturalWidth: w, naturalHeight: h, currentSrc } = e.currentTarget;
     if (!w || !h) return;
+    /* The iPad cut is a 4:3 slice of the photo, not the photo — its ratio
+       would reshape the upright layout if the tablet were turned. */
+    if (
+      view?.viewImgIpad &&
+      currentSrc === new URL(view.viewImgIpad, document.baseURI).href
+    )
+      return;
     setNaturalRatios((prev) =>
       prev[id] === w / h ? prev : { ...prev, [id]: w / h },
     );
@@ -592,14 +599,25 @@ const BuildingPage = () => {
             The photo's width is fixed at full, so shrinking crops a little off
             its top and bottom rather than leaving gaps at its sides. */}
         <div className="absolute inset-0 portrait:relative portrait:aspect-[var(--photo-ar)] portrait:h-auto portrait:w-full portrait:min-h-0">
-        {/* full-bleed building photo */}
-        <img
-          src={view.viewImg}
-          alt={building ? building.name : "Building"}
-          draggable="false"
-          onLoad={readNaturalRatio}
-          className="absolute inset-0 h-full w-full object-cover select-none"
-        />
+        {/* full-bleed building photo. On an iPad across, its 2752×2064 cut —
+            exactly the 1440×1080 band the window leaves on screen — drawn
+            into that band (`--crop-x` in from each side), so it lands pixel for
+            pixel where the full photo would and the cut-outs stay on their
+            floors. */}
+        <picture>
+          {view.viewImgIpad && (
+            <source media={IPAD_MEDIA} srcSet={view.viewImgIpad} />
+          )}
+          <img
+            src={view.viewImg}
+            alt={building ? building.name : "Building"}
+            draggable="false"
+            onLoad={readNaturalRatio}
+            className={`absolute inset-0 h-full w-full object-cover select-none ${
+              view.viewImgIpad ? "ipad:inset-x-(--crop-x)! ipad:w-auto!" : ""
+            }`}
+          />
+        </picture>
 
         {/* floor overlay — slice matches the photo's object-cover crop */}
         <div className="pointer-events-none absolute inset-0 z-20 h-full w-full">

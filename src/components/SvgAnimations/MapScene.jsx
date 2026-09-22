@@ -361,15 +361,17 @@ const MapScene = () => {
         />
       </div>
 
-      {/* inland green pocket below Vile Parle */}
-      <div className="ms-grow ms-sway absolute top-[11%] left-[86%] w-20 md:w-25">
+      {/* inland green pocket below Vile Parle. At 86% these two straddle the
+          line a 4:3 window crops at (1680 of 1920), so on an iPad across they
+          step in to 81% and draw whole. */}
+      <div className="ms-grow ms-sway absolute top-[11%] left-[86%] w-20 md:w-25 ipad:left-[81%]!">
         <img
           src={forestImg}
           alt=""
           className="h-22 w-full mix-blend-multiply"
         />
       </div>
-      <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-20 md:w-25">
+      <div className="ms-grow ms-sway absolute top-[81%] left-[86%] w-20 md:w-25 ipad:left-[81%]!">
         <img
           src={forestImg}
           alt=""

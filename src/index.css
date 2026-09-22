@@ -152,6 +152,21 @@ body {
 @custom-variant portrait (@media ((max-aspect-ratio: 999/1000) and (min-width: 640px)));
 
 /*
+  iPad held across — 4:3. 2752×2064 on the 13" iPad Pro, 1376×1032 CSS px.
+
+  The composition is still the 1920×1080 one, scaled to cover, but at 4:3 the
+  cover crop is at its deepest short of portrait: 240 design px off EACH side,
+  so only x 240–1680 of the picture is on screen. Text placed for 16:9 near
+  either edge runs off it, so pages give their blocks an `ipad:` placement
+  inside that band, and the photos with an iPad cut (`-ipad.webp`, exactly
+  that 1440×1080 band at 2752×2064) are swapped in for it.
+
+  The band is 1.30–1.34, not just 4/3, so the 12.9" Pro's 1366×1024 (1.334)
+  lands in it too. Has to agree with IPAD_MEDIA in components/DesignStage.jsx.
+*/
+@custom-variant ipad (@media ((min-width: 1024px) and (min-aspect-ratio: 13/10) and (max-aspect-ratio: 67/50)));
+
+/*
   1% of the composition's width and height.
 
   Inside the 1920×1080 design box (see components/DesignStage.jsx) `vw` and

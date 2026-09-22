@@ -1,4 +1,7 @@
 import notanMap from "../assets/notan_map.png";
+/* 2752×2064: the 1440×1080 middle of the chart, which is all a 4:3 window
+   shows of it (see the `ipad` variant in index.css) */
+import notanMapIpad from "../assets/notan_map-ipad.webp";
 import NuthandasLogoAnimated from "./SvgAnimations/NuthandasLogoAnimated";
 import AnimatedPlane from "./SvgAnimations/AnimatedPlane";
 import MapScene from "./SvgAnimations/MapScene";
@@ -47,17 +50,25 @@ const HomePage = () => {
           above measures and centres, and the one inside stays 1920×1080 and is
           scaled into it from the corner. */}
       <div className="relative h-full w-full portrait:h-[461.25px]! portrait:w-205! portrait:shrink-0">
+      {/* On an iPad across the iPad cut replaces the chart, drawn into the
+          middle 1440 — the `max()` covers the sliver more a 1366×1024 window
+          shows — so every pin stays on its spot. Through a variable so only
+          the one image for this shape is ever downloaded. */}
       <div
-        className="relative h-full w-full bg-cover bg-no-repeat portrait:h-270! portrait:w-480! portrait:origin-top-left portrait:scale-[0.4271]"
+        className="relative h-full w-full bg-cover bg-no-repeat portrait:h-270! portrait:w-480! portrait:origin-top-left portrait:scale-[0.4271] ipad:bg-(image:--map-ipad)! ipad:bg-size-[max(1440px,calc(100%_-_2*var(--crop-x)))_auto]! ipad:bg-center!"
         style={{
           backgroundImage: `url(${notanMap})`,
+          "--map-ipad": `url(${notanMapIpad})`,
           backgroundPosition: `center calc(100% + 0px)`, // Adjust the 50px or 0% (top) / 100% (bottom) to your exact needs
         }}
       >
       <MapScene />
       <BuildingsLayer />
 
-      <div className="absolute right-27 bottom-[50%]">
+      {/* 108px in from the right is off screen at 4:3, which shows only up to
+          240px in — so on an iPad across the label stands 264px in, still over
+          the airport's runways. */}
+      <div className="absolute right-27 bottom-[50%] ipad:right-[264px]!">
         <div className="mb-15 ml-15 h-16 w-36 opacity-70 pointer-events-none">
           <AnimatedPlane />
         </div>
