@@ -107,7 +107,7 @@ export const BUILDINGS = [
     id: "notan-lands-end",
     name: "Notan Lands End",
     area: "Bandra West",
-    subtitle: "BZS Road, Bandra West, Mumbai",
+    subtitle: "Bullock Road, Bandra West, Mumbai",
     tagline: "Purposefully crafted spaces for leisure, wellness, and quiet indulgence.",
     img: notanLandsEnd,
     top: "80%",
