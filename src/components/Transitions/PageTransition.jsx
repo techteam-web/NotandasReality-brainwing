@@ -29,14 +29,37 @@ gsap.registerPlugin(useGSAP);
 const getProjectId = (pathname) =>
   pathname.match(/^\/projects\/([^/]+)/)?.[1] ?? null;
 
-/* Per-project box for marks the two shared sizes below misjudge. Beach House
-   is cropped almost to its ink (98% of the artboard's width) and sets its name
-   on two lines, so in the square marks' box it drew 316px tall at md — against
-   153–222px for every other project. This box lands its ink on Tides' height,
-   the tallest of the rest, and its "notan" (370px) inside the others' range. */
-const LOGO_SIZE_OVERRIDES = {
-  "notan-beach-house": "w-64 sm:w-78 md:w-95",
+/* The mark's size comes from the SHORTER side of the screen, not from a
+   breakpoint ladder. Inside the 1920×1080 design box that side is the box's
+   1080 on every window from 4:3 to 16:9 — laptops, desktops, an iPad across —
+   so there the marks stand exactly where they did. The ladder is what went
+   wrong below it: a phone got 360–440px of box against a 1920 screen's 540,
+   and the ink ran 64–78% of the phone's width.
+
+   --dvw/--dvh are 1% of whichever rectangle the overlay lives in (see
+   DesignStage), so this reads the real window at every shape. The 470px floor
+   is for phones: on the short side alone a mark would be 41% of the width,
+   too slight for a splash, so they stand at about half the width instead —
+   and on a phone held across, at the same share of the height as on a
+   desktop. */
+const LOGO_BASE =
+  "max(min(calc(var(--dvw) * 100), calc(var(--dvh) * 100)), 470px)";
+
+/* Each mark's width as a share of LOGO_BASE — its old desktop box over 1080.
+   The square SVG marks carry generous built-in padding, hence the largest
+   share; Crown's landscape PNG is cropped tight to its ink. Beach House is
+   cropped almost to its ink too (98% of the artboard's width) and sets its
+   name on two lines, so it takes a box that lands its ink on Tides' height,
+   the tallest of the rest, and its "notan" inside the others' range. */
+const LOGO_SHARE = { square: 0.5, tight: 0.315, emblem: 0.37 };
+const LOGO_SHARE_OVERRIDES = {
+  "notan-beach-house": 0.352,
 };
+
+const logoWidth = (share) => ({
+  width: `calc(${share} * ${LOGO_BASE})`,
+  maxWidth: "calc(var(--dvw) * 85)",
+});
 
 const PageTransition = ({ children }) => {
   const location = useLocation();
@@ -258,24 +281,22 @@ const PageTransition = ({ children }) => {
           className="absolute inset-0 flex flex-col items-center justify-center opacity-0"
         >
           {projectLogo ? (
-            /* Dedicated project mark — the square SVG marks carry generous
-               built-in padding, hence the larger box than the emblem SVG;
-               tight-cropped marks (Crown's landscape PNG) use a smaller one. */
+            /* Dedicated project mark, sized by LOGO_SHARE above. */
             <img
               src={projectLogo}
               alt=""
               draggable="false"
-              className={`logo-building h-auto max-w-[85vw] select-none ${
-                LOGO_SIZE_OVERRIDES[projectId] ??
-                (logoIsTight
-                  ? "w-60 sm:w-70 md:w-85"
-                  : "w-90 sm:w-110 md:w-135")
-              }`}
+              className="logo-building h-auto select-none"
+              style={logoWidth(
+                LOGO_SHARE_OVERRIDES[projectId] ??
+                  (logoIsTight ? LOGO_SHARE.tight : LOGO_SHARE.square),
+              )}
             />
           ) : (
           <svg
             viewBox="0 0 308 125"
-            className="h-auto w-[280px] text-[#101014] sm:w-[320px] md:w-[400px]"
+            className="h-auto text-[#101014]"
+            style={logoWidth(LOGO_SHARE.emblem)}
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >

@@ -86,6 +86,33 @@ body {
   animation: fs-float 5.5s ease-in-out infinite;
 }
 
+/* The tablet on the "rotate your device" prompt turns on its side, holds,
+   and turns back (see RotateDevicePrompt) */
+@keyframes rotate-hint {
+  0%,
+  18% {
+    transform: rotate(0deg);
+  }
+  42%,
+  72% {
+    transform: rotate(-90deg);
+  }
+  96%,
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.rotate-hint {
+  animation: rotate-hint 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotate-hint {
+    animation: none;
+  }
+}
+
 @theme {
   /* Mobile & Tablet devices */
   --breakpoint-xs: 23.5rem; /* 376px × 667px / 375px × 812px - Modern Mobile (iPhone 13/14/15/16) */
@@ -165,6 +192,18 @@ body {
   lands in it too. Has to agree with IPAD_MEDIA in components/DesignStage.jsx.
 */
 @custom-variant ipad (@media ((min-width: 1024px) and (min-aspect-ratio: 13/10) and (max-aspect-ratio: 67/50)));
+
+/*
+  A tablet held upright. The site is viewed across on a tablet, so this shape
+  gets a "rotate your device" prompt over everything (see RotateDevicePrompt).
+
+  Three conditions, each keeping someone out who should not be stopped:
+  640px keeps phones out — they have a portrait layout of their own, and the
+  widest held upright is under 500 CSS px, while the smallest iPad is 744 —
+  and `any-pointer: coarse` keeps out a desktop browser window that merely
+  happens to be taller than it is wide: only a touchscreen is asked to turn.
+*/
+@custom-variant tablet-portrait (@media (orientation: portrait) and (min-width: 640px) and (any-pointer: coarse));
 
 /*
   1% of the composition's width and height.
