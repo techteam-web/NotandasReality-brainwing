@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import gateBg from "../../assets/fullscreengatebg.png";
 import { BUILDING_LOGOS, TIGHT_CROPPED_LOGOS } from "../Building/buildingLogos";
+import { Chrome } from "../DesignStage";
 
 gsap.registerPlugin(useGSAP);
 
@@ -27,6 +28,15 @@ gsap.registerPlugin(useGSAP);
 // /projects/notan-jewel -> "notan-jewel", or null for non-project routes.
 const getProjectId = (pathname) =>
   pathname.match(/^\/projects\/([^/]+)/)?.[1] ?? null;
+
+/* Per-project box for marks the two shared sizes below misjudge. Beach House
+   is cropped almost to its ink (98% of the artboard's width) and sets its name
+   on two lines, so in the square marks' box it drew 316px tall at md — against
+   153–222px for every other project. This box lands its ink on Tides' height,
+   the tallest of the rest, and its "notan" (370px) inside the others' range. */
+const LOGO_SIZE_OVERRIDES = {
+  "notan-beach-house": "w-64 sm:w-78 md:w-95",
+};
 
 const PageTransition = ({ children }) => {
   const location = useLocation();
@@ -218,6 +228,15 @@ const PageTransition = ({ children }) => {
     <>
       {cloneElement(children, { location: displayLocation })}
 
+      {/* The ink curtain covers the WINDOW, so it belongs to the chrome layer
+          and has to be the last thing in it. Left in the picture layer it
+          painted UNDER the chrome — the Back button, the brand mark, the map's
+          logo and the compass all sat on top of the black from the first frame
+          and popped in instead of being revealed as the wave lifted, with
+          their own draw-on animations playing against the curtain. Verified by
+          timing the entrance against main: at 0–700ms the Back button reads
+          `covered` on both now, and `SHOWN` only once the curtain is gone. */}
+      <Chrome>
       <div
         ref={overlayRef}
         className="fixed inset-0 z-100 bg-[#101014]"
@@ -247,9 +266,10 @@ const PageTransition = ({ children }) => {
               alt=""
               draggable="false"
               className={`logo-building h-auto max-w-[85vw] select-none ${
-                logoIsTight
+                LOGO_SIZE_OVERRIDES[projectId] ??
+                (logoIsTight
                   ? "w-60 sm:w-70 md:w-85"
-                  : "w-90 sm:w-110 md:w-135"
+                  : "w-90 sm:w-110 md:w-135")
               }`}
             />
           ) : (
@@ -360,6 +380,7 @@ const PageTransition = ({ children }) => {
           )}
         </div>
       </div>
+      </Chrome>
     </>
   );
 };

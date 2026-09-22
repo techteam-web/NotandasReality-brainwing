@@ -88,7 +88,14 @@ const FloorPlanOverlay = ({
   }, [buildingId, floor]);
 
   // Size the plan box to the largest rectangle that matches the SVG viewBox's
-  // aspect ratio while fitting inside 80vw × 80vh. The width must be derived
+  // aspect ratio while fitting inside 80% × 80% of the screen — `--dvw`/`--dvh`
+  // are 1% of it (see components/DesignStage.jsx). Plain `vw`/`vh` would be
+  // wrong here: the overlay is portalled into a layer that is SCALED, so a
+  // viewport unit is measured against the real window and then multiplied by
+  // that scale — a third too big on a 2560-wide screen. The 80 matters as much
+  // as the units: the 20% it leaves over is the margin the zoom control stands
+  // in, and sizing the sheet to the full room instead put the two on top of
+  // each other. The width must be derived
   // with min() — height:80vh + max-width:80vw distorts the box's ratio when
   // the clamp kicks in (aspect-ratio only resolves the *auto* axis, so the
   // explicit 80vh height never shrinks back), which made the photo letterbox
@@ -105,6 +112,7 @@ const FloorPlanOverlay = ({
   const [dragging, setDragging] = useState(false);
   const imgRef = useRef();
   const stageRef = useRef();
+  const btnRef = useRef();
 
   // The photo's own ratio, read once it loads. Floors with a plan photo but no
   // cut-out SVG (Space/Jewel basements) have no viewBox to size the box from —
@@ -245,6 +253,17 @@ const FloorPlanOverlay = ({
       ease: "power3.out",
     });
   }, { scope: stageRef  });
+
+  useGSAP( () => {
+    if (!btnRef.current) return;
+    if(!available) return;
+    tl.from(btnRef.current, {
+      y : 12,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    });
+  }, { scope: btnRef  });
 
   // close on Escape
   useEffect(() => {
@@ -540,7 +559,10 @@ const FloorPlanOverlay = ({
         {/* stage */}
         <div
         ref={stageRef}
-          className="relative flex flex-1 items-center justify-center  overflow-hidden px-4 pb-14"
+          /* no bottom padding to reserve any more: the zoom control is a sibling
+             below this box, not an overlay on top of it, so the sheet centres in
+             the whole remaining height instead of in an 80px-short slice. */
+          className="relative flex flex-1 items-center justify-center overflow-hidden px-4"
           onWheel={available ? onWheel : undefined}
         >
           {available ? (
@@ -556,10 +578,10 @@ const FloorPlanOverlay = ({
                 cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
                 ...(planAspect
                   ? {
-                      width: `min(80vw, ${80 * planAspect}vh)`,
+                      width: `min(calc(80 * var(--dvw)), calc(${80 * planAspect} * var(--dvh)))`,
                       aspectRatio: planAspect,
                     }
-                  : { height: "80vh", maxWidth: "80vw" }),
+                  : { height: "calc(80 * var(--dvh))", maxWidth: "calc(80 * var(--dvw))" }),
               }}
             >
               {planImg ? (
@@ -736,32 +758,40 @@ const FloorPlanOverlay = ({
             </div>
           )}
 
-          {/* zoom toolbar */}
-          {available && (
-            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 xl:h-13 xl:-bottom-px 2xl:bottom-2 3xl:bottom-3">
-              <button
-                onClick={zoomOut}
-                aria-label="Zoom out"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#3d3b37]"
-              >
-                −
-              </button>
-              <button
-                onClick={reset}
-                className="rounded-full px-3 text-xs tracking-wider text-[#1f2a40] uppercase transition-colors hover:text-[#b8860b]"
-              >
-                {Math.round(zoom * 100)}% · Reset
-              </button>
-              <button
-                onClick={zoomIn}
-                aria-label="Zoom in"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#413f3c]"
-              >
-                +
-              </button>
-            </div>
-          )}
+        
         </div>
+
+        {/* zoom toolbar — a flow item of the main column, straight under the
+            stage, so `self-center` lands it on the same centre line as the plan
+            sheet. `left-1/2` measured that centre against the whole *viewport*
+            instead, which hangs it half the aside's width off to the left. The
+            symmetric `my-*` holds an equal gap above and below at every size,
+            replacing the per-breakpoint `bottom-*` nudges that pinned it to the
+            floor on wide screens. */}
+        {available && (
+          <div ref={btnRef} className="my-3 flex shrink-0 items-center gap-1 self-center rounded-full border border-[#d7bf78]/50 bg-white p-1.5 opacity-90 shadow-[0_12px_30px_rgba(31,42,64,0.12)] backdrop-blur-md hover:opacity-100 md:my-4 2xl:my-5">
+            <button
+              onClick={zoomOut}
+              aria-label="Zoom out"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#3d3b37]"
+            >
+              −
+            </button>
+            <button
+              onClick={reset}
+              className="rounded-full px-3 text-xs tracking-wider text-[#1f2a40] uppercase transition-colors hover:text-[#b8860b]"
+            >
+              {Math.round(zoom * 100)}% · Reset
+            </button>
+            <button
+              onClick={zoomIn}
+              aria-label="Zoom in"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#212C42] text-lg text-white transition-colors hover:bg-[#413f3c]"
+            >
+              +
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

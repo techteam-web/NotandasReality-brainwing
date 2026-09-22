@@ -119,7 +119,7 @@ const Overlay = ({ onEnter }) => (
         {/* Serif heading with a cool underline accent. */}
         <div className="relative inline-block">
           <h2
-            className="text-3xl tracking-wide text-[#4E5157] italic md:text-[2rem] md:leading-tight"
+            className="text-lg tracking-wide text-[#4E5157] italic"
             style={serif}
           >
             Best Viewed in Full Screen
