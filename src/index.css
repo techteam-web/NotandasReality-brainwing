@@ -203,7 +203,47 @@ body {
   and `any-pointer: coarse` keeps out a desktop browser window that merely
   happens to be taller than it is wide: only a touchscreen is asked to turn.
 */
-@custom-variant tablet-portrait (@media (orientation: portrait) and (min-width: 640px) and (any-pointer: coarse));
+/*
+  A touch device held upright — a phone as much as a tablet.
+
+  This site is one composition, drawn across, and it is used across on every
+  device that can be turned: upright gets the "please rotate" prompt over
+  everything (see RotateDevicePrompt) rather than a layout of its own.
+  `any-pointer: coarse` keeps a desktop browser window that merely happens to
+  be taller than it is wide out of it — only a touchscreen is asked to turn.
+*/
+@custom-variant device-portrait (@media (orientation: portrait) and (any-pointer: coarse));
+
+/*
+  A phone, across — the only way a phone sees this site.
+
+  It gets the same 1920×1080 composition a laptop does, scaled to its window
+  (see TOUCH_MIN_WIDTH in components/DesignStage.jsx), so almost nothing needs
+  a rule here. What does: the chart's drawn-on decoration and the pin labels,
+  which are drawn for a plate four times the size and crowd a phone's, and a
+  few blocks in the 360° that are chrome rather than composition.
+
+  1023px is the widest this can be and still be a phone: the smallest tablet
+  across is 1133 (an iPad mini), and the widest phone across is 932.
+*/
+/*
+  A phone, across — the only way a phone sees this site.
+
+  The phone gets the 1920×1080 composition, scaled to its own window by
+  DesignStage, exactly as a laptop does. What it cannot inherit is WHERE each
+  block stands: those placements are written in Tailwind's width variants
+  (`lg:` and up), and a media query reads the real window, so at 844px none of
+  them fire. Every one of them therefore carries a `phone:` twin — same value,
+  this shape — written beside it wherever a block is placed.
+
+  Phone-only rules beyond that are few: the chart's drawn-on decoration and
+  pin labels, which are drawn for a plate four times this size, the gate,
+  which is chrome and wants real pixels, and a couple of blocks in the 360°.
+
+  1023px is the widest this can be and still be a phone: the smallest tablet
+  across is 1133 (an iPad mini), and the widest phone across is 932.
+*/
+@custom-variant phone (@media (orientation: landscape) and (max-width: 1023px) and (any-pointer: coarse));
 
 /*
   1% of the composition's width and height.

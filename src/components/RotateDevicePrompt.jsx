@@ -3,9 +3,9 @@ import gateBg from "../assets/fullscreengatebg.png";
 
 const serif = { fontFamily: "'Times New Roman', Times, serif" };
 
-// A tablet that turns on its side (see .rotate-hint in index.css), with the
-// arc of the turn drawn beside it.
-const RotateTabletIcon = ({ className }) => (
+/* The device turns on its side (see .rotate-hint in index.css), with the arc
+   of the turn drawn beside it. */
+const RotateIcon = ({ className }) => (
   <svg
     viewBox="0 0 96 96"
     className={className}
@@ -29,20 +29,24 @@ const RotateTabletIcon = ({ className }) => (
 );
 
 /**
- * Asks a tablet held upright to turn sideways. The site is viewed across on a
- * tablet, and this covers everything — the full-screen gate included — until
- * it is.
+ * Asks a device held upright to turn sideways.
  *
- * Shown by CSS alone (the `tablet-portrait` variant in index.css), not by
+ * The site is one composition drawn across — on a phone as much as on a
+ * tablet, the only difference being how far it is scaled down (see
+ * DesignStage) — so upright is not a layout here, it is a prompt. This covers
+ * everything, the full-screen gate included, until the device is turned.
+ *
+ * Shown by CSS alone (the `device-portrait` variant in index.css), not by
  * state: it appears the instant the device turns upright and is gone the
- * instant it turns back, with nothing under it remounting either way.
+ * instant it turns back, with nothing under it remounting either way. The
+ * panel is sized for the SHORT side, since that is the width it is read at.
  */
 const RotateDevicePrompt = () => (
   <div
     role="dialog"
     aria-modal="true"
     aria-labelledby="rotate-device-title"
-    className="fixed inset-0 z-10000 hidden touch-none items-center justify-center overflow-hidden overscroll-contain tablet-portrait:flex"
+    className="fixed inset-0 z-10000 hidden touch-none items-center justify-center overflow-hidden overscroll-contain device-portrait:flex"
   >
     <div className="absolute inset-0 bg-[#070B17]" />
     <img
@@ -54,7 +58,7 @@ const RotateDevicePrompt = () => (
     />
 
     {/* the same framed cream panel as the full-screen gate */}
-    <div className="fs-rise relative mx-6 w-[min(88vw,30rem)] overflow-hidden rounded-[14px] border border-[rgba(31,42,64,0.18)] bg-[#faf6ed]/88 px-10 py-16 text-center shadow-[0_30px_80px_-32px_rgba(60,50,25,0.55)] backdrop-blur-md">
+    <div className="fs-rise relative mx-6 w-[min(88vw,30rem)] overflow-hidden rounded-[14px] border border-[rgba(31,42,64,0.18)] bg-[#faf6ed]/88 px-8 py-10 text-center shadow-[0_30px_80px_-32px_rgba(60,50,25,0.55)] backdrop-blur-md sm:px-10 sm:py-14">
       <span
         aria-hidden="true"
         className="pointer-events-none absolute inset-2 rounded-[10px] border border-[rgba(117,129,150,0.26)]"
@@ -65,28 +69,28 @@ const RotateDevicePrompt = () => (
         <img
           src={brandLogo}
           alt="Notandas Realty"
-          className="mb-10 h-20 w-auto opacity-95"
+          className="mb-7 h-14 w-auto opacity-95 sm:mb-10 sm:h-20"
           draggable="false"
         />
 
-        <RotateTabletIcon className="h-24 w-24 text-[#1A2334]" />
+        <RotateIcon className="h-18 w-18 text-[#1A2334] sm:h-24 sm:w-24" />
 
         <h2
           id="rotate-device-title"
-          className="mt-8 text-xl tracking-wide text-[#4E5157] italic"
+          className="mt-6 text-lg tracking-wide text-[#4E5157] italic sm:mt-8 sm:text-xl"
           style={serif}
         >
           Please Rotate Your Device
         </h2>
         <p
-          className="mt-4 max-w-[22rem] text-[15px] leading-relaxed text-[#5b5f66]"
+          className="mt-3 max-w-[22rem] text-[14px] leading-relaxed text-[#5b5f66] sm:mt-4 sm:text-[15px]"
           style={serif}
         >
           Notandas Realty is designed to be explored in landscape. Turn your
           device sideways to continue.
         </p>
 
-        <p className="mt-8 text-[11px] tracking-[0.32em] text-[#6b6f76] uppercase">
+        <p className="mt-6 text-[10px] tracking-[0.32em] text-[#6b6f76] uppercase sm:mt-8 sm:text-[11px]">
           Landscape view only
         </p>
       </div>

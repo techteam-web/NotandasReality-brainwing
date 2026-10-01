@@ -161,7 +161,15 @@ const PanoViewer = ({
   const [angles, setAngles] = useState({ yaw: 0, pitch: 0, fov: 0, hfov: 0 });
   const [copied, setCopied] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [minimapOpen, setMinimapOpen] = useState(true);
+  /* Folded away to start on a phone, where the view is the whole point and the
+     plan's lettering is too fine to read at that size anyway — "Show" opens it
+     exactly as on a laptop, and this is the only thing the phone changes about
+     this screen. */
+  const [minimapOpen, setMinimapOpen] = useState(
+    () =>
+      typeof document === "undefined" ||
+      !document.documentElement.hasAttribute("data-phone"),
+  );
   const [miniHovered, setMiniHovered] = useState(null);
 
   // Fetch floor plan image & interactive SVG overlay for this floor
@@ -526,7 +534,7 @@ const PanoViewer = ({
       <div className="pointer-events-none absolute top-0 right-0 left-0 z-30 flex items-start justify-between px-6 py-5 md:px-10 md:py-6">
         <div className="pointer-events-auto flex items-center gap-3.5 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] md:gap-5">
           <NotandasNMark
-            className="h-14 w-14 shrink-0 select-none opacity-60 transition-opacity duration-300 hover:opacity-85 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-22 lg:w-22"
+            className="h-14 w-14 shrink-0 select-none opacity-60 transition-opacity duration-300 hover:opacity-85 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-22 lg:w-22 phone:h-16! phone:w-16!"
             fill="black"
             aria-label={buildingName || "Notandas Realty"}
           />
@@ -661,18 +669,24 @@ const PanoViewer = ({
           {/* realtime mini compass in bottom-left corner */}
           {!loading && !failed && (
             <div className="absolute bottom-5 left-5 z-10 flex items-center gap-2 md:bottom-6 md:left-6">
+              {/* The rose hangs off its corner on the wider screens — negative
+                  offsets that let it bleed past the edge, which is the look
+                  there. A phone has that whole corner free and no room to
+                  spare off it, so there it stands IN the box instead:
+                  `static` drops every one of those offsets at once, and it
+                  sits in the corner whole, at a size that still reads. */}
               <MiniCompass
                 heading={headingDeg}
                 pinDeg={pinDeg}
                 transitionMs={0}
-                className="h-24 w-24 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] absolute left-3 -bottom-10 lg:-bottom-5 xl:left-1 2xl:-bottom-10 lg:-left-10 md:h-32 md:w-32 lg:h-22 lg:w-32 xl:h-26 xl:w-25 2xl:h-44 2xl:w-30"
+                className="h-24 w-24 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] absolute left-3 -bottom-10 lg:-bottom-5 xl:left-1 2xl:-bottom-10 lg:-left-10 md:h-32 md:w-32 lg:h-22 lg:w-32 xl:h-26 xl:w-25 2xl:h-44 2xl:w-30 phone:static! phone:h-28! phone:w-28!"
               />
             </div>
           )}
 
           {/* interactive floor plan minimap in bottom-right corner — compact by default, expands on hover */}
           {!loading && !failed && hasFloorPlan && (
-            <div className="group absolute bottom-3 right-3 z-20 flex flex-col items-end sm:bottom-4 sm:right-4 md:bottom-5 md:right-6 lg:bottom-6 lg:right-6">
+            <div className="group absolute bottom-3 right-3 z-20 flex flex-col items-end sm:bottom-4 sm:right-4 md:bottom-5 md:right-6 lg:bottom-6 phone:bottom-6 lg:right-6 phone:right-6">
               <div className="relative overflow-hidden rounded-2xl border border-white/25 bg-[#070b17]/90 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.75)] backdrop-blur-md transition-all duration-300 ease-out origin-bottom-right opacity-90 hover:opacity-100 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
                 {/* Minimap Header */}
                 <div className="mb-1.5 flex items-center justify-between gap-3 px-1 text-white/90">
@@ -694,7 +708,7 @@ const PanoViewer = ({
 
                 {/* Interactive Floor Plan Canvas — increased base scale, expands larger on hover */}
                 {minimapOpen && (
-                  <div className="relative h-32 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-950/90 transition-all duration-300 ease-out group-hover:h-56 group-hover:w-72 md:h-40 md:w-56 md:group-hover:h-72 md:group-hover:w-96 lg:group-hover:h-80 lg:h-33 lg:w-55  lg:group-hover:w-105">
+                  <div className="relative h-32 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-950/90 transition-all duration-300 ease-out group-hover:h-56 group-hover:w-72 md:h-40 md:w-56 md:group-hover:h-72 md:group-hover:w-96 lg:group-hover:h-80 phone:group-hover:h-80 lg:h-33 phone:h-33 lg:w-55 phone:w-55  lg:group-hover:w-105 phone:group-hover:w-105">
                     {planImg && (
                       <img
                         src={planImg}

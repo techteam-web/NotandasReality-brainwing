@@ -379,7 +379,7 @@ const FloorPlanOverlay = ({
       />
 
       {/* floor selector aside — switch the plan without leaving the overlay */}
-      <aside className="from-gray relative flex w-36 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/12 bg-linear-to-b via-[#cad1d6] to-[#c3c7c7] md:w-56 lg:w-60">
+      <aside className="from-gray relative flex w-36 shrink-0 flex-col overflow-hidden border-r border-[#3d6474]/12 bg-linear-to-b via-[#cad1d6] to-[#c3c7c7] md:w-56 lg:w-60 phone:w-60">
         {/* faint blue-gray sheen bleeding down from the top */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-[#4E5157]/18 to-transparent" />
 

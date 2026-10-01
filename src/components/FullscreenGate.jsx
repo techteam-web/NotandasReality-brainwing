@@ -97,8 +97,12 @@ const Overlay = ({ onEnter }) => (
       }}
     />
 
-    {/* the framed cream panel — echoes the sketch-bordered panels of the plan */}
-    <div className="fs-rise relative mx-6 w-[min(92vw,32rem)] overflow-hidden rounded-[14px] border border-[rgba(31,42,64,0.18)] bg-[#faf6ed]/88 px-9 py-22 text-center shadow-[0_30px_80px_-32px_rgba(60,50,25,0.55)] backdrop-blur-md sm:px-14">
+    {/* the framed cream panel — echoes the sketch-bordered panels of the plan.
+        A phone across has 390px of height for the whole page, and this panel
+        stands over 400 tall: the `phone:` sizes below are the same panel with
+        its air taken in, so it fits that screen whole instead of running off
+        the top and bottom of it. */}
+    <div className="fs-rise relative mx-6 w-[min(92vw,32rem)] overflow-hidden rounded-[14px] border border-[rgba(31,42,64,0.18)] bg-[#faf6ed]/88 px-9 py-22 text-center shadow-[0_30px_80px_-32px_rgba(60,50,25,0.55)] backdrop-blur-md sm:px-14 phone:w-[min(80vw,26rem)] phone:px-8 phone:py-5">
       {/* fine gold double keyline, like the framed floor-plan sheets */}
       <span
         aria-hidden="true"
@@ -112,23 +116,23 @@ const Overlay = ({ onEnter }) => (
         <img
           src={brandLogo}
           alt="Notandas Realty"
-          className="fs-float mb-7 h-24 w-auto opacity-95"
+          className="fs-float mb-7 h-24 w-auto opacity-95 phone:mb-3 phone:h-12"
           draggable="false"
         />
 
         {/* Serif heading with a cool underline accent. */}
         <div className="relative inline-block">
           <h2
-            className="text-lg tracking-wide text-[#4E5157] italic"
+            className="text-lg tracking-wide text-[#4E5157] italic phone:text-sm"
             style={serif}
           >
             Best Viewed in Full Screen
           </h2>
-          <AccentUnderline className="absolute -bottom-7 left-1/2 h-4 w-[78%] -translate-x-1/2" />
+          <AccentUnderline className="absolute -bottom-7 left-1/2 h-4 w-[78%] -translate-x-1/2 phone:-bottom-4 phone:h-3" />
         </div>
 
         {/* Slim divider. */}
-        <div className="mt-9 mb-7 flex items-center gap-3" aria-hidden="true">
+        <div className="mt-9 mb-7 flex items-center gap-3 phone:mt-5 phone:mb-3" aria-hidden="true">
           {/* <span className="h-px w-12 bg-[rgba(117,129,150,0.45)]" />
           <span className="h-1.5 w-1.5 rotate-45 bg-[#4E5157]" />
           <span className="h-px w-12 bg-[rgba(117,129,150,0.45)]" /> */}
@@ -137,14 +141,14 @@ const Overlay = ({ onEnter }) => (
         <button
           onClick={onEnter}
           onTouchEnd={onEnter}
-          className="group inline-flex items-center gap-2.5 rounded-full border border-[rgba(117,129,150,0.34)] bg-[linear-gradient(180deg,#1A2334_0%,#11192B_100%)] px-9 py-3.5 text-xs font-semibold tracking-[0.26em] text-[#E6EAF0] uppercase shadow-[0_12px_28px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-[rgba(152,165,188,0.5)] hover:bg-[linear-gradient(180deg,#202A3E_0%,#151D2F_100%)] hover:shadow-[0_16px_34px_-12px_rgba(0,0,0,0.82)] active:translate-y-px"
+          className="group inline-flex items-center gap-2.5 rounded-full border border-[rgba(117,129,150,0.34)] bg-[linear-gradient(180deg,#1A2334_0%,#11192B_100%)] px-9 py-3.5 text-xs font-semibold tracking-[0.26em] phone:px-6 phone:py-2.5 phone:text-[10px] text-[#E6EAF0] uppercase shadow-[0_12px_28px_-12px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-[rgba(152,165,188,0.5)] hover:bg-[linear-gradient(180deg,#202A3E_0%,#151D2F_100%)] hover:shadow-[0_16px_34px_-12px_rgba(0,0,0,0.82)] active:translate-y-px"
           style={serif}
         >
           <ExpandIcon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
           Enter Full Screen
         </button>
 
-        <p className="mt-7 text-[11px] tracking-[0.32em] text-[#6b6f76] uppercase">
+        <p className="mt-7 text-[11px] tracking-[0.32em] text-[#6b6f76] uppercase phone:mt-3 phone:text-[9px]">
           Press Esc to exit
         </p>
       </div>

@@ -55,7 +55,20 @@ const HomePage = () => {
           shows — so every pin stays on its spot. Through a variable so only
           the one image for this shape is ever downloaded. */}
       <div
-        className="relative h-full w-full bg-cover bg-no-repeat portrait:h-270! portrait:w-480! portrait:origin-top-left portrait:scale-[0.4271] ipad:bg-(image:--map-ipad)! ipad:bg-size-[max(1440px,calc(100%_-_2*var(--crop-x)))_auto]! ipad:bg-center!"
+        /* A phone across is a far wider shape than the chart, so covering it
+           would cut the coast off top and bottom — and with it the pin at 92%
+           of the map. The chart keeps its own box, 1920×1080, and is SCALED to
+           the height that is on screen (`--fit-y`, see DesignStage): every pin
+           keeps its percentage of the chart and lands on its own spot, with
+           the ground showing either side.
+
+           Scaled rather than resized on purpose. Sizing the box from the crop
+           meant a `calc()` of two variables, and where those variables do not
+           exist — any window where the design box is off — the whole
+           declaration is invalid, the box collapses to nothing, the chart
+           disappears and all ten pins pile up in one corner. `var(--fit-y,1)`
+           cannot fail that way: no stage, no scaling, chart as it was. */
+        className="relative h-full w-full origin-center bg-cover bg-no-repeat portrait:h-270! portrait:w-480! portrait:origin-top-left portrait:scale-[0.4271] ipad:bg-(image:--map-ipad)! ipad:bg-size-[max(1440px,calc(100%_-_2*var(--crop-x)))_auto]! ipad:bg-center! phone:scale-[var(--fit-y,1)]"
         style={{
           backgroundImage: `url(${notanMap})`,
           "--map-ipad": `url(${notanMapIpad})`,
@@ -68,13 +81,16 @@ const HomePage = () => {
       {/* 108px in from the right is off screen at 4:3, which shows only up to
           240px in — so on an iPad across the label stands 264px in, still over
           the airport's runways. */}
-      <div className="absolute right-27 bottom-[50%] ipad:right-[264px]!">
+      {/* The chart's own lettering is set for a 1920-wide plate and lands at
+          five or six real pixels on a phone, so the phone's chart carries the
+          coast and the pins and leaves the lettering off. */}
+      <div className="absolute right-27 bottom-[50%] ipad:right-[264px]! phone:hidden">
         <div className="mb-15 ml-15 h-16 w-36 opacity-70 pointer-events-none">
           <AnimatedPlane />
         </div>
 
         <h1
-          className="text-sm font-semibold text-[#A7B0BE] uppercase tracking-widest lg:text-[12px] pointer-events-none"
+          className="text-sm font-semibold text-[#A7B0BE] uppercase tracking-widest lg:text-[12px] phone:text-[12px] pointer-events-none"
           style={{ fontFamily: "'Times New Roman', Times, serif" }}
         >
           chhatrapati <br />
@@ -84,16 +100,16 @@ const HomePage = () => {
       </div>
 
       <h1
-        className="absolute top-[95%] left-[43%] text-sm font-semibold text-[#A7B0BE] uppercase lg:text-[11px] opacity-75 pointer-events-none"
+        className="absolute top-[95%] left-[43%] text-sm font-semibold text-[#A7B0BE] uppercase lg:text-[11px] phone:text-[11px] opacity-75 pointer-events-none phone:hidden"
         style={{ fontFamily: "'Times New Roman', Times, serif" }}
       >
         bandra worli <br />
         sea link
       </h1>
 
-      <div className="absolute top-[50%] left-[8%] -rotate-90 lg:left-40">
+      <div className="absolute top-[50%] left-[8%] -rotate-90 lg:left-40 phone:left-40 phone:hidden">
         <h1
-          className="font-Times-Roman text-2xl font-semibold tracking-[28px] text-[#3b5382] capitalize lg:block pointer-events-none"
+          className="font-Times-Roman text-2xl font-semibold tracking-[28px] text-[#3b5382] capitalize lg:block phone:block pointer-events-none"
           ref={seaWordRef}
         >
           Arabian Sea
@@ -112,18 +128,18 @@ const HomePage = () => {
           stranded a quarter of a page from the map they belong to. */}
       <Chrome>
       <div className="absolute top-0 left-0 portrait:static! portrait:order-first! portrait:shrink-0">
-        <NuthandasLogoAnimated className="relative h-50 w-48 transition-all duration-500 md:w-74 lg:left-10 lg:w-30 portrait:h-31! portrait:w-30! portrait:left-0! portrait:top-0! pointer-events-none" />
+        <NuthandasLogoAnimated className="relative h-50 w-48 transition-all duration-500 md:w-74 lg:left-10 phone:left-10 lg:w-30 phone:w-30 portrait:h-31! portrait:w-30! portrait:left-0! portrait:top-0! pointer-events-none" />
       </div>
       </Chrome>
 
       {/* static compass rose — map decoration */}
-      {/* <Compass className="absolute bottom-4 left-3 h-20 w-20 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-8 lg:left-3 lg:w-40" /> */}
+      {/* <Compass className="absolute bottom-4 left-3 h-20 w-20 opacity-90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-8 phone:-bottom-8 lg:left-3 phone:left-3 lg:w-40 phone:w-40" /> */}
 
       <Chrome>
       <MiniCompass
         backgroundFill="none"
         showMarker={false}
-        className="absolute bottom-4 left-3 h-20 w-20 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-10 lg:left-7 lg:w-35 portrait:static! portrait:h-33! portrait:w-33! portrait:shrink-0!"
+        className="absolute bottom-4 left-3 h-20 w-20 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] md:h-54 md:w-54 lg:-bottom-10 phone:-bottom-10 lg:left-7 phone:left-7 lg:w-35 phone:w-35 portrait:static! portrait:h-33! portrait:w-33! portrait:shrink-0! phone:hidden"
       />
       </Chrome>
     </div>

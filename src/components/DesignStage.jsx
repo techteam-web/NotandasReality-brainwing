@@ -66,6 +66,23 @@ export const DESIGN_H = 1080;
    index.css — the three have to agree on where the desktop composition ends. */
 const MIN_WIDTH = 1024;
 
+/* …except a phone held across, which gets the composition too, scaled to its
+   own window. Across, a phone is the same SHAPE as a laptop and differs only
+   in size, so one composition serves both: the amenities stand in the sky
+   where they were placed, the floor readout beside the tower, and nothing is
+   laid out a second time. Where each block stands comes from the `phone:`
+   twins of the `lg:` placements (see index.css).
+
+   Gated on a coarse pointer so this is phones and not narrow windows: a
+   desktop browser dragged under 1024px keeps the stacked page it has always
+   had. 480px is under the smallest phone across (a 568×320 SE) and over the
+   widest upright (a 430 Pro Max), so it can only catch a phone the right way
+   round — and upright it is asked to turn anyway (RotateDevicePrompt). */
+const TOUCH_MIN_WIDTH = 480;
+const hasCoarsePointer = () =>
+  typeof window !== "undefined" &&
+  !!window.matchMedia?.("(any-pointer: coarse)").matches;
+
 /* Where the 1920×1080 composition stops making sense: when the window is
    TALLER than it is wide. Not before that — a near-square window gets the
    real composition, covering, cropped at the sides, which is better than a
@@ -138,7 +155,7 @@ const measure = () => {
      by it. */
   const scale = Math.max(w / DESIGN_W, h / DESIGN_H);
   return {
-    active: w >= MIN_WIDTH,
+    active: w >= MIN_WIDTH || (w >= TOUCH_MIN_WIDTH && hasCoarsePointer()),
     portrait: false,
     scale,
     boxW: DESIGN_W,
@@ -248,6 +265,16 @@ const DesignStage = ({ children }) => {
              this to centre itself in what is ON SCREEN rather than in the 1920
              the design was drawn at, so it cannot be cropped into. */
           "--crop-x": `${Math.max(0, (boxW - viewW) / 2)}px`,
+          /* The same for the other axis, which is the one a phone across
+             crops: 2.16:1 against the picture's 16:9 takes about 96 design
+             pixels off the top and the bottom. */
+          "--crop-y": `${Math.max(0, (boxH - viewH) / 2)}px`,
+          /* How much of the picture's HEIGHT is on screen, as a plain factor.
+             The chart scales itself by this to fit what is visible, so the pin
+             standing at 92% of the map is not cut in half (see HomePage) —
+             a number rather than a length, so it can drive `scale` directly,
+             and 1 wherever nothing is cropped. */
+          "--fit-y": String(Math.min(1, viewH / boxH).toFixed(4)),
         }}
       >
         {/* Upright there is nothing to escape: the canvas and the window are

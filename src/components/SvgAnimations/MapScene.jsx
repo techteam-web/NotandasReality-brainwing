@@ -276,7 +276,10 @@ const MapScene = () => {
   return (
     <div
       ref={rootRef}
-      className="pointer-events-none absolute inset-0 overflow-hidden select-none"
+      /* Off on a phone: the chart is the same one a laptop gets, at a third of
+         the size, and its drawn-on boat, palms, plane and birds crowd the pins
+         at that scale. The phone's chart carries the coast and the pins. */
+      className="pointer-events-none absolute inset-0 overflow-hidden select-none phone:hidden"
       aria-hidden="true"
     >
       {/* ---------------- Sea side (Arabian Sea, left of the coastline) ---------------- */}

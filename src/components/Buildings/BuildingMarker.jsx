@@ -27,7 +27,11 @@ const BuildingMarker = ({ building }) => {
       style={{ top, left, transform: "translate(-50%, -50%)" }}
     >
       {/* gsap pops this in on load and floats it gently (see BuildingsLayer) */}
-      <div className="bldg-pop relative h-5 w-5 portrait:h-11! portrait:w-11!">
+      {/* A phone sees the chart at about a third of the size, so a 20px beacon
+          lands under 9 real pixels — too small to read as a mark and too small
+          to put a thumb on. It is sized in design pixels like everything else
+          here, so this is 19 real ones on a phone across. */}
+      <div className="bldg-pop relative h-5 w-5 portrait:h-11! portrait:w-11! phone:h-11! phone:w-11!">
         {/* ── the pointer: a small blue-gray beacon ── */}
         <Link
           to={href}
@@ -47,7 +51,12 @@ const BuildingMarker = ({ building }) => {
 
         {/* building name inked beneath the pointer, like a place label on an old map */}
         <p
-          className={`pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 font-serif text-xs leading-none tracking-wide whitespace-nowrap portrait:mt-5! portrait:text-[30px]! text-[#4E5157] italic transition-opacity duration-300 select-none [text-shadow:0_1px_0_rgba(245,247,251,0.9),0_0_6px_rgba(245,247,251,0.8)] ${popsUp ? "" : "group-hover:opacity-0"}`}
+          /* The name is 12 design pixels, which is five real ones once the
+             chart is scaled to a phone — a smudge rather than a label. On that
+             shape it is set in design pixels of its own so it lands at about
+             nine real ones: small, as everything on a phone across is, and
+             still a name you can read. */
+          className={`pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 font-serif text-xs leading-none tracking-wide whitespace-nowrap portrait:mt-5! portrait:text-[30px]! phone:mt-2.5! phone:text-[20px]! text-[#4E5157] italic transition-opacity duration-300 select-none [text-shadow:0_1px_0_rgba(245,247,251,0.9),0_0_6px_rgba(245,247,251,0.8)] ${popsUp ? "" : "group-hover:opacity-0"}`}
         >
           {name}
         </p>

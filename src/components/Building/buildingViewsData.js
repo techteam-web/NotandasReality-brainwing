@@ -47,29 +47,29 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 1672 941",
     floors: NOTAN_DC_FLOORS,
     headerLogoClass:
-      "w-[245.6px] sm:w-[276.3px] md:w-[383.8px] lg:w-[287.9px]",
+      "w-[245.6px] sm:w-[276.3px] md:w-[383.8px] lg:w-[287.9px] phone:w-[287.9px]",
     headerLogoTrim: "mt-[-31.17%] mb-[-31.58%]",
 
-    headerSubClass: "font-bold lg:text-[12px]",
+    headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
     nMarkFill: "black",
 
     amenityListClass:
-      "max-w-lg lg:w-[40rem]",
-    amenityItemClass: "lg:text-[17px]",
+      "max-w-lg lg:w-[40rem] phone:w-[40rem]",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
     /* iPad across only x 240–1680 is on screen. The group is centred in the sky between the tower (1175) and
        that edge, where the 16:9 placement ran the address and the list off it. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl lg:top-[42%] lg:right-[0.3%] ipad:left-[1427px]! ipad:right-auto! ipad:-translate-x-1/2!",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl lg:top-[42%] phone:top-[42%] lg:right-[0.3%] phone:right-[0.3%] ipad:left-[1427px]! ipad:right-auto! ipad:-translate-x-1/2!",
 
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-80 top-26 lg:left-[28.75%] lg:top-[35.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[28.75%]! portrait:top-[35.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+      "left-80 top-26 lg:left-[28.75%] phone:left-[28.75%] lg:top-[35.00%] phone:top-[35.00%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[28.75%]! portrait:top-[35.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
 
     headerClass:
-      "lg:top-[17%] lg:right-[10%]",
+      "lg:top-[17%] phone:top-[17%] lg:right-[10%] phone:right-[10%]",
   },
   "notan-edge": {
     viewImg: notanEdgeView,
@@ -77,9 +77,9 @@ export const BUILDING_VIEWS = {
     viewBox: "-9554435 -6002850 4615 2597",
     floors: NOTAN_EDGE_FLOORS,
     headerClass:
-      "left-80 top-36 md:top-127 lg:left-[20%] lg:top-58",
+      "left-80 top-36 md:top-127 lg:left-[20%] phone:left-[20%] lg:top-58 phone:top-58",
     headerLogoClass:
-      "w-[253.3px] sm:w-[285px] md:w-[395.8px] lg:w-[296.9px]",
+      "w-[253.3px] sm:w-[285px] md:w-[395.8px] lg:w-[296.9px] phone:w-[296.9px]",
     headerLogoTrim: "mt-[-31.83%] mb-[-32%]",
     /* the wordmark sits 0.67% left of its artboard's centre, so the mark's INK — not its box — is what lines up with
        the amenities below it. Measured: node scripts/measure-page.mjs notan-edge */
@@ -90,14 +90,14 @@ export const BUILDING_VIEWS = {
        the live page: node scripts/measure-page.mjs. Edge had no placement of
        its own at all and was falling through to the component's default. */
     asideClass:
-      "left-[65%] top-1/2 lg:left-[69.58%] lg:top-[40.37%] lg:right-auto lg:bottom-auto lg:translate-y-0 lg:-translate-x-1/2 portrait:left-[69.58%]! portrait:top-[40.37%]! portrait:right-auto! portrait:bottom-auto! portrait:translate-y-0! portrait:-translate-x-1/2!",
+      "left-[65%] top-1/2 lg:left-[69.58%] phone:left-[69.58%] lg:top-[40.37%] phone:top-[40.37%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:translate-y-0 phone:translate-y-0 lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[69.58%]! portrait:top-[40.37%]! portrait:right-auto! portrait:bottom-auto! portrait:translate-y-0! portrait:-translate-x-1/2!",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-52 lg:top-130 lg:left-45",
-    headerSubClass: "font-bold lg:text-[12px]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-52 phone:bottom-52 lg:top-130 phone:top-130 lg:left-45 phone:left-45",
+    headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
     amenityListClass:
-      "max-w-lg lg:w-[42rem]",
-    amenityItemClass: "lg:text-[17px]", 
+      "max-w-lg lg:w-[42rem] phone:w-[42rem]",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px]", 
   },
   "notan-jewel": {
     viewImg: notanJewelView,
@@ -114,20 +114,20 @@ export const BUILDING_VIEWS = {
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-80 top-36 md:top-127 lg:left-[27.71%] lg:top-[31.48%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[27.71%]! portrait:top-[31.48%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
-    headerSubClass: "font-bold lg:text-[12px]",
+      "left-80 top-36 md:top-127 lg:left-[27.71%] phone:left-[27.71%] lg:top-[31.48%] phone:top-[31.48%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[27.71%]! portrait:top-[31.48%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+    headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
     headerLogoClass:
-      "w-[265.5px] sm:w-[298.7px] md:w-[414.9px] lg:w-[311.2px]",
+      "w-[265.5px] sm:w-[298.7px] md:w-[414.9px] lg:w-[311.2px] phone:w-[311.2px]",
     headerLogoTrim: "mt-[-32.67%] mb-[-32.83%]",
     headerClass:
-      "] lg:top-[20%] lg:right-[14.7%]",
+      "] lg:top-[20%] phone:top-[20%] lg:right-[14.7%] phone:right-[14.7%]",
     nMarkFill: "black",
     /* iPad across only x 240–1680 is on screen. The group is centred in the sky right of the tower (1058–1680). */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-75 lg:bottom-46 lg:h-35 lg:top-[47%] lg:right-[2%] ipad:left-[1369px]! ipad:right-auto! ipad:-translate-x-1/2!",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-75 lg:bottom-46 phone:bottom-46 lg:h-35 phone:h-35 lg:top-[47%] phone:top-[47%] lg:right-[2%] phone:right-[2%] ipad:left-[1369px]! ipad:right-auto! ipad:-translate-x-1/2!",
     amenityListClass:
-      "max-w-lg lg:w-[40rem]",
-    amenityItemClass: "lg:text-[17px]",
+      "max-w-lg lg:w-[40rem] phone:w-[40rem]",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
   },
   "notan-space": {
     viewImg: notanSpaceView,
@@ -143,19 +143,19 @@ export const BUILDING_VIEWS = {
        to apply for them, and widths in px, since container units have no
        container once the stage is gone. */
     headerClass: "left-[74%] top-[24%]",
-    headerLogoClass: "w-[289.9px] sm:w-[326.2px] md:w-[453px] lg:w-[339.8px]",
+    headerLogoClass: "w-[289.9px] sm:w-[326.2px] md:w-[453px] lg:w-[339.8px] phone:w-[339.8px]",
     headerLogoTrim: "mt-[-34.08%] mb-[-34.33%]",
-    headerSubClass: "font-bold tracking-[0.45em] lg:text-[12px]",
+    headerSubClass: "font-bold tracking-[0.45em] lg:text-[12px] phone:text-[12px]",
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-[26%] top-[30%] w-[211.2px] -translate-x-1/2 -translate-y-1/2 lg:translate-y-0 portrait:translate-y-0! lg:left-[26.00%] lg:top-[21.76%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[26.00%]! portrait:top-[21.76%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+      "left-[26%] top-[30%] w-[211.2px] -translate-x-1/2 -translate-y-1/2 lg:translate-y-0 phone:translate-y-0 portrait:translate-y-0! lg:left-[26.00%] phone:left-[26.00%] lg:top-[21.76%] phone:top-[21.76%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[26.00%]! portrait:top-[21.76%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
     amenityClass: "left-[74.6%] top-[49%] -translate-x-1/2 -translate-y-1/2",
     amenityListClass: "w-[460.8px]",
-    amenityItemClass: "lg:text-[17px]",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
   },
   "notan-terrace": {
     viewImg: notanTerraceView,
@@ -163,23 +163,23 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 4615 2597",
     floors: NOTAN_TERRACE_FLOORS,
     headerClass:
-      "md:top-127 lg:left-85 lg:top-45",
+      "md:top-127 lg:left-85 phone:left-85 lg:top-45 phone:top-45",
     headerLogoClass:
-      "w-[256px] sm:w-[288px] md:w-[400px] lg:w-[300px]",
+      "w-[256px] sm:w-[288px] md:w-[400px] lg:w-[300px] phone:w-[300px]",
     headerLogoTrim: "mt-[-31.67%] mb-[-32%]",
-    headerSubClass: "font-bold lg:text-[12px]",
+    headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
     nMarkFill: "black",
     amenityClass:
-      "lg:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-55 lg:left-[9%] lg:top-[40%]",
+      "lg:right-[10%] phone:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-55 phone:bottom-55 lg:left-[9%] phone:left-[9%] lg:top-[40%] phone:top-[40%]",
     amenityListClass:
-      "max-w-lg lg:w-[42rem]",
-    amenityItemClass: "lg:text-[17px]",
+      "max-w-lg lg:w-[42rem] phone:w-[42rem]",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "top-[30%] lg:left-[76.25%] lg:top-[30.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[76.25%]! portrait:top-[30.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+      "top-[30%] lg:left-[76.25%] phone:left-[76.25%] lg:top-[30.00%] phone:top-[30.00%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[76.25%]! portrait:top-[30.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
   },
   "notan-crown": {
     viewImg: notanCrownView,
@@ -191,22 +191,22 @@ export const BUILDING_VIEWS = {
        upper block (which starts near 790 at this height) — at 386 its address
        began at 208. The readout is centred in the sky right of it, 1451–1680. */
     headerClass:
-      "left-80 top-36 md:top-127 lg:top-[106px] lg:left-[386px] lg:-translate-x-1/2 ipad:left-[500px]!",
-    headerSubClass: "font-bold lg:text-[12px]",
+      "left-80 top-36 md:top-127 lg:top-[106px] phone:top-[106px] lg:left-[386px] phone:left-[386px] lg:-translate-x-1/2 phone:-translate-x-1/2 ipad:left-[500px]!",
+    headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
     headerLogoClass:
-      "w-[203.4px] sm:w-[228.9px] md:w-[317.9px] lg:w-[238.4px]",
+      "w-[203.4px] sm:w-[228.9px] md:w-[317.9px] lg:w-[238.4px] phone:w-[238.4px]",
     headerLogoTrim: "mt-[-0%] mb-[-0%]",
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "right-[15%] top-[20%] lg:left-[86.25%] lg:top-[24.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[86.25%]! portrait:top-[24.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2! ipad:left-[81.6%]!",
+      "right-[15%] top-[20%] lg:left-[86.25%] phone:left-[86.25%] lg:top-[24.00%] phone:top-[24.00%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[86.25%]! portrait:top-[24.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2! ipad:left-[81.6%]!",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:top-[357px] lg:bottom-auto lg:left-[386px] lg:-translate-x-1/2",
-    amenityListClass: "max-w-lg lg:w-[40rem]",
-    amenityItemClass: "lg:text-[17px]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:top-[357px] phone:top-[357px] lg:bottom-auto phone:bottom-auto lg:left-[386px] phone:left-[386px] lg:-translate-x-1/2 phone:-translate-x-1/2",
+    amenityListClass: "max-w-lg lg:w-[40rem] phone:w-[40rem]",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
   },
 
   "notan-lands-end": {
@@ -216,16 +216,16 @@ export const BUILDING_VIEWS = {
     viewBox: "0 0 10000 5886",
     floors: NOTAN_LANDS_END_FLOORS,
     headerClass:
-      "top-36 lg:left-[16%] lg:top-34",
+      "top-36 lg:left-[16%] phone:left-[16%] lg:top-34 phone:top-34",
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "right-[15%] top-[30%] lg:left-[74.25%] lg:top-[23.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[74.25%]! portrait:top-[23.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
-    headerSubClass:"font-bold lg:text-[12px]",
+      "right-[15%] top-[30%] lg:left-[74.25%] phone:left-[74.25%] lg:top-[23.00%] phone:top-[23.00%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[74.25%]! portrait:top-[23.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+    headerSubClass:"font-bold lg:text-[12px] phone:text-[12px]",
     headerLogoClass:
-       "w-[304.5px] sm:w-[342.6px] md:w-[475.8px] lg:w-[356.8px]",
+       "w-[304.5px] sm:w-[342.6px] md:w-[475.8px] lg:w-[356.8px] phone:w-[356.8px]",
     headerLogoTrim: "mt-[-5.58%] mb-[-8.75%]",
     /* 10.8% of padding on the left against 4% on the right, so the mark's INK — not its box — is what lines up with
        the amenities below it. Measured: node scripts/measure-page.mjs notan-lands-end */
@@ -234,10 +234,10 @@ export const BUILDING_VIEWS = {
     /* iPad across only x 240–1680 is on screen. The group is centred in the sky left of the tower (240–901);
        at 16:9's placement the list sat 9px off the screen's edge. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-56 lg:h-35 lg:top-[38%] lg:left-26 ipad:left-[570px]! ipad:right-auto! ipad:-translate-x-1/2!",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-85 lg:bottom-56 phone:bottom-56 lg:h-35 phone:h-35 lg:top-[38%] phone:top-[38%] lg:left-26 phone:left-26 ipad:left-[570px]! ipad:right-auto! ipad:-translate-x-1/2!",
     amenityListClass:
-      "max-w-lg lg:w-[52rem]",
-    amenityItemClass: "lg:text-[17px]",
+      "max-w-lg lg:w-[52rem] phone:w-[52rem]",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
   },
   "notan-views": {
     viewImg: notanViewsView,
@@ -249,19 +249,19 @@ export const BUILDING_VIEWS = {
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-80 top-36 md:top-127 lg:left-[31.87%] lg:top-[33.33%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[31.87%]! portrait:top-[33.33%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+      "left-80 top-36 md:top-127 lg:left-[31.87%] phone:left-[31.87%] lg:top-[33.33%] phone:top-[33.33%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[31.87%]! portrait:top-[33.33%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     headerClass:
-      "right-[15%] top-[30%] lg:top-[14%] lg:right-[12%]",
-    headerSubClass: "font-bold lg:text-[12px]",
+      "right-[15%] top-[30%] lg:top-[14%] phone:top-[14%] lg:right-[12%] phone:right-[12%]",
+    headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
     headerLogoClass:
-      "w-[262.9px] sm:w-[295.8px] md:w-[410.8px] lg:w-[308.1px]",
+      "w-[262.9px] sm:w-[295.8px] md:w-[410.8px] lg:w-[308.1px] phone:w-[308.1px]",
     headerLogoTrim: "mt-[-35%] mb-[-30.17%]",
     nMarkFill: "black",
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-66 lg:h-35 lg:top-110 lg:right-[max(calc(-1%_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-85 lg:bottom-66 phone:bottom-66 lg:h-35 phone:h-35 lg:top-110 phone:top-110 lg:right-[max(calc(-1%_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] phone:right-[max(calc(-1%_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))]",
     amenityListClass:
-      "max-w-lg lg:w-[42rem]",
-    amenityItemClass: "lg:text-[17px]",
+      "max-w-lg lg:w-[42rem] phone:w-[42rem]",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
   },
 
   "notan-beach-house": {
@@ -275,20 +275,20 @@ export const BUILDING_VIEWS = {
     // to its right, so the mark and the floor readout both live over the water.
     // Starting placement — dial in against the live page like the others.
     headerClass:
-      "top-[10%] lg:right-[15%] lg:top-[14%]",
+      "top-[10%] lg:right-[15%] phone:right-[15%] lg:top-[14%] phone:top-[14%]",
     headerLogoClass:
-      "w-[207.8px] sm:w-[233.8px] md:w-[324.7px] lg:w-[243.5px]",
+      "w-[207.8px] sm:w-[233.8px] md:w-[324.7px] lg:w-[243.5px] phone:w-[243.5px]",
     headerLogoTrim: "mt-[-7.58%] mb-[-4.5%]",
     /* the wordmark sits 0.83% left of its artboard's centre, so the mark's INK — not its box — is what lines up with
        the amenities below it. Measured: node scripts/measure-page.mjs notan-beach-house */
     headerLogoNudge: "translate-x-[0.83%]",
-    headerSubClass: "font-bold lg:text-[12px]",
+    headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "left-[9%] top-[15%] lg:left-[18.75%] lg:top-[25.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[18.75%]! portrait:top-[25.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
+      "left-[9%] top-[15%] lg:left-[18.75%] phone:left-[18.75%] lg:top-[25.00%] phone:top-[25.00%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[18.75%]! portrait:top-[25.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
     /* iPad across only x 240–1680 is on screen, and the sky right of the tower is 1156–1680 —
        narrower than any of the rows above, which wrapped into nine ragged
@@ -296,10 +296,10 @@ export const BUILDING_VIEWS = {
        AmenitiesData.js), six of 351–418px at 15px, like Tides', inside a
        432px list centred in the sky. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 right-85 lg:bottom-36 lg:top-120 lg:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:left-[1432px]! ipad:right-auto! ipad:-translate-x-1/2!",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-85 lg:bottom-36 phone:bottom-36 lg:top-120 phone:top-120 lg:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] phone:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:left-[1432px]! ipad:right-auto! ipad:-translate-x-1/2!",
     amenityListClass:
-      "max-w-lg lg:w-[54rem] ipad:w-[27rem]!",
-    amenityItemClass: "lg:text-[17px] ipad:text-[15px]!",
+      "max-w-lg lg:w-[54rem] phone:w-[54rem] ipad:w-[27rem]!",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px] ipad:text-[15px]!",
   },
 
   "notan-tides": {
@@ -315,16 +315,16 @@ export const BUILDING_VIEWS = {
     // its left, so the mark and the floor readout both sit over that sky.
     // Starting placement — dial in against the live page like the others.
     headerClass:
-      "top-36 lg:left-[14%] lg:top-[6%]",
+      "top-36 lg:left-[14%] phone:left-[14%] lg:top-[6%] phone:top-[6%]",
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
        the live page: node scripts/measure-page.mjs */
     asideClass:
-      "right-[15%] top-[30%] lg:left-[82.92%] lg:top-[23.00%] lg:right-auto lg:bottom-auto lg:-translate-x-1/2 portrait:left-[82.92%]! portrait:top-[23.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2! ipad:left-[77.5%]!",
-    headerSubClass: "font-bold lg:text-[12px]",
+      "right-[15%] top-[30%] lg:left-[82.92%] phone:left-[82.92%] lg:top-[23.00%] phone:top-[23.00%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[82.92%]! portrait:top-[23.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2! ipad:left-[77.5%]!",
+    headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
      headerLogoClass:
-      "w-[222.4px] sm:w-[250.3px] md:w-[347.6px] lg:w-[260.7px]",
+      "w-[222.4px] sm:w-[250.3px] md:w-[347.6px] lg:w-[260.7px] phone:w-[260.7px]",
     headerLogoTrim: "mt-[-5.75%] mb-[-6.84%]",
     nMarkFill: "black",
     /* iPad across only x 240–1680 is on screen. The sky left of the tower is only 240–670 at the
@@ -332,9 +332,9 @@ export const BUILDING_VIEWS = {
        ran into the tower. It is set at 15px, and the group moves up 80px to
        where the roof's slope leaves more sky, centred in it. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl bottom-55 lg:bottom-63 lg:top-112 lg:left-[max(calc(-48px_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:top-[368px]! ipad:left-[484px]! ipad:-translate-x-1/2!",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 lg:bottom-63 phone:bottom-63 lg:top-112 phone:top-112 lg:left-[max(calc(-48px_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] phone:left-[max(calc(-48px_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:top-[368px]! ipad:left-[484px]! ipad:-translate-x-1/2!",
     amenityListClass:
-      "max-w-lg lg:w-[42rem] ipad:w-[26.5rem]!",
-    amenityItemClass: "lg:text-[17px] ipad:text-[15px]!",
+      "max-w-lg lg:w-[42rem] phone:w-[42rem] ipad:w-[26.5rem]!",
+    amenityItemClass: "lg:text-[17px] phone:text-[17px] ipad:text-[15px]!",
   },
 };

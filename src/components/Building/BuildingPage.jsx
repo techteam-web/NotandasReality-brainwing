@@ -39,17 +39,17 @@ import { ratioFromViewBox } from "./floorGeometry";
    the mark. Stripping them left every project's headerSubClass identical,
    which is the tell that they were never design values. */
 const SUB_GAP =
-  "mt-[9px] sm:mt-[11px] md:mt-[19px] lg:mt-[12px]";
+  "mt-[9px] sm:mt-[11px] md:mt-[19px] lg:mt-[12px] phone:mt-[12px]";
 
 const HEADER_GAP =
-  "mb-[115px] sm:mb-[133px] md:mb-[194px] lg:mb-[140px]";
+  "mb-[115px] sm:mb-[133px] md:mb-[194px] lg:mb-[140px] phone:mb-[140px]";
 
 /* Notan Space is the one project already laid out on the stage, and its
    amenities panel carries none of the padding the other nine put above their
    caption — so the same margin would sit it 17px closer. Its own ladder makes
    up the difference; it is not a different design, just a different box. */
 const HEADER_GAP_STAGED =
-  "mb-[132px] sm:mb-[150px] md:mb-[211px] lg:mb-[157px]";
+  "mb-[132px] sm:mb-[150px] md:mb-[211px] lg:mb-[157px] phone:mb-[157px]";
 
 const STAGE_TYPE = {
   asideLabel: "text-[0.95cqw] leading-[1.2] tracking-[0.16em]",
@@ -286,7 +286,7 @@ const BuildingPage = () => {
         </h1>
       ) : (
         <h1
-          className={`mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-[35px] ${ view.headerTitleClass || "" }`}
+          className={`mt-1 text-3xl leading-none font-light tracking-[0.18em] text-[#1f2a40] uppercase sm:text-4xl md:text-6xl md:tracking-[0.22em] lg:text-[35px] phone:text-[35px] ${ view.headerTitleClass || "" }`}
         >
           {building ? building.name : "Building"}
         </h1>
@@ -299,7 +299,7 @@ const BuildingPage = () => {
              each project's own address line silently setting it. The address
              keeps its own per-project size and offset and lands where it
              always did, inside that gap. */
-          className={`absolute top-full left-1/2 w-max -translate-x-1/2 p-2 text-[10px] tracking-[0.45em] text-[#1f2a40] uppercase md:text-sm lg:text-[10px] portrait:static! portrait:mx-auto! portrait:translate-x-0! portrait:text-[10px]! ${SUB_GAP} ${ view.headerSubClass || "" }`}
+          className={`absolute top-full left-1/2 w-max -translate-x-1/2 p-2 text-[10px] tracking-[0.45em] text-[#1f2a40] uppercase md:text-sm lg:text-[10px] phone:text-[10px] portrait:static! portrait:mx-auto! portrait:translate-x-0! portrait:text-[10px]! ${SUB_GAP} ${ view.headerSubClass || "" }`}
         >
           {building.subtitle || `${building.area}, Mumbai`}
         </p>
@@ -398,7 +398,7 @@ const BuildingPage = () => {
                plain utility would lose to them on an iPad Pro's 1024px.
 
                `h-auto` is in there for a specific reason: several projects
-               carry a fixed `lg:h-35` from the per-breakpoint days. Absolutely
+               carry a fixed `lg:h-35 phone:h-35` from the per-breakpoint days. Absolutely
                positioned that is harmless — the text simply overflows the box
                and still draws. In this column the block is a real flex item,
                so a 140px height had its `my-auto` margins centre a box less
@@ -406,7 +406,7 @@ const BuildingPage = () => {
                clean off the bottom of the screen on Views and Lands End. */
             `pointer-events-none absolute z-20 portrait:static! portrait:mx-auto! portrait:my-auto! portrait:h-auto! portrait:w-full! portrait:max-w-none! portrait:translate-x-0! portrait:translate-y-0! ${
               view.amenityClass ||
-              "bottom-55 left-75 w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl"
+              "bottom-55 left-75 w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl"
             }`
       }
     >
@@ -483,7 +483,7 @@ const BuildingPage = () => {
                       const showSep = !isLast || hasTrailingPipe;
                       const sizeClass = staged
                         ? view.amenityItemClass
-                        : view.amenityItemClass || "lg:text-[18px]";
+                        : view.amenityItemClass || "lg:text-[18px] phone:text-[18px]";
                       return (
                         <Fragment key={itemIdx}>
                           <span
@@ -728,7 +728,7 @@ const BuildingPage = () => {
         <NotandasNMark
           className={
             view.nMarkClass ||
-            "absolute top-4 right-5 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 lg:h-56 lg:w-32 lg:-top-8 lg:-right-3"
+            "absolute top-4 right-5 z-20 h-32 w-20 opacity-95 md:-top-6 md:-right-2 md:h-40 md:w-24 lg:h-56 phone:h-56 lg:w-32 phone:w-32 lg:-top-8 phone:-top-8 lg:-right-3 phone:-right-3"
           }
           fill={view.nMarkFill || "white"}
           aria-label={building ? building.name : "Notandas Realty"}
@@ -807,7 +807,7 @@ const BuildingPage = () => {
         <img
           src="/Brainwing-logo.webp"
           alt="Brainwing logo"
-          className="pointer-events-none fixed top-18 left-3 z-50 w-9 opacity-70 sm:top-20 sm:left-4 sm:w-10 md:top-auto md:right-5 md:bottom-6 md:left-auto md:w-14 md:opacity-80 lg:right-7 lg:w-50"
+          className="pointer-events-none fixed top-18 left-3 z-50 w-9 opacity-70 sm:top-20 sm:left-4 sm:w-10 md:top-auto md:right-5 md:bottom-6 md:left-auto md:w-14 md:opacity-80 lg:right-7 phone:right-7 lg:w-50 phone:w-50"
         />
       )} */}
       </div>
