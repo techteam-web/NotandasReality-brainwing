@@ -29,7 +29,15 @@ const HomePage = () => {
     /* The page: the chart, and nothing else. Upright it is centred on the
        brand's ground rather than cropped, because a map with a third of its
        width cut away is not a map — see the box below. */
-    <div className="relative h-stage w-full overflow-hidden bg-[#dfe7ee] text-white portrait:flex portrait:flex-col portrait:items-center portrait:justify-center portrait:gap-[46px]">
+    /* On a phone the page's own ground is the chart too (`--map-bg`, cover):
+       the chart below is fitted to keep every pin on screen, which on the
+       widest phones leaves a sliver either side of it, and what shows there
+       should be the sea on the left and the paper on the right — the chart's
+       own edges — rather than a band of flat colour. */
+    <div
+      className="relative h-stage w-full overflow-hidden bg-[#dfe7ee] text-white portrait:flex portrait:flex-col portrait:items-center portrait:justify-center portrait:gap-[46px] phone:bg-(image:--map-bg) phone:bg-cover phone:bg-center"
+      style={{ "--map-bg": `url(${notanMap})` }}
+    >
       {/* The chart itself, and everything drawn on it.
 
           Across, it fills the picture layer: 1920×1080, the size the map is
@@ -55,20 +63,35 @@ const HomePage = () => {
           shows — so every pin stays on its spot. Through a variable so only
           the one image for this shape is ever downloaded. */}
       <div
-        /* A phone across is a far wider shape than the chart, so covering it
-           would cut the coast off top and bottom — and with it the pin at 92%
-           of the map. The chart keeps its own box, 1920×1080, and is SCALED to
-           the height that is on screen (`--fit-y`, see DesignStage): every pin
-           keeps its percentage of the chart and lands on its own spot, with
-           the ground showing either side.
+        /* A phone across is a far wider shape than the chart — 2.2:1 against
+           16:9 — so the chart covers the width, as everywhere else, and the
+           crop comes off the top and bottom. Centred, that crop cut the pin at
+           92% of the map in half; fitting the height instead kept every pin
+           but left a band of empty ground either side. Neither: the chart
+           still fills the width, and slides UP so the crop falls where there
+           is nothing — over the sea and fields above Juhu, below every name.
 
-           Scaled rather than resized on purpose. Sizing the box from the crop
-           meant a `calc()` of two variables, and where those variables do not
-           exist — any window where the design box is off — the whole
-           declaration is invalid, the box collapses to nothing, the chart
-           disappears and all ten pins pile up in one corner. `var(--fit-y,1)`
-           cannot fail that way: no stage, no scaling, chart as it was. */
-        className="relative h-full w-full origin-center bg-cover bg-no-repeat portrait:h-270! portrait:w-480! portrait:origin-top-left portrait:scale-[0.4271] ipad:bg-(image:--map-ipad)! ipad:bg-size-[max(1440px,calc(100%_-_2*var(--crop-x)))_auto]! ipad:bg-center! phone:scale-[var(--fit-y,1)]"
+           The pins run from Notan DC's at 18% to Notan Crown's at 92%; with
+           Crown's name under it and a little air, that is 162–1056 of the
+           chart's 1080 design px — 894 tall, centred 69px below the chart's
+           middle. So, from what is on screen (`--fit-y` is its share of the
+           chart's height, `--crop-y` what is cut off each end; DesignStage):
+
+             scale  min(1, fit-y × 1080/894) — only the widest phones, where
+                    under 894px is on screen, give anything back, and at most
+                    ~3% (the page behind is the chart too, so the sliver
+                    either side reads as more of the same sea and paper);
+             shift  69px × scale up, held within ±crop-y so the chart never
+                    lets go of either edge — none where nothing is cropped.
+
+           Move a pin past 18% or 92% and those two numbers move with it.
+
+           Scaled and shifted rather than resized on purpose: every pin keeps
+           its percentage of the same 1920×1080 box and lands on its own spot,
+           and with no stage the variables fall back to 1 and 0px — no scale,
+           no shift, the chart as it was — where a `calc()` that SIZED the box
+           would go invalid, collapse it, and pile all ten pins in a corner. */
+        className="relative h-full w-full origin-center bg-cover bg-no-repeat portrait:h-270! portrait:w-480! portrait:origin-top-left portrait:scale-[0.4271] ipad:bg-(image:--map-ipad)! ipad:bg-size-[max(1440px,calc(100%_-_2*var(--crop-x)))_auto]! ipad:bg-center! phone:scale-[min(1,calc(var(--fit-y,1)*1.2081))] phone:translate-y-[clamp(calc(-1*var(--crop-y,0px)),calc(-69px*min(1,calc(var(--fit-y,1)*1.2081))),var(--crop-y,0px))]"
         style={{
           backgroundImage: `url(${notanMap})`,
           "--map-ipad": `url(${notanMapIpad})`,
