@@ -570,7 +570,7 @@ const STAGE_TYPE = {
   amenityLabelTracking: 0.42,
   amenityRuleGap: 0.6,
   amenityListGap: 0.7,
-  amenityLead: 1.35,
+  amenityLead: 1.5,
   subLead: 1.2,
 };
 

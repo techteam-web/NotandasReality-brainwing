@@ -53,13 +53,13 @@ export const BUILDING_VIEWS = {
     headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
     nMarkFill: "black",
 
-    amenityListClass:
-      "max-w-lg lg:w-[40rem] phone:w-[40rem]",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
     /* iPad across only x 240–1680 is on screen. The group is centred in the sky between the tower (1175) and
-       that edge, where the 16:9 placement ran the address and the list off it. */
+       that edge, where the 16:9 placement ran the address and the list off it.
+       Between the two (an iPad Air or 11" Pro across, ~1.44) the group follows
+       the screen's edge in as the crop deepens, holding the address — the
+       widest line here, 432px — 40px inside it. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl lg:top-[42%] phone:top-[42%] lg:right-[0.3%] phone:right-[0.3%] ipad:left-[1427px]! ipad:right-auto! ipad:-translate-x-1/2!",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl lg:top-[42%] phone:top-[42%] lg:right-[max(0.3%,calc(var(--crop-x,0px)_-_128px))] phone:right-[max(0.3%,calc(var(--crop-x,0px)_-_128px))] ipad:left-[1427px]! ipad:right-auto! ipad:-translate-x-1/2!",
 
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
@@ -95,9 +95,6 @@ export const BUILDING_VIEWS = {
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-52 phone:bottom-52 lg:top-130 phone:top-130 lg:left-45 phone:left-45",
     headerSubClass: "font-bold lg:text-[12px] phone:text-[12px]",
-    amenityListClass:
-      "max-w-lg lg:w-[42rem] phone:w-[42rem]",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px]", 
   },
   "notan-jewel": {
     viewImg: notanJewelView,
@@ -122,12 +119,12 @@ export const BUILDING_VIEWS = {
     headerClass:
       "] lg:top-[20%] phone:top-[20%] lg:right-[14.7%] phone:right-[14.7%]",
     nMarkFill: "black",
-    /* iPad across only x 240–1680 is on screen. The group is centred in the sky right of the tower (1058–1680). */
+    /* iPad across only x 240–1680 is on screen. The group is centred in the sky right of the tower (1058–1680).
+       Between the two (an iPad Air or 11" Pro across, ~1.44) the group follows
+       the screen's edge in as the crop deepens, holding the widest row (434px)
+       40px inside it. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-75 lg:bottom-46 phone:bottom-46 lg:h-35 phone:h-35 lg:top-[47%] phone:top-[47%] lg:right-[2%] phone:right-[2%] ipad:left-[1369px]! ipad:right-auto! ipad:-translate-x-1/2!",
-    amenityListClass:
-      "max-w-lg lg:w-[40rem] phone:w-[40rem]",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-75 lg:bottom-46 phone:bottom-46 lg:h-35 phone:h-35 lg:top-[47%] phone:top-[47%] lg:right-[max(2%,calc(var(--crop-x,0px)_-_127px))] phone:right-[max(2%,calc(var(--crop-x,0px)_-_127px))] ipad:left-[1369px]! ipad:right-auto! ipad:-translate-x-1/2!",
   },
   "notan-space": {
     viewImg: notanSpaceView,
@@ -153,9 +150,12 @@ export const BUILDING_VIEWS = {
     asideClass:
       "left-[26%] top-[30%] w-[211.2px] -translate-x-1/2 -translate-y-1/2 lg:translate-y-0 phone:translate-y-0 portrait:translate-y-0! lg:left-[26.00%] phone:left-[26.00%] lg:top-[21.76%] phone:top-[21.76%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[26.00%]! portrait:top-[21.76%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
-    amenityClass: "left-[74.6%] top-[49%] -translate-x-1/2 -translate-y-1/2",
-    amenityListClass: "w-[460.8px]",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
+    /* iPad across only x 240–1680 is on screen, and at the list's height the
+       tower reaches 1162 — 518px of sky for a 470px row. So the rows drop to
+       15px there and the group is centred in that sky. */
+    amenityClass:
+      "left-[74.6%] top-[49%] -translate-x-1/2 -translate-y-1/2 ipad:left-[1421px]!",
+    amenityItemClass: "ipad:text-[15px]!",
   },
   "notan-terrace": {
     viewImg: notanTerraceView,
@@ -171,9 +171,6 @@ export const BUILDING_VIEWS = {
     nMarkFill: "black",
     amenityClass:
       "lg:right-[10%] phone:right-[10%] w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:bottom-55 phone:bottom-55 lg:left-[9%] phone:left-[9%] lg:top-[40%] phone:top-[40%]",
-    amenityListClass:
-      "max-w-lg lg:w-[42rem] phone:w-[42rem]",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
     /* The floor readout, anchored on its CENTRE as a share of the picture —
        %, not px, and centre, not corner, so the same one spot serves a
        1920-wide picture layer and an 820-wide portrait canvas. Measured off
@@ -205,8 +202,6 @@ export const BUILDING_VIEWS = {
     nMarkFill: "black",
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 left-75 md:bottom-15 md:left-15 lg:top-[357px] phone:top-[357px] lg:bottom-auto phone:bottom-auto lg:left-[386px] phone:left-[386px] lg:-translate-x-1/2 phone:-translate-x-1/2",
-    amenityListClass: "max-w-lg lg:w-[40rem] phone:w-[40rem]",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
   },
 
   "notan-lands-end": {
@@ -235,9 +230,6 @@ export const BUILDING_VIEWS = {
        at 16:9's placement the list sat 9px off the screen's edge. */
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-85 lg:bottom-56 phone:bottom-56 lg:h-35 phone:h-35 lg:top-[38%] phone:top-[38%] lg:left-26 phone:left-26 ipad:left-[570px]! ipad:right-auto! ipad:-translate-x-1/2!",
-    amenityListClass:
-      "max-w-lg lg:w-[52rem] phone:w-[52rem]",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
   },
   "notan-views": {
     viewImg: notanViewsView,
@@ -257,11 +249,15 @@ export const BUILDING_VIEWS = {
       "w-[262.9px] sm:w-[295.8px] md:w-[410.8px] lg:w-[308.1px] phone:w-[308.1px]",
     headerLogoTrim: "mt-[-35%] mb-[-30.17%]",
     nMarkFill: "black",
+    /* The group follows the screen's right edge in as the window gets
+       squarer (--crop-x), and once the crop is deeper than 142px a side — an
+       iPad Air or 11" Pro across — the second arm holds the widest row (499px)
+       45px inside that edge. iPad across only x 240–1680 is on screen, and the
+       tower's column reaches 1112 at the list's height, so the rows drop to
+       15px there and the group is centred in that sky. */
     amenityClass:
-      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-85 lg:bottom-66 phone:bottom-66 lg:h-35 phone:h-35 lg:top-110 phone:top-110 lg:right-[max(calc(-1%_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] phone:right-[max(calc(-1%_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))]",
-    amenityListClass:
-      "max-w-lg lg:w-[42rem] phone:w-[42rem]",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px]",
+      "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-85 lg:bottom-66 phone:bottom-66 lg:h-35 phone:h-35 lg:top-110 phone:top-110 lg:right-[max(calc(-1%_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_90px))] phone:right-[max(calc(-1%_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_90px))] ipad:left-[1396px]! ipad:right-auto! ipad:-translate-x-1/2!",
+    amenityItemClass: "ipad:text-[15px]!",
   },
 
   "notan-beach-house": {
@@ -290,16 +286,12 @@ export const BUILDING_VIEWS = {
     asideClass:
       "left-[9%] top-[15%] lg:left-[18.75%] phone:left-[18.75%] lg:top-[25.00%] phone:top-[25.00%] lg:right-auto phone:right-auto lg:bottom-auto phone:bottom-auto lg:-translate-x-1/2 phone:-translate-x-1/2 portrait:left-[18.75%]! portrait:top-[25.00%]! portrait:right-auto! portrait:bottom-auto! portrait:-translate-x-1/2!",
     nMarkFill: "black",
-    /* iPad across only x 240–1680 is on screen, and the sky right of the tower is 1156–1680 —
-       narrower than any of the rows above, which wrapped into nine ragged
-       ones. So this shape gets rows set by hand (BUILDING_AMINITIES_IPAD in
-       AmenitiesData.js), six of 351–418px at 15px, like Tides', inside a
-       432px list centred in the sky. */
+    /* iPad across only x 240–1680 is on screen, and the sky right of the tower
+       is 1156–1680 — 524px for a 490px row. So the rows drop to 15px there
+       (432px at the widest), like Tides', centred in that sky. */
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 right-85 lg:bottom-36 phone:bottom-36 lg:top-120 phone:top-120 lg:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] phone:right-[max(calc(-0.75rem_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:left-[1432px]! ipad:right-auto! ipad:-translate-x-1/2!",
-    amenityListClass:
-      "max-w-lg lg:w-[54rem] phone:w-[54rem] ipad:w-[27rem]!",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px] ipad:text-[15px]!",
+    amenityItemClass: "ipad:text-[15px]!",
   },
 
   "notan-tides": {
@@ -328,13 +320,11 @@ export const BUILDING_VIEWS = {
     headerLogoTrim: "mt-[-5.75%] mb-[-6.84%]",
     nMarkFill: "black",
     /* iPad across only x 240–1680 is on screen. The sky left of the tower is only 240–670 at the
-       list's height, less than its longest item (471px at 17px), so the list
+       list's height, less than its widest row (460px at 17px), so the list
        ran into the tower. It is set at 15px, and the group moves up 80px to
        where the roof's slope leaves more sky, centred in it. */
     amenityClass:
       "w-[calc(100%-2.5rem)] max-w-xl sm:max-w-2xl lg:max-w-3xl phone:max-w-3xl bottom-55 lg:bottom-63 phone:bottom-63 lg:top-112 phone:top-112 lg:left-[max(calc(-48px_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] phone:left-[max(calc(-48px_+_var(--crop-x,0px)/2),calc(var(--crop-x,0px)_-_124px))] ipad:top-[368px]! ipad:left-[484px]! ipad:-translate-x-1/2!",
-    amenityListClass:
-      "max-w-lg lg:w-[42rem] phone:w-[42rem] ipad:w-[26.5rem]!",
-    amenityItemClass: "lg:text-[17px] phone:text-[17px] ipad:text-[15px]!",
+    amenityItemClass: "ipad:text-[15px]!",
   },
 };

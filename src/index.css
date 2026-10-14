@@ -1,5 +1,7 @@
 /* Serif display face used by the mini compass letters (floorPlan_Compass.svg) */
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+/* The amenity rows on the project pages (see BuildingPage) */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap");
 @import "tailwindcss";
 
 body {
@@ -114,6 +116,8 @@ body {
 }
 
 @theme {
+  --font-playfair: "Playfair Display", "Times New Roman", Times, serif;
+
   /* Mobile & Tablet devices */
   --breakpoint-xs: 23.5rem; /* 376px × 667px / 375px × 812px - Modern Mobile (iPhone 13/14/15/16) */
   --breakpoint-mob: 25rem; /* 400px × 800px - Standard Android & Large Mobile */
@@ -266,57 +270,6 @@ body {
 }
 @utility min-h-stage {
   min-height: calc(100 * var(--dvh));
-}
-
-/*
-  The "|" between two amenities.
-
-  Its box is a single real space, widened with word-spacing — and a real space
-  is the one thing the browser drops at the end of a row. Mid-row it is the gap
-  between two items; at a row's end it is nothing, so the row centres on its
-  words instead of on its punctuation. The bar itself is drawn out of flow over
-  that gap, so it never adds width anywhere, and still hangs in the right place
-  when the space it sits in has collapsed away.
-*/
-.amenity-sep {
-  position: relative;
-  /* The bar is positioned inside this box, so the box's height has to be the
-     text's and nothing else. Without this, a stray `leading-*` on a project's
-     amenity class — Views carried a 3.2px one — moves the bar off the words it
-     separates, on that project only. */
-  line-height: 1;
-  /* The whole gap is ONE REAL SPACE, widened with word-spacing — and a space
-     is the one thing a browser drops at the end of a row. So mid-row this box
-     is the 1.1em gap between two items, and at a row's end it is nothing at
-     all: the row costs no width for its trailing bar and centres exactly on
-     its words.
-
-     There used to be a 0.3em padding here as well, to give the bar air to
-     hang off the last word once that space collapsed. The bar is placed at a
-     fixed offset now (see ::after) and hangs out of flow on its own, so the
-     padding bought nothing and only widened every row-end by 0.3em. The
-     word-spacing absorbs it, leaving the mid-row gap exactly as it was. */
-  word-spacing: 0.85em;
-}
-.amenity-sep::after {
-  content: "|";
-  position: absolute;
-  /* A FIXED distance from the last word, not the middle of this box — so the
-     bar sits the same 0.55em off its word whether the row carries on or ends
-     there. Centring on the box would tie the bar to the box's width, and that
-     width is not constant: the space inside collapses at a row's end, leaving
-     only the 0.3em padding, which used to hang the bar at 0.15em — half the
-     gap of every other bar, which is what read as inconsistent.
-
-     0.55em is exactly where the mid-row bars already sit (measured: box 1.1em,
-     bar at its centre), so those are untouched. The bar is out of flow, so
-     overhanging the collapsed box at a row's end costs the row no width and
-     the rows stay centred on their words. In em, so it holds at every
-     breakpoint from lg to 5xl without a per-step value. */
-  left: 0.55em;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: rgba(0, 0, 0, 0.4);
 }
 
 /* Custom Scrollbar styled for the brand theme */

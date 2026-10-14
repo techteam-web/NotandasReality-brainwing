@@ -9,7 +9,7 @@ import NotandasNMark from "../SvgAnimations/NotandasNMark";
 import { BUILDING_LOGOS } from "./buildingLogos";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { BUILDING_AMINITIES, BUILDING_AMINITIES_IPAD } from "./AmenitiesData";
+import { BUILDING_AMINITIES } from "./AmenitiesData";
 import ImageStage from "./ImageStage";
 import { Chrome, IPAD_MEDIA } from "../DesignStage";
 import { ratioFromViewBox } from "./floorGeometry";
@@ -61,8 +61,16 @@ const STAGE_TYPE = {
      than growing with the photo and reading larger than all of them. */
   amenityLabel: "text-[11px] leading-[1.2] tracking-[0.42em]",
   amenityRule: "mt-[0.6cqw] h-px w-[2.6cqw]",
-  amenityList: "mt-[0.7cqw] leading-[1.35]",
+  amenityList: "mt-[0.7cqw]",
 };
+
+/* The amenity rows, set as the brochure sets them: Playfair Display, tracked
+   +20 (0.02em), on a 1.5 line, every row centred and kept whole. 17px is the
+   size the list has always had on the 1920×1080 composition. Shared by every
+   project; a project's amenityItemClass only overrides it — a smaller size on
+   an iPad across, say, where the sky beside the tower is narrower. */
+const AMENITY_TYPE =
+  "font-playfair text-[17px] leading-[1.5] tracking-[0.02em] text-black";
 
 /**
  * The "View Project" destination.
@@ -86,22 +94,17 @@ const BuildingPage = () => {
   const building = BUILDINGS.find((b) => b.id === id);
   const view = BUILDING_VIEWS[id];
   const projectLogo = BUILDING_LOGOS[id] ?? null;
-  const toAmenityLines = (entries) =>
-    Object.values(entries || {})
-      .filter(Boolean)
-      .map((line) => {
-        const hasTrailingPipe = line.trim().endsWith("|");
-        const items = line
-          .split("|")
-          .map((item) => item.trim())
-          .filter(Boolean);
-        return { items, hasTrailingPipe };
-      });
-  const amenityLines = toAmenityLines(BUILDING_AMINITIES[id]);
-  /* Hand-set rows for an iPad held across, where a project has them (see
-     BUILDING_AMINITIES_IPAD); empty means the rows above serve there too. */
-  const ipadAmenityLines = toAmenityLines(BUILDING_AMINITIES_IPAD[id]);
-  const amenities = amenityLines.flatMap((line) => line.items);
+  /* One array of items per row. A "|" only ever sits BETWEEN two items, so
+     one written at either end of a row is dropped rather than drawn. */
+  const amenityLines = Object.values(BUILDING_AMINITIES[id] || {})
+    .map((line) =>
+      line
+        .split("|")
+        .map((item) => item.trim())
+        .filter(Boolean),
+    )
+    .filter((items) => items.length > 0);
+  const amenities = amenityLines.flat();
   const amenityRef = useRef(null);
   const hasAmenities = amenityLines.length > 0;
   const [active, setActive] = useState(null);
@@ -198,12 +201,7 @@ const BuildingPage = () => {
     () => {
       if (!amenityRef.current) return undefined;
 
-      /* Only the rows on screen: a project with iPad rows carries both sets,
-         one `display: none`, and staggering through the hidden set would hold
-         the visible one back by a beat per hidden row. */
-      const lines = gsap.utils
-        .toArray(".amenity-line", amenityRef.current)
-        .filter((el) => el.getClientRects().length > 0);
+      const lines = gsap.utils.toArray(".amenity-line", amenityRef.current);
 
       const tl = gsap.timeline();
       tl.from(amenityRef.current, {
@@ -372,21 +370,6 @@ const BuildingPage = () => {
      animates `y` on it, which means writing `transform`, and on the positioned
      node that would erase -translate-x-1/2/-translate-y-1/2 and drop the whole
      block half its height the moment the intro plays. */
-  /* A project with hand-set iPad rows carries both sets and the `ipad` variant
-     picks one. The iPad rows are set to fit, so they never wrap: if a device's
-     serif runs wider than the one they were measured in, a row overhangs its
-     box evenly either side rather than breaking into a ragged two. */
-  const amenityRowSets = ipadAmenityLines.length
-    ? [
-        { key: "all", lines: amenityLines, lineClass: "ipad:hidden" },
-        {
-          key: "ipad",
-          lines: ipadAmenityLines,
-          lineClass: "hidden whitespace-nowrap ipad:block",
-        },
-      ]
-    : [{ key: "all", lines: amenityLines, lineClass: "" }];
-
   const amenityBlock = hasAmenities ? (
     <div
       className={
@@ -448,66 +431,39 @@ const BuildingPage = () => {
                 staged ? STAGE_TYPE.amenityRule : "mt-2 h-px w-10"
               }`}
             />
+            {/* Exactly as wide as its longest row: the rows are set by hand,
+                so there is no box for them to wrap in, only a centre to share
+                with the caption and the mark above. */}
             <div
-              className={
-                staged
-                  ? `flex flex-col items-center justify-center text-black ${STAGE_TYPE.amenityList} ${view.amenityListClass}`
-                  : `mt-2.5 flex flex-col items-center justify-center text-center leading-snug text-black ${
-                      view.amenityListClass || "max-w-2xl"
-                    }`
-              }
+              className={`flex w-max flex-col items-center ${
+                staged ? STAGE_TYPE.amenityList : "mt-2.5"
+              }`}
             >
-              {amenityRowSets.flatMap(({ key, lines, lineClass }) =>
-                lines.map(({ items, hasTrailingPipe }, lineIdx) => (
-                  <div
-                    key={`${key}-${lineIdx}`}
-                    className={`amenity-line text-center ${lineClass}`}
-                  >
-                    {items.map((amenity, itemIdx) => {
-                      const isLast = itemIdx === items.length - 1;
-                      /* A separator that lands at the end of a ROW is
-                         punctuation hanging off it, not content. Left in the
-                         flow it made that row ~23px wider on the right, so
-                         `text-center` set its words 11.7px left of every other
-                         row's — which is what made the mark above them read as
-                         off-centre, on every project.
-  
-                         So the separator is its own element whose whole width is
-                         ONE REAL SPACE, widened with word-spacing, with the bar
-                         drawn over it out of flow. A space is the one thing a
-                         browser drops at the end of a row, so mid-row it is the
-                         gap between two items and at a row's end it is nothing
-                         at all — every row then centres on its words. Whether
-                         the last item carries one is the data's call: a line
-                         written ending in "|" means it. */
-                      const showSep = !isLast || hasTrailingPipe;
-                      const sizeClass = staged
-                        ? view.amenityItemClass
-                        : view.amenityItemClass || "lg:text-[18px] phone:text-[18px]";
-                      return (
-                        <Fragment key={itemIdx}>
-                          <span
-                            className={`whitespace-nowrap mix-blend-multiply portrait:text-[17px]! portrait:leading-relaxed! ${sizeClass}`}
-                          >
-                            {amenity}
-                          </span>
-                          {showSep && (
-                            <span
-                              aria-hidden="true"
-                              className={`amenity-sep portrait:text-[17px]! ${sizeClass}`}
-                            >
-                              {" "}
-                            </span>
-                          )}
-                          {/* the items never break internally, so this zero-width
-                            opportunity is where a long line is allowed to wrap */}
-                          {!isLast && <wbr />}
-                        </Fragment>
-                      );
-                    })}
-                  </div>
-                )),
-              )}
+              {amenityLines.map((items, lineIdx) => (
+                <div
+                  key={lineIdx}
+                  className={`amenity-line text-center whitespace-nowrap mix-blend-multiply ${AMENITY_TYPE} ${
+                    view.amenityItemClass ?? ""
+                  }`}
+                >
+                  {/* "Item | Item", the bar in the same ink as the words. It
+                      only ever sits between two items, never at a row's end,
+                      so every row centres on its words. The spaces stay out of
+                      the hidden span so a screen reader still hears two
+                      items, not one run-together word. */}
+                  {items.map((amenity, itemIdx) => (
+                    <Fragment key={itemIdx}>
+                      {itemIdx > 0 && (
+                        <>
+                          {" "}
+                          <span aria-hidden="true">|</span>{" "}
+                        </>
+                      )}
+                      {amenity}
+                    </Fragment>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </section>
